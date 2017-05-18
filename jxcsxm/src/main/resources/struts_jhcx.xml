@@ -1,0 +1,9 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+<package name="jhcx" extends="struts-default" namespace="/jhcx">
+	<action name="queryXmlist" class="jhcxController" method="queryXmlist"></action>
+	
+ </package>
+</struts>

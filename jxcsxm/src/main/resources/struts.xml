@@ -1,0 +1,28 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+<include file="struts-default.xml"/>
+<constant name="struts.locale" value="zh_CN"></constant>
+<constant name="struts.i18n.encoding" value="UTF-8"></constant> 
+<constant name="struts.enable.DynamicMethodInvocation" value="false" /> 
+<constant name="struts.devMode" value="true" /> 
+<constant name="struts.objectFactory" value="spring"/>
+<constant name="struts.multipart.maxSize" value="200000000000" />
+ <constant name="struts.multipart.saveDir" value="e:\cache" />
+<!-- <include file="struts_xtgl.xml"></include>
+ -->
+
+<!-- action默认后缀 -->
+<constant name="struts.action.extension" value="do"/>
+<!-- 这只是例子，正式开发时请删除 -->
+<!-- <package name="user" extends="struts-default" namespace="/user">
+     <action name="register" class="userController" method="register"> 
+        <result name="success">/page/user/success.jsp</result>
+        <result name="error">/page/user/error.jsp</result>    
+     </action>
+</package> -->
+<include file="struts_xtgl.xml"></include>
+<include file="struts_jhcx.xml"></include>
+
+</struts>

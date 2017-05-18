@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"mybatis-3-config.dtd">
+<configuration>
+  <properties resource="dao.properties"/>
+  <typeAliases>
+     <!-- BONECP数据库连接池 -->
+     <typeAlias type="com.hdsx.dao.util.BoneCPFactory" alias="BONECP"/>
+     <typeAlias type="com.hdsx.jxcsxm.xtgl.bean.TreeNode" alias="treenode"/>
+     <typeAlias type="com.hdsx.jxcsxm.xtgl.bean.Master" alias="master"/>
+     <typeAlias type="com.hdsx.jxcsxm.xtgl.bean.Unit" alias="unit"/>
+     <typeAlias type="com.hdsx.jxcsxm.xtgl.bean.Param" alias="param"/>
+     <typeAlias type="com.hdsx.jxcsxm.xtgl.bean.Dzdt" alias="dzdt"/>
+     <typeAlias type="com.hdsx.jxcsxm.xtgl.bean.ProgBean" alias="pb"/>
+	 <!-- qwh -->
+	 <typeAlias type="com.hdsx.jxcsxm.xtgl.bean.Xmjbxx" alias="xmjbxx"/>
+	
+     
+  </typeAliases>
+  <environments default="jdbc">
+     <environment id="jdbc">
+       <transactionManager type="JDBC"/>
+       <!-- BONECP连接池，推荐在开发时使用 -->
+       <dataSource type="BONECP">
+			<property name="driverClass" value="${driverClass}" />
+			<property name="jdbcUrl" value="${jdbcUrl}" />
+			<property name="username" value="${username}" />
+			<property name="password" value="${password}" />
+			<property name="idleConnectionTestPeriod" value="60" />
+			<property name="idleMaxAge" value="30" />
+			<property name="maxConnectionsPerPartition" value="30" />
+			<property name="minConnectionsPerPartition" value="10" />
+			<property name="partitionCount" value="3" />
+			<property name="acquireIncrement" value="5" />
+			<property name="statementsCacheSize" value="100" />
+			<property name="releaseHelperThreads" value="3" />
+	    </dataSource>     
+<!-- JNDI连接池，推荐在正式发布时使用 -->
+<!--         <dataSource type="JNDI"> -->
+<!--              <property name = "data_source" value= "${data_source}"/> -->
+<!--         </dataSource> -->
+     </environment>
+     
+     <environment id="odbc">
+       <transactionManager type="JDBC"/>
+       <!-- BONECP连接池，推荐在开发时使用 -->
+       <dataSource type="BONECP">
+			<property name="driverClass" value="${driverClass_sql}" />
+			<property name="jdbcUrl" value="${jdbcUrl_sql}" />
+			<property name="username" value="${username_sql}" />
+			<property name="password" value="${password_sql}" />
+			<property name="idleConnectionTestPeriod" value="60" />
+			<property name="idleMaxAge" value="30" />
+			<property name="maxConnectionsPerPartition" value="30" />
+			<property name="minConnectionsPerPartition" value="10" />
+			<property name="partitionCount" value="3" />
+			<property name="acquireIncrement" value="5" />
+			<property name="statementsCacheSize" value="100" />
+			<property name="releaseHelperThreads" value="3" />
+	    </dataSource>     
+<!-- JNDI连接池，推荐在正式发布时使用 -->
+<!--         <dataSource type="JNDI"> -->
+<!--              <property name = "data_source" value= "${data_source}"/> -->
+<!--         </dataSource> -->
+     </environment>
+  </environments>
+	<mappers>
+     <mapper resource="com/hdsx/jxcsxm/xtgl/config/xtgl.xml"/>
+     <mapper resource="com/hdsx/jxcsxm/xtgl/config/dzdt.xml"/>
+	 <!-- qwh -->
+	 <mapper resource="com/hdsx/jxcsxm/jhcx/config/jhcx.xml"/>
+	 
+  </mappers>
+</configuration>
