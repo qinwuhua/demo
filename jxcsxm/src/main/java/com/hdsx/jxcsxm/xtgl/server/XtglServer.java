@@ -155,4 +155,6 @@ public interface XtglServer {
 
 	List<TreeNode> selAllUnit1(String replaceAll);
 
+	List<TreeNode> getWhTreeByName(HashMap<String, String> hm);
+
 }

@@ -36,6 +36,7 @@
 	<action name="deleteJsById" class="xtglController" method="deleteJsById"></action>
 	<action name="selectDwList" class="xtglController" method="selectDwList"></action>
 	<action name="getBmbmTreeByName" class="xtglController" method="getBmbmTreeByName"></action>
+	<action name="getWhTreeByName" class="xtglController" method="getWhTreeByName"></action>
 	<action name="insertDw" class="xtglController" method="insertDw"></action>
 	<action name="deleteDwById" class="xtglController" method="deleteDwById"></action>
 	<action name="selectDwById" class="xtglController" method="selectDwById"></action>

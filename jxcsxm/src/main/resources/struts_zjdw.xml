@@ -1,0 +1,16 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+<package name="zjdw" extends="struts-default" namespace="/zjdw">
+	<action name="queryXmlist" class="zjdwController" method="queryXmlist"></action>
+	<action name="insertZjdw" class="zjdwController" method="insertZjdw"></action>
+	<action name="queryzjdwlist" class="zjdwController" method="queryzjdwlist"></action>
+	<action name="queryDwByid" class="zjdwController" method="queryDwByid"></action>
+	<action name="getdwTj" class="zjdwController" method="getdwTj"></action>
+	<action name="updateZjdw" class="zjdwController" method="updateZjdw"></action>
+	<action name="updateZjdwType" class="zjdwController" method="updateZjdwType"></action>
+	<action name="deldw" class="zjdwController" method="deldw"></action>
+	
+ </package>
+</struts>

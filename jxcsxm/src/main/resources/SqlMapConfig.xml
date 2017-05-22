@@ -14,7 +14,8 @@
      <typeAlias type="com.hdsx.jxcsxm.xtgl.bean.ProgBean" alias="pb"/>
 	 <!-- qwh -->
 	 <typeAlias type="com.hdsx.jxcsxm.xtgl.bean.Xmjbxx" alias="xmjbxx"/>
-	
+	 <typeAlias type="com.hdsx.jxcsxm.zjdw.bean.XmZjdw" alias="xmzjdw"/>
+	 
      
   </typeAliases>
   <environments default="jdbc">
@@ -69,6 +70,8 @@
      <mapper resource="com/hdsx/jxcsxm/xtgl/config/dzdt.xml"/>
 	 <!-- qwh -->
 	 <mapper resource="com/hdsx/jxcsxm/jhcx/config/jhcx.xml"/>
+	 <mapper resource="com/hdsx/jxcsxm/zjdw/config/zjdw.xml"/>
+	 
 	 
   </mappers>
 </configuration>

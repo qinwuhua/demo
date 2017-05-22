@@ -1406,6 +1406,31 @@ function loadBmbm3(id, name,str) {
 	
 }
 
+function loadBmbm(id, name,str) {
+	$('#' + id).combobox({
+		url : '/jxcsxm/xtgl/getBmbmTreeByName.do?yhm='
+				+ encodeURI(encodeURI(name)),
+		valueField : 'bmid',
+		textField : 'name',
+		panelHeight:'auto',
+		multiple:false
+	});
+	$('#' + id).combobox('setValue',str);
+}
+function loadWhBmbm(id, name,str) {
+	$('#' + id).combobox({
+		url : '/jxcsxm/xtgl/getWhTreeByName.do?yhm='
+				+ encodeURI(encodeURI(name)),
+		valueField : 'bmid',
+		textField : 'name',
+		panelHeight:'auto',
+		multiple:false
+	});
+	$('#' + id).combobox('setValue',str);
+}
+
+
+
 function returnindex(arr,str){
 	var j=0;
 	for(var i=0;i<arr.length;i++){
@@ -1559,26 +1584,65 @@ function getUrlParame(strParame) {
 
 
 
-
-///加法
-function accAdd(arg1,arg2){  
-    var r1,r2,m;  
-    try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}  
-    try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}  
-    m=Math.pow(10,Math.max(r1,r2));
-    return (arg1*m+arg2*m)/m;  
-}
-function accSub(arg1,arg2){
-	 var r1,r2,m,n;
-	 try{r1=arg1.toString().split(".")[1].length;}catch(e){r1=0;}
-	try{r2=arg2.toString().split(".")[1].length;}catch(e){r2=0;}
-	m=Math.pow(10,Math.max(r1,r2));
-	//last modify by deeka
-	//动态控制精度长度
-	n=(r1>=r2)?r1:r2;
-	return ((arg1*m-arg2*m)/m).toFixed(n);
-	}
-
+//两个浮点数求和  
+function accAdd(num1,num2){  
+   var r1,r2,m;  
+   try{  
+       r1 = num1.toString().split('.')[1].length;  
+   }catch(e){  
+       r1 = 0;  
+   }  
+   try{  
+       r2=num2.toString().split(".")[1].length;  
+   }catch(e){  
+       r2=0;  
+   }  
+   m=Math.pow(10,Math.max(r1,r2));  
+   // return (num1*m+num2*m)/m;  
+   return Math.round(num1*m+num2*m)/m;  
+}  
+  
+// 两个浮点数相减  
+function accSub(num1,num2){  
+   var r1,r2,m;  
+   try{  
+       r1 = num1.toString().split('.')[1].length;  
+   }catch(e){  
+       r1 = 0;  
+   }  
+   try{  
+       r2=num2.toString().split(".")[1].length;  
+   }catch(e){  
+       r2=0;  
+   }  
+   m=Math.pow(10,Math.max(r1,r2));  
+   n=(r1>=r2)?r1:r2;  
+   return (Math.round(num1*m-num2*m)/m).toFixed(n);  
+}  
+// 两数相除  
+function accDiv(num1,num2){  
+   var t1,t2,r1,r2;  
+   try{  
+       t1 = num1.toString().split('.')[1].length;  
+   }catch(e){  
+       t1 = 0;  
+   }  
+   try{  
+       t2=num2.toString().split(".")[1].length;  
+   }catch(e){  
+       t2=0;  
+   }  
+   r1=Number(num1.toString().replace(".",""));  
+   r2=Number(num2.toString().replace(".",""));  
+   return (r1/r2)*Math.pow(10,t2-t1);  
+}  
+  
+function accMul(num1,num2){  
+   var m=0,s1=num1.toString(),s2=num2.toString();   
+try{m+=s1.split(".")[1].length}catch(e){};  
+try{m+=s2.split(".")[1].length}catch(e){};  
+return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m);  
+}  
 
 
 
@@ -1599,65 +1663,6 @@ function disLoadjzt() {
 //设置光圈
 function szgq(str,id){
 	$('#'+id).attr('class',str);
-}
-//审核资金拨付
-var _zjbfjhid="";var _zjbfid="";
-function zjbf_sh(jhid,id){
-	//alert(jhid+"     "+id);
-	_zjbfjhid=jhid;_zjbfid=id;
-	YMLib.UI.createWindow('lxxx','资金拨付审核','/jxcsxm/page/gcgl/cgszjdw/zjbf_sh.jsp','lxxx',400,200);	
-}
-
-//退回下级资金拨付
-
-function zjbf_th(jhid,id){
-	//alert(jhid+"     "+id);
-	_zjbfjhid=jhid;_zjbfid=id;
-	YMLib.UI.createWindow('lxxx','资金拨付审核','/jxcsxm/page/gcgl/cgszjdw/zjbf_th.jsp','lxxx',400,200);	
-}
-
-//退回未审核资金拨付
-
-function zjbf_thwsh(jhid,id){
-	if(confirm('您确认退回吗？'))
-	$.ajax({
-		 type : "POST",
-		 url : "/jxcsxm/gcgl/zjbf_sbshth.do",
-		 dataType : 'json',
-		 data : 'gcglabgc.jhid=' +jhid+"&gcglabgc.cscyj="+"&gcglabgc.thyy="+"&gcglabgc.id="+id+"&gcglabgc.sbzt="+1+"&gcglabgc.shzt=0",
-		 success : function(msg){
-			 if(msg){
-				 alert('退回成功！');
-				 $("#zjgrid").datagrid('reload');
-			 }else{
-				 YMLib.Tools.Show('退回失败！',3000);
-			 }
-		 },
-		 error : function(){
-			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-		 }
-	});
-}
-//上报下级资金拨付
-function zjbf_sb(jhid,id){
-	if(confirm('您确认上报吗？'))
-	$.ajax({
-		 type : "POST",
-		 url : "/jxcsxm/gcgl/zjbf_sbshth.do",
-		 dataType : 'json',
-		 data : 'gcglabgc.jhid=' +jhid+"&gcglabgc.cscyj="+"&gcglabgc.thyy="+"&gcglabgc.id="+id+"&gcglabgc.sbzt="+1+"&gcglabgc.shzt=0",
-		 success : function(msg){
-			 if(msg){
-				 alert('上报成功！');
-				 $("#zjgrid").datagrid('reload');
-			 }else{
-				 YMLib.Tools.Show('上报失败！',3000);
-			 }
-		 },
-		 error : function(){
-			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-		 }
-	});
 }
 
 //显示字符串
@@ -1682,4 +1687,31 @@ function createBtTree(id,treeno,ssbb){
 
 }
 
-
+//qwh验证input
+function validateInput(id,type,result){
+	if(!result){
+		return result;
+	}
+	if(type=="number"){
+		if(isNaN(Number($("#"+id).val()))){  
+			//当输入不是数字的时候，Number后返回的值是NaN;然后用isNaN判断。
+			alert($('#'+id).parent().prev().html().replace("：",'')+"不是数字！");
+	        $('#'+id).val('');
+			$('#'+id).focus();
+			return false;
+	    }else{
+	    	return true;
+	    }
+	}
+	if(type=="null"){
+		if($("#"+id).val().trim()==""){
+			alert($('#'+id).parent().prev().html().replace("：",'')+"不能为空！");
+	        $('#'+id).val('');
+			$('#'+id).focus();
+			return false;
+		}else{
+			return true;
+		}
+	}
+	return true;
+}

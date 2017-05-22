@@ -124,4 +124,20 @@ var Data={
 		
 	};
 
+//打开资金到位页面
+function openZjdw(xmbm,xmlx){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.xmlx=xmlx;
+	openWindow("资金到位详情","/jxcsxm/page/zjdw/zjdw.jsp",900,400);
+}
+function openWindow(title,jsp,width,height){
+	YMLib.UI.createWindow('mywin',title,jsp,'mywin',width,height);	
+}
+function closeWindow(){
+	parent.$('#mywin').window('destroy');
+}
 
+
+function trimStr(str){
+	return str.replace(/(^\s*)|(\s*$)/g,"");
+	}

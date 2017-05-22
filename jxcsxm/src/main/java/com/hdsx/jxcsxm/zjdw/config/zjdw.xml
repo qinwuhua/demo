@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxcsxm.zjdw">
+	<select id="queryXmlist" parameterType="xmjbxx" resultType="xmjbxx">
+		select * from (select rownum num ,t.*,xd.jhxdwh  from xmjbxx t
+		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
+		on t.xmbm=xd.xmid	
+		where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		order by jhxdwh,xmnf,xmbm
+	</select>
+	<select id="queryXmlistCount" parameterType="xmjbxx" resultType="int">
+		select count(*) from xmjbxx t
+		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
+		on t.xmbm=xd.xmid	
+		where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+	</select>
+	<select id="queryzjdwlist" parameterType="xmzjdw" resultType="xmzjdw">
+	select * from (select rownum num ,t.*  from xm_zjdw t
+		where 1=1 and xmbm=#{xmbm} and to_number(sbthcd)&lt;=to_number(#{sbthcd})
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		order by xsbzt,ssbzt,shzt,dwyf
+	</select>
+	<select id="queryzjdwlistCount" parameterType="xmzjdw" resultType="int">
+		select count(*) from xm_zjdw t
+		where 1=1 and xmbm=#{xmbm} and to_number(sbthcd)&lt;=to_number(#{sbthcd})
+	</select>
+	
+	<select id="queryDwByid" parameterType="xmzjdw" resultType="xmzjdw">
+		select * from xm_zjdw t where id=#{id}
+	</select>
+	<select id="getdwTj" parameterType="xmzjdw" resultType="xmzjdw">
+		select xmmc,nvl(dwzj,0) dwzj,nvl(yshdwzj,0) yshdwzj,nvl(jhxdzj,0) jhxdzj from xmjbxx xm left join 
+		(select xmbm,sum(ztz) dwzj,sum(decode(shzt,'已审核',ztz,0)) yshdwzj from xm_zjdw where to_number(sbthcd)&lt;=to_number(#{sbthcd}) group by xmbm) dw on xm.xmbm=dw.xmbm left join
+		(select xmid xmbm,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(dfzc,0))+sum(nvl(yhdk,0))+sum(nvl(rys,0))+sum(nvl(stz,0))+(sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(stz,0))) jhxdzj from xm_gsd_jhxd group by xmid) xd on xm.xmbm=xd.xmbm 
+		where xm.xmbm=#{xmbm}
+	</select>
+	<insert id="insertZjdw" parameterType="xmzjdw">
+		insert into xm_zjdw
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="xmbm != null and xmbm != ''" >xmbm,</if>
+	       <if test="ztz != null and ztz != ''" >ztz,</if>
+	      <if test="cgs != null and cgs != ''" >cgs,</if>
+	      <if test="gz != null and gz != ''" >gz,</if>
+	      <if test="sz != null and sz != ''" >sz,</if>
+	      <if test="zq != null and zq != ''" >zq,</if>
+	      <if test="tdk != null and tdk != ''" >tdk,</if>
+	      <if test="jl != null and jl != ''" >jl,</if>
+	      <if test="qt != null and qt != ''" >qt,</if>
+	      <if test="rys != null and rys != ''" >rys,</if>
+	      <if test="dfzc != null and dfzc != ''" >dfzc,</if>
+	      <if test="yhdk != null and yhdk != ''" >yhdk,</if>
+	      <if test="stz != null and stz != ''" >stz,</if>
+	      <if test="jhxdwh != null and jhxdwh != ''" >jhxdwh,</if>
+	      <if test="bd != null and bd != ''" >bd,</if>
+	      <if test="sbthcd != null and sbthcd != ''" >sbthcd,</if>
+	      <if test="xsbzt != null and xsbzt != ''" >xsbzt,</if>
+	      <if test="ssbzt != null and ssbzt != ''" >ssbzt,</if>
+	      <if test="dwyf != null and dwyf != ''" >dwyf,</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
+	      <if test="ztz != null and ztz != ''" >#{ztz},</if>
+	      <if test="cgs != null and cgs != ''" >#{cgs},</if>
+	      <if test="gz != null and gz != ''" >#{gz},</if>
+	      <if test="sz != null and sz != ''" >#{sz},</if>
+	      <if test="zq != null and zq != ''" >#{zq},</if>
+	      <if test="tdk != null and tdk != ''" >#{tdk},</if>
+	      <if test="jl != null and jl != ''" >#{jl},</if>
+	      <if test="qt != null and qt != ''" >#{qt},</if>
+	      <if test="rys != null and rys != ''" >#{rys},</if>
+	      <if test="dfzc != null and dfzc != ''" >#{dfzc},</if>
+	      <if test="yhdk != null and yhdk != ''" >#{yhdk},</if>
+	      <if test="stz != null and stz != ''" >#{stz},</if>
+	      <if test="jhxdwh != null and jhxdwh != ''" >#{jhxdwh},</if>
+	      <if test="bd != null and bd != ''" >#{bd},</if>
+	      <if test="sbthcd != null and sbthcd != ''" >#{sbthcd},</if>
+	      <if test="xsbzt != null and xsbzt != ''" >#{xsbzt},</if>
+	      <if test="ssbzt != null and ssbzt != ''" >#{ssbzt},</if>
+	      <if test="dwyf != null and dwyf != ''" >#{dwyf},</if>
+	    </trim>
+	</insert>
+	<update id="updateZjdw" parameterType="xmzjdw">
+	 update xm_zjdw
+    <set>
+      <if test="xmbm != null" >xmbm = #{xmbm},</if>
+      <if test="ztz != null" >ztz = #{ztz},</if>
+      <if test="cgs != null" >cgs = #{cgs},</if>
+      <if test="gz != null" >gz = #{gz},</if>
+      <if test="sz != null" >sz = #{sz},</if>
+      <if test="zq != null" >zq = #{zq},</if>
+      <if test="tdk != null" >tdk = #{tdk},</if>
+      <if test="jl != null" >jl = #{jl},</if>
+      <if test="qt != null" >qt = #{qt},</if>
+      <if test="rys != null" >rys = #{rys},</if>
+      <if test="dfzc != null" >dfzc = #{dfzc},</if>
+      <if test="yhdk != null" >yhdk = #{yhdk},</if>
+      <if test="stz != null and stz != ''" >stz = #{stz},</if>
+      <if test="jhxdwh != null" >jhxdwh = #{jhxdwh},</if>
+      <if test="bd != null" >bd = #{bd},</if>
+      <if test="sbthcd != null" >sbthcd = #{sbthcd},</if>
+      <if test="thyy != null" >thyy = #{thyy},</if>
+      <if test="xsbzt != null" >xsbzt = #{xsbzt},xsbsj=sysdate,</if>
+      <if test="ssbzt != null" >ssbzt = #{ssbzt},ssbsj=sysdate,</if>
+      <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
+      <if test="sfth != null" >sfth = #{sfth},</if>
+      <if test="dwyf != null" >dwyf = #{dwyf},</if>
+    </set>
+    where 1=1 and ${id}
+	</update>
+	<update id="updateZjdwType" parameterType="xmzjdw">
+	 update xm_zjdw
+    <set>
+      <if test="sbthcd != null" >sbthcd = #{sbthcd},</if>
+      <if test="thyy != null" >thyy = #{thyy},</if>
+      <if test="xsbzt != null" >xsbzt = #{xsbzt},xsbsj=sysdate,</if>
+      <if test="ssbzt != null" >ssbzt = #{ssbzt},ssbsj=sysdate,</if>
+      <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
+      <if test="sfth != null" >sfth = #{sfth},</if>
+    </set>
+    where 1=1 and ${id}
+	</update>
+	
+	<select id="deldw" parameterType="xmzjdw">
+		delete from xm_zjdw where 1=1 and ${id}
+	</select>
+</mapper>

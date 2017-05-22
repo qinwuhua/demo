@@ -16,7 +16,6 @@
 <script type="text/javascript" src="./js/init.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
 <script type="text/javascript">
-<script type="text/javascript">
 function urllogin(){
 	$.ajax({
 		type : "POST",
@@ -72,28 +71,17 @@ function clearscSession(){
 	});
 }
 
-$(function(){
+ $(function(){
 	if(getUrlParame("un")!=null&&getUrlParame("pw")!=null){
 		clearscSession();
 	}else{
 		
-		selQxByUser();
+		//selQxByUser();
 		selSes();
 	}
-});
+}); 
 
-function menuQx(_location,_flag){
-	var qx=getQxfromSession('qx1').split(",");
-	var flag=false;
-	for(var i=0;i<qx.length;i++){
-		if(qx[i]==_flag){
-			flag=true;
-			document.location.href=_location;
-			break;
-		}
-	}
-	if(flag==false) alert("您暂无此权限！");
-}
+
 
 </script>
 </head>
