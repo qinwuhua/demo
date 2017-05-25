@@ -28,6 +28,20 @@ public interface ZjdwServer {
 
 	boolean deldw(XmZjdw xmZjdw);
 
+	List<XmZjdw> queryXmlistshqx(XmZjdw xmZjdw);
+
+	int queryXmlistshqxCount(XmZjdw xmZjdw);
+
+	List<XmZjdw> queryChildGydw(XmZjdw xmZjdw);
+
+	XmZjdw queryShqxByOne(XmZjdw xm);
+
+	int insertShqx(List<XmZjdw> xm);
+
+	int updateShqx(List<XmZjdw> xm);
+
+	List<XmZjdw> queryZjByGydwdm(XmZjdw xmZjdw);
+
 	
 
 }

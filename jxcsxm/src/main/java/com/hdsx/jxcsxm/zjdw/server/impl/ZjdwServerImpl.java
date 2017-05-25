@@ -68,5 +68,40 @@ public class ZjdwServerImpl extends BaseOperate  implements ZjdwServer{
 	public boolean deldw(XmZjdw xmZjdw) {
 		return update("deldw", xmZjdw)>0;
 	}
+
+	@Override
+	public List<XmZjdw> queryXmlistshqx(XmZjdw xmZjdw) {
+		return queryList("queryXmlistshqx", xmZjdw);
+	}
+
+	@Override
+	public int queryXmlistshqxCount(XmZjdw xmZjdw) {
+		return queryOne("queryXmlistshqxCount", xmZjdw);
+	}
+
+	@Override
+	public List<XmZjdw> queryChildGydw(XmZjdw xmZjdw) {
+		return queryList("queryChildGydw", xmZjdw);
+	}
+
+	@Override
+	public XmZjdw queryShqxByOne(XmZjdw xm) {
+		return queryOne("queryShqxByOne", xm);
+	}
+
+	@Override
+	public int insertShqx(List<XmZjdw> xm) {
+		return insertBatch("insertShqx", xm);
+	}
+
+	@Override
+	public int updateShqx(List<XmZjdw> xm) {
+		return updateBatch("updateShqx", xm);
+	}
+
+	@Override
+	public List<XmZjdw> queryZjByGydwdm(XmZjdw xmZjdw) {
+		return queryList("queryZjByGydwdm", xmZjdw);
+	}
 	
 }

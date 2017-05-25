@@ -1,5 +1,6 @@
 package com.hdsx.jxcsxm.zjdw.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -48,11 +49,35 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
 		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
 		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
-		xmjbxx.setPage(page);
-		xmjbxx.setRows(rows);
+		if(xmZjdw.getPage()>0){
+			xmjbxx.setPage(xmZjdw.getPage());
+			xmjbxx.setRows(xmZjdw.getRows());
+		}else{
+			xmjbxx.setPage(page);
+			xmjbxx.setRows(rows);
+		}
+		
 		List<Xmjbxx> list=zjdwServer.queryXmlist(xmjbxx);
 		int count=zjdwServer.queryXmlistCount(xmjbxx);
 		EasyUIPage<Xmjbxx> e=new EasyUIPage<Xmjbxx>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+	}
+	
+	public void queryXmlistshqx(){
+		
+		xmZjdw.setGydw(MyUtil.getQueryTJ(xmZjdw.getGydw(), "gydwdm"));
+		xmZjdw.setNf(MyUtil.getQueryTJ(xmZjdw.getNf(), "nf"));
+		
+		List<XmZjdw> list=zjdwServer.queryXmlistshqx(xmZjdw);
+		int count=zjdwServer.queryXmlistshqxCount(xmZjdw);
+		EasyUIPage<XmZjdw> e=new EasyUIPage<XmZjdw>();
 		e.setRows(list);
 		e.setTotal(count);
 		try {
@@ -113,10 +138,75 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		xmZjdw.setId(MyUtil.getQueryTJ(xmZjdw.getId(), "id").replaceAll("and", ""));
 		ResponseUtils.write(getresponse(), ""+zjdwServer.deldw(xmZjdw));
 	}
+	//查询管养单位
+	public void queryChildGydw(){
+		try {
+			List<XmZjdw> list =zjdwServer.queryChildGydw(xmZjdw);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
-	
-	
-	
+	//添加修改水毁抢修
+	public void insertOrUpdateShqx(){
+		try {
+			String[] gydwdm = xmZjdw.getGydwdm().split(",");
+			String[] parent = xmZjdw.getParent().split(",");
+			String[] nf = xmZjdw.getNf().split(",");
+			String[] cgs = xmZjdw.getCgs1().split(",");
+			String[] rys = xmZjdw.getRys1().split(",");
+			String[] ttc = xmZjdw.getTtc1().split(",");
+			String[] dfzc = xmZjdw.getDfzc1().split(",");
+			String[] ztz = xmZjdw.getZtz1().split(",");
+			String[] bd = xmZjdw.getBd().split(",");
+			String[] jhxdwh = xmZjdw.getJhxdwh().split(",");
+			
+			List<XmZjdw> save = new ArrayList<XmZjdw>();
+			List<XmZjdw> update = new ArrayList<XmZjdw>();
+			for (int i = 0; i < gydwdm.length; i++) {
+				XmZjdw xm = new XmZjdw();
+				xm.setGydwdm(gydwdm[i]);
+				xm.setParent(parent[i]);
+				xm.setNf(nf[i]);
+				xm.setCgs(Double.parseDouble("".equals(cgs[i]) ? "0" : cgs[i]));
+				xm.setRys(Double.parseDouble("".equals(rys[i]) ? "0" : rys[i]));
+				xm.setTtc(Double.parseDouble("".equals(ttc[i]) ? "0" : ttc[i]));
+				xm.setDfzc(Double.parseDouble("".equals(dfzc[i]) ? "0" : dfzc[i]));
+				xm.setZtz(Double.parseDouble("".equals(ztz[i]) ? "0" : ztz[i]));
+				xm.setBd(bd[i]);
+				xm.setJhxdwh(jhxdwh[i]);
+				if (zjdwServer.queryShqxByOne(xm) == null) {
+					save.add(xm);
+				} else {
+					update.add(xm);
+				}
+			}
+			System.out.println("保存个数：" + save.size());
+			System.out.println("修改个数：" + update.size());
+			int a = 0;
+			if (save.size() > 0) {
+				a = zjdwServer.insertShqx(save);
+			}
+			if (update.size() > 0) {
+				a = zjdwServer.updateShqx(update);
+			}
+			ResponseUtils.write(getresponse(), (a>0)+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	//根据单位查询资金
+	public void queryZjByGydwdm(){
+		try {
+			List<XmZjdw> list =zjdwServer.queryZjByGydwdm(xmZjdw);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

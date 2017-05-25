@@ -1,8 +1,8 @@
-package com.hdsx.jxcsxm.zjdw.bean;
+package com.hdsx.jxcsxm.zjbf.bean;
 
 import java.util.Date;
 
-public class XmZjdw{
+public class XmZjbf{
     private String id;
 
     private String xmbm;
@@ -53,13 +53,15 @@ public class XmZjdw{
 
     private String sfth;
 
-    private String dwyf;
+    private String bfyf;
     private int page;
     private int rows;
     private String xmmc;
     private String jhxdzj;
     private String dwzj;
     private String yshdwzj;
+    private String bfzj;
+    private String yshbfzj;
     private String gydw;
     private String gydwdm;
     private double ttc;
@@ -71,7 +73,6 @@ public class XmZjdw{
     private String ttc1;
     private String dfzc1;
     private String ztz1;
-    
     public String getId() {
         return id;
     }
@@ -264,13 +265,6 @@ public class XmZjdw{
         this.sfth = sfth == null ? null : sfth.trim();
     }
 
-	public String getDwyf() {
-		return dwyf;
-	}
-
-	public void setDwyf(String dwyf) {
-		this.dwyf = dwyf;
-	}
 
 	public int getPage() {
 		return page;
@@ -326,6 +320,30 @@ public class XmZjdw{
 
 	public void setStz(double stz) {
 		this.stz = stz;
+	}
+
+	public String getBfzj() {
+		return bfzj;
+	}
+
+	public void setBfzj(String bfzj) {
+		this.bfzj = bfzj;
+	}
+
+	public String getYshbfzj() {
+		return yshbfzj;
+	}
+
+	public void setYshbfzj(String yshbfzj) {
+		this.yshbfzj = yshbfzj;
+	}
+
+	public String getBfyf() {
+		return bfyf;
+	}
+
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
 	}
 
 	public String getGydw() {
@@ -399,7 +417,7 @@ public class XmZjdw{
 	public void setTtc1(String ttc1) {
 		this.ttc1 = ttc1;
 	}
-
+	
 	public String getDfzc1() {
 		return dfzc1;
 	}
@@ -415,5 +433,6 @@ public class XmZjdw{
 	public void setZtz1(String ztz1) {
 		this.ztz1 = ztz1;
 	}
-    
+	
+	
 }

@@ -62,7 +62,7 @@
  			//loadLj(params);
 			
 			$('#grid').datagrid({    
-			    url:'/jxcsxm/zjdw/queryXmlist.do',
+			    url:'/jxcsxm/zjbf/queryXmlist.do',
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
@@ -75,7 +75,7 @@
 			    columns:[[
 							{field:'cz',title:'操作',width:130,align:'center',
 								formatter: function(value,row,index){
-									var result='<a id="'+row.xmbm+'" style="margin-top: 1px;margin-bottom: 1px;" href="javascript:openZjdw('+"'"+row.xmbm+"','gs_zhhf'"+')" class="button button-small button-rounded button-raised ">资金到位详情</a>'
+									var result='<a id="'+row.xmbm+'" style="margin-top: 1px;margin-bottom: 1px;" href="javascript:openZjbf('+"'"+row.xmbm+"','gs_zhhf'"+')" class="button button-small button-rounded button-raised ">资金到位详情</a>'
 										return result;
 								}
 							},
@@ -120,7 +120,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金到位>&nbsp;普通国省道>&nbsp;国省道改造</div>
+		<div id="p_top">资金拨付>&nbsp;普通国省道>&nbsp;国省道改造</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>

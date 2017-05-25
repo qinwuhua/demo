@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>灾毁恢复</title>
+	<title>工程路面改建路面升级项目</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -22,8 +22,8 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
-			//loadBmbm3('gcfl','养护大中修工程分类');
-			loadjhxdwh("jhxdwh",'gs_zhhf');
+			loadBmbm3('jsxz','国省道改造建设性质');
+			loadjhxdwh("jhxdwh",'gs_gsdgz');
 			
 			//YMLib.Var.jdbs=2;
 			queryXmlist();
@@ -44,9 +44,12 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			
-			var jsxz="灾毁恢复";
-			
-			
+			var jsxz=$("#jsxz").combobox("getValues").join(",");
+			if(jsxz.substr(0,1)==',')
+				jsxz=jsxz.substr(1,jsxz.length);
+			if(jsxz=="")
+			jsxz="改建,路面改造,新建"
+				
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
@@ -62,7 +65,7 @@
  			//loadLj(params);
 			
 			$('#grid').datagrid({    
-			    url:'/jxcsxm/zjdw/queryXmlist.do',
+			    url:'/jxcsxm/zjbf/queryXmlist.do',
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
@@ -75,13 +78,14 @@
 			    columns:[[
 							{field:'cz',title:'操作',width:130,align:'center',
 								formatter: function(value,row,index){
-									var result='<a id="'+row.xmbm+'" style="margin-top: 1px;margin-bottom: 1px;" href="javascript:openZjdw('+"'"+row.xmbm+"','gs_zhhf'"+')" class="button button-small button-rounded button-raised ">资金到位详情</a>'
+									var result='<a id="'+row.xmbm+'" style="margin-top: 1px;margin-bottom: 1px;" href="javascript:openZjbf('+"'"+row.xmbm+"','gs_gsdgz'"+')" class="button button-small button-rounded button-raised ">资金拨付详情</a>'
 										return result;
 								}
 							},
+							
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
 							{field:'xmbm',title:'项目编码',width:110,align:'center'},
-							{field:'xmmc',title:'项目名称',width:400,align:'center'},
+							{field:'xmmc',title:'项目名称',width:270,align:'center'},
 							{field:'gydw',title:'管养单位',width:150,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
 							{field:'jhxdwh',title:'计划下达文号',width:280,align:'center'}
@@ -120,7 +124,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金到位>&nbsp;普通国省道>&nbsp;国省道改造</div>
+		<div id="p_top">资金拨付>&nbsp;普通国省道>&nbsp;国省道改造</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -145,8 +149,8 @@ text-decoration:none;
         					<tr height="28">
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
-<!--         						<td align="right">建设性质：</td> -->
-<!-- 								<td><select name="gcfl" id="gcfl" style="width:80px;" ></select></td> -->
+        						<td align="right">建设性质：</td>
+								<td><select name="jsxz" id="jsxz" style="width:80px;" ></select></td>
         					</tr>
         					<tr height="28">
                             	<td colspan="8">

@@ -11,6 +11,10 @@
 	<action name="updateZjdw" class="zjdwController" method="updateZjdw"></action>
 	<action name="updateZjdwType" class="zjdwController" method="updateZjdwType"></action>
 	<action name="deldw" class="zjdwController" method="deldw"></action>
+	<action name="queryXmlistshqx" class="zjdwController" method="queryXmlistshqx"></action>
+	<action name="queryChildGydw" class="zjdwController" method="queryChildGydw"></action>
+	<action name="insertOrUpdateShqx" class="zjdwController" method="insertOrUpdateShqx"></action>
+	<action name="queryZjByGydwdm" class="zjdwController" method="queryZjByGydwdm"></action>
 	
  </package>
 </struts>

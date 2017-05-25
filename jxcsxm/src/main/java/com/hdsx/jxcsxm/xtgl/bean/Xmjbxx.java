@@ -22,6 +22,10 @@ public class Xmjbxx implements Serializable {
 	private String gcfl;
 	private int page;
 	private int rows;
+	private String xsbzt;
+	private String ssbzt;
+	private String shzt;
+	
 	public String getId() {
 		return id;
 	}
@@ -99,6 +103,24 @@ public class Xmjbxx implements Serializable {
 	}
 	public void setGcfl(String gcfl) {
 		this.gcfl = gcfl;
+	}
+	public String getXsbzt() {
+		return xsbzt;
+	}
+	public void setXsbzt(String xsbzt) {
+		this.xsbzt = xsbzt;
+	}
+	public String getSsbzt() {
+		return ssbzt;
+	}
+	public void setSsbzt(String ssbzt) {
+		this.ssbzt = ssbzt;
+	}
+	public String getShzt() {
+		return shzt;
+	}
+	public void setShzt(String shzt) {
+		this.shzt = shzt;
 	}
 	
 }

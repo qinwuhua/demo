@@ -130,6 +130,13 @@ function openZjdw(xmbm,xmlx){
 	YMLib.Var.xmlx=xmlx;
 	openWindow("资金到位详情","/jxcsxm/page/zjdw/zjdw.jsp",900,400);
 }
+//打开资金拨付页面
+function openZjbf(xmbm,xmlx){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.xmlx=xmlx;
+	openWindow("资金拨付详情","/jxcsxm/page/zjbf/zjbf.jsp",900,400);
+}
+
 function openWindow(title,jsp,width,height){
 	YMLib.UI.createWindow('mywin',title,jsp,'mywin',width,height);	
 }
@@ -138,6 +145,3 @@ function closeWindow(){
 }
 
 
-function trimStr(str){
-	return str.replace(/(^\s*)|(\s*$)/g,"");
-	}

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>灾毁恢复</title>
+	<title>路网结构改造</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -22,8 +22,8 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
-			//loadBmbm3('gcfl','养护大中修工程分类');
-			loadjhxdwh("jhxdwh",'gs_zhhf');
+			loadBmbm3('gcfl','路网结构改造建设性质');
+			loadjhxdwh("jhxdwh",'gs_lwjggz');
 			
 			//YMLib.Var.jdbs=2;
 			queryXmlist();
@@ -44,9 +44,11 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			
-			var jsxz="灾毁恢复";
+			var jsxz="路网结构改造";
 			
-			
+			var gcfl=$("#gcfl").combobox("getValues").join(",");
+			if(gcfl.substr(0,1)==',')
+				gcfl=gcfl.substr(1,gcfl.length);
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
@@ -55,14 +57,15 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh
+			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
+					   'xmjbxx.gcfl':gcfl
 			};
 	
  			//loadLj(params);
 			
 			$('#grid').datagrid({    
-			    url:'/jxcsxm/zjdw/queryXmlist.do',
+			    url:'/jxcsxm/zjbf/queryXmlist.do',
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
@@ -75,16 +78,15 @@
 			    columns:[[
 							{field:'cz',title:'操作',width:130,align:'center',
 								formatter: function(value,row,index){
-									var result='<a id="'+row.xmbm+'" style="margin-top: 1px;margin-bottom: 1px;" href="javascript:openZjdw('+"'"+row.xmbm+"','gs_zhhf'"+')" class="button button-small button-rounded button-raised ">资金到位详情</a>'
+									var result='<a id="'+row.xmbm+'" style="margin-top: 1px;margin-bottom: 1px;" href="javascript:openZjbf('+"'"+row.xmbm+"','gs_lwjggz'"+')" class="button button-small button-rounded button-raised ">资金到位详情</a>'
 										return result;
 								}
 							},
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
-							{field:'xmbm',title:'项目编码',width:110,align:'center'},
 							{field:'xmmc',title:'项目名称',width:400,align:'center'},
 							{field:'gydw',title:'管养单位',width:150,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
-							{field:'jhxdwh',title:'计划下达文号',width:280,align:'center'}
+							{field:'jhxdwh',title:'计划下达文号',width:390,align:'center'}
 			    ]],
 			    rowStyler:function(index,row){
 			    	if($.cookie('unit2').length==11){
@@ -120,7 +122,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金到位>&nbsp;普通国省道>&nbsp;国省道改造</div>
+		<div id="p_top">资金拨付>&nbsp;普通国省道>&nbsp;路网结构改造</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -136,8 +138,8 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:165px;"></select></td>
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 80px;"></select></td>
-								<td align="right">项目编码：</td>
-        						<td><input name="xmbm" type="text" id="xmbm" style="width:140px;" /></td>
+<!-- 								<td align="right">项目编码：</td> -->
+<!--         						<td><input name="xmbm" type="text" id="xmbm" style="width:140px;" /></td> -->
         						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:140px;" /></td>
         						
@@ -145,8 +147,8 @@ text-decoration:none;
         					<tr height="28">
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
-<!--         						<td align="right">建设性质：</td> -->
-<!-- 								<td><select name="gcfl" id="gcfl" style="width:80px;" ></select></td> -->
+        						<td align="right">建设性质：</td>
+								<td><select name="gcfl" id="gcfl" style="width:80px;" ></select></td>
         					</tr>
         					<tr height="28">
                             	<td colspan="8">

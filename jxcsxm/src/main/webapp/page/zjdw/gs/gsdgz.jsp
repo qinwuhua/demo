@@ -89,7 +89,23 @@
 							{field:'gydw',title:'管养单位',width:150,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
 							{field:'jhxdwh',title:'计划下达文号',width:280,align:'center'}
-			    ]]
+			    ]],
+			    rowStyler:function(index,row){
+			    	if($.cookie('unit2').length==11){
+					if (row.xsbzt>0){
+						return 'background-color:pink;color:blue;font-weight:bold;';
+					}}
+			    	if($.cookie('unit2').length==9){
+						if (row.ssbzt>0){
+						return 'background-color:pink;color:blue;font-weight:bold;';
+					}}
+			    	if($.cookie('unit2').length==7){
+						if (row.shzt>0){
+						return 'background-color:pink;color:blue;font-weight:bold;';
+					}}
+			    	
+			    	
+				}
 			}); 
 		}
 		

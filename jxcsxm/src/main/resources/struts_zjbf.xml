@@ -1,0 +1,16 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+<package name="zjnf" extends="struts-default" namespace="/zjbf">
+	<action name="queryXmlist" class="zjbfController" method="queryXmlist"></action>
+	<action name="insertZjbf" class="zjbfController" method="insertZjbf"></action>
+	<action name="queryzjbflist" class="zjbfController" method="queryzjbflist"></action>
+	<action name="queryBfByid" class="zjbfController" method="queryBfByid"></action>
+	<action name="getbfTj" class="zjbfController" method="getbfTj"></action>
+	<action name="updateZjbf" class="zjbfController" method="updateZjbf"></action>
+	<action name="updateZjbfType" class="zjbfController" method="updateZjbfType"></action>
+	<action name="delbf" class="zjbfController" method="delbf"></action>
+	
+ </package>
+</struts>
