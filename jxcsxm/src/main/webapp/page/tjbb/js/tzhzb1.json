@@ -1,0 +1,27 @@
+[{    
+    "id": "3",    
+    "text": "全选",    
+    "state": "open",
+    "iconCls":"icon-none",     
+    "children": [{    
+        "id": "1v_0",  
+        "value":"v_0",  
+        "text": "序号",
+        "iconCls":"icon-none"
+    },{    
+        "id": "1v_1", 
+        "value":"v_1",   
+        "text": "项目名称",
+        "iconCls":"icon-none"   
+    },{    
+        "id": "1v_2", 
+        "value":"v_2",   
+        "text": "计划文号",
+        "iconCls":"icon-none" 
+    },{    
+        "id": "1v_3", 
+        "value":"v_3",   
+        "text": "总投资",
+        "iconCls":"icon-none" 
+    }]    
+}]  
