@@ -65,7 +65,50 @@ public class XtglController extends BaseActionSupport{
 	private String parent;
 	private String wh;
 	private String type;
+	private String gydw;
+	private String xzqh;
+	private String sql;
+	private String nameValue;
+	private String colValue;
 	
+	
+	
+	public XtglServer getXtglServer() {
+		return xtglServer;
+	}
+	public void setXtglServer(XtglServer xtglServer) {
+		this.xtglServer = xtglServer;
+	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+	public String getSql() {
+		return sql;
+	}
+	public void setSql(String sql) {
+		this.sql = sql;
+	}
+	public String getNameValue() {
+		return nameValue;
+	}
+	public void setNameValue(String nameValue) {
+		this.nameValue = nameValue;
+	}
+	public String getColValue() {
+		return colValue;
+	}
+	public void setColValue(String colValue) {
+		this.colValue = colValue;
+	}
 	public String getWh() {
 		return wh;
 	}
@@ -1324,6 +1367,22 @@ public class XtglController extends BaseActionSupport{
 			}
 		}
 		return zzjgTree;
+	}
+	
+	
+	public void exportBb_set(){
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			session.setAttribute("gydwbb", gydw);
+			session.setAttribute("xzqhbb", xzqh);
+			session.setAttribute("sql", sql);
+			session.setAttribute("nameValue", nameValue);
+			session.setAttribute("colValue", colValue);
+			JsonUtils.write(session, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

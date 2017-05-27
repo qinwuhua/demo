@@ -1,0 +1,11 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+ <package name="tjbb" extends="struts-default" namespace="/tjbb">
+	<action name="createBtTree" class="tjbbController" method="createBtTree"></action>
+	<action name="getZdyBbzd" class="tjbbController" method="getZdyBbzd"></action>
+	<action name="getJhzxqkb" class="tjbbController" method="getJhzxqkb"></action>
+
+ </package>
+</struts>

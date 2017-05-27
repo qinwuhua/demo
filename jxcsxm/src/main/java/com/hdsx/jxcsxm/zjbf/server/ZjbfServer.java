@@ -28,6 +28,18 @@ public interface ZjbfServer {
 
 	boolean delbf(XmZjbf xmZjbf);
 
+	List<XmZjbf> queryXmlistshqx(XmZjbf xmZjbf);
+
+	int queryXmlistshqxCount(XmZjbf xmZjbf);
+
+	XmZjbf queryShqxByOne(XmZjbf xm);
+
+	int insertShqx(List<XmZjbf> save);
+
+	int updateShqx(List<XmZjbf> update);
+
+	List<XmZjbf> queryZjByGydwdm(XmZjbf xmZjbf);
+
 	
 
 }

@@ -36,7 +36,7 @@
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
 	</select>
 	<select id="queryXmlistshqx" parameterType="xmzjdw" resultType="xmzjdw">
-		select * from(select rownum num ,t1.* from (select t.*  from xm_zjdw t
+		select * from(select rownum num ,t1.* from (select t.*,(select name from xtgl_department where id=t.gydwdm) gydw   from xm_zjdw t
 		where 1=1 and gydwdm is not null 
 		<if test="gydw !='' and gydw != null">${gydw}</if>
 		<if test="nf !='' and nf != null">${nf}</if>

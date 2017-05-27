@@ -68,5 +68,35 @@ public class ZjbfServerImpl extends BaseOperate  implements ZjbfServer{
 	public boolean delbf(XmZjbf xmZjbf) {
 		return update("delbf", xmZjbf)>0;
 	}
+
+	@Override
+	public List<XmZjbf> queryXmlistshqx(XmZjbf xmZjbf) {
+		return queryList("queryXmlistshqx", xmZjbf);
+	}
+
+	@Override
+	public int queryXmlistshqxCount(XmZjbf xmZjbf) {
+		return queryOne("queryXmlistshqxCount", xmZjbf);
+	}
+
+	@Override
+	public XmZjbf queryShqxByOne(XmZjbf xm) {
+		return queryOne("queryShqxByOne", xm);
+	}
+
+	@Override
+	public int insertShqx(List<XmZjbf> save) {
+		return insertBatch("insertShqx", save);
+	}
+
+	@Override
+	public int updateShqx(List<XmZjbf> update) {
+		return updateBatch("updateShqx", update);
+	}
+
+	@Override
+	public List<XmZjbf> queryZjByGydwdm(XmZjbf xmZjbf) {
+		return queryList("queryZjByGydwdm", xmZjbf);
+	}
 	
 }

@@ -52,7 +52,7 @@
 				dataType:'json',
 				success:function(data){
 					$.each(data,function(index,item){
-						$('#zjdw_table_tbody').append('<tr name="'+$.cookie("unit")+'" id="'+item.id+'"><td align="center">'+item.name+'</td><td align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /><input type="hidden" value="'+item.parent+'"/></td></tr>');
+						$('#zjbf_table_tbody').append('<tr name="'+$.cookie("unit")+'" id="'+item.id+'"><td align="center">'+item.name+'</td><td align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /><input type="hidden" value="'+item.parent+'"/></td></tr>');
 					});
 				}
 			});
@@ -70,7 +70,7 @@
 			$.ajax({
 				type:'post',
 				async:false,
-				url:'/jxcsxm/zjdw/queryZjByGydwdm.do',
+				url:'/jxcsxm/zjbf/queryZjByGydwdm.do',
 				data:zj,
 				dataType:'json',
 				success:function(data){
@@ -111,7 +111,7 @@
 			
 			$.ajax({
 				type:'post',
-				url:'/jxcsxm/zjdw/insertOrUpdateShqx.do',
+				url:'/jxcsxm/zjbf/insertOrUpdateShqx.do',
 				data:caiji($.cookie("unit")),
 				dataType:'json',
 				success:function(data){
@@ -193,7 +193,7 @@
 								<td width="100"><input type='text' id='jhxdwh'></td>
 							</tr>
 						</table>
-						<table id="zjdw_table" width="800" class="table" cellpadding="0" cellspacing="0">
+						<table id="zjbf_table" width="800" class="table" cellpadding="0" cellspacing="0">
 							
 							<tr align='center' height="28">
 								<td>单位名称</td>
@@ -202,7 +202,7 @@
 								<td>厅统筹(万元)</td>
 								<td>地方自筹(万元)</td>
 							</tr>
-							<tbody id="zjdw_table_tbody"></tbody>
+							<tbody id="zjbf_table_tbody"></tbody>
 						</table>
 						<table width="600">
 							<tr align="center">

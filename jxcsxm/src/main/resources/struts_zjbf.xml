@@ -11,6 +11,11 @@
 	<action name="updateZjbf" class="zjbfController" method="updateZjbf"></action>
 	<action name="updateZjbfType" class="zjbfController" method="updateZjbfType"></action>
 	<action name="delbf" class="zjbfController" method="delbf"></action>
+	<action name="queryXmlistshqx" class="zjbfController" method="queryXmlistshqx"></action>
+	<action name="insertOrUpdateShqx" class="zjbfController" method="insertOrUpdateShqx"></action>
+	<action name="queryZjByGydwdm" class="zjbfController" method="queryZjByGydwdm"></action>
+	
+	
 	
  </package>
 </struts>

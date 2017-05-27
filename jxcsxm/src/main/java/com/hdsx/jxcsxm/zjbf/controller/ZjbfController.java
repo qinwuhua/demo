@@ -1,5 +1,6 @@
 package com.hdsx.jxcsxm.zjbf.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -120,9 +121,84 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 		ResponseUtils.write(getresponse(), ""+zjbfServer.delbf(xmZjbf));
 	}
 	
+	public void queryXmlistshqx(){
+		
+		xmZjbf.setGydw(MyUtil.getQueryTJ(xmZjbf.getGydw(), "gydwdm"));
+		xmZjbf.setNf(MyUtil.getQueryTJ(xmZjbf.getNf(), "nf"));
+		
+		List<XmZjbf> list=zjbfServer.queryXmlistshqx(xmZjbf);
+		int count=zjbfServer.queryXmlistshqxCount(xmZjbf);
+		EasyUIPage<XmZjbf> e=new EasyUIPage<XmZjbf>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+	}
 	
-	
-	
+	//添加修改水毁抢修
+		public void insertOrUpdateShqx(){
+			try {
+				String[] gydwdm = xmZjbf.getGydwdm().split(",");
+				String[] parent = xmZjbf.getParent().split(",");
+				String[] nf = xmZjbf.getNf().split(",");
+				String[] cgs = xmZjbf.getCgs1().split(",");
+				String[] rys = xmZjbf.getRys1().split(",");
+				String[] ttc = xmZjbf.getTtc1().split(",");
+				String[] dfzc = xmZjbf.getDfzc1().split(",");
+				String[] ztz = xmZjbf.getZtz1().split(",");
+				String[] bd = xmZjbf.getBd().split(",");
+				String[] jhxdwh = xmZjbf.getJhxdwh().split(",");
+				
+				List<XmZjbf> save = new ArrayList<XmZjbf>();
+				List<XmZjbf> update = new ArrayList<XmZjbf>();
+				for (int i = 0; i < gydwdm.length; i++) {
+					XmZjbf xm = new XmZjbf();
+					xm.setGydwdm(gydwdm[i]);
+					xm.setParent(parent[i]);
+					xm.setNf(nf[i]);
+					xm.setCgs(Double.parseDouble("".equals(cgs[i]) ? "0" : cgs[i]));
+					xm.setRys(Double.parseDouble("".equals(rys[i]) ? "0" : rys[i]));
+					xm.setTtc(Double.parseDouble("".equals(ttc[i]) ? "0" : ttc[i]));
+					xm.setDfzc(Double.parseDouble("".equals(dfzc[i]) ? "0" : dfzc[i]));
+					xm.setZtz(Double.parseDouble("".equals(ztz[i]) ? "0" : ztz[i]));
+					xm.setBd(bd[i]);
+					xm.setJhxdwh(jhxdwh[i]);
+					if (zjbfServer.queryShqxByOne(xm) == null) {
+						save.add(xm);
+					} else {
+						update.add(xm);
+					}
+				}
+				System.out.println("保存个数：" + save.size());
+				System.out.println("修改个数：" + update.size());
+				int a = 0;
+				if (save.size() > 0) {
+					a = zjbfServer.insertShqx(save);
+				}
+				if (update.size() > 0) {
+					a = zjbfServer.updateShqx(update);
+				}
+				ResponseUtils.write(getresponse(), (a>0)+"");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+		}
+		//根据单位查询资金
+		public void queryZjByGydwdm(){
+			try {
+				List<XmZjbf> list =zjbfServer.queryZjByGydwdm(xmZjbf);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 	
 	
 	

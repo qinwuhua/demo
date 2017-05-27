@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxcsxm.tjbb">
+	<select id="createBtTree" parameterType="elist" resultType="treenode">
+	select 
+	value id,text,state,(case when value not like '%v_%' then substr(id,0,length(id)-1)
+	else id
+	end) parent,id id1,xh
+	from(
+	select (case when value like '%v_%' then substr(value,0,instr(value,'v')-1) else value end) id,name text,'open' state,value,xh
+	from ZDYBBBT where ssbb=#{ssbb} and value like #{treeno}||'%' 
+	)
+	order by (case when id like '%v_%' then id1||'v_' else id end), to_number(substr(id,instr(id, 'v') + 2)), xh
+	</select>
+	<select id="getZdyBbzd" parameterType="elist" resultType="elist">
+	  select t2.value, t2.name, t1.co, t2.hight, t2.rowxh, t2.width
+	  from (select substr1 value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${name}) and ssbb=#{ssbb}
+	         group by substr1
+	        union all
+	        select substr2 value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${name}) and ssbb=#{ssbb}
+	           and substr2 is not null
+	         group by substr2
+	        union all
+	        select substr3 value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${name}) and ssbb=#{ssbb}
+	           and substr3 is not null
+	         group by substr3
+	        union all
+	        select value, count(*) co
+	          from zdybbbt
+	         where value in
+	               (${name}) and ssbb=#{ssbb}
+	         group by value) t1,
+	       zdybbbt t2
+	 where t1.value = t2.value and ssbb=#{ssbb}
+	 order by t2.xh
+	</select>
+	<select id="getJhzxqkb" parameterType="elist" resultType="elist">
+		select rownum v_0,bb.* from(
+			select 
+			xd.jhxdwh v_1,xm.gydw v_2,xm.xmmc v_3,null v_4,null v_5,null v_6,null v_7,
+			xd.ztz v_8,xd.cgs v_9,xd.rys v_10,xd.ttc v_11,xd.dfzc v_12,
+			dw.ztz v_13,dw.cgs v_14,dw.rys v_15,dw.ttc v_16,dw.dfzc v_17,
+			bf.ztz v_18,bf.cgs v_19,bf.rys v_20,bf.ttc v_21,bf.dfzc v_22,
+			decode(dw.ztz,null,null,to_char(decode(xd.ztz,null,0,0,0,round(dw.ztz/xd.ztz*100,2)),'fm9999999990.00')||'%') v_23,
+			decode(bf.ztz,null,null,to_char(decode(xd.ztz,null,0,0,0,round(bf.ztz/xd.ztz*100,2)),'fm9999999990.00')||'%') v_24,
+			xm.gydwdm
+			from
+			(select xmid,jhxdwh,xdnf,sum(nvl(ztz,0)) ztz,
+			sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
+			from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
+			xmjbxx xm,
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjdw where dwyf like #{jhnf}||'%' group by xmbm,jhxdwh) dw,
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjbf where bfyf like #{jhnf}||'%' group by xmbm,jhxdwh) bf
+			where xd.xmid=xm.xmbm and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+)
+			and xd.xdnf=#{jhnf}
+			order by gydwdm
+		)bb
+	</select>
+	
+	
+	
+</mapper>

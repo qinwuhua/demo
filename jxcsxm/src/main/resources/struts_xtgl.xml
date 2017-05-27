@@ -7,7 +7,7 @@
 	<action name="getjhxdwh" class="xtglController" method="getjhxdwh"></action>
 	<action name="selAllXzqh1" class="xtglController" method="selAllXzqh1"></action>
 	<action name="selAllUnit1" class="xtglController" method="selAllUnit1"></action>
-	
+	<action name="exportBb_set" class="xtglController" method="exportBb_set"></action>
 	
 	
 	<action name="czPassword" class="xtglController" method="czPassword"/>

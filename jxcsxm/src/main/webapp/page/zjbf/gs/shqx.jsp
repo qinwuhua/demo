@@ -55,7 +55,7 @@
  			//loadLj(params);
 			
 			$('#grid').datagrid({    
-			    url:'/jxcsxm/zjdw/queryXmlistshqx.do',
+			    url:'/jxcsxm/zjbf/queryXmlistshqx.do',
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
@@ -96,7 +96,7 @@
 		}
 		
 		function addshqx(){
-			openWindow("添加或编辑","/jxcsxm/page/zjdw/gs/shqx_tj.jsp",940,450);
+			openWindow("添加或编辑","/jxcsxm/page/zjbf/gs/shqx_tj.jsp",940,450);
 		}
 		
 		
@@ -114,7 +114,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金到位>&nbsp;普通国省道>&nbsp;水毁抢修</div>
+		<div id="p_top">资金拨付>&nbsp;普通国省道>&nbsp;水毁抢修</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>

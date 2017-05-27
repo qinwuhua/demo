@@ -144,4 +144,34 @@ function closeWindow(){
 	parent.$('#mywin').window('destroy');
 }
 
+//创建表头tree
+function createBtTree(id,treeno,ssbb){
 
+	$('#'+id).tree({    
+	    url: '/jxcsxm/tjbb/createBtTree.do?treeno='+treeno+'&ssbb='+ssbb, 
+	    checkbox: true, 
+	    loadFilter: function(data){    
+	        if (data.d){    
+	            return data.d;    
+	        } else {    
+	            return data;    
+	        }    
+	    }    
+	});  
+
+}
+//创建表头tree通过json地址
+function createJsontree(id,url){
+	$('#'+id).tree({    
+	    url: url, 
+	    checkbox: true, 
+	    loadFilter: function(data){    
+	        if (data.d){    
+	            return data.d;    
+	        } else {    
+	            return data;    
+	        }    
+	    }
+	});  
+
+}
