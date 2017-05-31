@@ -66,6 +66,18 @@
 		)bb
 	</select>
 	
-	
+	<select id="getTzhzb" parameterType="elist" resultType="elist">
+		select rownum v_0,bb.* from
+		(select xm.xmmc v_1,xd.jhxdwh v_2,xm.ztz v_3,nvl(xd.ztz,0) v_4,nvl(xd.btzzj,0) v_5,nvl(xd.rys,0) v_6,nvl(xd.ztz,0)-nvl(xd.btzzj,0)-nvl(xd.rys,0)-nvl(xd.dfzc,0) v_7,nvl(xd.dfzc,0) v_8,
+		dw.sn v_9,dw.bn v_10,dw.ztz v_11,bf.sn v_12,bf.bn v_13,bf.ztz v_14,nvl(xd.ztz,0)-nvl(dw.ztz,0) v_15,nvl(dw.ztz,0)-nvl(bf.ztz,0) v_16,' ' v_17
+		
+		 from xmjbxx xm,xm_gsd_jhxd xd,
+		(select xmbm,jhxdwh,sum(decode(substr(dwyf,0,4),to_char(${jhnf}-1),ztz,0)) sn,sum(decode(substr(dwyf,0,4),to_char(${jhnf}),ztz,0)) bn,sum(ztz) ztz  from xm_zjdw group by xmbm,jhxdwh) dw,
+		(select xmbm,jhxdwh,sum(decode(substr(bfyf,0,4),to_char(${jhnf}-1),ztz,0)) sn,sum(decode(substr(bfyf,0,4),to_char(${jhnf}),ztz,0)) bn,sum(ztz) ztz  from xm_zjbf group by xmbm,jhxdwh) bf
+		where xm.xmbm=xd.xmid and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+)
+		
+		and xd.jhxdwh is not null
+		order by xd.xdnf,xd.jhxdwh)bb
+	</select>
 	
 </mapper>

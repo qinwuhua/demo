@@ -126,7 +126,7 @@ text-decoration:none;
         					<tr height="28">
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
-        						<td align="right">建设性质：</td>
+        						<td align="right">项目类型：</td>
 								<td><select name="gcfl" id="gcfl" style="width:80px;" ></select></td>
         					</tr>
         					<tr height="28">

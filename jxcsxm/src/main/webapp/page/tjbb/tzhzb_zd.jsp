@@ -114,7 +114,7 @@ text-decoration:none;
 			alert("请勾选字段");
 			return;
 		}
-		alert(str1);
+		//alert(str1);
 		parent.str1=str;
 		parent.str2=str1;
 			$.ajax({
@@ -131,7 +131,7 @@ text-decoration:none;
 					parent.$("#bbtable").attr('width',w+"px");
 					else
 					parent.$("#bbtable").attr('width',"99%");
-					//parent.showBb(str1);
+					parent.showBb(str1);
 					closeWindow();
 				}
 			})

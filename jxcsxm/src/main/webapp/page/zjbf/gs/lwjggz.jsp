@@ -83,7 +83,7 @@
 								}
 							},
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
-							{field:'xmmc',title:'项目名称',width:400,align:'center'},
+							{field:'xmmc',title:'项目名称',width:270,align:'center'},
 							{field:'gydw',title:'管养单位',width:150,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
 							{field:'jhxdwh',title:'计划下达文号',width:390,align:'center'}
@@ -147,7 +147,7 @@ text-decoration:none;
         					<tr height="28">
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
-        						<td align="right">建设性质：</td>
+        						<td align="right">项目类型：</td>
 								<td><select name="gcfl" id="gcfl" style="width:80px;" ></select></td>
         					</tr>
         					<tr height="28">

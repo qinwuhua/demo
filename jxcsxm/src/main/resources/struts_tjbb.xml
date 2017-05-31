@@ -6,6 +6,7 @@
 	<action name="createBtTree" class="tjbbController" method="createBtTree"></action>
 	<action name="getZdyBbzd" class="tjbbController" method="getZdyBbzd"></action>
 	<action name="getJhzxqkb" class="tjbbController" method="getJhzxqkb"></action>
-
+	<action name="getTzhzb" class="tjbbController" method="getTzhzb"></action>
+	
  </package>
 </struts>

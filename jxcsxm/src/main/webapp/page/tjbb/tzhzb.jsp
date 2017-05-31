@@ -121,7 +121,7 @@ text-decoration:none;
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					
 								<tr height="28">
-									<td align="right">计划年份：</td>
+									<td align="right">报表年份：</td>
         							<td><select id="jhnf" style="width: 80px;"></select></td>
 								</tr>
         					

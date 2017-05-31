@@ -35,5 +35,10 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		return queryList("getJhzxqkb", elist);
 	}
 
+	@Override
+	public List<Excel_list> getTzhzb(Excel_list elist) {
+		return queryList("getTzhzb",elist);
+	}
+
 	
 }
