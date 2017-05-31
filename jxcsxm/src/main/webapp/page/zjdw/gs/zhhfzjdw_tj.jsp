@@ -50,12 +50,12 @@ $(function(){
 })
 
 function zjdwtj(){
-	if($('#bd1').combo("getValue")==""){alert("请选择标段");return;}
+// 	if($('#bd1').combo("getValue")==""){alert("请选择标段");return;}
 	if($('#jhxdwh1').combo("getValue")==""){alert("请选择计划下达文号");return;}
 	if($('#nf').combo("getValue")==""){alert("请选择年份");return;}
 	if($('#yf').combo("getValue")==""){alert("请选择月份");return;}
 	$('#dwyf').val($('#nf').combo("getValue")+"-"+$('#yf').combo("getValue"));
-	$('#bd').val($('#bd1').combo("getValue"));
+// 	$('#bd').val($('#bd1').combo("getValue"));
 	$('#jhxdwh').val($('#jhxdwh1').combo("getValue"));
 	var result=true;var ztz=0;
 	result=validateInput("cgs","number",result);
@@ -112,27 +112,26 @@ function zjdwtj(){
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
-				<font color='red' size='2'>*&nbsp;</font>标段：</td>
+				<font color='red' size='2'>*&nbsp;</font>计划下达文号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text"  id="bd1" style="width: 124px" />
-					<input type="hidden" name='bd' id="bd" style="width: 120px" />
-					
+					<input type="text"  id="jhxdwh1" style="width: 124px" />
+					<input type="hidden" name='jhxdwh' id="jhxdwh" style="width: 120px" />
 					<input type="hidden" name='xmbm' id="xmbm" style="width: 120px" />
 					<input type="hidden" name='sbthcd' id="sbthcd" style="width: 120px" />
 					<input type="hidden" name='xsbzt' id="xsbzt" style="width: 120px" />
 					<input type="hidden" name='ssbzt' id="ssbzt" style="width: 120px" />
 					<input type="hidden" name='ztz' id="ztz" style="width: 120px" />
 					<input type="hidden" name='dwyf' id="dwyf" style="width: 120px" />
-					
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
-				<font color='red' size='2'>*&nbsp;</font>计划下达文号：</td>
+				到位月份：
+				</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text"  id="jhxdwh1" style="width: 124px" />
-					<input type="hidden" name='jhxdwh' id="jhxdwh" style="width: 120px" />
-					</td>
+				 <input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;">
 				
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
@@ -173,10 +172,8 @@ function zjdwtj(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qt" id="qt" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
-				到位月份：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-				 <input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;">
 				</td>
 			</tr>
 			

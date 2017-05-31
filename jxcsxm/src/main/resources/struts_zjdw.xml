@@ -15,6 +15,8 @@
 	<action name="queryChildGydw" class="zjdwController" method="queryChildGydw"></action>
 	<action name="insertOrUpdateShqx" class="zjdwController" method="insertOrUpdateShqx"></action>
 	<action name="queryZjByGydwdm" class="zjdwController" method="queryZjByGydwdm"></action>
+	<action name="getdwTjAll" class="zjdwController" method="getdwTjAll"></action>
+	<action name="plshdw" class="zjdwController" method="plshdw"></action>
 	
  </package>
 </struts>

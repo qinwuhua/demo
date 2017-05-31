@@ -42,6 +42,10 @@ public interface ZjdwServer {
 
 	List<XmZjdw> queryZjByGydwdm(XmZjdw xmZjdw);
 
+	XmZjdw getdwTjAll(Xmjbxx xmZjdw);
+
+	boolean plshdw(XmZjdw xmZjdw);
+
 	
 
 }

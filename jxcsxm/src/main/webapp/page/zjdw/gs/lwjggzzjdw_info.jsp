@@ -48,17 +48,15 @@ $(function(){
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
-				<font color='red' size='2'>*&nbsp;</font>标段：</td>
-				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text" name='bd' id="bd" style="width: 120px" />
-					
-					
-					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
 				<font color='red' size='2'>*&nbsp;</font>计划下达文号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
 					<input type="text" name='jhxdwh' id="jhxdwh" style="width: 120px" />
 					</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
+				<font color='red' size='2'>*&nbsp;</font>到位月份：：</td>
+				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
+				<input type="text" name='dwyf' id="dwyf" style="width: 120px" />
+				</td>
 				
 			</tr>
 			<tr style="height: 35px;">
@@ -79,10 +77,8 @@ $(function(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
-				到位月份：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name='dwyf' id="dwyf" style="width: 120px" />
 				</td>
 				
 			</tr>

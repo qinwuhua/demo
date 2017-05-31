@@ -22,7 +22,7 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
-			loadBmbm3('gcfl','路网结构改造建设性质');
+			loadBmbm3('gcfl','路网结构改造项目类型');
 			loadjhxdwh("jhxdwh",'gs_lwjggz');
 			
 			//YMLib.Var.jdbs=2;

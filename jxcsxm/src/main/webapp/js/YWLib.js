@@ -175,3 +175,52 @@ function createJsontree(id,url){
 	});  
 
 }
+
+function getValuesById(id){
+	var value=$("#"+id).combo("getValues").join(",");
+	if(value.substr(0,1)==',')
+		value=value.substr(1,value.length);
+	return value;
+}
+
+
+function plshdw(){
+	var rows;var _id="";
+	rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请勾选记录！");
+		return;
+	}
+	
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt<=0){
+			alert('请勾选未审核的记录！');
+			return;
+		}
+	}
+	_id=rows[0].xmbm;
+	for(var i=1;i<rows.length;i++){
+		_id+=","+rows[i].xmbm;
+	}
+	var data="shzt=已审核&xmbm="+_id;
+	if(confirm("您确认批量审核吗？"))
+		//return;
+		$.ajax({
+			type:'post',
+			url:'/jxcsxm/zjdw/plshdw.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("审核成功");
+					loadTj();
+					$("#grid").datagrid('reload');
+				}else{
+					alert("审核失败");
+				}
+				
+			}
+		});
+	
+	
+}

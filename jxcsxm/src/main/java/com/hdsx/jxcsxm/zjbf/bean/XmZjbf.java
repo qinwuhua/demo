@@ -73,6 +73,7 @@ public class XmZjbf{
     private String ttc1;
     private String dfzc1;
     private String ztz1;
+    private String xmsl;
     public String getId() {
         return id;
     }
@@ -432,6 +433,14 @@ public class XmZjbf{
 
 	public void setZtz1(String ztz1) {
 		this.ztz1 = ztz1;
+	}
+
+	public String getXmsl() {
+		return xmsl;
+	}
+
+	public void setXmsl(String xmsl) {
+		this.xmsl = xmsl;
 	}
 	
 	

@@ -2,12 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxcsxm.zjdw">
 	<select id="queryXmlist" parameterType="xmjbxx" resultType="xmjbxx">
-		select * from(select rownum num ,t1.* from (select t.*,xd.jhxdwh,dw.*  from xmjbxx t
+		select * from(select rownum num ,t1.* from (select * from(select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
 		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
 		on t.xmbm=xd.xmid	
 		left join(
-	    select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt from xm_zjdw group by xmbm
-	    ) dw on t.xmbm=dw.xmids
+	    select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+		(case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+		(case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+		(case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
+		from xm_zjdw group by xmbm) dw on t.xmbm=dw.xmids
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
@@ -16,25 +19,69 @@
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		) where 1=1
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
 		order by decode(xsbzt,null,0,xsbzt) desc,decode(ssbzt,null,0,ssbzt) desc,decode(shzt,null,0,shzt) desc,xmnf
-		) t1 
+		) t1
+		
 		)t2
 		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		
 	</select>
 	<select id="queryXmlistCount" parameterType="xmjbxx" resultType="int">
-		select count(*) from xmjbxx t
+		select count(*) from(select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
 		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
 		on t.xmbm=xd.xmid	
+		left join(
+	    select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+		(case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+		(case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+		(case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
+		from xm_zjdw group by xmbm) dw on t.xmbm=dw.xmids
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
-		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		) where 1=1
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
 	</select>
+	<select id="getdwTjAll" parameterType="xmjbxx" resultType="xmzjdw">
+		select count(*) xmsl,sum(nvl(dwzj,0)) dwzj,sum(nvl(yshdwzj,0)) yshdwzj,sum(nvl(jhxdzj,0)) jhxdzj from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
+		on t.xmbm=xd.xmid	
+		left join(
+	    select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+		(case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+		(case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+		(case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
+		from xm_zjdw group by xmbm) dw on t.xmbm=dw.xmids
+		left join
+	    (select xm.xmbm xmbms1,nvl(dwzj,0) dwzj,nvl(yshdwzj,0) yshdwzj,nvl(jhxdzj,0) jhxdzj from xmjbxx xm left join 
+			(select xmbm,sum(ztz) dwzj,sum(decode(shzt,'已审核',ztz,0)) yshdwzj from xm_zjdw group by xmbm) dw on xm.xmbm=dw.xmbm left join
+			(select xmid xmbm,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(dfzc,0))+sum(nvl(yhdk,0))+sum(nvl(rys,0))+sum(nvl(stz,0))+(sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(stz,0))) jhxdzj from xm_gsd_jhxd group by xmid) xd on xm.xmbm=xd.xmbm 
+	    ) zj on t.xmbm=zj.xmbms1
+		where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		) where 1=1
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+	</select>
+	
 	<select id="queryXmlistshqx" parameterType="xmzjdw" resultType="xmzjdw">
 		select * from(select rownum num ,t1.* from (select t.*,(select name from xtgl_department where id=t.gydwdm) gydw   from xm_zjdw t
 		where 1=1 and gydwdm is not null 
@@ -160,7 +207,18 @@
     </set>
     where 1=1 and ${id}
 	</update>
-	
+	<update id="plshdw" parameterType="xmzjdw">
+	 update xm_zjdw
+    <set>
+      <if test="sbthcd != null" >sbthcd = #{sbthcd},</if>
+      <if test="thyy != null" >thyy = #{thyy},</if>
+      <if test="xsbzt != null" >xsbzt = #{xsbzt},xsbsj=sysdate,</if>
+      <if test="ssbzt != null" >ssbzt = #{ssbzt},ssbsj=sysdate,</if>
+      <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
+      <if test="sfth != null" >sfth = #{sfth},</if>
+    </set>
+    where 1=1 and ${xmbm}
+	</update>
 	<select id="deldw" parameterType="xmzjdw">
 		delete from xm_zjdw where 1=1 and ${id}
 	</select>

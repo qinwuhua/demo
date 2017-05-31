@@ -27,7 +27,7 @@ function yzsz(id){
     }
 }
 $(function(){
-	loadBmbm('bd1','标段');
+	//loadBmbm('bd1','标段');
 	loadBmbm('nf','项目年份',new Date().getFullYear());
 	var yf=new Date().getMonth()+1;
 	if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
@@ -50,12 +50,12 @@ $(function(){
 })
 
 function zjdwtj(){
-	if($('#bd1').combo("getValue")==""){alert("请选择标段");return;}
+	//if($('#bd1').combo("getValue")==""){alert("请选择标段");return;}
 	if($('#jhxdwh1').combo("getValue")==""){alert("请选择计划下达文号");return;}
 	if($('#nf').combo("getValue")==""){alert("请选择年份");return;}
 	if($('#yf').combo("getValue")==""){alert("请选择月份");return;}
 	$('#dwyf').val($('#nf').combo("getValue")+"-"+$('#yf').combo("getValue"));
-	$('#bd').val($('#bd1').combo("getValue"));
+	
 	$('#jhxdwh').val($('#jhxdwh1').combo("getValue"));
 	var result=true;var ztz=0;
 	result=validateInput("cgs","number",result);
@@ -115,11 +115,12 @@ function zjdwtj(){
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
+				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
-				<font color='red' size='2'>*&nbsp;</font>标段：</td>
+				<font color='red' size='2'>*&nbsp;</font>计划下达文号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text"  id="bd1" style="width: 124px" />
-					<input type="hidden" name='bd' id="bd" style="width: 120px" />
+					<input type="text"  id="jhxdwh1" style="width: 124px" />
+					<input type="hidden" name='jhxdwh' id="jhxdwh" style="width: 120px" />
 					
 					<input type="hidden" name='xmbm' id="xmbm" style="width: 120px" />
 					<input type="hidden" name='sbthcd' id="sbthcd" style="width: 120px" />
@@ -130,12 +131,12 @@ function zjdwtj(){
 					
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
-				<font color='red' size='2'>*&nbsp;</font>计划下达文号：</td>
+				到位月份：
+				</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text"  id="jhxdwh1" style="width: 124px" />
-					<input type="hidden" name='jhxdwh' id="jhxdwh" style="width: 120px" />
-					</td>
+				 <input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;">
 				
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
@@ -187,14 +188,16 @@ function zjdwtj(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
-				到位月份：
+				
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-				 <input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;">
-				
+				 
 				</td>
 				
 			</tr>
+			
+			
+			
 			<tr style="height: 35px;">
 				<td colspan="4" style="background-color: #ffffff;"align="center">
 				<a id='mybuttion1' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:zjdwtj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">保存</a>
