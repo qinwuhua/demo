@@ -14,6 +14,8 @@
 	<action name="queryXmlistshqx" class="zjbfController" method="queryXmlistshqx"></action>
 	<action name="insertOrUpdateShqx" class="zjbfController" method="insertOrUpdateShqx"></action>
 	<action name="queryZjByGydwdm" class="zjbfController" method="queryZjByGydwdm"></action>
+	<action name="getbfTjAll" class="zjbfController" method="getbfTjAll"></action>
+	<action name="plshbf" class="zjbfController" method="plshbf"></action>
 	
 	
 	

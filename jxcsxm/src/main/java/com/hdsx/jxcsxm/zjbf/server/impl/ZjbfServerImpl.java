@@ -98,5 +98,15 @@ public class ZjbfServerImpl extends BaseOperate  implements ZjbfServer{
 	public List<XmZjbf> queryZjByGydwdm(XmZjbf xmZjbf) {
 		return queryList("queryZjByGydwdm", xmZjbf);
 	}
+
+	@Override
+	public XmZjbf getbfTjAll(Xmjbxx xmjbxx) {
+		return queryOne("getbfTjAll", xmjbxx);
+	}
+
+	@Override
+	public boolean plshdw(XmZjbf xmZjbf) {
+		return update("plshdw", xmZjbf)>0;
+	}
 	
 }

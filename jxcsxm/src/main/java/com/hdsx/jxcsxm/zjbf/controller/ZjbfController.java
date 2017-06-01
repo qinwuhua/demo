@@ -49,6 +49,9 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
 		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
 		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
+		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
+		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
 		if(xmZjbf.getPage()>0){
 			xmjbxx.setPage(xmZjbf.getPage());
 			xmjbxx.setRows(xmZjbf.getRows());
@@ -69,6 +72,25 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 		}
 		
 	}
+	
+	//统计
+	public void getbfTjAll(){
+		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+		xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
+		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
+		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
+		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+		
+		try {
+			JsonUtils.write(zjbfServer.getbfTjAll(xmjbxx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void insertZjbf(){
 		ResponseUtils.write(getresponse(), ""+zjbfServer.insertZjbf(xmZjbf));
@@ -198,7 +220,11 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 				e.printStackTrace();
 			}
 		}
-		
+		//批量审核拨付
+		public void plshbf(){
+			xmZjbf.setXmbm(MyUtil.getQueryTJ(xmZjbf.getXmbm(), "xmbm").replaceAll("and", ""));
+			ResponseUtils.write(getresponse(), ""+zjbfServer.plshdw(xmZjbf));
+		}
 	
 	
 	

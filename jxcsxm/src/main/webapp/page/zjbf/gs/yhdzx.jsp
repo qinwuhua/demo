@@ -24,7 +24,30 @@
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
 			loadBmbm3('gcfl','养护大中修工程分类');
 			loadjhxdwh("jhxdwh",'gs_yhdzx');
+			loadBmbm3('shzt','审核状态');
+			loadBmbm3('ssbzt','上报状态');
+			loadBmbm3('xsbzt','上报状态');
+			//YMLib.Var.jdbs=2;
 			
+			
+			if($.cookie('unit2').length==11){
+				$("td[name='xian']").show();
+				$("td[name='shi']").hide();
+				$("td[name='sheng']").hide();
+				$("a[name='sheng']").hide();
+			}
+			if($.cookie('unit2').length==9){
+				$("td[name='shi']").show();
+				$("td[name='xian']").hide();
+				$("td[name='sheng']").hide();
+				$("a[name='sheng']").hide();
+			}
+			if($.cookie('unit2').length==7){
+				$("a[name='sheng']").show();
+				$("td[name='sheng']").show();
+				$("td[name='xian']").hide();
+				$("td[name='shi']").hide();
+			}
 			//YMLib.Var.jdbs=2;
 			queryXmlist();
 			
@@ -60,10 +83,11 @@
 
 			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.gcfl':gcfl
+					   'xmjbxx.gcfl':gcfl,
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt")
 			};
 	
- 			//loadLj(params);
+			loadTj();
 			
 			$('#grid').datagrid({    
 			    url:'/jxcsxm/zjbf/queryXmlist.do',
@@ -76,7 +100,7 @@
 			    height:$(window).height()-140,
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
-			    columns:[[
+			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
 							{field:'cz',title:'操作',width:130,align:'center',
 								formatter: function(value,row,index){
 									var result='<a id="'+row.xmbm+'" style="margin-top: 1px;margin-bottom: 1px;" href="javascript:openZjbf('+"'"+row.xmbm+"','gs_yhdzx'"+')" class="button button-small button-rounded button-raised ">资金拨付详情</a>'
@@ -111,7 +135,51 @@
 		}
 		
 		
-	
+		function loadTj(){
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+			
+			var jsxz="养护大中修";
+			
+			var gcfl=$("#gcfl").combobox("getValues").join(",");
+			if(gcfl.substr(0,1)==',')
+				gcfl=gcfl.substr(1,gcfl.length);
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+
+			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
+					   'xmjbxx.gcfl':gcfl,
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt")
+			};
+			$.ajax({
+				type:'post',
+				url:'/jxcsxm/zjbf/getbfTjAll.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$("#xmsl").html(msg.xmsl);
+					$("#jhxdzj").html(msg.jhxdzj);
+					$("#dwzj").html(msg.dwzj);
+					$("#bfzj").html(msg.bfzj);
+					$("#yshbfzj").html(msg.yshbfzj);
+				}
+			});
+		}
 	</script>
 	<style type="text/css">
 TD {
@@ -150,12 +218,22 @@ text-decoration:none;
         					<tr height="28">
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
+        						<!-- 县市上报状态 省审核状态-->
+								<td align="right" name='sheng'>审核状态：</td>
+								<td name='sheng'><select name="shzt" id="shzt" style="width:80px;" ></select></td>
+        						<td align="right" name='shi'>上报状态：</td>
+								<td name='shi'><select name="ssbzt" id="ssbzt" style="width:80px;" ></select></td>
+        						<td align="right" name='xian'>上报状态：</td>
+								<td name='xian'><select name="xsbzt" id="xsbzt" style="width:80px;" ></select></td>
+        						
         						<td align="right">建设性质：</td>
-								<td><select name="gcfl" id="gcfl" style="width:80px;" ></select></td>
+								<td><select name="gcfl" id="gcfl" style="width:144px;" ></select></td>
         					</tr>
         					<tr height="28">
                             	<td colspan="8">
                             		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryXmlist()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
+									<a name='sheng' id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plshbf()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">批量审核</a>
+								
 								</td>
                             </tr>
         					</table>
@@ -166,8 +244,12 @@ text-decoration:none;
         	
         	<tr>
             	<td style="padding-left: 10px; font-size:12px;">
-            		<!-- <div>共有项目【<span id="xmsl" style="color: red;">0</span>】个
-            		</div> -->
+            		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
+           		        计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
+		                        到位资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
+                   	拨付资金共【<span id="bfzj" style="color: Red; font-weight: bold;">0</span>】万元，
+                   	其中，已审核拨付资金共【<span id="yshbfzj" style="color: Red; font-weight: bold;">0</span>】万元。
+            		</div>
             		<div><table id="grid"></table></div>
             	</td>
         	</tr>

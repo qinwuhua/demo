@@ -40,6 +40,10 @@ public interface ZjbfServer {
 
 	List<XmZjbf> queryZjByGydwdm(XmZjbf xmZjbf);
 
+	XmZjbf getbfTjAll(Xmjbxx xmjbxx);
+
+	boolean plshdw(XmZjbf xmZjbf);
+
 	
 
 }

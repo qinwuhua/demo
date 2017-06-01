@@ -183,7 +183,7 @@ function getValuesById(id){
 	return value;
 }
 
-
+//批量审核到位
 function plshdw(){
 	var rows;var _id="";
 	rows=$('#grid').datagrid('getSelections');
@@ -208,6 +208,48 @@ function plshdw(){
 		$.ajax({
 			type:'post',
 			url:'/jxcsxm/zjdw/plshdw.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("审核成功");
+					loadTj();
+					$("#grid").datagrid('reload');
+				}else{
+					alert("审核失败");
+				}
+				
+			}
+		});
+	
+	
+}
+
+//批量审核拨付
+function plshbf(){
+	var rows;var _id="";
+	rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请勾选记录！");
+		return;
+	}
+	
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt<=0){
+			alert('请勾选未审核的记录！');
+			return;
+		}
+	}
+	_id=rows[0].xmbm;
+	for(var i=1;i<rows.length;i++){
+		_id+=","+rows[i].xmbm;
+	}
+	var data="shzt=已审核&xmbm="+_id;
+	if(confirm("您确认批量审核吗？"))
+		//return;
+		$.ajax({
+			type:'post',
+			url:'/jxcsxm/zjbf/plshbf.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){
