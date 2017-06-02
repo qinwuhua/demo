@@ -22,7 +22,10 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm3('nf','项目年份',new Date().getFullYear());
-// 			loadjhxdwh("jhxdwh",'gs_shqx');
+			var yf=new Date().getMonth()+1;
+			if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
+			
+			
 			queryXmlist();
 			
 			
@@ -41,15 +44,13 @@
 				gydwstr= gydwdm.join(',');
 			}
 			
-			var nf=$("#nf").combobox("getValues").join(",");
-			if(nf.substr(0,1)==',')
-				nf=nf.substr(1,nf.length);
+			
 			/* 
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
  */
-			var params={'gydw':gydwstr,'nf':nf
+			var params={'gydw':gydwstr,'bfyf':$("#nf").combo('getValue')+"-"+$("#yf").combo('getValue')
 			};
 	
  			//loadLj(params);
@@ -69,7 +70,7 @@
 							
 							{field:'bd',title:'标段',width:90,align:'center'},
 							{field:'jhxdwh',title:'计划下达文号',width:300,align:'center'},
-							{field:'nf',title:'年份',width:90,align:'center'},
+							{field:'bfyf',title:'拨付月份',width:90,align:'center'},
 							{field:'gydw',title:'管养单位',width:140,align:'center'},
 							{field:'ztz',title:'总投资(万元)',width:95,align:'center'},
 							{field:'cgs',title:'车购税(万元)',width:95,align:'center'},
@@ -128,8 +129,8 @@ text-decoration:none;
 							<tr height="28">
 								<td align="right">管养单位：</td>
         						<td><select id="gydw" style="width:250px;"></select></td>
-								<td align="right">年份：</td>
-        						<td><select id="nf" style="width: 80px;"></select></td>
+								<td align="right">拨付月份：</td>
+        						<td><input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;"></td>
 								
 								</tr>
         					

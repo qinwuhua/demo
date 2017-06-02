@@ -86,7 +86,7 @@
 		select * from(select rownum num ,t1.* from (select t.*,(select name from xtgl_department where id=t.gydwdm) gydw   from xm_zjdw t
 		where 1=1 and gydwdm is not null 
 		<if test="gydw !='' and gydw != null">${gydw}</if>
-		<if test="nf !='' and nf != null">${nf}</if>
+		<if test="dwyf !='' and dwyf != null">and dwyf like '%'||#{dwyf}||'%'</if>
 		order by nf,gydwdm
 		) t1 
 		)t2
@@ -96,7 +96,7 @@
 		select count(*) from xm_zjdw t
 		where 1=1 and gydwdm is not null 
 		<if test="gydw !='' and gydw != null">${gydw}</if>
-		<if test="nf !='' and nf != null">${nf}</if>
+		<if test="dwyf !='' and dwyf != null">and dwyf like '%'||#{dwyf}||'%'</if>
 		
 	</select>
 	<select id="queryzjdwlist" parameterType="xmzjdw" resultType="xmzjdw">
@@ -238,7 +238,7 @@
 	    	<if test="ttc != null and ttc != ''" >ttc,</if>
 	    	<if test="dfzc != null and dfzc != ''" >dfzc,</if>
 	    	<if test="bd != null and bd != ''" >bd,</if>
-	    	<if test="nf != null and nf != ''" >nf,</if>
+	    	<if test="dwyf != null and dwyf != ''" >dwyf,</if>
 	    	<if test="jhxdwh != null and jhxdwh != ''" >jhxdwh,</if>
 	    	<if test="parent != null and parent != ''" >parent,</if>
 	    	<if test="gydwdm != null and gydwdm != ''" >gydwdm,</if>
@@ -250,7 +250,7 @@
 	    	<if test="ttc != null and ttc != ''" >#{ttc},</if>
 	    	<if test="dfzc != null and dfzc != ''" >#{dfzc},</if>
 	    	<if test="bd != null and bd != ''" >#{bd},</if>
-	    	<if test="nf != null and nf != ''" >#{nf},</if>
+	    	<if test="dwyf != null and dwyf != ''" >#{dwyf},</if>
 	    	<if test="jhxdwh != null and jhxdwh != ''" >#{jhxdwh},</if>
 	    	<if test="parent != null and parent != ''" >#{parent},</if>
 	    	<if test="gydwdm != null and gydwdm != ''" >#{gydwdm},</if>
@@ -265,7 +265,7 @@
       <if test="ttc != null" >ttc = #{ttc},</if>
       <if test="dfzc != null" >dfzc = #{dfzc},</if>
       <if test="bd != null" >bd = #{bd},</if>
-      <if test="nf != null" >nf = #{nf},</if>
+      <if test="dwyf != null" >dwyf = #{dwyf},</if>
       <if test="jhxdwh != null" >jhxdwh = #{jhxdwh},</if>
       <if test="parent != null" >parent = #{parent},</if>
       <if test="gydwdm != null" >gydwdm = #{gydwdm},</if>
@@ -274,6 +274,6 @@
 	</update>
 	
 	<select id="queryZjByGydwdm" parameterType="xmzjdw" resultType="xmzjdw">
-		select * from xm_zjdw z where nf=#{nf} and z.parent=#{gydwdm} order by gydwdm
+		select * from xm_zjdw z where dwyf=#{dwyf} and z.parent=#{gydwdm} order by gydwdm
 	</select>
 </mapper>

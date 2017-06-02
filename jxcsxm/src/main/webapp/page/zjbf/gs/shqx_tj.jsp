@@ -32,8 +32,16 @@
 			$("#nf").combobox({onSelect:function(record){
 				loadZj($.cookie("unit"));
 			}})
+			$("#yf").combobox({onSelect:function(record){
+				loadZj($.cookie("unit"));
+			}})
 			loadBmbm('bd','标段');
 			loadBmbm('nf','项目年份',new Date().getFullYear());
+			
+			var yf=new Date().getMonth()+1;
+			if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
+			loadWhBmbm('jhxdwh',new Date().getFullYear()+"21101360000");
+			loadWhBmbm('jhxdwh',new Date().getFullYear()+"21101360000");
 			var gydw=$.cookie("unit");
 			if(gydw=="36"){
 				loadChildGydw("21101360000");
@@ -65,8 +73,8 @@
 			
 			var zjq;
 			if($.cookie("unit")=="36")
-			zj={'gydwdm':"21101360000",'nf':$("#nf").combo('getValue')};
-			else zj={'gydwdm':gydwdm,'nf':$("#nf").combo('getValue')};
+			zj={'gydwdm':"21101360000",'bfyf':$("#nf").combo('getValue')+"-"+$("#yf").combo('getValue')};
+			else zj={'gydwdm':gydwdm,'bfyf':$("#nf").combo('getValue')+"-"+$("#yf").combo('getValue')};
 			$.ajax({
 				type:'post',
 				async:false,
@@ -82,8 +90,9 @@
 							$(input[2]).val(item.ttc);
 							$(input[3]).val(item.dfzc);
 							$(input[4]).val(item.parent);
-							$("#jhxdwh").val(item.jhxdwh);
-							$("#nf").combobox('setValue',item.nf);
+							$("#jhxdwh").combobox('setValue',item.jhxdwh);
+							$("#nf").combobox('setValue',item.bfyf.substr(0,4));
+							$("#yf").combobox('setValue',item.bfyf.substr(item.bfyf.length-2,item.bfyf.length));
 							$("#bd").combobox('setValue',item.bd);
 						});
 					}else{
@@ -103,9 +112,8 @@
 		function save(){
 			if($('#bd').combo("getValue")==""){alert("请选择标段");return;}
 			if($('#nf').combo("getValue")==""){alert("请选择年份");return;}
-			var result=true;
-			result=validateInput("jhxdwh","null",result);
-			if(!result) return;
+			if($('#yf').combo("getValue")==""){alert("请选择月份");return;}
+			if($('#jhxdwh').combo("getValue")==""){alert("请选择计划下达文号");return;}
 			/* var json_data = JSON.stringify(caiji($.cookie("unit"))); 
 			alert(json_data); */
 			
@@ -130,7 +138,7 @@
 		
 		
 		function caiji(name){
- 			var zj = {gydwdm:"",parent:"",nf:"",cgs1:"",rys1:"",ttc1:"",dfzc1:"",ztz1:"",bd:"",jhxdwh:""};
+ 			var zj = {gydwdm:"",parent:"",bfyf:"",cgs1:"",rys1:"",ttc1:"",dfzc1:"",ztz1:"",bd:"",jhxdwh:""};
 			var tr = $("tr[name='"+name+"']");
 			 $.each(tr,function(index,item){
 				 
@@ -140,7 +148,7 @@
 				if(index==0){
 					zj.gydwdm+=item.id;
 					zj.parent+=$(inputList[4]).val();
-					zj.nf+=$("#nf").combo('getValue');
+					zj.bfyf+=$("#nf").combo('getValue')+"-"+$("#yf").combo('getValue');
 					cgs1=$(inputList[0]).val()==""?0:$(inputList[0]).val();
 					rys1=$(inputList[1]).val()==""?0:$(inputList[1]).val();
 					ttc1=$(inputList[2]).val()==""?0:$(inputList[2]).val();
@@ -152,11 +160,11 @@
 					ztz1=accAdd(ztz1,$(inputList[3]).val()==""?0:$(inputList[3]).val());
 					zj.ztz1+=ztz1;
 					zj.bd+=$("#bd").combo('getValue');
-					zj.jhxdwh+=$("#jhxdwh").val();
+					zj.jhxdwh+=$("#jhxdwh").combo('getValue');
 				}else{
 					zj.gydwdm+=","+item.id;
 					zj.parent+=","+$(inputList[4]).val();
-					zj.nf+=","+$("#nf").combo('getValue');
+					zj.bfyf+=","+$("#nf").combo('getValue')+"-"+$("#yf").combo('getValue');
 					cgs1=$(inputList[0]).val()==""?0:$(inputList[0]).val();
 					rys1=$(inputList[1]).val()==""?0:$(inputList[1]).val();
 					ttc1=$(inputList[2]).val()==""?0:$(inputList[2]).val();
@@ -168,7 +176,7 @@
 					ztz1=accAdd(ztz1,$(inputList[3]).val()==""?0:$(inputList[3]).val());
 					zj.ztz1+=","+ztz1;
 					zj.bd+=","+$("#bd").combo('getValue');
-					zj.jhxdwh+=","+$("#jhxdwh").val();
+					zj.jhxdwh+=","+$("#jhxdwh").combo('getValue');
 					
 				}
 			}); 
@@ -185,12 +193,12 @@
         			<div align="center">
         				<table class="table1" cellpadding="0" cellspacing="0" width="800">
         				<tr align='center' height="28">
-        						<td width="100">年份</td>
-								<td width="100"><input id='nf' class='easyui-combobox' width="90px;"></li></td>
+        						<td width="100">拨付月份</td>
+								<td width="100"><input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;"></td>
 								<td width="100">标段</td>
-								<td width="100"><input type='text' id='bd'></li></td>
+								<td width="100"><input type='text' id='bd' style="width: 65px;"></td>
 								<td width="100">计划下达文号</td>
-								<td width="100"><input type='text' id='jhxdwh'></td>
+								<td width="100"><input type='text' id='jhxdwh' style="width: 125px;"></td>
 							</tr>
 						</table>
 						<table id="zjbf_table" width="800" class="table" cellpadding="0" cellspacing="0">

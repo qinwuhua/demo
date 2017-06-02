@@ -146,7 +146,6 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 	public void queryXmlistshqx(){
 		
 		xmZjbf.setGydw(MyUtil.getQueryTJ(xmZjbf.getGydw(), "gydwdm"));
-		xmZjbf.setNf(MyUtil.getQueryTJ(xmZjbf.getNf(), "nf"));
 		
 		List<XmZjbf> list=zjbfServer.queryXmlistshqx(xmZjbf);
 		int count=zjbfServer.queryXmlistshqxCount(xmZjbf);
@@ -166,7 +165,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 			try {
 				String[] gydwdm = xmZjbf.getGydwdm().split(",");
 				String[] parent = xmZjbf.getParent().split(",");
-				String[] nf = xmZjbf.getNf().split(",");
+				String[] bfyf = xmZjbf.getBfyf().split(",");
 				String[] cgs = xmZjbf.getCgs1().split(",");
 				String[] rys = xmZjbf.getRys1().split(",");
 				String[] ttc = xmZjbf.getTtc1().split(",");
@@ -181,7 +180,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 					XmZjbf xm = new XmZjbf();
 					xm.setGydwdm(gydwdm[i]);
 					xm.setParent(parent[i]);
-					xm.setNf(nf[i]);
+					xm.setBfyf(bfyf[i]);
 					xm.setCgs(Double.parseDouble("".equals(cgs[i]) ? "0" : cgs[i]));
 					xm.setRys(Double.parseDouble("".equals(rys[i]) ? "0" : rys[i]));
 					xm.setTtc(Double.parseDouble("".equals(ttc[i]) ? "0" : ttc[i]));

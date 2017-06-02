@@ -93,7 +93,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-140,
+			    height:$(window).height()-157,
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
@@ -105,10 +105,10 @@
 							},
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
 							{field:'xmbm',title:'项目编码',width:110,align:'center'},
-							{field:'xmmc',title:'项目名称',width:270,align:'center'},
+							{field:'xmmc',title:'项目名称',width:250,align:'center'},
 							{field:'gydw',title:'管养单位',width:150,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
-							{field:'jhxdwh',title:'计划下达文号',width:280,align:'center'}
+							{field:'jhxdwh',title:'计划下达文号',width:270,align:'center'}
 			    ]],
 			    rowStyler:function(index,row){
 			    	if($.cookie('unit2').length==11){
@@ -185,7 +185,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金拨付>&nbsp;普通国省道>&nbsp;国省道改造</div>
+		<div id="p_top">资金拨付>&nbsp;普通国省道>&nbsp;灾毁恢复</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>

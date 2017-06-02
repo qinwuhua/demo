@@ -97,11 +97,11 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-140,
+			    height:$(window).height()-157,
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
-							{field:'cz',title:'操作',width:130,align:'center',
+							{field:'cz',title:'操作',width:120,align:'center',
 								formatter: function(value,row,index){
 									var result='<a id="'+row.xmbm+'" style="margin-top: 1px;margin-bottom: 1px;" href="javascript:openZjbf('+"'"+row.xmbm+"','gs_yhdzx'"+')" class="button button-small button-rounded button-raised ">资金拨付详情</a>'
 										return result;
@@ -110,7 +110,7 @@
 							
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
 							{field:'xmbm',title:'项目编码',width:110,align:'center'},
-							{field:'xmmc',title:'项目名称',width:270,align:'center'},
+							{field:'xmmc',title:'项目名称',width:250,align:'center'},
 							{field:'gydw',title:'管养单位',width:150,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
 							{field:'jhxdwh',title:'计划下达文号',width:280,align:'center'}
