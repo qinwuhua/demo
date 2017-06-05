@@ -11,6 +11,10 @@ public interface JhcxServer {
 
 	int queryXmlistCount(Xmjbxx xmjbxx);
 
+	Xmjbxx getTjAll(Xmjbxx xmjbxx);
+
+	Xmjbxx getxmInfo(Xmjbxx xmjbxx);
+
 	
 
 }

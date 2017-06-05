@@ -46,6 +46,10 @@ public interface ZjdwServer {
 
 	boolean plshdw(XmZjdw xmZjdw);
 
+	List<XmZjdw> queryzjxdlist(XmZjdw xmZjdw);
+
+	int queryzjxdlistCount(XmZjdw xmZjdw);
+
 	
 
 }

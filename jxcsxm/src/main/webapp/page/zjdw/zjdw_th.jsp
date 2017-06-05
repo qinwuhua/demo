@@ -16,7 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
-<style type="text/css">TD {font-size: 12px;} a{text-decoration:none;}</style>
+<style type="text/css">.table{border: 1px solid #CBE0FF;} .table tr{border: 1px solid #CBE0FF;} .table tr td{border: 1px solid #CBE0FF;}</style>
 <script type="text/javascript">
 
 function thxj(){
@@ -48,7 +48,7 @@ function thxj(){
 <script type="text/javascript">
 
 </script>
-<table style="width: 100%; background-color: #aacbf8; font-size: 12px"
+<table class='table' style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			
 			<tr style="height: 35px;">

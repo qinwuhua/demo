@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>工程路面改建路面升级项目</title>
+	<title>国省道改造</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -62,7 +62,7 @@
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh
 			};
 	
- 			//loadLj(params);
+ 			loadTj();
 			
 			$('#grid').datagrid({    
 			    url:'/jxcsxm/jhcx/queryXmlist.do',
@@ -72,10 +72,16 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-140,
+			    height:$(window).height()-155,
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
 			    columns:[[
+							{field:'cz',title:'操作',width:130,align:'center',
+								formatter: function(value,row,index){
+									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','jhcx'"+')" >项目详情</a>'
+										return result;
+								}
+							},
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
 							{field:'xmbm',title:'项目编码',width:110,align:'center'},
 							{field:'xmmc',title:'项目名称',width:400,align:'center'},
@@ -88,6 +94,49 @@
 		
 		
 	
+		function loadTj(){
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+			
+			var jsxz=$("#jsxz").combobox("getValues").join(",");
+			if(jsxz.substr(0,1)==',')
+				jsxz=jsxz.substr(1,jsxz.length);
+			if(jsxz=="")
+			jsxz="改建,路面改造,新建"
+				
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+
+			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh
+			};
+			$.ajax({
+				type:'post',
+				url:'/jxcsxm/jhcx/getTjAll.do',
+				data:params,
+				dataType:'json',
+				success:function(msg){
+					$("#xmsl").html(msg.xmsl);
+					$("#jhxdzj").html(msg.jhxdzj);
+					
+				}
+			});
+		}
+		
 	</script>
 	<style type="text/css">
 TD {
@@ -142,8 +191,9 @@ text-decoration:none;
         	
         	<tr>
             	<td style="padding-left: 10px; font-size:12px;">
-            		<!-- <div>共有项目【<span id="xmsl" style="color: red;">0</span>】个
-            		</div> -->
+            		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
+           		        计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元。
+           		    </div>    
             		<div><table id="grid"></table></div>
             	</td>
         	</tr>

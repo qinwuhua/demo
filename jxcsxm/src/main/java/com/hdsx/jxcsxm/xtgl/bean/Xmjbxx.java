@@ -25,7 +25,8 @@ public class Xmjbxx implements Serializable {
 	private String xsbzt;
 	private String ssbzt;
 	private String shzt;
-	
+	private String xmsl;
+	private String jhxdzj;
 	public String getId() {
 		return id;
 	}
@@ -121,6 +122,18 @@ public class Xmjbxx implements Serializable {
 	}
 	public void setShzt(String shzt) {
 		this.shzt = shzt;
+	}
+	public String getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(String xmsl) {
+		this.xmsl = xmsl;
+	}
+	public String getJhxdzj() {
+		return jhxdzj;
+	}
+	public void setJhxdzj(String jhxdzj) {
+		this.jhxdzj = jhxdzj;
 	}
 	
 }

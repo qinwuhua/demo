@@ -58,10 +58,29 @@ public class JhcxController extends BaseActionSupport{
 		
 	}
 	
+	//统计
+	public void getTjAll(){
+		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+		xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
+		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+		try {
+			JsonUtils.write(jhcxServer.getTjAll(xmjbxx), getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+	}
 	
-	
-	
-	
+	//查询项目基本信息
+	public void getxmInfo(){
+		try {
+			JsonUtils.write(jhcxServer.getxmInfo(xmjbxx), getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	
 	
 	

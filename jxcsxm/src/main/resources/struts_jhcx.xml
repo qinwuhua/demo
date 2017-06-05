@@ -4,6 +4,8 @@
 <struts>
 <package name="jhcx" extends="struts-default" namespace="/jhcx">
 	<action name="queryXmlist" class="jhcxController" method="queryXmlist"></action>
+	<action name="getTjAll" class="jhcxController" method="getTjAll"></action>
+	<action name="getxmInfo" class="jhcxController" method="getxmInfo"></action>
 	
  </package>
 </struts>

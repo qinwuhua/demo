@@ -113,5 +113,15 @@ public class ZjdwServerImpl extends BaseOperate  implements ZjdwServer{
 	public boolean plshdw(XmZjdw xmZjdw) {
 		return update("plshdw", xmZjdw)>0;
 	}
+
+	@Override
+	public List<XmZjdw> queryzjxdlist(XmZjdw xmZjdw) {
+		return queryList("queryzjxdlist", xmZjdw);
+	}
+
+	@Override
+	public int queryzjxdlistCount(XmZjdw xmZjdw) {
+		return queryOne("queryzjxdlistCount", xmZjdw);
+	}
 	
 }

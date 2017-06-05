@@ -96,8 +96,9 @@
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
 							{field:'cz',title:'操作',width:130,align:'center',
 								formatter: function(value,row,index){
-									var result='<a id="'+row.xmbm+'" style="margin-top: 1px;margin-bottom: 1px;" href="javascript:openZjdw('+"'"+row.xmbm+"','gs_zhhf'"+')" class="button button-small button-rounded button-raised ">资金到位详情</a>'
-										return result;
+									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_zhhf','zjdw'"+')" >项目详情</a>&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:openZjdw('+"'"+row.xmbm+"','gs_zhhf'"+')" >到位详情</a>';	
+									return result;
 								}
 							},
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
@@ -181,7 +182,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金到位>&nbsp;普通国省道>&nbsp;国省道改造</div>
+		<div id="p_top">资金到位>&nbsp;普通国省道>&nbsp;灾毁恢复</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>

@@ -149,7 +149,7 @@ text-decoration:none;
 
 
 <center>
-<table style="width: 100%; background-color: #aacbf8; font-size: 12px"
+<table class='table' style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="2" cellspacing="1">
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;"align="center" >

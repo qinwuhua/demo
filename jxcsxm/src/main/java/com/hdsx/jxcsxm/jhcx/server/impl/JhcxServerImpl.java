@@ -27,6 +27,16 @@ public class JhcxServerImpl extends BaseOperate  implements JhcxServer{
 	public int queryXmlistCount(Xmjbxx xmjbxx) {
 		return queryOne("queryXmlistCount", xmjbxx);
 	}
+
+	@Override
+	public Xmjbxx getTjAll(Xmjbxx xmjbxx) {
+		return queryOne("getTjAll", xmjbxx);
+	}
+
+	@Override
+	public Xmjbxx getxmInfo(Xmjbxx xmjbxx) {
+		return queryOne("getxmInfo", xmjbxx);
+	}
 	
 	
 	

@@ -127,6 +127,22 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 			e1.printStackTrace();
 		}
 	}
+	
+	public void queryzjxdlist(){
+		xmZjdw.setPage(page);
+		xmZjdw.setRows(rows);
+		List<XmZjdw> list=zjdwServer.queryzjxdlist(xmZjdw);
+		int count=zjdwServer.queryzjxdlistCount(xmZjdw);
+		EasyUIPage<XmZjdw> e=new EasyUIPage<XmZjdw>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	//根据资金到位id查询详细
 	public void queryDwByid(){
 		try {

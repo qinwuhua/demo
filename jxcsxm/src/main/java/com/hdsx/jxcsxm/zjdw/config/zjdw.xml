@@ -113,6 +113,21 @@
 		where 1=1 and xmbm=#{xmbm} and to_number(sbthcd)&lt;=to_number(#{sbthcd})
 	</select>
 	
+	<select id="queryzjxdlist" parameterType="xmzjdw" resultType="xmzjdw">
+		select * from(select rownum num ,t1.* from (select t.*  from XM_GSD_JHXD t
+		where 1=1 and xmid=#{xmbm} 
+		order by xdnf
+		) t1 
+		)t2
+		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		
+	</select>
+	<select id="queryzjxdlistCount" parameterType="xmzjdw" resultType="int">
+		select count(*) from XM_GSD_JHXD t
+		where 1=1 and xmid=#{xmbm} 
+	</select>
+	
+	
 	<select id="queryDwByid" parameterType="xmzjdw" resultType="xmzjdw">
 		select * from xm_zjdw t where id=#{id}
 	</select>

@@ -100,8 +100,10 @@
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
 							{field:'cz',title:'操作',width:130,align:'center',
 								formatter: function(value,row,index){
-									var result='<a id="'+row.xmbm+'" style="margin-top: 1px;margin-bottom: 1px;" href="javascript:openZjdw('+"'"+row.xmbm+"','gs_yhdzx'"+')" class="button button-small button-rounded button-raised ">资金到位详情</a>'
-										return result;
+									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_yhdzx','zjdw'"+')" >项目详情</a>&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:openZjdw('+"'"+row.xmbm+"','gs_yhdzx'"+')" >到位详情</a>';
+									
+									return result;
 								}
 							},
 							

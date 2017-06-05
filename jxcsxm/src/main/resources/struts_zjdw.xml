@@ -17,6 +17,7 @@
 	<action name="queryZjByGydwdm" class="zjdwController" method="queryZjByGydwdm"></action>
 	<action name="getdwTjAll" class="zjdwController" method="getdwTjAll"></action>
 	<action name="plshdw" class="zjdwController" method="plshdw"></action>
+	<action name="queryzjxdlist" class="zjdwController" method="queryzjxdlist"></action>
 	
  </package>
 </struts>

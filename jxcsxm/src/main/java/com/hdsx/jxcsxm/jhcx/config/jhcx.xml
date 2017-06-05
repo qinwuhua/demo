@@ -32,5 +32,38 @@
 		
 		
 	</select>
+	<select id="getTjAll" parameterType="xmjbxx" resultType="xmjbxx">
+		select count(*) xmsl,sum(nvl(dwzj,0)) dwzj,sum(nvl(yshdwzj,0)) yshdwzj,sum(nvl(jhxdzj,0)) jhxdzj from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
+		on t.xmbm=xd.xmid	
+		left join(
+	    select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+		(case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+		(case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+		(case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
+		from xm_zjdw group by xmbm) dw on t.xmbm=dw.xmids
+		left join
+	    (select xm.xmbm xmbms1,nvl(dwzj,0) dwzj,nvl(yshdwzj,0) yshdwzj,nvl(jhxdzj,0) jhxdzj from xmjbxx xm left join 
+			(select xmbm,sum(ztz) dwzj,sum(decode(shzt,'已审核',ztz,0)) yshdwzj from xm_zjdw group by xmbm) dw on xm.xmbm=dw.xmbm left join
+			(select xmid xmbm,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(dfzc,0))+sum(nvl(yhdk,0))+sum(nvl(rys,0))+sum(nvl(stz,0))+(sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(stz,0))) jhxdzj from xm_gsd_jhxd group by xmid) xd on xm.xmbm=xd.xmbm 
+	    ) zj on t.xmbm=zj.xmbms1
+		where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		) where 1=1
+		
+		
+		
+	</select>
 	
+	<select id="getxmInfo" parameterType="xmjbxx" resultType="xmjbxx">
+		select t.*,xd.jhxdwh  from xmjbxx t
+		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
+		on t.xmbm=xd.xmid	 where xmbm=#{xmbm}
+	</select>
 </mapper>
