@@ -10,6 +10,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxcsxm.tjbb.bean.Excel_list;
 import com.hdsx.jxcsxm.tjbb.server.TjbbServer;
 import com.hdsx.jxcsxm.xtgl.bean.TreeNode;
+import com.hdsx.jxcsxm.xtgl.bean.Xmjbxx;
 
 
 
@@ -38,6 +39,16 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 	@Override
 	public List<Excel_list> getTzhzb(Excel_list elist) {
 		return queryList("getTzhzb",elist);
+	}
+
+	@Override
+	public List<Xmjbxx> queryXmlist(Xmjbxx xmjbxx) {
+		return queryList("queryXmlist", xmjbxx);
+	}
+
+	@Override
+	public int queryXmlistCount(Xmjbxx xmjbxx) {
+		return queryOne("queryXmlistCount", xmjbxx);
 	}
 
 	

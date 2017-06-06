@@ -12,6 +12,7 @@ import com.hdsx.jxcsxm.utile.EasyUIPage;
 import com.hdsx.jxcsxm.utile.JsonUtils;
 import com.hdsx.jxcsxm.utile.MyUtil;
 import com.hdsx.jxcsxm.xtgl.bean.Xmjbxx;
+import com.hdsx.jxcsxm.zjdw.bean.XmZjdw;
 
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -82,8 +83,15 @@ public class JhcxController extends BaseActionSupport{
 		}
 	}
 	
-	
-	
+	//
+	public void queryZjByGydwdm(){
+		try {
+			List<Xmjbxx> list =jhcxServer.queryZjByGydwdm(xmjbxx);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

@@ -40,7 +40,7 @@
 		openWindow("字段选择","/jxcsxm/page/tjbb/tzhzb_zd.jsp",600,380);
 
 	}
-	var str1="";var str2="";var datalist;
+	var str1="";var str2="";var datalists;
 	function showBb(str){
 		
 		var tbody = $("#bblist");
@@ -56,7 +56,7 @@
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
-				datalist=msg;
+				datalists=msg;
 				disLoadjzt();
 				if (msg != null) {
 					for ( var i = 0; i < msg.length; i++) {
@@ -79,11 +79,11 @@
 			return;
 		}
 		
-		var json_data = JSON.stringify(datalist); 
 		
-		var data="flag=1&ssbb=tzhzb";
+		
+		var data="flag=1&ssbb=tzhzb&jhnf="+$("#jhnf").combobox('getValue');
 		loadjzt();
-		 $.post('/jxcsxm/xtgl/exportBb_set.do',{nameValue:str1,colValue:str2,sql:json_data},function(){
+		 $.post('/jxcsxm/xtgl/exportBb_set.do',{nameValue:str1,colValue:str2,sql:''},function(){
 			window.location.href='/jxcsxm/tjbb/getTzhzb.do?'+data;
 		 }); 
 		 setTimeout('disLoadjzt()',4000);

@@ -66,7 +66,7 @@
 		left join
 	    (select xm.xmbm xmbms1,nvl(dwzj,0) dwzj,nvl(yshdwzj,0) yshdwzj,nvl(jhxdzj,0) jhxdzj from xmjbxx xm left join 
 			(select xmbm,sum(ztz) dwzj,sum(decode(shzt,'已审核',ztz,0)) yshdwzj from xm_zjdw group by xmbm) dw on xm.xmbm=dw.xmbm left join
-			(select xmid xmbm,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(dfzc,0))+sum(nvl(yhdk,0))+sum(nvl(rys,0))+sum(nvl(stz,0))+(sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(stz,0))) jhxdzj from xm_gsd_jhxd group by xmid) xd on xm.xmbm=xd.xmbm 
+			(select xmid xmbm,sum(nvl(ztz,0)) jhxdzj from xm_gsd_jhxd group by xmid) xd on xm.xmbm=xd.xmbm 
 	    ) zj on t.xmbm=zj.xmbms1
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
@@ -134,7 +134,7 @@
 	<select id="getdwTj" parameterType="xmzjdw" resultType="xmzjdw">
 		select xmmc,nvl(dwzj,0) dwzj,nvl(yshdwzj,0) yshdwzj,nvl(jhxdzj,0) jhxdzj from xmjbxx xm left join 
 		(select xmbm,sum(ztz) dwzj,sum(decode(shzt,'已审核',ztz,0)) yshdwzj from xm_zjdw where to_number(sbthcd)&lt;=to_number(#{sbthcd}) group by xmbm) dw on xm.xmbm=dw.xmbm left join
-		(select xmid xmbm,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(dfzc,0))+sum(nvl(yhdk,0))+sum(nvl(rys,0))+sum(nvl(stz,0))+(sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(stz,0))) jhxdzj from xm_gsd_jhxd group by xmid) xd on xm.xmbm=xd.xmbm 
+		(select xmid xmbm,sum(nvl(ztz,0)) jhxdzj from xm_gsd_jhxd group by xmid) xd on xm.xmbm=xd.xmbm 
 		where xm.xmbm=#{xmbm}
 	</select>
 	<insert id="insertZjdw" parameterType="xmzjdw">

@@ -6,6 +6,7 @@
 	<action name="queryXmlist" class="jhcxController" method="queryXmlist"></action>
 	<action name="getTjAll" class="jhcxController" method="getTjAll"></action>
 	<action name="getxmInfo" class="jhcxController" method="getxmInfo"></action>
+	<action name="queryZjByGydwdm" class="jhcxController" method="queryZjByGydwdm"></action>
 	
  </package>
 </struts>

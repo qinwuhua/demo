@@ -27,6 +27,57 @@ public class Xmjbxx implements Serializable {
 	private String shzt;
 	private String xmsl;
 	private String jhxdzj;
+	private String parent;
+	private String xdnf;
+	private String ztz;
+	private String btzzj;
+	private String rys;
+	private String ttc;
+	private String yhdk;
+	
+	
+	public String getParent() {
+		return parent;
+	}
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
+	public String getXdnf() {
+		return xdnf;
+	}
+	public void setXdnf(String xdnf) {
+		this.xdnf = xdnf;
+	}
+	public String getZtz() {
+		return ztz;
+	}
+	public void setZtz(String ztz) {
+		this.ztz = ztz;
+	}
+	public String getBtzzj() {
+		return btzzj;
+	}
+	public void setBtzzj(String btzzj) {
+		this.btzzj = btzzj;
+	}
+	public String getRys() {
+		return rys;
+	}
+	public void setRys(String rys) {
+		this.rys = rys;
+	}
+	public String getTtc() {
+		return ttc;
+	}
+	public void setTtc(String ttc) {
+		this.ttc = ttc;
+	}
+	public String getYhdk() {
+		return yhdk;
+	}
+	public void setYhdk(String yhdk) {
+		this.yhdk = yhdk;
+	}
 	public String getId() {
 		return id;
 	}

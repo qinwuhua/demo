@@ -7,6 +7,10 @@
 	<action name="getZdyBbzd" class="tjbbController" method="getZdyBbzd"></action>
 	<action name="getJhzxqkb" class="tjbbController" method="getJhzxqkb"></action>
 	<action name="getTzhzb" class="tjbbController" method="getTzhzb"></action>
+	<action name="queryXmlist" class="tjbbController" method="queryXmlist"></action>
+	
+	
+	
 	
  </package>
 </struts>

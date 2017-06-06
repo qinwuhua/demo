@@ -21,6 +21,7 @@ import com.hdsx.jxcsxm.tjbb.bean.Excel_export;
 import com.hdsx.jxcsxm.tjbb.bean.Excel_list;
 import com.hdsx.jxcsxm.tjbb.bean.Excel_tilte;
 import com.hdsx.jxcsxm.tjbb.server.TjbbServer;
+import com.hdsx.jxcsxm.utile.EasyUIPage;
 import com.hdsx.jxcsxm.utile.JsonUtils;
 import com.hdsx.jxcsxm.utile.MyUtil;
 import com.hdsx.jxcsxm.utile.ResponseUtils;
@@ -45,12 +46,39 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 	
 	@Resource(name = "tjbbServerImpl")
 	private TjbbServer tjbbServer;
+	private Xmjbxx xmjbxx=new Xmjbxx();
+	private int page=1;
+	private int rows=10;
 	private Excel_list elist=new Excel_list();
 	@Override
 	public Excel_list getModel() {
 		return elist;
 	}
 	
+	public Xmjbxx getXmjbxx() {
+		return xmjbxx;
+	}
+
+	public void setXmjbxx(Xmjbxx xmjbxx) {
+		this.xmjbxx = xmjbxx;
+	}
+	
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
 	public void createBtTree(){
 		
 		List<TreeNode> l=tjbbServer.createBtTree(elist);
@@ -229,11 +257,8 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				    list=tjbbServer.getZdyBbzd(elist);
 				    
 				    String col=(String) session.getAttribute("colValue");
-				    String datalist=(String) session.getAttribute("sql");
-				    JSONArray ja = JSONArray.fromObject(datalist);  
-				    @SuppressWarnings("unchecked")
-					List<Excel_list> list1 = (List<Excel_list>) JSONArray.toList(ja,
-							new Excel_list(), new JsonConfig());
+				    List<Excel_list> list1 = tjbbServer.getTzhzb(elist);
+				   
 		    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
 					
 			      int rowxh=0,col1=0,col2=0;
@@ -246,8 +271,13 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			    		  col1=colint;
 			    		  flag=0;
 			    	  }
-			    	  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
-			    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
+			    	  if(list.get(i).getValue().indexOf("1v_")!=-1||list.get(i).getValue().indexOf("5v_")!=-1){
+			    		  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
+				    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight()));
+			    	  }else{
+			    		  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
+				    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
+			    	  }
 			    	 
 			    	 
 			    	  while(a[rowxh][col1]!=0){
@@ -264,11 +294,16 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			    			  flag=1;
 			    		  }
 			    	  }
+			    	 
+			    		
+			    		  list.get(i).setCol1(col1);
+				    	  col2=col1+Integer.parseInt(list.get(i).getCo())-1;
+				    	  list.get(i).setCol2(col2);
+				    	  col1=col1+Integer.parseInt(list.get(i).getCo());
 			    	  
-			    	  list.get(i).setCol1(col1);
-			    	  col2=col1+Integer.parseInt(list.get(i).getCo())-1;
-			    	  list.get(i).setCol2(col2);
-			    	  col1=col1+Integer.parseInt(list.get(i).getCo());
+			    	  
+			    	  
+			    	 
 			      }
 			      
 			      for (Excel_list ex : list) {
@@ -305,5 +340,48 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			e.printStackTrace();
 		}
 	}
+	
+public void queryXmlist(){
+		
+		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+		xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz||gcfl"));
+		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
+		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
+		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+		xmjbxx.setPage(page);
+		xmjbxx.setRows(rows);
+		
+		
+		List<Xmjbxx> list=tjbbServer.queryXmlist(xmjbxx);
+		int count=tjbbServer.queryXmlistCount(xmjbxx);
+		EasyUIPage<Xmjbxx> e=new EasyUIPage<Xmjbxx>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

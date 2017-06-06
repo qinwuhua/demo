@@ -1282,7 +1282,10 @@ public class XtglController extends BaseActionSupport{
 				tablename="and xmid in(select xmbm from xmjbxx where jsxz='路网结构改造')";
 				list=xtglServer.getjhxdwh(tablename);
 			}
-			
+			if("gs_all".equals(type)){
+				tablename="";
+				list=xtglServer.getjhxdwh(tablename);
+			}
 			
 			/*if(("wqgz").equals(unit.getXzqhdm())){
 				tablename="select distinct z.jhxdwh id,z.jhxdwh text from plan_wqgz p left join plan_zjxd z on p.id=z.xmid where z.jhxdwh is not null";
@@ -1379,7 +1382,8 @@ public class XtglController extends BaseActionSupport{
 			session.setAttribute("sql", sql);
 			session.setAttribute("nameValue", nameValue);
 			session.setAttribute("colValue", colValue);
-			JsonUtils.write(session, getresponse().getWriter());
+			//ResponseUtils.write(getresponse(), ""+true);
+			JsonUtils.write(null, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

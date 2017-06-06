@@ -94,7 +94,7 @@ function loadDist5(id) {
 	$('#' + id).combotree(
 	{
 		checkbox : true,
-		url : '/jxcsxm/gcgl/selAllUnit1.do?yhdw=' + '36',
+		url : '/jxcsxm/xtgl/selAllUnit1.do?yhdw=' + '36',
 		onSelect : function(node) {
 			YMLib.Var.DistName = node.text;
 		}

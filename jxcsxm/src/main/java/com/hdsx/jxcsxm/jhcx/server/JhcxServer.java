@@ -15,6 +15,8 @@ public interface JhcxServer {
 
 	Xmjbxx getxmInfo(Xmjbxx xmjbxx);
 
+	List<Xmjbxx> queryZjByGydwdm(Xmjbxx xmjbxx);
+
 	
 
 }
