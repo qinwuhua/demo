@@ -124,7 +124,7 @@ function selAnyChartXml(){
 	});
 }
 function createAnyChartXml(_xml){
-    barChart_1= new AnyChart("/jxcsxm/widget/anyChart/swf/AnyChart.swf");    
+    barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
     barChart_1.width =350;
     barChart_1.height =300;
     barChart_1.padding =0;
@@ -158,5 +158,5 @@ function xmlxTj(){
 			}
 		}
 	});
-	//selAnyChartXml();
+	selAnyChartXml();
 }

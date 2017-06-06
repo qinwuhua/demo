@@ -222,7 +222,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 		//批量审核拨付
 		public void plshbf(){
 			xmZjbf.setXmbm(MyUtil.getQueryTJ(xmZjbf.getXmbm(), "xmbm").replaceAll("and", ""));
-			ResponseUtils.write(getresponse(), ""+zjbfServer.plshdw(xmZjbf));
+			ResponseUtils.write(getresponse(), ""+zjbfServer.plshbf(xmZjbf));
 		}
 	
 	

@@ -14,6 +14,8 @@
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
+
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
@@ -50,22 +52,27 @@ $(function(){
 	if(parent.YMLib.Var.xmbm!=null){
 		parent.YMLib.Var.bm=parent.YMLib.Var.xmbm;
 	}
+	console.log(parent.YMLib.Var.feature);
 	var feature=parent.YMLib.Var.feature;
+	var lxdm,qdzh,zdzh;
 	var html = "";
-	console.log(feature);
+	var queryType;
 	for (var o in feature.getProperties()) {
 	    //此处可过滤需要显示的属性字段，并且翻译字段名称等
 	   if(o=="LXDM" || o=="lxdm"){
+		    lxdm=feature.getProperties()[o];
 	    	html+="<tr><td>路线编码：</td><td style='padding-right:20px;'>"+feature.getProperties()[o]+"</td></tr>";
 	    }
 	    if(o=="LXMC" || o=="lxmc"){
 	    	html+="<tr><td>路线名称：</td><td style='padding-right:20px;'>"+feature.getProperties()[o]+"</td></tr>";
 	    }
 	    if(o=="QDZH" || o=="qdzh"){
-	    	html+="<tr><td>止点桩号：</td><td style='padding-right:20px;'>"+feature.getProperties()[o]+"</td></tr>";
+	    	qdzh=parseFloat(feature.getProperties()[o]);
+	    	html+="<tr><td>起点桩号：</td><td style='padding-right:20px;'>"+qdzh+"</td></tr>";
 	    }
 	    if(o=="ZDZH" || o=="zdzh"){
-	    	html+="<tr><td>起点桩号：</td><td style='padding-right:20px;'>"+feature.getProperties()[o]+"</td></tr>";
+	    	zdzh=parseFloat(feature.getProperties()[o]);
+	    	html+="<tr><td>止点桩号：</td><td style='padding-right:20px;'>"+zdzh+"</td></tr>";
 	    }
 	    if(o=="QDMC" || o=="qdmc"){
 	    	html+="<tr><td>起点名称：</td><td style='padding-right:20px;' >"+feature.getProperties()[o]+"</td></tr>";
@@ -73,18 +80,34 @@ $(function(){
 	    if(o=="ZDMC" || o=="zdmc"){
 	    	html+="<tr><td>止点名称：</td><td style='padding-right:20px;'>"+feature.getProperties()[o]+"</td></tr>";
 	    }
+	    if(o=="queryType") {
+	    	queryType=feature.getProperties()[o];
+	    }
 	}
 	$("#lxjcsj").html(html);
+	var url="../../xtgl/selectExistLxProgramList.do";
+	if(queryType=="wnjh") {
+		url="../../xtgl/selectNewLx.do"
+	}
+
 	$("#jsgl_table").datagrid({
 		border:true,
 		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectExistLxProgramList.do',
+		/*url:'../../xtgl/selectExistLxProgramList.do',
 		queryParams : {
 			"pb.roadcode":parent.YMLib.Var.bm,
 			"pb.gydw":$.cookie("unit2"),
 			"pb.xzqhmc":filterXzqhdm(parent.YMLib.Var.bm)
+		},*/
+		
+		url:url,
+		queryParams : {
+			"pb.roadcode":lxdm,
+			"pb.roadstart":qdzh,
+			"pb.roadends":zdzh,
+			"pb.xzqh":filterXzqhdm(parent.YMLib.Var.bm)
 		},
 		singleSelect : false,
 		striped : true,
@@ -95,39 +118,36 @@ $(function(){
 		height:100,
 		columns : [[
 		{
-			field : 'mx',
-			title : '明细',
-			width : 80,
+			field : 'xmmc',
+			title : '项目名称',
+			width : 200,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input onclick="onclickXx('+"'"+rec.unit+"',"+"'"+rec.id+"'"+')" style="width:60px;border:1px #8db2e3 solid;" type="button" value="查看明细"/>';
+				return '<a onclick="onclickXx('+"'"+rec.xmlx+"',"+"'"+rec.xmbm+"'"+')" style="color:#3399CC;">'+value+'</a>';
 			}
 		},{
-			field : 'roadname',
-			title : '项目名称',
-			width : 100,
-			align : 'center'
-		},{
-			field : 'unit',
+			field : 'xmlx',
 			title : '项目类型',
 			width : 100,
 			align : 'center'
 		},{
-			field : 'roadstart',
-			title : '起止点桩号',
+			field : 'xzqh',
+			title : '行政区划',
 			width : 100,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return rec.roadstart+'-'+rec.roadends;
-			}
+			align : 'center'
 		},{
 			field : 'gydw',
-			title : '所属单位',
+			title : '管养单位',
 			width : 200,
 			align : 'center'
 		},{
-			field : 'nf',
+			field : 'xmnf',
 			title : '年份',
+			width : 50,
+			align : 'center'
+		},{
+			field : 'pfztz',
+			title : '总投资',
 			width : 50,
 			align : 'center'
 		}
@@ -153,18 +173,36 @@ function filterXzqhdm(xzqhdm){
 	return result;
 }
 function onclickXx(xmlx,xmid){
-	parent.YMLib.Var.xmbm=xmid;
-	if(xmid.substring(10,11)=="1"){
-		parent.YMLib.UI.createWindow('lmsjxx','改建工程项目','/jxcsxm/page/qqgl/zjxd/lmsj_xx.jsp','lmsjxx',980,400);
-	}else if(xmid.substring(10,11)=="2"){
-		parent.YMLib.UI.createWindow('lmgzxx','路面改造工程项目','/jxcsxm/page/qqgl/zjxd/lmgz_xx.jsp','lmgzxx',980,400);
-	}else if(xmid.substring(10,11)=="3"){
-		parent.YMLib.UI.createWindow('xjgcxx','新建工程项目','/jxcsxm/page/qqgl/zjxd/xjgc_xx.jsp','xjgcxx',980,400);
-	}else if(xmid.substring(10,11)=="4"){
-		parent.YMLib.UI.createWindow('yhdzxxx','养护大中修项目','/jxcsxm/page/qqgl/zjxd/yhdzx_xx.jsp','yhdzxxx',980,400);
-	}else if(xmid.substring(10,11)=="5"){
-		parent.YMLib.UI.createWindow('shxmxx','灾毁重建','/jxcsxm/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
+	if(xmlx=='改建'||xmlx=='路面改造'||xmlx=='新建'){
+		openXmInfo(xmid,'gs_gsdgz','zjbf')
 	}
+	
+	if(xmlx=='灾毁恢复'){
+		openXmInfo(xmid,'gs_zhhf','zjbf')
+	}
+	
+	if(xmlx=='养护大中修'){
+		openXmInfo(xmid,'gs_yhdzx','zjbf')
+	}
+	
+	if(xmlx=='危桥改造'||xmlx=='安防工程'||xmlx=='灾害防治'){
+		openXmInfo(xmid,'gs_lwjggz','zjbf')
+	}
+	
+	
+	
+	/* parent.YMLib.Var.xmbm=xmid;
+	if(xmid.substring(10,11)=="1"){
+		parent.YMLib.UI.createWindow('lmsjxx','改建工程项目','/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp','lmsjxx',980,400);
+	}else if(xmid.substring(10,11)=="2"){
+		parent.YMLib.UI.createWindow('lmgzxx','路面改造工程项目','/jxzhpt/page/qqgl/zjxd/lmgz_xx.jsp','lmgzxx',980,400);
+	}else if(xmid.substring(10,11)=="3"){
+		parent.YMLib.UI.createWindow('xjgcxx','新建工程项目','/jxzhpt/page/qqgl/zjxd/xjgc_xx.jsp','xjgcxx',980,400);
+	}else if(xmid.substring(10,11)=="4"){
+		parent.YMLib.UI.createWindow('yhdzxxx','养护大中修项目','/jxzhpt/page/qqgl/zjxd/yhdzx_xx.jsp','yhdzxxx',980,400);
+	}else if(xmid.substring(10,11)=="5"){
+		parent.YMLib.UI.createWindow('shxmxx','灾毁重建','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
+	} */
 }
 
 </script>

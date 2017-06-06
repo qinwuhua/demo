@@ -105,8 +105,8 @@ public class ZjbfServerImpl extends BaseOperate  implements ZjbfServer{
 	}
 
 	@Override
-	public boolean plshdw(XmZjbf xmZjbf) {
-		return update("plshdw", xmZjbf)>0;
+	public boolean plshbf(XmZjbf xmZjbf) {
+		return update("plshbf", xmZjbf)>0;
 	}
 	
 }

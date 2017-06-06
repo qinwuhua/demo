@@ -210,7 +210,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-62,
+			    
 			    queryParams: params,
 			    columns:col
 			}); 
@@ -354,7 +354,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-62,
+			    
 			    queryParams: params,
 			    columns:col
 			}); 
@@ -373,7 +373,7 @@
 			
 			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
 			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
+			{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
 			{field:'gz',title:'国债(万元)',width:80,align:'center'},
 			{field:'sz',title:'省债(万元)',width:80,align:'center'},
 			{field:'zq',title:'债券(万元)',width:80,align:'center'},
@@ -402,7 +402,7 @@
 				{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
 // 				{field:'bd',title:'标段',width:50,align:'center'},
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-				{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
+				{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
 				{field:'gz',title:'国债(万元)',width:80,align:'center'},
 				{field:'sz',title:'省债(万元)',width:80,align:'center'},
 				{field:'zq',title:'债券(万元)',width:80,align:'center'},
@@ -417,7 +417,7 @@
 				{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
 // 				{field:'bd',title:'标段',width:50,align:'center'},
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-				{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
+				{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
 				{field:'stz',title:'省投资(万元)',width:80,align:'center'},
 				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'}
 			]]
@@ -431,7 +431,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-62,
+			    
 			    queryParams: params,
 			    columns:col
 			}); 

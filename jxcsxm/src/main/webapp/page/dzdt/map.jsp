@@ -22,7 +22,7 @@
 <script type="text/javascript" src="../../2.x/OpenLayers.js"></script>
 <script type="text/javascript" src="../../framework/jquery.tabletojson.js"></script>
 <script type="text/javascript" src="../../HMap/dist/HMap.js"></script>
-<script src="http://13.124.37.254/cdn/scripts/openlayers/v3.0/ol.min.js"></script>
+
 <style>
 .table_11{background-color:#b8bdc1;font-size:12px;border-collapse: collapse; border:1px solid #b8bdc1; margin:10px;}
 .table_11 td{border:1px solid #bedaf5; text-align:center;}
@@ -37,7 +37,7 @@
          *地图服务地址
          **/
         //var mapServerUrl = "http://192.168.100.118:6080/arcgis/rest/services/JXGS_FOUR/MapServer";
-        var mapServerUrl = "http://171.34.40.68:6080/arcgis/rest/services/jiangxi/JXMAP_2017_2/MapServer";
+        var mapServerUrl = "http://36.2.11.1:6080/arcgis/rest/services/jiangxi/JXMAP_2017_2/MapServer";
         /**
          * 服务命名空间 不能随便填，请通过hdmapserver服务查看
          **/
@@ -51,7 +51,7 @@
         var pointClick = null, geometry = null;
          jQuery(document).ready(function () {
          	$(".layout-button-right").click();
-			//xmlxTj();
+			xmlxTj();
             OpenLayers.ProxyHost = "../../proxy.jsp?";
             initMap();
             //initDefaultStyle();
@@ -585,8 +585,8 @@
         	
         	YMLib.Var.feature=feature;
         	//YMLib.Var.bm=parent.YMLib.Var.bm;
-        	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxcsxm/page/dzdt/dzdt_ql.jsp','app_add',630,330);
-         	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxcsxm/page/dzdt/dzdt_lx.jsp','app_add',630,430);
+        	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxcsxm/page/dzdt/dzdt_ql.jsp','app_add',960,450);
+         	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxcsxm/page/dzdt/dzdt_lx.jsp','app_add',960,450);
         }
         //销毁弹出窗口的函数
         function onFeatureUnselect(feature) {
@@ -973,7 +973,7 @@
 		</div>
     </div>
     
-   <!--  <div id="lay_east" data-options="region:'east',title:'提醒信息',split:true, iconCls: 'icon-west'"  style="width:420px;">
+<!--     <div id="lay_east" data-options="region:'east',title:'提醒信息',split:true, iconCls: 'icon-west'"  style="width:420px;">
 	    	<table class="table_11"  id="xmlxTj_table" width="398" border="1" align="center" cellpadding="0" cellspacing="0" >
 	    	</table>
 	    	<div id="anychart_div" style="width:350px;height:300px;margin:10px;">

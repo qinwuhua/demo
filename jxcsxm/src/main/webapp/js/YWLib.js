@@ -143,7 +143,7 @@ function openXmInfo(xmbm,xmlx,xmjd){
 	YMLib.Var.xmlx=xmlx;
 	
 	if(xmjd=='jhcx')
-	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfo.jsp",900,400);
+	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfo.jsp",675,340);
 	if(xmjd=='zjdw')
 	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfodw.jsp",900,400);
 	if(xmjd=='zjbf')

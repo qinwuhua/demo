@@ -83,7 +83,7 @@ $(function(){
 	});
 });
 function onclickXx(id){
-	url="/jxcsxm/page/jhgl/jhkxx/wqgz.jsp";
+	url="/jxzhpt/page/jhgl/jhkxx/wqgz.jsp";
 	parent.YMLib.Var.jhbm=id;
 	parent.YMLib.Var.bz="xx";
 	parent.YMLib.UI.createWindow('xmxx_xx','项目信息',url,'xmxx',1000,500);

@@ -481,7 +481,7 @@ public class XtglController extends BaseActionSupport{
 	 * 行政区划树列表
 	 */
 	public void selectXzqhList(){
-		
+		try {
 		int count =0;
 		List<Unit> list=new ArrayList<Unit>();
 		
@@ -509,8 +509,7 @@ public class XtglController extends BaseActionSupport{
 		EasyUIPage<Unit> ep = new EasyUIPage<Unit>();
 		ep.setTotal(count);
 		ep.setRows(list);
-		try {
-			JsonUtils.write(ep, getresponse().getWriter());
+		JsonUtils.write(ep, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

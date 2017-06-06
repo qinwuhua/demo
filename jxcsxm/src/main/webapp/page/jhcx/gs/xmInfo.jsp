@@ -210,7 +210,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-62,
+			    
 			    queryParams: params,
 			    columns:col
 			}); 
@@ -354,7 +354,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-62,
+			    
 			    queryParams: params,
 			    columns:col
 			}); 
@@ -373,7 +373,7 @@
 			
 			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
 			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
+			{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
 			{field:'gz',title:'国债(万元)',width:80,align:'center'},
 			{field:'sz',title:'省债(万元)',width:80,align:'center'},
 			{field:'zq',title:'债券(万元)',width:80,align:'center'},
@@ -402,7 +402,7 @@
 				{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
 // 				{field:'bd',title:'标段',width:50,align:'center'},
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-				{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
+				{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
 				{field:'gz',title:'国债(万元)',width:80,align:'center'},
 				{field:'sz',title:'省债(万元)',width:80,align:'center'},
 				{field:'zq',title:'债券(万元)',width:80,align:'center'},
@@ -417,7 +417,7 @@
 				{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
 // 				{field:'bd',title:'标段',width:50,align:'center'},
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-				{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
+				{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
 				{field:'stz',title:'省投资(万元)',width:80,align:'center'},
 				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'}
 			]]
@@ -431,7 +431,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-62,
+			    
 			    queryParams: params,
 			    columns:col
 			}); 
@@ -464,7 +464,7 @@
 <body>
 <div>
 		<form id="xminfo">
-			<table class='table' style="width: 97%;margin-left:5px;margin-right:5px; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="6" cellspacing="1">
+			<table class='table' style="width: 98.5%;margin-left:5px; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="6" cellspacing="1">
 				<tr style="height: 25px;">
 					<td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 						项目信息

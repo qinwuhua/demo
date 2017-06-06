@@ -23,6 +23,44 @@ public class ProgBean implements Serializable {
 	private String xzqhmc;
 	private int page;
 	private int rows;
+	private String xzqh;
+	private String xmnf;
+	private String xmbm;
+	private String xmlx;
+	private String pfztz;
+	
+	
+	
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getXmbm() {
+		return xmbm;
+	}
+	public void setXmbm(String xmbm) {
+		this.xmbm = xmbm;
+	}
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
+	public String getPfztz() {
+		return pfztz;
+	}
+	public void setPfztz(String pfztz) {
+		this.pfztz = pfztz;
+	}
 	public String getGydw() {
 		return gydw;
 	}

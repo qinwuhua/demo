@@ -72,8 +72,18 @@ public class XmZjdw{
     private String dfzc1;
     private String ztz1;
     private String xmsl;
+    private String btzzj;
     
-    public String getId() {
+    
+    public String getBtzzj() {
+		return btzzj;
+	}
+
+	public void setBtzzj(String btzzj) {
+		this.btzzj = btzzj;
+	}
+
+	public String getId() {
         return id;
     }
 

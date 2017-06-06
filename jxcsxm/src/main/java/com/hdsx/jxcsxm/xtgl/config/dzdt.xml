@@ -391,51 +391,48 @@ union all
 		
 	</select>
 	<select id="selectExistLxProgramList" parameterType="pb" resultType="pb">
-		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh xzqhmc,substr(j.xmbm,0,4) nf,'路面改造工程' unit 
-		from jhsh_lmgz j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2' 
-		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
-		l.gydwdm like #{gydw}||'%' 
-		<if test="xzqhmc!=null and xzqhmc!=''">and l.xzqhdm like #{xzqhmc}</if>
-		union all
-		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh xzqhmc,substr(j.xmbm,0,4) nf,'升级改造工程' unit 
-		from jhsh_sjgz j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2'
-		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
-		l.gydwdm like #{gydw}||'%' 
-		<if test="xzqhmc!=null and xzqhmc!=''">and l.xzqhdm like #{xzqhmc}</if>
-		union all
-		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh,substr(j.xmbm,0,4) nf,'新建工程' unit 
-		from jhsh_xj j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2'
-		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
-		l.gydwdm like #{gydw}||'%' 
-		<if test="xzqhmc!=null and xzqhmc!=''">and l.xzqhdm like #{xzqhmc}</if>
-		union all
-		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh,substr(j.xmbm,0,4) nf,'养护大中修工程' unit 
-		from xmsq_yhdzx j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2'
-		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
-		l.gydwdm like #{gydw}||'%' 
-		<if test="xzqhmc!=null and xzqhmc!=''">and l.xzqhdm like #{xzqhmc}</if>
-		union all
-		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh,substr(j.xmbm,0,4) nf,'水毁工程' unit 
-		from xmsq_sh j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2'
-		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
-		l.gydwdm like #{gydw}||'%' 
-		<if test="xzqhmc!=null and xzqhmc!=''">and l.xzqhdm like #{xzqhmc}</if>
-		union all
-		select abjh.id,ablx.lxmc as roadname,ablx.qdzh as roadstart,ablx.zdzh as roadends,ablx.gydw,ablx.xzqhmc,
-		to_char(abjh.jhnf) as nf,'安保工程' as unit
-		from xmk_abgc ablx right join sck_abgc absc on ablx.id=absc.xmkid right join plan_abgc abjh 
-		on absc.sckid=abjh.sckid where (ablx.lxbm like #{roadcode}||'%' or
-		ablx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%'))
-		and ablx.gydwdm like rtrim(#{gydw},'0')||'%' 
-		<if test="xzqhmc!=null and xzqhmc!=''">and ablx.xzqhdm like #{xzqhmc}</if>
-		union all
-		select zhjh.id,zhlx.lxmc as roadname,zhlx.qdzh as roadstart,zhlx.zdzh as roadends,zhlx.gydw,zhlx.xzqhmc,
-		to_char(zhjh.sbnf) as nf,'灾害防治' as unit
-		from xmk_zhfz zhlx right join sck_zhfz zhsc on zhlx.id=zhsc.xmkid right join plan_zhfz zhjh 
-		on zhsc.sckid=zhjh.sckid where (zhlx.lxbm like #{roadcode}||'%' or 
-		zhlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%'))
-		and zhlx.gydwdm like rtrim(#{gydw},'0')||'%' 
-		<if test="xzqhmc!=null and xzqhmc!=''">and zhlx.xzqhdm like #{xzqhmc}</if>
+		select distinct p.* from (
+		 select c.xmmc,c.xmbm,'路面改造' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_lmgz j left join cbsj_lmgz c on j.xmbm=c.xmbm 
+	    where c.xmbm in(
+	    select xmid from lxsh_lx l left join zgb_zxlwzhtx_lxsh zg on l.id=zg.id
+	    where zg.zxlwlxbm like '%'||#{roadcode}||'%' and to_number(zg.zxlwzdzh)>${roadstart} and ${roadends}>to_number(zg.zxlwqdzh)
+	    and xmid like '%'||#{xzqh}||'%'
+	    )
+	    and c.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)
+	    union all
+	    select c.xmmc,c.xmbm,'改建' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_sjgz j left join cbsj_sjgz c on j.xmbm=c.xmbm 
+	    where c.xmbm in(
+	    select xmid from lxsh_lx l left join zgb_zxlwzhtx_lxsh zg on l.id=zg.id
+	    where zg.zxlwlxbm like '%'||#{roadcode}||'%' and to_number(zg.zxlwzdzh)>${roadstart} and ${roadends}>to_number(zg.zxlwqdzh)
+	    and xmid like '%'||#{xzqh}||'%'
+	    )
+	    and c.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)
+	    union all   
+	    select c.xmmc,c.xmbm,'新建' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_xj j left join cbsj_xj c on j.xmbm=c.xmbm 
+	    where c.xmbm in(
+	    select xmid from lxsh_lx l left join zgb_zxlwzhtx_lxsh zg on l.id=zg.id
+	    where zg.zxlwlxbm like '%'||#{roadcode}||'%' and to_number(zg.zxlwzdzh)>${roadstart} and ${roadends}>to_number(zg.zxlwqdzh)
+	    and xmid like '%'||#{xzqh}||'%'
+	    )
+	    and c.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)
+	     union all   
+	    select c.xmmc,c.xmbm,'养护大中修' xmlx,c.gydw,c.xzqh,c.tz pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_yhdzx j left join cbsj_yhdzx c on j.xmbm=c.xmbm 
+	    where c.xmbm in(
+	    select xmid from lxsh_lx l left join zgb_zxlwzhtx_lxsh zg on l.id=zg.id
+	    where zg.zxlwlxbm like '%'||#{roadcode}||'%' and to_number(zg.zxlwzdzh)>${roadstart} and ${roadends}>to_number(zg.zxlwqdzh)
+	    and xmid like '%'||#{xzqh}||'%'
+	    )
+	    and c.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)
+	    union all   
+	    select c.xmmc,c.xmbm,'灾毁恢复' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_sh j left join cbsj_sh c on j.xmbm=c.xmbm 
+	    where c.xmbm in(
+	    select xmid from lxsh_lx l left join zgb_zxlwzhtx_lxsh zg on l.id=zg.id
+	    where zg.zxlwlxbm like '%'||#{roadcode}||'%' and to_number(zg.zxlwzdzh)>${roadstart} and ${roadends}>to_number(zg.zxlwqdzh)
+	    and xmid like '%'||#{xzqh}||'%'
+	    )
+	    and c.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)
+    
+		)p
 	</select>
 	<select id="selectExistLxProgramListCount" parameterType="param" resultType="int">
 		

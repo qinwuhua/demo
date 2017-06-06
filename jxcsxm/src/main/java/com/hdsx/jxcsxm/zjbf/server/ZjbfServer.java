@@ -42,7 +42,7 @@ public interface ZjbfServer {
 
 	XmZjbf getbfTjAll(Xmjbxx xmjbxx);
 
-	boolean plshdw(XmZjbf xmZjbf);
+	boolean plshbf(XmZjbf xmZjbf);
 
 	
 
