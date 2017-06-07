@@ -77,8 +77,10 @@ $(function(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				厅统筹：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
+				 	<input type="text" name="ttc" id="ttc" onchange="yzsz(this)" style="width: 120px" />万元
 				</td>
 				
 			</tr>

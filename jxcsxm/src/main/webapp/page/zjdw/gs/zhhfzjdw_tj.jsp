@@ -72,7 +72,10 @@ function zjdwtj(){
 	if(result) ztz=accAdd(ztz,$("#jl").val()==""?0:$("#jl").val());
 	result=validateInput("qt","number",result);
 	if(result) ztz=accAdd(ztz,$("#qt").val()==""?0:$("#qt").val());
-	
+	result=validateInput("dfzc","number",result);
+	if(result) ztz=accAdd(ztz,$("#dfzc").val()==""?0:$("#dfzc").val());
+	result=validateInput("ttc","number",result);
+	if(result) ztz=accAdd(ztz,$("#ttc").val()==""?0:$("#ttc").val());
 	$('#ztz').val(ztz);
 	
 	if(result){
@@ -171,6 +174,18 @@ function zjdwtj(){
 				其他：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qt" id="qt" onchange="yzsz(this)" style="width: 120px" />万元</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				地方自筹：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				厅统筹：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="ttc" id="ttc" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">

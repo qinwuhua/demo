@@ -77,11 +77,22 @@ $(function(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qt" id="qt" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				地方自筹：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				厅统筹：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="ttc" id="ttc" onchange="yzsz(this)" style="width: 120px" />万元</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				</td>
 			</tr>
-			
 			<tr style="height: 35px;">
 				<td colspan="4" style="background-color: #ffffff;"align="center">
 				<a id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:closeWindow()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">关闭</a>

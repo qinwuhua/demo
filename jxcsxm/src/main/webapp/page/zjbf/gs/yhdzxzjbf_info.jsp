@@ -79,10 +79,20 @@ $(function(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qt" id="qt" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
-				拨付月份：
+				地方自筹：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				厅统筹：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="ttc" id="ttc" onchange="yzsz(this)" style="width: 120px" />万元</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				拨付月份:
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name='bfyf' id="bfyf" style="width: 120px" />
+				<input type="text" name='bfyf' id="bfyf" style="width: 120px" />
 				</td>
 			</tr>
 			

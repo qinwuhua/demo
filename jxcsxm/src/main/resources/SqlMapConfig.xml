@@ -46,8 +46,8 @@
        <transactionManager type="JDBC"/>
        <!-- BONECP连接池，推荐在开发时使用 -->
        <dataSource type="BONECP">
-			<property name="driverClass" value="${driverClass}" />
-			<property name="jdbcUrl" value="${jdbcUrl}" />
+			<property name="driverClass" value="${driverClass_jh}" />
+			<property name="jdbcUrl" value="${jdbcUrl_jh}" />
 			<property name="username" value="${username_jh}" />
 			<property name="password" value="${password_jh}" />
 			<property name="idleConnectionTestPeriod" value="60" />

@@ -63,7 +63,8 @@ function zjbftj(){
 	if(result) ztz=accAdd(ztz,$("#stz").val()==""?0:$("#stz").val());
 	result=validateInput("dfzc","number",result);
 	if(result) ztz=accAdd(ztz,$("#dfzc").val()==""?0:$("#dfzc").val());
-	
+	result=validateInput("ttc","number",result);
+	if(result) ztz=accAdd(ztz,$("#ttc").val()==""?0:$("#ttc").val());
 	$('#ztz').val(ztz);
 	
 	if(result){
@@ -140,13 +141,23 @@ function zjbftj(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				厅统筹：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				 	<input type="text" name="ttc" id="ttc" onchange="yzsz(this)" style="width: 120px" />万元
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
 				拨付月份：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				 <input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;">
-				
 				</td>
-				
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="4" style="background-color: #ffffff;"align="center">

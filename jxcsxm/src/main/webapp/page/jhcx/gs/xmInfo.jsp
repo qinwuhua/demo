@@ -59,22 +59,22 @@
 		function openBfInfo(id){
 			YMLib.Var.id=id;
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-			openWindow("详情","/jxcsxm/page/zjbf/gs/gsdgzzjbf_info.jsp",600,310);
+			openWindow("详情","/jxcsxm/page/zjbf/gs/gsdgzzjbf_info.jsp",600,350);
 			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-			openWindow("详情","/jxcsxm/page/zjbf/gs/yhdzxzjbf_info.jsp",600,210);
+			openWindow("详情","/jxcsxm/page/zjbf/gs/yhdzxzjbf_info.jsp",600,240);
 			if(parent.YMLib.Var.xmlx=="gs_zhhf")
-			openWindow("详情","/jxcsxm/page/zjbf/gs/zhhfzjbf_info.jsp",600,290);
+			openWindow("详情","/jxcsxm/page/zjbf/gs/zhhfzjbf_info.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-			openWindow("详情","/jxcsxm/page/zjbf/gs/lwjggzzjbf_info.jsp",600,210);
+			openWindow("详情","/jxcsxm/page/zjbf/gs/lwjggzzjbf_info.jsp",600,240);
 		}
 		function openDwInfo(id){
 			YMLib.Var.id=id;
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
 			openWindow("详情","/jxcsxm/page/zjdw/gs/gsdgzzjdw_info.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-			openWindow("详情","/jxcsxm/page/zjdw/gs/yhdzxzjdw_info.jsp",600,210);
+			openWindow("详情","/jxcsxm/page/zjdw/gs/yhdzxzjdw_info.jsp",600,240);
 			if(parent.YMLib.Var.xmlx=="gs_zhhf")
-			openWindow("详情","/jxcsxm/page/zjdw/gs/zhhfzjdw_info.jsp",600,290);
+			openWindow("详情","/jxcsxm/page/zjdw/gs/zhhfzjdw_info.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
 			openWindow("详情","/jxcsxm/page/zjdw/gs/lwjggzzjdw_info.jsp",600,210);
 		}
@@ -112,8 +112,9 @@
 			{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
 			{field:'jl',title:'奖励(万元)',width:80,align:'center'},
 			{field:'qt',title:'其他(万元)',width:80,align:'center'},
+			{field:'yhdk',title:'银行贷款(万元)',width:80,align:'center'},
 			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-			{field:'yhdk',title:'银行贷款(万元)',width:80,align:'center'}
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 		]]
 			
 			if(parent.YMLib.Var.xmlx=='gs_yhdzx')
@@ -140,7 +141,9 @@
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
 				{field:'rys',title:'燃油税(万元)',width:80,align:'center'},
 				{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-				{field:'qt',title:'其他(万元)',width:80,align:'center'}
+				{field:'qt',title:'其他(万元)',width:80,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
 			if(parent.YMLib.Var.xmlx=='gs_zhhf')
@@ -171,7 +174,9 @@
 				{field:'zq',title:'债券(万元)',width:80,align:'center'},
 				{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
 				{field:'jl',title:'奖励(万元)',width:80,align:'center'},
-				{field:'qt',title:'其他(万元)',width:80,align:'center'}
+				{field:'qt',title:'其他(万元)',width:80,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
 			if(parent.YMLib.Var.xmlx=='gs_lwjggz')
@@ -198,7 +203,8 @@
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
 				{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
 				{field:'stz',title:'省投资(万元)',width:80,align:'center'},
-				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'}
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
 			
@@ -225,7 +231,7 @@
 			var col;
 			if(parent.YMLib.Var.xmlx=='gs_gsdgz')
 			col=[[
-				{field:'cz',title:'操作',width:230,align:'center',
+				{field:'cz',title:'操作',width:60,align:'center',
 				formatter: function(value,row,index){
 					var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
 					
@@ -253,13 +259,14 @@
 			{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
 			{field:'jl',title:'奖励(万元)',width:80,align:'center'},
 			{field:'qt',title:'其他(万元)',width:80,align:'center'},
+			{field:'yhdk',title:'银行贷款(万元)',width:80,align:'center'},
 			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-			{field:'yhdk',title:'银行贷款(万元)',width:80,align:'center'}
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 		]]
 			
 			if(parent.YMLib.Var.xmlx=='gs_yhdzx')
 				col=[[
-					{field:'cz',title:'操作',width:230,align:'center',
+					{field:'cz',title:'操作',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
 						
@@ -282,12 +289,14 @@
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
 				{field:'rys',title:'燃油税(万元)',width:80,align:'center'},
 				{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-				{field:'qt',title:'其他(万元)',width:80,align:'center'}
+				{field:'qt',title:'其他(万元)',width:80,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
 			if(parent.YMLib.Var.xmlx=='gs_zhhf')
 				col=[[
-					{field:'cz',title:'操作',width:230,align:'center',
+					{field:'cz',title:'操作',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
 						
@@ -314,12 +323,14 @@
 				{field:'zq',title:'债券(万元)',width:80,align:'center'},
 				{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
 				{field:'jl',title:'奖励(万元)',width:80,align:'center'},
-				{field:'qt',title:'其他(万元)',width:80,align:'center'}
+				{field:'qt',title:'其他(万元)',width:80,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
 			if(parent.YMLib.Var.xmlx=='gs_lwjggz')
 				col=[[
-					{field:'cz',title:'操作',width:230,align:'center',
+					{field:'cz',title:'操作',width:60,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
 						
@@ -342,7 +353,8 @@
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
 				{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
 				{field:'stz',title:'省投资(万元)',width:80,align:'center'},
-				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'}
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
 			

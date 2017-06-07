@@ -131,6 +131,7 @@
 	      <if test="xsbzt != null and xsbzt != ''" >xsbzt,</if>
 	      <if test="ssbzt != null and ssbzt != ''" >ssbzt,</if>
 	      <if test="bfyf != null and bfyf != ''" >bfyf,</if>
+	      <if test="ttc != null and ttc != ''" >ttc,</if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	      <if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
@@ -152,6 +153,7 @@
 	      <if test="xsbzt != null and xsbzt != ''" >#{xsbzt},</if>
 	      <if test="ssbzt != null and ssbzt != ''" >#{ssbzt},</if>
 	      <if test="bfyf != null and bfyf != ''" >#{bfyf},</if>
+	      <if test="ttc != null and ttc != ''" >#{ttc},</if>
 	    </trim>
 	</insert>
 	<update id="updateZjbf" parameterType="xmzjbf">
@@ -179,6 +181,7 @@
       <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
       <if test="sfth != null" >sfth = #{sfth},</if>
       <if test="bfyf != null" >bfyf = #{bfyf},</if>
+      <if test="ttc != null" >ttc = #{ttc},</if>
     </set>
     where 1=1 and ${id}
 	</update>

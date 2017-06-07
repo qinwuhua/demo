@@ -74,6 +74,8 @@ function zjdwtj(){
 	if(result) ztz=accAdd(ztz,$("#dfzc").val()==""?0:$("#dfzc").val());
 	result=validateInput("yhdk","number",result);
 	if(result) ztz=accAdd(ztz,$("#yhdk").val()==""?0:$("#yhdk").val());
+	result=validateInput("ttc","number",result);
+	if(result) ztz=accAdd(ztz,$("#ttc").val()==""?0:$("#ttc").val());
 	$('#ztz').val(ztz);
 	
 	if(result){
@@ -179,10 +181,10 @@ function zjdwtj(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
-				
+				厅统筹：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-				
+				 	<input type="text" name="ttc" id="ttc" onchange="yzsz(this)" style="width: 120px" />万元
 				</td>
 				
 			</tr>

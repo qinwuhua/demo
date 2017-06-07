@@ -57,13 +57,13 @@
 		
 		function zjbftj(){
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-			openWindow("添加","/jxcsxm/page/zjbf/gs/gsdgzzjbf_tj.jsp",600,310);
+			openWindow("添加","/jxcsxm/page/zjbf/gs/gsdgzzjbf_tj.jsp",600,350);
 			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-			openWindow("添加","/jxcsxm/page/zjbf/gs/yhdzxzjbf_tj.jsp",600,210);
+			openWindow("添加","/jxcsxm/page/zjbf/gs/yhdzxzjbf_tj.jsp",600,240);
 			if(parent.YMLib.Var.xmlx=="gs_zhhf")
-			openWindow("添加","/jxcsxm/page/zjbf/gs/zhhfzjbf_tj.jsp",600,290);
+			openWindow("添加","/jxcsxm/page/zjbf/gs/zhhfzjbf_tj.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-			openWindow("添加","/jxcsxm/page/zjbf/gs/lwjggzzjbf_tj.jsp",600,210);
+			openWindow("添加","/jxcsxm/page/zjbf/gs/lwjggzzjbf_tj.jsp",600,240);
 					
 			
 			
@@ -72,24 +72,24 @@
 		function openDwInfo(id){
 			YMLib.Var.id=id;
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-			openWindow("详情","/jxcsxm/page/zjbf/gs/gsdgzzjbf_info.jsp",600,310);
+			openWindow("详情","/jxcsxm/page/zjbf/gs/gsdgzzjbf_info.jsp",600,350);
 			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-			openWindow("详情","/jxcsxm/page/zjbf/gs/yhdzxzjbf_info.jsp",600,210);
+			openWindow("详情","/jxcsxm/page/zjbf/gs/yhdzxzjbf_info.jsp",600,240);
 			if(parent.YMLib.Var.xmlx=="gs_zhhf")
-			openWindow("详情","/jxcsxm/page/zjbf/gs/zhhfzjbf_info.jsp",600,290);
+			openWindow("详情","/jxcsxm/page/zjbf/gs/zhhfzjbf_info.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-			openWindow("详情","/jxcsxm/page/zjbf/gs/lwjggzzjbf_info.jsp",600,210);
+			openWindow("详情","/jxcsxm/page/zjbf/gs/lwjggzzjbf_info.jsp",600,240);
 		}
 		function editDw(id){
 			YMLib.Var.id=id;
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-			openWindow("编辑","/jxcsxm/page/zjbf/gs/gsdgzzjbf_bj.jsp",600,310);
+			openWindow("编辑","/jxcsxm/page/zjbf/gs/gsdgzzjbf_bj.jsp",600,350);
 			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-			openWindow("编辑","/jxcsxm/page/zjbf/gs/yhdzxzjbf_bj.jsp",600,210);
+			openWindow("编辑","/jxcsxm/page/zjbf/gs/yhdzxzjbf_bj.jsp",600,240);
 			if(parent.YMLib.Var.xmlx=="gs_zhhf")
-			openWindow("编辑","/jxcsxm/page/zjbf/gs/zhhfzjbf_bj.jsp",600,290);
+			openWindow("编辑","/jxcsxm/page/zjbf/gs/zhhfzjbf_bj.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-			openWindow("编辑","/jxcsxm/page/zjbf/gs/lwjggzzjbf_bj.jsp",600,210);
+			openWindow("编辑","/jxcsxm/page/zjbf/gs/lwjggzzjbf_bj.jsp",600,240);
 					
 			
 		}
@@ -320,7 +320,9 @@
 			{field:'jl',title:'奖励(万元)',width:80,align:'center'},
 			{field:'qt',title:'其他(万元)',width:80,align:'center'},
 			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-			{field:'yhdk',title:'银行贷款(万元)',width:80,align:'center'}
+			{field:'yhdk',title:'银行贷款(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			
 		]]
 			
 			if(parent.YMLib.Var.xmlx=='gs_yhdzx')
@@ -382,7 +384,9 @@
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
 				{field:'rys',title:'燃油税(万元)',width:80,align:'center'},
 				{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-				{field:'qt',title:'其他(万元)',width:80,align:'center'}
+				{field:'qt',title:'其他(万元)',width:80,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
 			if(parent.YMLib.Var.xmlx=='gs_zhhf')
@@ -448,7 +452,9 @@
 				{field:'zq',title:'债券(万元)',width:80,align:'center'},
 				{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
 				{field:'jl',title:'奖励(万元)',width:80,align:'center'},
-				{field:'qt',title:'其他(万元)',width:80,align:'center'}
+				{field:'qt',title:'其他(万元)',width:80,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
 			if(parent.YMLib.Var.xmlx=='gs_lwjggz')
@@ -510,7 +516,8 @@
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
 				{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
 				{field:'stz',title:'省投资(万元)',width:80,align:'center'},
-				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'}
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
 			
