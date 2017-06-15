@@ -79,7 +79,11 @@ function zjdwtj(){
 	result=validateInput("yhdk","number",result);
 	if(result) ztz=accAdd(ztz,$("#yhdk").val()==""?0:$("#yhdk").val());
 	$('#ztz').val(ztz);
-	
+	if(parent.dwzj<accAdd(ztz,parent.bfzj)){
+		if(!confirm("拨付资金大于到位资金，是否保存")){
+			return;
+		}
+	}
 	if(result){
 		$('#submit').ajaxSubmit({
 			dataType:'json',

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>国省道改造</title>
+	<title>台帐明细表</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -32,6 +32,12 @@
 			queryXmlist();
 			
 		});
+		function openTzmxb(xmbm){
+			YMLib.Var.xmbm=xmbm;
+			openWindow("台帐明细表","/jxcsxm/page/tjbb/tzmxb_info.jsp",950,450);
+		}
+		
+		
 		function queryXmlist(){
 			
 			var xzqhdm=$("#xzqh").combotree("getValues");

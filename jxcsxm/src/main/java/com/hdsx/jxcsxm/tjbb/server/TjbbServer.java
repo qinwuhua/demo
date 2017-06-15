@@ -22,6 +22,8 @@ public interface TjbbServer {
 
 	int queryXmlistCount(Xmjbxx xmjbxx);
 
+	List<Excel_list> getTzmxbbt(Excel_list elist);
+
 	
 
 }

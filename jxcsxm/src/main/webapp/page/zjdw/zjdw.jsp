@@ -46,6 +46,8 @@
 				data:'xmbm='+parent.YMLib.Var.xmbm+"&sbthcd="+$.cookie("unit2").length,
 				dataType:'json',
 				success:function(msg){
+					jhxdzj=msg.jhxdzj;
+					dwzj=msg.dwzj;
 					$("#xmmc").html(msg.xmmc);
 					$("#jhxdzj").html(msg.jhxdzj);
 					$("#dwzj").html(msg.dwzj);
@@ -53,6 +55,8 @@
 				}
 			});
 		}
+		
+		var jhxdzj=0;var dwzj=0;
 		
 		function zjdwtj(){
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")

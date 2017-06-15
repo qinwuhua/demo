@@ -30,9 +30,10 @@
 	</style>
 	<script type="text/javascript">
 	$(function(){
-		
+		loadDist1("xzqh",$.cookie("dist"));
 		loadBmbm('jhnf','项目年份',new Date().getFullYear());
-		
+		loadBmbm3('xmlx','报表项目类型');
+		loadjhxdwh("jhxdwh",'gs_all');
 	});
 		
 	function queryBb(){
@@ -47,12 +48,32 @@
 				tbody.empty();
 
 		loadjzt();
-		
+
 		var ss=str.split(",");
+		
+		var xzqhdm=$("#xzqh").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+			xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+		
+		var jhxdwh=$("#jhxdwh").combobox("getText");
+		if(jhxdwh.substr(0,1)==',')
+			jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+		
+		var xmlx=$("#xmlx").combobox("getValues").join(",");
+		if(xmlx.substr(0,1)==',')
+			xmlx=xmlx.substr(1,xmlx.length);
 		
 		$.ajax({
 			url:"/jxcsxm/tjbb/getJhzxqkb.do",
-			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue'),
+			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val(),
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -121,8 +142,18 @@ text-decoration:none;
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					
 								<tr height="28">
+									<td align="right">行政区划：</td>
+	        						<td><select id="xzqh" style="width:165px;"></select></td>
 									<td align="right">计划年份：</td>
         							<td><select id="jhnf" style="width: 80px;"></select></td>
+									<td align="right">计划文号：</td>
+        							<td><select id="jhxdwh" style="width: 130px;"></select></td>
+									<td align="right">项目名称：</td>
+        							<td><input type="text" id="xmmc" style="width: 130px;"></td>
+									<td align="right">项目类型：</td>
+        							<td><select id="xmlx" style="width: 130px;"></select></td>
+									
+								
 								</tr>
         					
         					<tr height="28">

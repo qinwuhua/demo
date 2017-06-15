@@ -29,7 +29,7 @@
         /**
          *地图服务地址
          **/
-         var mapServerUrl = "http://171.34.40.68:6080/arcgis/rest/services/jiangxi/JXMAP_2017_2/MapServer";
+         var mapServerUrl = "http://36.2.11.1:6080/arcgis/rest/services/jiangxi/JXMAP_2017_2/MapServer";
          /**
           * 服务命名空间 不能随便填，请通过hdmapserver服务查看
           **/
@@ -259,15 +259,15 @@
        	        	        addTextArea: 'addTextArea'
        	        	      }
        	        	    };
-       	      map.map.on("click", function (evt) {
+       	      /*map.map.on("click", function (evt) {
    	        	 onMapClick(evt);
-    	         })
+    	         })*/
        	         map.popupOverlay = null;
        }
          //i查询，生成查询的范围
         function onMapClick(e) {
         	if(map.mapTools.iQuery){
-        		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
+        		var feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
     		        return feature;
     		      });
         		alert(e.pixel);
@@ -280,7 +280,7 @@
         		map.mapTools.IQuery = false;
         	}
         	else{
-        		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
+        		var feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
     		        return feature;
     		      });
         		if(feature) {
@@ -353,7 +353,7 @@
  			            layerName: 'resultLayer',
  			            selectable: true
  			          });
- 			        let extent = feat.getGeometry().getExtent();
+ 			        var extent = feat.getGeometry().getExtent();
  			        map.zoomToExtent(extent, true);
  			        map.highLightFeature('',feat,'');
                 	
@@ -487,7 +487,7 @@
              wfsProtocol.read();
          }
          function showPopup (obj) {
-             let id = '';
+             var id = '';
              if (map.popupOverlay && !obj['notClear']) {
                map.map.removeOverlay(map.popupOverlay);
                map.popupOverlay = null;
@@ -497,7 +497,7 @@
              } else {
                id = 'overlay' + Math.floor(Math.random() * 1000) + Math.floor(Math.random() * 1000 + 1);
              }
-             let m = {
+             var m = {
                positioning: 'center-center',
                id: id
              };
@@ -630,7 +630,7 @@
 	 			            selectable: true
 	 			          });
 	 			        console.log(feat);
-	 			        let extent = feat.getGeometry().getExtent();
+	 			        var extent = feat.getGeometry().getExtent();
 	 			        map.zoomToExtent(extent, true);
 	 			        map.highLightFeature('',feat,'');
                 	 }

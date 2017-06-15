@@ -35,7 +35,7 @@ $(function(){
 		dataType:'json',
 		success:function(msg){
 			$('#submit').form("load",msg);
-			
+			yztz=msg.ztz;
 			loadBmbm('nf','项目年份',msg.dwyf.substr(0,4));
 			loadBmbm('yf','月份',msg.dwyf.substr(msg.dwyf.length-2,msg.dwyf.length))
 			loadWhBmbm('jhxdwh1',parent.parent.YMLib.Var.xmbm,msg.jhxdwh);
@@ -46,6 +46,7 @@ $(function(){
 	$("#xmbm").val(parent.parent.YMLib.Var.xmbm);
 	
 })
+var yztz=0;//用于计算是否超出计划下达
 
 function zjdwtj(){
 	
@@ -78,6 +79,11 @@ function zjdwtj(){
 	if(result) ztz=accAdd(ztz,$("#ttc").val()==""?0:$("#ttc").val());
 	$('#ztz').val(ztz);
 	
+	if(parent.jhxdzj<accSub(accAdd(ztz,parent.dwzj),yztz)){
+		if(!confirm("到位资金大于计划下达资金，是否保存")){
+			return;
+		}
+	}
 	if(result){
 		$('#submit').ajaxSubmit({
 			dataType:'json',

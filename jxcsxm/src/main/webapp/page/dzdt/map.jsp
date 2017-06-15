@@ -22,6 +22,7 @@
 <script type="text/javascript" src="../../2.x/OpenLayers.js"></script>
 <script type="text/javascript" src="../../framework/jquery.tabletojson.js"></script>
 <script type="text/javascript" src="../../HMap/dist/HMap.js"></script>
+<script type="text/javascript" src="../../openlayer3/build/ol.js"></script>
 
 <style>
 .table_11{background-color:#b8bdc1;font-size:12px;border-collapse: collapse; border:1px solid #b8bdc1; margin:10px;}
@@ -307,20 +308,12 @@
         //i查询，生成查询的范围
         function onMapClick(e) {
         	if(map.mapTools.iQuery){
-        		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
-    		        return feature;
-    		      });
-        		alert(e.pixel);
-        		if(feature) {
-        			showInfo(feature);
-        		}
-        		else {
-        			notGetInfo(feature);
-        		}
-        		map.mapTools.IQuery = false;
-        	}
+        		$("body").css('cursor','point');
+        		map.mapTools.iQuery = false;
+        		showInfo(e);
+           	}
         	else{
-        		let feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
+        		var feature = map.map.forEachFeatureAtPixel(e.pixel, function (feature) {
     		        return feature;
     		      });
         		console.log(feature);
@@ -399,7 +392,7 @@
         			            layerName: 'resultLayer',
         			            selectable: true
         			          });
-    			        	let extent = feat.getGeometry().getExtent();
+    			        	var extent = feat.getGeometry().getExtent();
         			        map.zoomToExtent(extent, true);
         			        map.highLightFeature('',feat,'');
     			        }
@@ -425,33 +418,72 @@
          * */
         var infoControl = null;
         function IQuery() {
+        	map.mapTools.iQuery=true;
+        	$("body").css('cursor','hand');
         	//queryLoad("QL","G35361128L0800");
         }
         /**
          * I查询查询到数据后的处理方法
          */
         var layersConfig = [];
-        function showInfo(object) {
-            var features = object;
-            var len = features.length;
-            var tableNames = [];
-            for (var i = 0; i < len; i++) {
-                var name = features[i].id;
-                var layerNameTemp = name.split(".")[0];
-                var tableLenTemp = tableNames.length;
+        function showInfo(evt) {
+        	var mapZoom = map.map.getView().getZoom();
+            var resolution = map.map.getView().getResolution();
+            var coordinate = evt.coordinate;
+            var point = new ol.geom.Point(coordinate);
+            var extent = point.getExtent();
+            var buf = ol.extent.buffer(extent, resolution * mapZoom);
+            var minx = buf[0], miny = buf[1], maxx = buf[2], maxy = buf[3];
+            var wkt = "POLYGON((" + minx + " " + miny + "," + minx + " " + maxy + "," + maxx + " " + maxy + "," + maxx + " " + miny + "," + minx + " " + miny + "))";
+            var params = null;
+            params = {
+              resolution: map.map.getView().getResolution(),
+              geometry: wkt,
+              identityType: "all",
+              layers: "[{\"name\":\"GISDB_2016.GIS_LX\"}]"
+            };
+            map.removeFeatureByLayerName('resultLayer');
+            var url="http://36.2.6.21:7001/mapserver/rest/mapserver/mapQuery";
+            $.ajax({  
+                url:url,  
+                dataType:'json',  
+                data:params,  
+                jsonp:'callback',  
+                success:function(result) {
+                	if(jQuery.isEmptyObject(result)){
+                		alert("未查询到路线");
+                	} else
+                	{
+                		console.log(result);
+                		var feature=result[0]['features'][0];
+                		console.log(feature);
+                    	feature['attributes']['style'] = {
+    			        		stroke:{
+    			        			strokeWidth:4,
+    			        			strokeColor:'#EE0033'
+    			        		}
+    			        };
+    			        feature['attributes']['selectStyle'] = {
+    			        		stroke:{
+    			        			strokeWidth:6,
+    			        			strokeColor:'#E52929'
+    			        		}
+    			        };
+    			        var feat;
+    			        feat = map.addPolyline(feature, {
+    			            layerName: 'resultLayer',
+    			            selectable: true
+    			          });
+			        	var extent = feat.getGeometry().getExtent();
+    			        map.zoomToExtent(extent, true);
+    			        map.highLightFeature('',feat,'');
+                	}
+                	                    
+        	},  
+                timeout:3000  
+            }); 
 
-                if ($.inArray(layerNameTemp, tableNames) == -1) {
-                    tableNames.push(layerNameTemp);
-                }
-                var layers = qlIQueryLayers.concat(lxIQueryLayes);
-                var tableLen = tableNames.length;
-                for (var n = tableLen - 1; n >= 0; n--) {
-                    var layerName = tableNames[n];
-                    if ($.inArray(layerName, layers) !== -1) {
-                        spatialQuery(layerName, geometry);
-                    }
-                }
-            }
+
         }
         /**
          * 调用WFS进行属性查询
@@ -544,7 +576,7 @@
             wfsProtocol.read();
         }
         function showPopup (obj) {
-            let id = '';
+            var id = '';
             if (map.popupOverlay && !obj['notClear']) {
               map.map.removeOverlay(map.popupOverlay);
               map.popupOverlay = null;
@@ -554,7 +586,7 @@
             } else {
               id = 'overlay' + Math.floor(Math.random() * 1000) + Math.floor(Math.random() * 1000 + 1);
             }
-            let m = {
+            var m = {
               positioning: 'center-center',
               id: id
             };
@@ -580,13 +612,14 @@
         	if(YMLib.Var.bm==undefined){
         		//if(feature.attributes.ROADBM==undefined) YMLib.Var.bm=feature.attributes.ROADCODE;
         		//else YMLib.Var.bm=feature.attributes.ROADBM;
-        		YMLib.Var.bm=feature.getProperties()['LXDM']+feature.getProperties()['XZQHBM'];
+        		YMLib.Var.bm=feature.getProperties()['LXDM'];
         	}
         	
         	YMLib.Var.feature=feature;
         	//YMLib.Var.bm=parent.YMLib.Var.bm;
-        	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxcsxm/page/dzdt/dzdt_ql.jsp','app_add',960,450);
-         	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxcsxm/page/dzdt/dzdt_lx.jsp','app_add',960,450);
+        	console.log(YMLib.Var.bm);
+        	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxcsxm/page/dzdt/dzdt_ql.jsp','app_add',930,450);
+         	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxcsxm/page/dzdt/dzdt_lx.jsp','app_add',930,450);
         }
         //销毁弹出窗口的函数
         function onFeatureUnselect(feature) {
@@ -973,7 +1006,7 @@
 		</div>
     </div>
     
-<!--     <div id="lay_east" data-options="region:'east',title:'提醒信息',split:true, iconCls: 'icon-west'"  style="width:420px;">
+    <div id="lay_east" data-options="region:'east',title:'提醒信息',split:true, iconCls: 'icon-west'"  style="width:420px;">
 	    	<table class="table_11"  id="xmlxTj_table" width="398" border="1" align="center" cellpadding="0" cellspacing="0" >
 	    	</table>
 	    	<div id="anychart_div" style="width:350px;height:300px;margin:10px;">
@@ -981,6 +1014,6 @@
 					<param name="wmode" value="transparent" />
 				</div>
 			</div>
-	</div> -->
+	</div>
 </body>
 </html>

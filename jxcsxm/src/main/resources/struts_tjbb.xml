@@ -8,6 +8,7 @@
 	<action name="getJhzxqkb" class="tjbbController" method="getJhzxqkb"></action>
 	<action name="getTzhzb" class="tjbbController" method="getTzhzb"></action>
 	<action name="queryXmlist" class="tjbbController" method="queryXmlist"></action>
+	<action name="getTzmxb" class="tjbbController" method="getTzmxb"></action>
 	
 	
 	

@@ -46,6 +46,8 @@
 				data:'xmbm='+parent.YMLib.Var.xmbm+"&sbthcd="+$.cookie("unit2").length,
 				dataType:'json',
 				success:function(msg){
+					dwzj=msg.dwzj;
+					bfzj=msg.bfzj;
 					$("#xmmc").html(msg.xmmc);
 					$("#jhxdzj").html(msg.jhxdzj);
 					$("#dwzj").html(msg.dwzj);
@@ -54,7 +56,7 @@
 				}
 			});
 		}
-		
+		var dwzj=0;var bfzj=0;
 		function zjbftj(){
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
 			openWindow("添加","/jxcsxm/page/zjbf/gs/gsdgzzjbf_tj.jsp",600,350);

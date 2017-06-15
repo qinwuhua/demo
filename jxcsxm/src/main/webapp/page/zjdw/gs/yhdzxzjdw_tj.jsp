@@ -70,7 +70,11 @@ function zjdwtj(){
 	result=validateInput("ttc","number",result);
 	if(result) ztz=accAdd(ztz,$("#ttc").val()==""?0:$("#ttc").val());
 	$('#ztz').val(ztz);
-	
+	if(parent.jhxdzj<accAdd(ztz,parent.dwzj)){
+		if(!confirm("到位资金大于计划下达资金，是否保存")){
+			return;
+		}
+	}
 	if(result){
 		$('#submit').ajaxSubmit({
 			dataType:'json',

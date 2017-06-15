@@ -148,6 +148,10 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 	
 	public void getJhzxqkb(){
 		try {
+			
+			elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "xm.jsxz||xm.gcfl"));
+			elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
+			elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
 			if ("1".equals(elist.getFlag())) {
 				ExcelData eldata=new ExcelData();//创建一个类
 				eldata.setTitleName("计划执行情况表");//设置第一行
@@ -257,6 +261,13 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				    list=tjbbServer.getZdyBbzd(elist);
 				    
 				    String col=(String) session.getAttribute("colValue");
+				    
+				    elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "xm.jsxz||xm.gcfl"));
+				    
+					elist.setJhxdwh(MyUtil.getQueryTJ((String)session.getAttribute("sql"), "xd.jhxdwh"));
+					elist.setXzqhdm(MyUtil.getQueryTJ((String)session.getAttribute("xzqhbb"), "xm.xzqhdm"));
+					
+				    
 				    List<Excel_list> list1 = tjbbServer.getTzhzb(elist);
 				   
 		    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
@@ -333,6 +344,10 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				Excel_export.excel_export(eldata,response);	
 				
 			} else {
+				elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "xm.jsxz||xm.gcfl"));
+				elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
+				elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
+				
 				List<Excel_list> l = tjbbServer.getTzhzb(elist);
 				JsonUtils.write(l, getresponse().getWriter());
 			}
@@ -341,7 +356,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 		}
 	}
 	
-public void queryXmlist(){
+	public void queryXmlist(){
 		
 		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
 		xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
@@ -368,8 +383,85 @@ public void queryXmlist(){
 		
 	}
 	
-	
-	
+	//台帐明细表
+	public void getTzmxb(){
+		try {
+		List<Excel_list> l=tjbbServer.getTzmxbbt(elist);
+		if("1".equals(elist.getFlag())){
+			
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName("台帐明细表");//设置第一行
+			eldata.setSheetName("sheet1");//设置sheeet名
+			eldata.setFileName("台帐明细表");//设置文件名
+			
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			if(l.size()>0){
+				String[] dw=new String[0];
+				if(l.get(0).getDwbt()!=null&&!"".equals(l.get(0).getDwbt()))
+						dw=l.get(0).getDwbt().split(",");
+				String[] bf=new String[0]; 
+				if(l.get(0).getBfbt()!=null&&!"".equals(l.get(0).getBfbt()))
+						bf=l.get(0).getBfbt().split(",");
+				
+				et.add(new Excel_tilte("科目明细",1,2,0,1));
+		    	et.add(new Excel_tilte("计划下达数",1,2,2,2));  
+		    	et.add(new Excel_tilte("截至上年收款",1,2,3,3));
+		    	int k=3;
+		    	if(dw.length>0){
+		    		k=4;
+		    		et.add(new Excel_tilte("本年收款明细",1,1,k,k+dw.length));
+		    	}
+		    	et.add(new Excel_tilte("截至上年拨款",1,2,k+dw.length+1,k+dw.length+1));
+		    	if(bf.length>0){
+		    		et.add(new Excel_tilte("本年拨付明细",1,1,k+dw.length+2,k+dw.length+bf.length+2));
+		    	}else{
+		    		k=3;
+		    	}
+		    	et.add(new Excel_tilte("累计收款",1,2,k+dw.length+bf.length+3,k+dw.length+bf.length+3));
+		    	et.add(new Excel_tilte("累计拨款",1,2,k+dw.length+bf.length+4,k+dw.length+bf.length+4));
+		    	et.add(new Excel_tilte("未收款数",1,2,k+dw.length+bf.length+5,k+dw.length+bf.length+5));
+		    	et.add(new Excel_tilte("收款未拨数",1,2,k+dw.length+bf.length+6,k+dw.length+bf.length+6));
+		    	et.add(new Excel_tilte("备注",1,2,k+dw.length+bf.length+7,k+dw.length+bf.length+7));
+		    	for (int i = 0; i < dw.length; i++) {
+		    		k=4;
+		    		if(i==0){
+		    		et.add(new Excel_tilte("小计",2,2,k,k));
+		    		et.add(new Excel_tilte(dw[i],2,2,k+i+1,k+i+1));
+		    		}
+		    		else
+		    			et.add(new Excel_tilte(dw[i],2,2,k+i+1,k+i+1));	
+				}
+		    	for (int i = 0; i < bf.length; i++) {
+		    		if(i==0){
+		    		et.add(new Excel_tilte("小计",2,2,k+dw.length+2,k+dw.length+2));
+		    		et.add(new Excel_tilte(bf[i],2,2,k+dw.length+i+3,k+dw.length+i+3));
+		    		}
+		    		else
+		    			et.add(new Excel_tilte(bf[i],2,2,k+dw.length+i+3,k+dw.length+i+3));
+				}
+		    	
+			}
+				
+		    eldata.setEl(l);//将实体list放入类中
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_export(eldata,response);	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+		else
+		JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	
 	
 	

@@ -33,6 +33,49 @@ public class Excel_list implements Serializable {
 	private String flag;
 	private String jhnf;
 	
+	private String xmmc;
+	private String jhxdwh;
+	private String xmbm;
+	private String sql;
+	private String dwbt;
+	private String bfbt;
+	
+	public String getDwbt() {
+		return dwbt;
+	}
+	public void setDwbt(String dwbt) {
+		this.dwbt = dwbt;
+	}
+	public String getBfbt() {
+		return bfbt;
+	}
+	public void setBfbt(String bfbt) {
+		this.bfbt = bfbt;
+	}
+	public String getSql() {
+		return sql;
+	}
+	public void setSql(String sql) {
+		this.sql = sql;
+	}
+	public String getXmbm() {
+		return xmbm;
+	}
+	public void setXmbm(String xmbm) {
+		this.xmbm = xmbm;
+	}
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
+	public String getJhxdwh() {
+		return jhxdwh;
+	}
+	public void setJhxdwh(String jhxdwh) {
+		this.jhxdwh = jhxdwh;
+	}
 	public String getSsbb() {
 		return ssbb;
 	}
