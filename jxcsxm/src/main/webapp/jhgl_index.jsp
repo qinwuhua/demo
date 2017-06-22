@@ -99,40 +99,21 @@ function clearscSession(){
 					<li id="menu_010102" style="display:none;"><a id="Menu_2" href="javascript:void(0)">计划查询</a></li>
 					<li id="menu_010103" style="display:none;"><a id="Menu_3" href="javascript:void(0)">资金到位</a></li>
 					<li id="menu_010104" style="display:none;"><a id="Menu_4" href="javascript:void(0)">资金拨付</a></li>
-					<li id="menu_010105" style="display:none;"><a id="Menu_5" href="javascript:void(0)">统计报表</a></li>
-					<li id="menu_010106" style="display:none;"><a id="Menu_6" href="javascript:void(0)">系统管理</a></li>
+					<li id="menu_010105" style="display:none;"><a id="Menu_5" href="javascript:void(0)">资产管理</a></li>
+					<li id="menu_010106" style="display:none;"><a id="Menu_6" href="javascript:void(0)">统计报表</a></li>
+					<li id="menu_010107" style="display:none;"><a id="Menu_7" href="javascript:void(0)">系统管理</a></li>
 					
 				</ul>
 			</div>
 		</div>
 	</div>
     <div data-options="region:'center',border:'false'" style="margin: 0px; padding: 0px;overflow: hidden">
-    	<div id="c11" style="width:100%;height:100%;display:none">
-			<iframe id="c11f" name="c11f"src="" frameborder='0' height='100%' width='100%'></iframe>
-		</div>
-		<div id="c12" style="width:100%;height:100%;display:none">
-			<iframe id="c12f" name="c12f"src="" frameborder='0' height='100%' width='100%'></iframe>
-		</div>
-		<div id="c13" style="width:100%;height:100%;display:none">
-			<iframe id="c13f" name="c13f"src="" frameborder='0' height='100%' width='100%'></iframe>
-		</div>
-		<div id="c14" style="width:100%;height:100%;display:none">
-			<iframe id="c14f" name="c14f"src="" frameborder='0' height='100%' width='100%'></iframe>
-		</div>
-		<div id="c15" style="width:100%;height:100%;display:none">
-			<iframe id="c15f" name="c15f"src="" frameborder='0' height='100%' width='100%'></iframe>
-		</div>
+    	
 		<div id="c1" style="width:100%;height:100%;">
 			<iframe id="c1f" name="c1f"  src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
 		<div id="c2" style="width:100%;height:100%;display:none">
 			<iframe id="c2f" name="c2f"  src="" frameborder='0' height='100%' width='100%'></iframe>
-		</div>
-		<div id="c9" style="width:100%;height:100%;display:none">
-			<iframe id="c9f" name="c9f"src="" frameborder='0' height='100%' width='100%'></iframe>
-		</div>
-		<div id="c8" style="width:100%;height:100%;display:none">
-			<iframe id="c8f" name="c8f"src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
 		<div id="c3" style="width:100%;height:100%;display:none">
 			<iframe id="c3f" name="c3f"src="" frameborder='0' height='100%' width='100%'></iframe>
@@ -146,12 +127,10 @@ function clearscSession(){
 		<div id="c6" style="width:100%;height:100%;display:none">
 			<iframe id="c6f" name="c6f"src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
-		<div id="c10" style="width:100%;height:100%;display:none">
-			<iframe id="c10f" name="c10f"src="" frameborder='0' height='100%' width='100%'></iframe>
-		</div>
 		<div id="c7" style="width:100%;height:100%;display:none">
-			<iframe id="c7f" name="c7f"src="" frameborder='0' height='100%' width='100%'></iframe>
+			<iframe id="c7f" name="c7f" src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
+		
     </div>
     <div data-options="region:'south',border:false,split:false" style="height: 25px;color:#FFF;line-height: 25px; background: url(image/footerbg.gif) 0 0 repeat-x; text-align: center;overflow: hidden;">
         <p>监制单位：江西省公路管理局 &nbsp;&nbsp;&nbsp;&nbsp; 技术支持：北京恒达时讯科技股份有限公司</p>

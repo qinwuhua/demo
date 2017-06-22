@@ -5,6 +5,7 @@ var c2 = true;
 var c8 = true;
 var c3 = true;
 var c4 = true;
+var c7 = true;
 var c5 = true;
 var c6 = true;
 
@@ -16,13 +17,13 @@ $(function(){
 	$("#index_user").html(getQxfromSession('truename'));
 	menuQx();
 	
-	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6").click(function(e){
-		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6").removeClass('now');
-		$("#" + this.id).addClass('now');
+	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_7,#Menu_5,#Menu_6").click(function(e){
+		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_7,#Menu_5,#Menu_6").removeClass('now');
+		$("#"+ this.id).addClass('now');
 	});
     
     $("#Menu_1").click(function () {
-        $("#c2,#c3,#c4,#c5,#c6").hide();
+        $("#c2,#c3,#c4,#c5,#c6,#7").hide();
         $("#c1").show();
         if (c1){
             $("#c1f").attr("src", "page/dzdt/dzdt.jsp");
@@ -30,16 +31,15 @@ $(function(){
     });
 
     $("#Menu_2").click(function () {
-        $("#c1,#c3,#c4,#c5,#c6").hide();
+        $("#c1,#c3,#c4,#c5,#c6,#7").hide();
         $("#c2").show();
         if (c2) {
             $("#c2f").attr("src", "page/jhcx/Menu.jsp");
         }
-
     });
     
     $("#Menu_3").click(function () {
-        $("#c1,#c2,#c4,#c5,#c6").hide();
+        $("#c1,#c2,#c4,#c5,#c6,#7").hide();
         $("#c3").show();
         if (c3) {
             $("#c3f").attr("src", "page/zjdw/Menu.jsp");
@@ -47,31 +47,36 @@ $(function(){
     });
 
     $("#Menu_4").click(function () {
-        $("#c1,#c2,#c3,#c5,#c6").hide();
+        $("#c1,#c2,#c3,#c5,#c6,#7").hide();
         $("#c4").show();
         if (c4) {
             $("#c4f").attr("src", "page/zjbf/Menu.jsp");
         }
     });
-
+    
     $("#Menu_5").click(function () {
-        $("#c1,#c2,#c3,#c4,#c6").hide();
+        $("#c1,#c2,#c3,#c4,#c6,#7").hide();
         $("#c5").show();
         if (c5) {
-            $("#c5f").attr("src", "page/tjbb/Menu.jsp");
-
-        }
-    });
-
-   
-    $("#Menu_6").click(function () {
-        $("#c1,#c2,#c3,#c4,#c5").hide();
-        $("#c6").show();
-        if (c6) {
-            $("#c6f").attr("src", "page/xtgl/Menu.jsp");
+            $("#c5f").attr("src", "page/zcgl/Menu.jsp");
         }
     });
     
+    $("#Menu_6").click(function () {
+        $("#c1,#c2,#c3,#c4,#c5,#7").hide();
+        $("#c6").show();
+        if (c6) {
+            $("#c6f").attr("src", "page/tjbb/Menu.jsp");
+        }
+    });
+    
+    $("#Menu_7").click(function () {
+        $("#c1,#c2,#c3,#c4,#5,#c6").hide();
+        $("#c7").show();
+        if (c7) {
+            $("#c7f").attr("src", "page/xtgl/Menu.jsp");
+        }
+    });
 
     $(".header_content").css({"width":"100%"});
 
@@ -94,9 +99,9 @@ function menuQx(){
 				case "2": url="page/jhcx/Menu.jsp";break;
 				case "3": url="page/zjdw/Menu.jsp";break;
 				case "4": url="page/zjbf/Menu.jsp";break;
-				case "5": url="page/tjbb/Menu.jsp";break;
-				case "6": url="page/xtgl/Menu.jsp";break;
-				
+				case "5": url="page/zcgl/Menu.jsp";break;
+				case "6": url="page/tjbb/Menu.jsp";break;
+				case "7": url="page/xtgl/Menu.jsp";break;
 				}
 				$("#Menu_"+qx[i].substr(qx[i].length-1)).addClass('now');
 				$("#c1f").attr("src", url);

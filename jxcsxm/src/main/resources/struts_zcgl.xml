@@ -1,0 +1,13 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+ <package name="zcgl" extends="struts-default" namespace="/zcgl">
+	<action name="queryZclist" class="zcglController" method="queryZclist"></action>
+	<action name="getsfktj" class="zcglController" method="getsfktj"></action>
+	<action name="insertZcgl" class="zcglController" method="insertZcgl"></action>
+	<action name="plsbshzc" class="zcglController" method="plsbshzc"></action>
+	
+	
+ </package>
+</struts>

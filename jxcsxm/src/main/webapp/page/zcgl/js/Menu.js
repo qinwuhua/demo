@@ -2,15 +2,15 @@ $(function() {
 	var qx=getQxfromSession('qx2').split(",");
     var j=1;
     for(var i=0;i<qx.length;i++){
-    	if(qx[i]=='010107'){
+    	if(qx[i]=='010105'){
 			$('#aa').accordion('add', {
 				id:"left_menu1",
-				title: '系统管理',
+				title: '资产管理',
 				selected: j==1?true:false,
 				iconCls:'icon-none'
 			});
-			$("#left_menu1").append('<ul id="tree010107"></ul>');
-			createMenunew('010107');
+			$("#left_menu1").append('<ul id="tree010105"></ul>');
+			createMenunew('010105');
 			j++;
 		}
     }

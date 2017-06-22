@@ -27,6 +27,40 @@
 <style>
 .table_11{background-color:#b8bdc1;font-size:12px;border-collapse: collapse; border:1px solid #b8bdc1; margin:10px;}
 .table_11 td{border:1px solid #bedaf5; text-align:center;}
+#button li a:link, #button li a:visited {
+float:left; 
+text-align:center; 
+position:relative; 
+display:block; 
+text-decoration:none; 
+color:#000; 
+width:50px; 
+height:24px; 
+line-height:24px; 
+border:1px solid #fff; 
+border-width:1px 1px 0 0; 
+background:#c5dbf2; 
+padding-left:10px; 
+} 
+#button li a:hover { 
+color:#fff; 
+background:#2687eb; 
+}
+#button li ul li a:hover { 
+color:#fff; 
+background:#6b839c; 
+} 
+#button li ul{ 
+display:none; 
+position:absolute; 
+top:24px; 
+left:0; 
+margin-top:1px; 
+width:50px; 
+}  
+#button, #button li ul { 
+list-style-type:none; 
+}
 </style>
 <script>
         /**
@@ -308,7 +342,7 @@
         //i查询，生成查询的范围
         function onMapClick(e) {
         	if(map.mapTools.iQuery){
-        		$("body").css('cursor','point');
+        		document.getElementById("map").style.cursor="default";
         		map.mapTools.iQuery = false;
         		showInfo(e);
            	}
@@ -417,9 +451,11 @@
          * I查询
          * */
         var infoControl = null;
-        function IQuery() {
+        var iQueryType = null
+        function IQuery(type) {
+        	iQueryType=type;
         	map.mapTools.iQuery=true;
-        	$("body").css('cursor','hand');
+        	document.getElementById("map").style.cursor="pointer";
         	//queryLoad("QL","G35361128L0800");
         }
         /**
@@ -436,11 +472,18 @@
             var minx = buf[0], miny = buf[1], maxx = buf[2], maxy = buf[3];
             var wkt = "POLYGON((" + minx + " " + miny + "," + minx + " " + maxy + "," + maxx + " " + maxy + "," + maxx + " " + miny + "," + minx + " " + miny + "))";
             var params = null;
+            var layers = null;
+            if(iQueryType == "luxian") {
+            	layers = "[{\"name\":\"GISDB_2016.GIS_LX\"}]"
+            }
+            else if(iQueryType == "luduan") {
+            	layers = "[{\"name\":\"GISDB_2016.GISROAD_EVENTS\"}]"
+            }
             params = {
               resolution: map.map.getView().getResolution(),
               geometry: wkt,
               identityType: "all",
-              layers: "[{\"name\":\"GISDB_2016.GIS_LX\"}]"
+              layers: layers
             };
             map.removeFeatureByLayerName('resultLayer');
             var url="http://36.2.6.21:7001/mapserver/rest/mapserver/mapQuery";
@@ -469,18 +512,27 @@
     			        			strokeColor:'#E52929'
     			        		}
     			        };
+    			        if(iQueryType == "luduan") {
+    			        	feature['attributes']['LXDM'] = feature['attributes']['LXBM'];
+    			        	feature['attributes']['QDMC'] = feature['attributes']['QDDM'];
+    			        	feature['attributes']['QDZH'] = feature['attributes']['ROADSTART'];
+    			        	feature['attributes']['ZDMC'] = feature['attributes']['ZDDM'];
+    			        	feature['attributes']['ZDZH'] = feature['attributes']['ROADENDS'];
+    			        	
+    			        }
     			        var feat;
     			        feat = map.addPolyline(feature, {
     			            layerName: 'resultLayer',
     			            selectable: true
     			          });
+    			        console.log(feat);
 			        	var extent = feat.getGeometry().getExtent();
     			        map.zoomToExtent(extent, true);
     			        map.highLightFeature('',feat,'');
                 	}
                 	                    
         	},  
-                timeout:3000  
+                timeout:10000  
             }); 
 
 
@@ -609,6 +661,7 @@
         //构造弹出窗口的函数
         var selectedFeature = null;
         function onFeatureSelect(feature) {
+        	console.log(feature);
         	if(YMLib.Var.bm==undefined){
         		//if(feature.attributes.ROADBM==undefined) YMLib.Var.bm=feature.attributes.ROADCODE;
         		//else YMLib.Var.bm=feature.attributes.ROADBM;
@@ -618,8 +671,8 @@
         	YMLib.Var.feature=feature;
         	//YMLib.Var.bm=parent.YMLib.Var.bm;
         	console.log(YMLib.Var.bm);
-        	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxcsxm/page/dzdt/dzdt_ql.jsp','app_add',930,450);
-         	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxcsxm/page/dzdt/dzdt_lx.jsp','app_add',930,450);
+        	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxcsxm/page/dzdt/dzdt_ql.jsp','app_add',960,430);
+         	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxcsxm/page/dzdt/dzdt_lx.jsp','app_add',960,430);
         }
         //销毁弹出窗口的函数
         function onFeatureUnselect(feature) {
@@ -962,8 +1015,7 @@
 
  		function clearGraphics() {
             //根据图层名字来得到图层，图层的名字在创建的时候设定了
-            var resultLayer = map.getLayersByName("resultLayer")[0];
-            if(resultLayer!=undefined) resultLayer.removeAllFeatures();
+            map.removeFeatureByLayerName('resultLayer');
             //console.info("点击清楚按钮");
         }
         
@@ -983,6 +1035,14 @@
             feature.popup = popup;
             map.addPopup(popup);
         }
+		function displaySubMenu(li) { 
+			var subMenu = li.getElementsByTagName("ul")[0]; 
+			subMenu.style.display = "block"; 
+		} 
+		function hideSubMenu(li) { 
+			var subMenu = li.getElementsByTagName("ul")[0]; 
+			subMenu.style.display = "none"; 
+		} 
 </script>
 </head>
 <body class="easyui-layout" style="background:#fafafa;" scroll="no">
@@ -994,9 +1054,25 @@
 
 					 <div title="地图" style="overflow: hidden;" iconCls="icon-note">
 						 
-						 <div style="position: absolute;top: 35px;right:30px;z-index: 9999">
+						 <!--<div style="position: absolute;top: 35px;right:80px;z-index: 9999">
 							<a href="#" onclick="IQuery()"><img src="../../images/iSearch.png"/></a>
 						</div>
+						<div style="position: absolute;top: 35px;right:20px;z-index: 9999">
+							<a href="#" onclick="clearGraphics()"><img src="../../images/delete.png"/></a>
+						</div>-->
+						<ur id="button">
+						<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)" style="position: absolute;top: 35px;right:80px;z-index: 9999">
+							<a href="#" >I查询</a>	
+							<ul> 
+								<li><a href="#" value="luxian" onclick='IQuery("luxian")'>路线</a></li> 
+								<li><a href="#" value="luduan" onclick='IQuery("luduan")'>路段</a></li> 
+							</ul>
+						</li>
+						<li style="position: absolute;top: 35px;right:20px;z-index: 9999">
+							<a href="#" onclick="clearGraphics()" >清空</a>
+						</li>
+
+						</ur>
 						
 						<div id="map" style="width:100%;height:100%;"></div>
 					</div>
@@ -1014,6 +1090,7 @@
 					<param name="wmode" value="transparent" />
 				</div>
 			</div>
+			
 	</div>
 </body>
 </html>

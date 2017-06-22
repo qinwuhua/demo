@@ -17,6 +17,7 @@
 	 <typeAlias type="com.hdsx.jxcsxm.zjdw.bean.XmZjdw" alias="xmzjdw"/>
 	 <typeAlias type="com.hdsx.jxcsxm.zjbf.bean.XmZjbf" alias="xmzjbf"/>
      <typeAlias type="com.hdsx.jxcsxm.tjbb.bean.Excel_list" alias="elist"/>
+     <typeAlias type="com.hdsx.jxcsxm.zcgl.bean.Zcgl" alias="zcgl"/>
   </typeAliases>
   <environments default="jdbc">
      <environment id="jdbc">
@@ -73,6 +74,6 @@
 	 <mapper resource="com/hdsx/jxcsxm/zjdw/config/zjdw.xml"/>
 	 <mapper resource="com/hdsx/jxcsxm/zjbf/config/zjbf.xml"/>
 	 <mapper resource="com/hdsx/jxcsxm/tjbb/config/tjbb.xml"/>
-	 
+	 <mapper resource="com/hdsx/jxcsxm/zcgl/config/zcgl.xml"/>
   </mappers>
 </configuration>

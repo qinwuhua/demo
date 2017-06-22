@@ -2,15 +2,15 @@ $(function() {
 	var qx=getQxfromSession('qx3').split(",");
     var j=1;
     for(var i=0;i<qx.length;i++){
-    	if(qx[i]=='01010501'){
+    	if(qx[i]=='01010601'){
 			$('#aa').accordion('add', {
 				id:"left_menu1",
 				title: '统计报表',
 				selected: j==1?true:false,
 				iconCls:'icon-none'
 			});
-			$("#left_menu1").append('<ul id="tree01010501"></ul>');
-			createMenunew('01010501');
+			$("#left_menu1").append('<ul id="tree01010601"></ul>');
+			createMenunew('01010601');
 			j++;
 		}
     	
