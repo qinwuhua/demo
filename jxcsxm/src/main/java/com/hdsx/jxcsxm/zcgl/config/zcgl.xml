@@ -11,6 +11,7 @@
 		) t
 		where 1=1 
 		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="jsdj !='' and jsdj != null">${jsdj}</if>
 		<if test="nf !='' and nf != null">and nf=#{nf}</if>
 		<if test="lxbm !='' and lxbm != null">and lxbm like '%'||#{lxbm}||'%'</if>
 		<if test="lxmc !='' and lxmc != null">and lxmc like '%'||#{lxmc}||'%'</if>
@@ -34,6 +35,7 @@
 		) t
 		where 1=1 
 		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="jsdj !='' and jsdj != null">${jsdj}</if>
 		<if test="nf !='' and nf != null">and nf=#{nf}</if>
 		<if test="lxbm !='' and lxbm != null">and lxbm like '%'||#{lxbm}||'%'</if>
 		<if test="lxmc !='' and lxmc != null">and lxmc like '%'||#{lxmc}||'%'</if>

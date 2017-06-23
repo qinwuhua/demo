@@ -290,5 +290,10 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		return l;
 	}
 
+	@Override
+	public List<Excel_list> getGlzcqkb(Excel_list elist) {
+		return queryList("getGlzcqkb",elist);
+	}
+
 	
 }

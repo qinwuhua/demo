@@ -22,6 +22,7 @@
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm('nf','资产年份',new Date().getFullYear());
+			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('shzt','审核状态1');
 			loadBmbm3('ssbzt','上报状态1');
 			loadBmbm3('xsbzt','上报状态1');
@@ -72,7 +73,7 @@
 			
 			
 			var params={'lxbm':$("#lxbm").val(),'lxmc':$("#lxmc").val(),'gydw':xzqhstr,
-					   'nf':$("#nf").combobox('getValue'),
+					   'nf':$("#nf").combobox('getValue'),'jsdj':$("#jsdj").combobox('getValues').join(','),
 					   'shzt':getValuesById("shzt"),'ssbzt':getValuesById("ssbzt"),'xsbzt':getValuesById("xsbzt")
 			};
 			
@@ -492,7 +493,8 @@ text-decoration:none;
         						
 								</tr>
         					<tr height="28">
-								
+								<td align="right">技术等级：</td>
+        						<td><select id="jsdj" style="width:165px;"></select></td>
         						<!-- 县市上报状态 省审核状态-->
 								<td align="right" name='sheng'>审核状态：</td>
 								<td name='sheng'><select name="shzt" id="shzt" style="width:80px;" ></select></td>

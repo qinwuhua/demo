@@ -39,7 +39,21 @@ public class Excel_list implements Serializable {
 	private String sql;
 	private String dwbt;
 	private String bfbt;
+	private String nf;
+	private String sbthcd;
 	
+	public String getSbthcd() {
+		return sbthcd;
+	}
+	public void setSbthcd(String sbthcd) {
+		this.sbthcd = sbthcd;
+	}
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
+	}
 	public String getDwbt() {
 		return dwbt;
 	}

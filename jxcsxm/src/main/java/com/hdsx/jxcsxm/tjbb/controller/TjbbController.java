@@ -447,14 +447,6 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);	
 			
-			
-			
-			
-			
-			
-			
-			
-			
 		}
 		else
 		JsonUtils.write(l, getresponse().getWriter());
@@ -463,7 +455,63 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 		}
 	}
 	
-	
+	public void getGlzcqkb(){
+		try {
+			
+			if("1".equals(elist.getFlag())){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+//				System.out.println(elist.getNf());
+				elist.setGydw(MyUtil.getQueryTJ((String) session.getAttribute("gydwbb"), "gydwdm"));
+				List<Excel_list> l = tjbbServer.getGlzcqkb(elist);
+				
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("公路资产情况表");//设置第一行
+				eldata.setSheetName("sheet1");//设置sheeet名
+				eldata.setFileName("公路资产情况表");//设置文件名
+				
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("项目",1,2,0,1));
+				et.add(new Excel_tilte("数量单位",1,2,2,2));
+				et.add(new Excel_tilte("行次",1,2,3,3));
+				et.add(new Excel_tilte("数量",1,1,4,7));
+				et.add(new Excel_tilte("资产（价值）",1,1,8,9));
+				et.add(new Excel_tilte("其中：负债",1,1,10,11));
+				et.add(new Excel_tilte("期初数",2,2,4,4));
+				et.add(new Excel_tilte("增加数",2,2,5,5));
+				et.add(new Excel_tilte("减少数",2,2,6,6));
+				et.add(new Excel_tilte("期末数",2,2,7,7));
+				et.add(new Excel_tilte("期初数",2,2,8,8));
+				et.add(new Excel_tilte("期末数",2,2,9,9));
+				et.add(new Excel_tilte("期初数",2,2,10,10));
+				et.add(new Excel_tilte("期末数",2,2,11,11));
+				et.add(new Excel_tilte("栏次",3,3,0,3));
+				et.add(new Excel_tilte("1",3,3,4,4));
+				et.add(new Excel_tilte("2",3,3,5,5));
+				et.add(new Excel_tilte("3",3,3,6,6));
+				et.add(new Excel_tilte("4",3,3,7,7));
+				et.add(new Excel_tilte("5",3,3,8,8));
+				et.add(new Excel_tilte("6",3,3,9,9));
+				et.add(new Excel_tilte("7",3,3,10,10));
+				et.add(new Excel_tilte("8",3,3,11,11));
+				
+				eldata.setEl(l);//将实体list放入类中
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_exportGlzcqkb(eldata,response);	
+			}else{
+				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
+				List<Excel_list> l = tjbbServer.getGlzcqkb(elist);
+				JsonUtils.write(l, getresponse().getWriter());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 	
 	
 	

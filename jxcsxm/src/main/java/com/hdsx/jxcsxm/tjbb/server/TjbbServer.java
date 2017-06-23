@@ -24,6 +24,8 @@ public interface TjbbServer {
 
 	List<Excel_list> getTzmxbbt(Excel_list elist);
 
+	List<Excel_list> getGlzcqkb(Excel_list elist);
+
 	
 
 }

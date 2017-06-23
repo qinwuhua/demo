@@ -228,4 +228,81 @@
 	 ${sql}
 	</select>
 	
+	<select id="getGlzcqkb" parameterType="elist" resultType="elist">
+	select v_0,v_1,v_2,rownum v_3,to_char(v_4,'99990.999') v_4,to_char(v_5,'99990.999') v_5,
+	to_char(v_6,'99990.999') v_6,to_char(v_7,'99990.999') v_7,to_char(v_8,'99990.9999') v_8,
+	to_char(v_9,'99990.9999') v_9,to_char(v_10,'99990.9999') v_10,to_char(v_11,'99990.9999') v_11 from (	
+	select 
+	'合计' v_0,jsdj v_1,'公里' v_2,lcqcs v_4,
+	(case when lcqms-lcqcs>0 then lcqms-lcqcs else 0 end) v_5,
+	(case when lcqcs-lcqms>0 then lcqcs-lcqms else 0 end) v_6,
+	lcqms v_7,zcqcs v_8,zcqms v_9,fzqcs v_10,fzqms v_11,1 px
+	
+	from (
+	select '合计'jsdj,sum(decode(nf,'2016',lc,(select sum(lc) from zcgl z1 where nf=to_char(${nf}-1) and z1.jsdj=z.jsdj ))) lcqcs,
+	sum(lc) lcqms,
+	sum(decode(nf,'2016',zcqcs,(select sum(zcqms) from zcgl z1 where nf=to_char(${nf}-1) and z1.jsdj=z.jsdj ))) zcqcs,
+	sum(zcqms) zcqms,
+	sum(decode(nf,'2016',fzqcs,(select sum(fzqms) from zcgl z1 where nf=to_char(${nf}-1) and z1.jsdj=z.jsdj ))) fzqcs,
+	sum(fzqms) fzqms,
+	decode(jsdj,'高速公路',1,'一级公路',2,'二级公路',3,'三级公路',4,'四级公路',5,'等外公路',6) px
+	from zcgl z 
+	where nf=#{nf}
+	<if test="gydw != null">
+	${gydw}
+	</if>
+	)
+	
+	union all
+	
+	select 
+	'等级公路' v_0,jsdj v_1,'公里' v_2,lcqcs v_4,
+	(case when lcqms-lcqcs>0 then lcqms-lcqcs else 0 end) v_5,
+	(case when lcqcs-lcqms>0 then lcqcs-lcqms else 0 end) v_6,
+	lcqms v_7,zcqcs v_8,zcqms v_9,fzqcs v_10,fzqms v_11,2 px
+	
+	from (
+	select '总计'jsdj,sum(decode(nf,'2016',lc,(select sum(lc) from zcgl z1 where nf=to_char(${nf}-1) and z1.jsdj=z.jsdj ))) lcqcs,
+	sum(lc) lcqms,
+	sum(decode(nf,'2016',zcqcs,(select sum(zcqms) from zcgl z1 where nf=to_char(${nf}-1) and z1.jsdj=z.jsdj ))) zcqcs,
+	sum(zcqms) zcqms,
+	sum(decode(nf,'2016',fzqcs,(select sum(fzqms) from zcgl z1 where nf=to_char(${nf}-1) and z1.jsdj=z.jsdj ))) fzqcs,
+	sum(fzqms) fzqms,
+	decode(jsdj,'高速公路',1,'一级公路',2,'二级公路',3,'三级公路',4,'四级公路',5,'等外公路',6) px
+	from zcgl z 
+	where nf=#{nf}
+	and (jsdj='高速公路' or jsdj='一级公路' or jsdj='二级公路' or jsdj='三级公路' or jsdj='四级公路')
+	<if test="gydw != null">
+	${gydw}
+	</if>
+	)
+	
+	union all
+	
+	select 
+	decode(jsdj,'等外公路','等外公路','等级公路') v_0,jsdj v_1,'公里' v_2,lcqcs v_4,
+	(case when lcqms-lcqcs>0 then lcqms-lcqcs else 0 end) v_5,
+	(case when lcqcs-lcqms>0 then lcqcs-lcqms else 0 end) v_6,
+	lcqms v_7,zcqcs v_8,zcqms v_9,fzqcs v_10,fzqms v_11,px
+	
+	from (
+	select jsdj,sum(decode(nf,'2016',lc,(select sum(lc) from zcgl z1 where nf=to_char(${nf}-1) and z1.jsdj=z.jsdj ))) lcqcs,
+	sum(lc) lcqms,
+	sum(decode(nf,'2016',zcqcs,(select sum(zcqms) from zcgl z1 where nf=to_char(${nf}-1) and z1.jsdj=z.jsdj ))) zcqcs,
+	sum(zcqms) zcqms,
+	sum(decode(nf,'2016',fzqcs,(select sum(fzqms) from zcgl z1 where nf=to_char(${nf}-1) and z1.jsdj=z.jsdj ))) fzqcs,
+	sum(fzqms) fzqms,
+	decode(jsdj,'高速公路',3,'一级公路',4,'二级公路',5,'三级公路',6,'四级公路',7,'等外公路',8) px
+	from zcgl z 
+	where nf=#{nf}
+	<if test="gydw != null">
+	${gydw}
+	</if>
+	group by jsdj
+	)
+
+	order by px
+	) t
+	</select>
+	
 </mapper>

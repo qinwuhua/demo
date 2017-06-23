@@ -65,7 +65,7 @@ public class ZcglController extends BaseActionSupport implements ModelDriven<Zcg
 			zcgl.setShzt(MyUtil.getQueryTJ(zcgl.getShzt(), "shztstr||sftx"));
 			zcgl.setSsbzt(MyUtil.getQueryTJ(zcgl.getSsbzt(), "ssbztstr||sftx"));
 			zcgl.setXsbzt(MyUtil.getQueryTJ(zcgl.getXsbzt(), "xsbztstr||sftx"));
-			
+			zcgl.setJsdj(MyUtil.getQueryTJ(zcgl.getJsdj(), "jsdj"));
 			List<Zcgl> list=zcglServer.queryZclist(zcgl);
 			int count=zcglServer.queryZclistCount(zcgl);
 			EasyUIPage<Zcgl> e=new EasyUIPage<Zcgl>();
