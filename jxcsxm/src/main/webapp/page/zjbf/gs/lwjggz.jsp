@@ -109,7 +109,7 @@
 							},
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
 							{field:'xmmc',title:'项目名称',width:250,align:'center'},
-							{field:'gydw',title:'管养单位',width:150,align:'center'},
+							{field:'gydw',title:'管养单位',width:180,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
 							{field:'jhxdwh',title:'计划下达文号',width:390,align:'center'}
 			    ]],

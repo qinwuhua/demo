@@ -20,7 +20,10 @@
 
 	<script type="text/javascript">
 		$(function(){
-			loadUnit1("gydw",$.cookie("unit"));
+			if($.cookie("unit")=='36')
+				loadUnit1("gydw",'11101360000');
+				else
+				loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm('nf','资产年份',new Date().getFullYear());
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('shzt','审核状态1');
@@ -72,7 +75,7 @@
 			}
 			
 			
-			var params={'lxbm':$("#lxbm").val(),'lxmc':$("#lxmc").val(),'gydw':xzqhstr,
+			var params={'lxbm':$("#lxbm").val(),'lxmc':$("#lxmc").val(),'gydw':xzqhstr,'dwlx':'1',
 					   'nf':$("#nf").combobox('getValue'),'jsdj':$("#jsdj").combobox('getValues').join(','),
 					   'shzt':getValuesById("shzt"),'ssbzt':getValuesById("ssbzt"),'xsbzt':getValuesById("xsbzt")
 			};
@@ -470,7 +473,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">当前位置>&nbsp;资产管理>&nbsp;资产管理</div>
+		<div id="p_top">当前位置>&nbsp;农村公路>&nbsp;资产管理</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -483,7 +486,7 @@ text-decoration:none;
         				<table style="margin:4px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 							<tr height="28"> 
 								<td align="right">管养单位：</td>
-        						<td><select id="gydw" style="width:165px;"></select></td>
+        						<td><select id="gydw" style="width:195px;"></select></td>
 								<td align="right">年份：</td>
         						<td><select id="nf" style="width: 80px;"></select></td>
 								<td align="right">路线编码：</td>
@@ -494,7 +497,7 @@ text-decoration:none;
 								</tr>
         					<tr height="28">
 								<td align="right">技术等级：</td>
-        						<td><select id="jsdj" style="width:165px;"></select></td>
+        						<td><select id="jsdj" style="width:195px;"></select></td>
         						<!-- 县市上报状态 省审核状态-->
 								<td align="right" name='sheng'>审核状态：</td>
 								<td name='sheng'><select name="shzt" id="shzt" style="width:80px;" ></select></td>

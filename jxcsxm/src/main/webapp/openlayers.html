@@ -575,7 +575,7 @@
           		var bm=param['BM'];
           		var qdzh=param['ROADSTART'];
           		var zdzh=param['ROADENDS'];
-          		$.ajax({
+          		/*$.ajax({
     				type:'post',
     				url:'/jxzhpt/qqgl/queryLsxx2new.do',
     		        data:{'lx.lxbm': param['BM'],'lx.qdzh':param['ROADSTART'],'lx.zdzh':param['ROADENDS'],'lx.ghlxbm': '','lx.ghqdzh':'','lx.ghzdzh':'','lx.xzqh':'','lx.xdnf':'','lx.tsdq':'',
@@ -596,7 +596,7 @@
     					}
     					
     				}
-    			});
+    			});*/
           		params={params:'{"layerName":"GIS_LX","filter":"lxdm=\''+ bm +'\'","startPos":"' + qdzh + '","endPos":"'+ zdzh + '"}'};
           	}
           	var feature;

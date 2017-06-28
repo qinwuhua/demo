@@ -73,9 +73,17 @@ public class XmZjdw{
     private String ztz1;
     private String xmsl;
     private String btzzj;
+    private String sffy;
     
-    
-    public String getBtzzj() {
+    public String getSffy() {
+		return sffy;
+	}
+
+	public void setSffy(String sffy) {
+		this.sffy = sffy;
+	}
+
+	public String getBtzzj() {
 		return btzzj;
 	}
 

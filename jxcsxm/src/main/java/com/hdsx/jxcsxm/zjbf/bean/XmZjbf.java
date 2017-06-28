@@ -74,7 +74,17 @@ public class XmZjbf{
     private String dfzc1;
     private String ztz1;
     private String xmsl;
-    public String getId() {
+    private String sffy;
+    
+    public String getSffy() {
+		return sffy;
+	}
+
+	public void setSffy(String sffy) {
+		this.sffy = sffy;
+	}
+
+	public String getId() {
         return id;
     }
 

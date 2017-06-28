@@ -1,16 +1,27 @@
 $(function() {
-	var qx=getQxfromSession('qx2').split(",");
+	var qx=getQxfromSession('qx3').split(",");
     var j=1;
     for(var i=0;i<qx.length;i++){
-    	if(qx[i]=='010105'){
+    	if(qx[i]=='01010501'){
 			$('#aa').accordion('add', {
 				id:"left_menu1",
-				title: '资产管理',
+				title: '普通国省道',
 				selected: j==1?true:false,
 				iconCls:'icon-none'
 			});
-			$("#left_menu1").append('<ul id="tree010105"></ul>');
-			createMenunew('010105');
+			$("#left_menu1").append('<ul id="tree01010501"></ul>');
+			createMenunew('01010501');
+			j++;
+		}
+    	if(qx[i]=='01010502'){
+			$('#aa').accordion('add', {
+				id:"left_menu2",
+				title: '农村公路',
+				selected: j==1?true:false,
+				iconCls:'icon-none'
+			});
+			$("#left_menu2").append('<ul id="tree01010502"></ul>');
+			createMenunew('01010502');
 			j++;
 		}
     }

@@ -81,7 +81,7 @@
 	
 	function queryzjbflist(){
 		getbfTj();
-		var params={'xmbm':parent.YMLib.Var.xmbm,'sbthcd':$.cookie('unit2').length};
+		var params={'xmbm':parent.YMLib.Var.xmbm,'sbthcd':$.cookie('unit2').length,'sffy':0};
 		var col;
 		if(parent.YMLib.Var.xmlx=='gs_gsdgz')
 		col=[[
@@ -101,20 +101,20 @@
 				}
 				return zt;
 		}},
-		{field:'bfyf',title:'拨付月份',width:70,align:'center'},
-		{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+		{field:'bfyf',title:'拨付月份',width:75,align:'center'},
+		{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 		{field:'bd',title:'标段',width:50,align:'center'},
-		{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-		{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
-		{field:'gz',title:'国债(万元)',width:80,align:'center'},
-		{field:'sz',title:'省债(万元)',width:80,align:'center'},
-		{field:'zq',title:'债券(万元)',width:80,align:'center'},
-		{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-		{field:'jl',title:'奖励(万元)',width:80,align:'center'},
-		{field:'qt',title:'其他(万元)',width:80,align:'center'},
-		{field:'yhdk',title:'银行贷款(万元)',width:80,align:'center'},
-		{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-		{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+		{field:'cgs',title:'车购税(万元)',width:75,align:'center'},
+		{field:'gz',title:'国债(万元)',width:75,align:'center'},
+		{field:'sz',title:'省债(万元)',width:75,align:'center'},
+		{field:'zq',title:'债券(万元)',width:75,align:'center'},
+		{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+		{field:'jl',title:'奖励(万元)',width:75,align:'center'},
+		{field:'qt',title:'其他(万元)',width:75,align:'center'},
+		{field:'yhdk',title:'银行贷款(万元)',width:75,align:'center'},
+		{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+		{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 	]]
 		
 		if(parent.YMLib.Var.xmlx=='gs_yhdzx')
@@ -135,15 +135,15 @@
 					}
 					return zt;
 			}},
-			{field:'bfyf',title:'拨付月份',width:70,align:'center'},
-			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'bfyf',title:'拨付月份',width:75,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 			{field:'bd',title:'标段',width:50,align:'center'},
-			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'rys',title:'燃油税(万元)',width:80,align:'center'},
-			{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-			{field:'qt',title:'其他(万元)',width:80,align:'center'},
-			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+			{field:'rys',title:'燃油税(万元)',width:75,align:'center'},
+			{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+			{field:'qt',title:'其他(万元)',width:75,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 		]]
 		
 		if(parent.YMLib.Var.xmlx=='gs_zhhf')
@@ -164,19 +164,19 @@
 					}
 					return zt;
 			}},
-			{field:'bfyf',title:'拨付月份',width:70,align:'center'},
-			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'bfyf',title:'拨付月份',width:75,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 			{field:'bd',title:'标段',width:50,align:'center'},
-			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
-			{field:'gz',title:'国债(万元)',width:80,align:'center'},
-			{field:'sz',title:'省债(万元)',width:80,align:'center'},
-			{field:'zq',title:'债券(万元)',width:80,align:'center'},
-			{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-			{field:'jl',title:'奖励(万元)',width:80,align:'center'},
-			{field:'qt',title:'其他(万元)',width:80,align:'center'},
-			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+			{field:'cgs',title:'车购税(万元)',width:75,align:'center'},
+			{field:'gz',title:'国债(万元)',width:75,align:'center'},
+			{field:'sz',title:'省债(万元)',width:75,align:'center'},
+			{field:'zq',title:'债券(万元)',width:75,align:'center'},
+			{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+			{field:'jl',title:'奖励(万元)',width:75,align:'center'},
+			{field:'qt',title:'其他(万元)',width:75,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 		]]
 		
 		if(parent.YMLib.Var.xmlx=='gs_lwjggz')
@@ -197,21 +197,21 @@
 					}
 					return zt;
 			}},
-			{field:'bfyf',title:'拨付月份',width:70,align:'center'},
-			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'bfyf',title:'拨付月份',width:75,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 			{field:'bd',title:'标段',width:50,align:'center'},
-			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
-			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
-			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+			{field:'cgs',title:'车购税(万元)',width:75,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:75,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 		]]
 		
 		
 		$('#zjbfgrid').datagrid({    
 		    url:'/jxcsxm/zjbf/queryzjbflist.do',
 		    striped:true,
-		    pagination:true,
+// 		    pagination:true,
 		    rownumbers:true,
 		    pageNumber:1,
 		    pageSize:10,
@@ -227,7 +227,7 @@
 	//到位
 	function queryzjdwlist(){
 		getdwTj();
-		var params={'xmbm':parent.YMLib.Var.xmbm,'sbthcd':$.cookie('unit2').length};
+		var params={'xmbm':parent.YMLib.Var.xmbm,'sbthcd':$.cookie('unit2').length,'sffy':0};
 		var col;
 		if(parent.YMLib.Var.xmlx=='gs_gsdgz')
 		col=[[
@@ -248,20 +248,20 @@
 				}
 				return zt;
 		}},
-		{field:'dwyf',title:'到位月份',width:70,align:'center'},
-		{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+		{field:'dwyf',title:'到位月份',width:75,align:'center'},
+		{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 //			{field:'bd',title:'标段',width:50,align:'center'},
-		{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-		{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
-		{field:'gz',title:'国债(万元)',width:80,align:'center'},
-		{field:'sz',title:'省债(万元)',width:80,align:'center'},
-		{field:'zq',title:'债券(万元)',width:80,align:'center'},
-		{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-		{field:'jl',title:'奖励(万元)',width:80,align:'center'},
-		{field:'qt',title:'其他(万元)',width:80,align:'center'},
-		{field:'yhdk',title:'银行贷款(万元)',width:80,align:'center'},
-		{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-		{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+		{field:'cgs',title:'车购税(万元)',width:75,align:'center'},
+		{field:'gz',title:'国债(万元)',width:75,align:'center'},
+		{field:'sz',title:'省债(万元)',width:75,align:'center'},
+		{field:'zq',title:'债券(万元)',width:75,align:'center'},
+		{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+		{field:'jl',title:'奖励(万元)',width:75,align:'center'},
+		{field:'qt',title:'其他(万元)',width:75,align:'center'},
+		{field:'yhdk',title:'银行贷款(万元)',width:75,align:'center'},
+		{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+		{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 	]]
 		
 		if(parent.YMLib.Var.xmlx=='gs_yhdzx')
@@ -283,15 +283,15 @@
 					}
 					return zt;
 			}},
-			{field:'dwyf',title:'到位月份',width:70,align:'center'},
-			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'dwyf',title:'到位月份',width:75,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 //				{field:'bd',title:'标段',width:50,align:'center'},
-			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'rys',title:'燃油税(万元)',width:80,align:'center'},
-			{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-			{field:'qt',title:'其他(万元)',width:80,align:'center'},
-			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+			{field:'rys',title:'燃油税(万元)',width:75,align:'center'},
+			{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+			{field:'qt',title:'其他(万元)',width:75,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 		]]
 		
 		if(parent.YMLib.Var.xmlx=='gs_zhhf')
@@ -313,19 +313,19 @@
 					}
 					return zt;
 			}},
-			{field:'dwyf',title:'到位月份',width:70,align:'center'},
-			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'dwyf',title:'到位月份',width:75,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 //				{field:'bd',title:'标段',width:50,align:'center'},
-			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
-			{field:'gz',title:'国债(万元)',width:80,align:'center'},
-			{field:'sz',title:'省债(万元)',width:80,align:'center'},
-			{field:'zq',title:'债券(万元)',width:80,align:'center'},
-			{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-			{field:'jl',title:'奖励(万元)',width:80,align:'center'},
-			{field:'qt',title:'其他(万元)',width:80,align:'center'},
-			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+			{field:'cgs',title:'车购税(万元)',width:75,align:'center'},
+			{field:'gz',title:'国债(万元)',width:75,align:'center'},
+			{field:'sz',title:'省债(万元)',width:75,align:'center'},
+			{field:'zq',title:'债券(万元)',width:75,align:'center'},
+			{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+			{field:'jl',title:'奖励(万元)',width:75,align:'center'},
+			{field:'qt',title:'其他(万元)',width:75,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 		]]
 		
 		if(parent.YMLib.Var.xmlx=='gs_lwjggz')
@@ -347,24 +347,24 @@
 					}
 					return zt;
 			}},
-			{field:'dwyf',title:'到位月份',width:70,align:'center'},
-			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'dwyf',title:'到位月份',width:75,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 //				{field:'bd',title:'标段',width:50,align:'center'},
-			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
-			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
-			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+			{field:'cgs',title:'车购税(万元)',width:75,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:75,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 		]]
 		
 		
 		$('#zjdwgrid').datagrid({    
 		    url:'/jxcsxm/zjdw/queryzjdwlist.do',
 		    striped:true,
-		    pagination:true,
+// 		    pagination:true,
 		    rownumbers:true,
 		    pageNumber:1,
-		    pageSize:10,
+		    pageSize:100,
 		    checkOnSelect:true,
 		    
 		    queryParams: params,
@@ -378,49 +378,49 @@
 	
 	//下达
 	function queryzjxdlist(){
-		var params={'xmbm':parent.YMLib.Var.xmbm,'sbthcd':$.cookie('unit2').length};
+		var params={'xmbm':parent.YMLib.Var.xmbm,'sbthcd':$.cookie('unit2').length,'sffy':0};
 		var col;
 		if(parent.YMLib.Var.xmlx=='gs_gsdgz')
 		col=[[
 		
-		{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
-		{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-		{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
-		{field:'gz',title:'国债(万元)',width:80,align:'center'},
-		{field:'sz',title:'省债(万元)',width:80,align:'center'},
-		{field:'zq',title:'债券(万元)',width:80,align:'center'},
-		{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-		{field:'jl',title:'奖励(万元)',width:80,align:'center'},
-		{field:'qt',title:'其他(万元)',width:80,align:'center'},
-		{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
-		{field:'yhdk',title:'银行贷款(万元)',width:80,align:'center'}
+		{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
+		{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+		{field:'btzzj',title:'车购税(万元)',width:75,align:'center'},
+		{field:'gz',title:'国债(万元)',width:75,align:'center'},
+		{field:'sz',title:'省债(万元)',width:75,align:'center'},
+		{field:'zq',title:'债券(万元)',width:75,align:'center'},
+		{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+		{field:'jl',title:'奖励(万元)',width:75,align:'center'},
+		{field:'qt',title:'其他(万元)',width:75,align:'center'},
+		{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+		{field:'yhdk',title:'银行贷款(万元)',width:75,align:'center'}
 	]]
 		
 		if(parent.YMLib.Var.xmlx=='gs_yhdzx')
 			col=[[
 			
-			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 //				{field:'bd',title:'标段',width:50,align:'center'},
-			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'rys',title:'燃油税(万元)',width:80,align:'center'},
-			{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-			{field:'qt',title:'其他(万元)',width:80,align:'center'}
+			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+			{field:'rys',title:'燃油税(万元)',width:75,align:'center'},
+			{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+			{field:'qt',title:'其他(万元)',width:75,align:'center'}
 		]]
 		
 		if(parent.YMLib.Var.xmlx=='gs_zhhf')
 			col=[[
 				
 			
-			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 //				{field:'bd',title:'标段',width:50,align:'center'},
-			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
-			{field:'gz',title:'国债(万元)',width:80,align:'center'},
-			{field:'sz',title:'省债(万元)',width:80,align:'center'},
-			{field:'zq',title:'债券(万元)',width:80,align:'center'},
-			{field:'tdk',title:'厅贷款(万元)',width:80,align:'center'},
-			{field:'jl',title:'奖励(万元)',width:80,align:'center'},
-			{field:'qt',title:'其他(万元)',width:80,align:'center'}
+			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+			{field:'btzzj',title:'车购税(万元)',width:75,align:'center'},
+			{field:'gz',title:'国债(万元)',width:75,align:'center'},
+			{field:'sz',title:'省债(万元)',width:75,align:'center'},
+			{field:'zq',title:'债券(万元)',width:75,align:'center'},
+			{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+			{field:'jl',title:'奖励(万元)',width:75,align:'center'},
+			{field:'qt',title:'其他(万元)',width:75,align:'center'}
 		]]
 		
 		if(parent.YMLib.Var.xmlx=='gs_lwjggz')
@@ -428,20 +428,20 @@
 				
 			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
 //				{field:'bd',title:'标段',width:50,align:'center'},
-			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
-			{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
-			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
-			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'}
+			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+			{field:'btzzj',title:'车购税(万元)',width:75,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:75,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'}
 		]]
 		
 		
 		$('#zjxdgrid').datagrid({    
 		    url:'/jxcsxm/zjdw/queryzjxdlist.do',
 		    striped:true,
-		    pagination:true,
+// 		    pagination:true,
 		    rownumbers:true,
 		    pageNumber:1,
-		    pageSize:10,
+		    pageSize:100,
 		    checkOnSelect:true,
 		    
 		    queryParams: params,
@@ -467,6 +467,7 @@
 			}
 		});
 	}
+		
 	</script>
 	<style type="text/css">
 
@@ -483,15 +484,15 @@
 					</td>
 				</tr>
 				<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
 				项目年份</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="xmnf" name="xmnf" type="text" style="width: 170px;"/>
+				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
+					<input id="xmnf" name="xmnf" type="text" style="width: 230px;"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
 				项目名称</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="xmmc" name="xmmc" type="text" style="width: 170px;"/>
+				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
+					<input id="xmmc" name="xmmc" type="text" style="width: 230px;"/>
 				</td>
 				
             </tr>
@@ -499,20 +500,20 @@
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 				管养单位</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="gydw" name="gydw" type="text" style="width: 170px;"/>
+					<input id="gydw" name="gydw" type="text" style="width: 230px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 				行政区划</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="xzqh" name="xzqh" type="text" style="width: 170px;"/>
+					<input id="xzqh" name="xzqh" type="text" style="width: 230px;"/>
 				</td>
 				
             </tr>
             <tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-				计划下达文号</td>
+				项目类型</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input id="jhxdwh" name="jhxdwh" type="text" style="width: 170px;"/>
+					<input id="xmlx" name="xmlx" type="text" style="width: 230px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 				</td>
@@ -523,14 +524,10 @@
              <div id='zjxd'>
 	            <tr>
 	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;height: 30px;">
-		              	资金下达信息
+		              	资金下达信息————计划下达资金共【<span id="jhxdzj_xd" style="color: Red; font-weight: bold;">0</span>】万元。
 		           </td>
 	            </tr>   
-				<tr>
-	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:lighter;  font-size: small; text-align: left; background-color: #ffffff; width: 15%; padding-left: 10px;height: 30px;">
-		                    计划下达资金共【<span id="jhxdzj_xd" style="color: Red; font-weight: bold;">0</span>】万元。
-	            </td>
-	            </tr>
+				
 	            <tr>
 	                <td colspan="4">                
 	                     <table id="zjxdgrid">           		
@@ -542,16 +539,12 @@
              <div id='zjdw'>
 	            <tr>
 	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;height: 30px;">
-		              	资金到位信息
-		           </td>
-	            </tr>   
-				<tr>
-	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:lighter;  font-size: small; text-align: left; background-color: #ffffff; width: 15%; padding-left: 10px;height: 30px;">
-		                    计划下达资金共【<span id="jhxdzj_dw" style="color: Red; font-weight: bold;">0</span>】万元，
+		              	资金到位信息————计划下达资金共【<span id="jhxdzj_dw" style="color: Red; font-weight: bold;">0</span>】万元，
 		                    到位资金共【<span id="dwzj_dw" style="color: Red; font-weight: bold;">0</span>】万元，
 		                    其中，已审核到位资金共【<span id="yshdwzj_dw" style="color: Red; font-weight: bold;">0</span>】万元。
-	            </td>
-	            </tr>
+		           </td>
+	            </tr>   
+				
 	            <tr>
 	                <td colspan="4">                
 	                     <table id="zjdwgrid">           		
@@ -559,12 +552,8 @@
 	                </td>
 	            </tr>
             </div>
-            
-            
 			</table>
 		</form>
-		
-		
 
 	</div>
 

@@ -34,8 +34,14 @@ public class Xmjbxx implements Serializable {
 	private String rys;
 	private String ttc;
 	private String yhdk;
+	private String xmlx;
 	
-	
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
 	public String getParent() {
 		return parent;
 	}

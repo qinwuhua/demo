@@ -62,7 +62,7 @@
 	</select>
 	
 	<select id="getxmInfo" parameterType="xmjbxx" resultType="xmjbxx">
-		select t.*,xd.jhxdwh  from xmjbxx t
+		select t.*,xd.jhxdwh,decode(jsxz,'路网结构改造',gcfl,jsxz) xmlx  from xmjbxx t
 		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
 		on t.xmbm=xd.xmid	 where xmbm=#{xmbm}
 	</select>

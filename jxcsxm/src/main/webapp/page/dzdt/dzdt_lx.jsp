@@ -123,7 +123,7 @@ $(function(){
 			width : 200,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<a onclick="onclickXx('+"'"+rec.xmlx+"',"+"'"+rec.xmbm+"'"+')" style="color:#3399CC;">'+value+'</a>';
+				return '<a onclick="onclickXx('+"'"+rec.xmlx+"',"+"'"+rec.xmbm+"'"+')" style="color:#3399CC;cursor:pointer;">'+value+'</a>';
 			}
 		},{
 			field : 'xmlx',
@@ -174,19 +174,19 @@ function filterXzqhdm(xzqhdm){
 }
 function onclickXx(xmlx,xmid){
 	if(xmlx=='改建'||xmlx=='路面改造'||xmlx=='新建'){
-		openXmInfo(xmid,'gs_gsdgz','zjbf')
+		openXmInfoDt(xmid,'gs_gsdgz','zjbf')
 	}
 	
 	if(xmlx=='灾毁恢复'){
-		openXmInfo(xmid,'gs_zhhf','zjbf')
+		openXmInfoDt(xmid,'gs_zhhf','zjbf')
 	}
 	
 	if(xmlx=='养护大中修'){
-		openXmInfo(xmid,'gs_yhdzx','zjbf')
+		openXmInfoDt(xmid,'gs_yhdzx','zjbf')
 	}
 	
 	if(xmlx=='危桥改造'||xmlx=='安防工程'||xmlx=='灾害防治'){
-		openXmInfo(xmid,'gs_lwjggz','zjbf')
+		openXmInfoDt(xmid,'gs_lwjggz','zjbf')
 	}
 	
 	

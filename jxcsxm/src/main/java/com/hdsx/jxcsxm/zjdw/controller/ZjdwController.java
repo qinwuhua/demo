@@ -113,9 +113,13 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 	}
 	
 	public void queryzjdwlist(){
-		
-		xmZjdw.setPage(page);
-		xmZjdw.setRows(rows);
+		if("0".equals(xmZjdw.getSffy())){
+			xmZjdw.setPage(1);
+			xmZjdw.setRows(500);
+		}else{
+			xmZjdw.setPage(page);
+			xmZjdw.setRows(rows);
+		}
 		List<XmZjdw> list=zjdwServer.queryzjdwlist(xmZjdw);
 		int count=zjdwServer.queryzjdwlistCount(xmZjdw);
 		EasyUIPage<XmZjdw> e=new EasyUIPage<XmZjdw>();
@@ -129,8 +133,13 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 	}
 	
 	public void queryzjxdlist(){
-		xmZjdw.setPage(page);
-		xmZjdw.setRows(rows);
+		if("0".equals(xmZjdw.getSffy())){
+			xmZjdw.setPage(1);
+			xmZjdw.setRows(500);
+		}else{
+			xmZjdw.setPage(page);
+			xmZjdw.setRows(rows);
+		}
 		List<XmZjdw> list=zjdwServer.queryzjxdlist(xmZjdw);
 		int count=zjdwServer.queryzjxdlistCount(xmZjdw);
 		EasyUIPage<XmZjdw> e=new EasyUIPage<XmZjdw>();

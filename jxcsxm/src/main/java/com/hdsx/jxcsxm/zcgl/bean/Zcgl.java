@@ -45,6 +45,16 @@ public class Zcgl{
     private String thyy;
 
     private String sfbj;
+    
+    private String dwlx;
+    
+	public String getDwlx() {
+		return dwlx;
+	}
+
+	public void setDwlx(String dwlx) {
+		this.dwlx = dwlx;
+	}
 
 	public int getPage() {
 		return page;

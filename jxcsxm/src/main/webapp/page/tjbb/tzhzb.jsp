@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>计划执行情况表</title>
+	<title>台帐汇总表</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -76,7 +76,7 @@
 		
 		$.ajax({
 			url:"/jxcsxm/tjbb/getTzhzb.do",
-			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val(),
+			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -123,7 +123,7 @@
 		if(xmlx.substr(0,1)==',')
 			xmlx=xmlx.substr(1,xmlx.length);
 		
-		var data="flag=1&ssbb=tzhzb&jhnf="+$("#jhnf").combobox('getValue')+"&xmlx="+xmlx+"&xmmc="+$("#xmmc").val();
+		var data="flag=1&ssbb=tzhzb&jhnf="+$("#jhnf").combobox('getValue')+"&xmlx="+xmlx+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length;
 		loadjzt();
 		 $.post('/jxcsxm/xtgl/exportBb_set.do',{nameValue:str1,colValue:str2,sql:jhxdwh,xzqh:xzqhstr},function(){
 			window.location.href='/jxcsxm/tjbb/getTzhzb.do?'+data;

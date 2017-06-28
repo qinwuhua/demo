@@ -671,8 +671,9 @@ list-style-type:none;
         	YMLib.Var.feature=feature;
         	//YMLib.Var.bm=parent.YMLib.Var.bm;
         	console.log(YMLib.Var.bm);
-        	if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxcsxm/page/dzdt/dzdt_ql.jsp','app_add',960,430);
-         	else YMLib.UI.createWindow('lx_add','路线项目查询','/jxcsxm/page/dzdt/dzdt_lx.jsp','app_add',960,430);
+        	/* if(YMLib.Var.bm.length>11) YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxcsxm/page/dzdt/dzdt_ql.jsp','app_add',1000,430);
+         	else  */
+         	YMLib.UI.createWindow('lx_add','路线项目查询','/jxcsxm/page/dzdt/dzdt_lx.jsp','app_add',1000,430);
         }
         //销毁弹出窗口的函数
         function onFeatureUnselect(feature) {
@@ -1082,7 +1083,7 @@ list-style-type:none;
 		</div>
     </div>
     
-    <div id="lay_east" data-options="region:'east',title:'提醒信息',split:true, iconCls: 'icon-west'"  style="width:420px;">
+    <!-- <div id="lay_east" data-options="region:'east',title:'提醒信息',split:true, iconCls: 'icon-west'"  style="width:420px;">
 	    	<table class="table_11"  id="xmlxTj_table" width="398" border="1" align="center" cellpadding="0" cellspacing="0" >
 	    	</table>
 	    	<div id="anychart_div" style="width:350px;height:300px;margin:10px;">
@@ -1091,6 +1092,6 @@ list-style-type:none;
 				</div>
 			</div>
 			
-	</div>
+	</div> -->
 </body>
 </html>
