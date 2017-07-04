@@ -96,7 +96,10 @@ public class ZjbfServerImpl extends BaseOperate  implements ZjbfServer{
 
 	@Override
 	public List<XmZjbf> queryZjByGydwdm(XmZjbf xmZjbf) {
-		return queryList("queryZjByGydwdm", xmZjbf);
+		if("1".equals(xmZjbf.getGydwdm().substring(0, 1)))
+			return queryList("queryZjByGydwdmJtj", xmZjbf);
+		else
+			return queryList("queryZjByGydwdm", xmZjbf);
 	}
 
 	@Override

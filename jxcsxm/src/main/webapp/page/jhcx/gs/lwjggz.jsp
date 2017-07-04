@@ -57,7 +57,7 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':2,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.gcfl':gcfl
 			};
@@ -118,7 +118,7 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':2,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.gcfl':gcfl
 			};

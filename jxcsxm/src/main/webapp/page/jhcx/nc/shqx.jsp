@@ -38,7 +38,7 @@
 			
 			var gydw=$.cookie("unit");
 			if(gydw=="36"){
-				loadChildGydw("21101360000");
+				loadChildGydw("11101360000");
 				//loadChildGydw("11101360000");
 			}else{
 				loadChildGydw(gydw);
@@ -67,7 +67,7 @@
 			
 			var zj;
 			if($.cookie("unit")=="36")
-			zj={'xmjbxx.gydwdm':"21101360000",'xmjbxx.xdnf':$("#nf").combo('getValue')};
+			zj={'xmjbxx.gydwdm':"11101360000",'xmjbxx.xdnf':$("#nf").combo('getValue')};
 			else zj={'xmjbxx.gydwdm':gydwdm,'xmjbxx.xdnf':$("#nf").combo('getValue')};
 			$.ajax({
 				type:'post',
@@ -179,7 +179,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划查询>&nbsp;普通国省道>&nbsp;水毁抢修</div>
+		<div id="p_top">计划查询>&nbsp;农村公路>&nbsp;水毁抢修</div>
 	</div>
 	<div style="text-align: left;font-size: 12px;margin: 0px;width:99%;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">

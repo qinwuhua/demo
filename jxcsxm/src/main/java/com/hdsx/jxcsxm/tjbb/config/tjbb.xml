@@ -46,7 +46,7 @@
 	<select id="getJhzxqkb" parameterType="elist" resultType="elist">
 		select rownum v_0,bb.* from(
 			select 
-			xd.jhxdwh v_1,xm.gydw v_2,xm.xmmc v_3,xm.ztz v_4,wc.wcl v_5,wc.wctz v_6,nvl(to_char(decode(xm.ztz,null,'0','0','0',round(nvl(wc.wctz,0)/xm.ztz*100),2)),'0')||'%' v_7,
+			xd.jhxdwh v_1,xm.gydw v_2,xm.xmmc v_3,xm.ztz v_4,wc.wcl v_5,wc.wctz v_6,nvl(to_char(decode(xm.ztz,null,'0','0','0',round(nvl(wc.wctz,0)/xm.ztz*100,2))),'0')||'%' v_7,
 			xd.ztz v_8,xd.cgs v_9,xd.rys v_10,xd.ttc v_11,xd.dfzc v_12,
 			dw.ztz v_13,dw.cgs v_14,dw.rys v_15,dw.ttc v_16,dw.dfzc v_17,
 			bf.ztz v_18,bf.cgs v_19,bf.rys v_20,bf.ttc v_21,bf.dfzc v_22,
@@ -73,7 +73,7 @@
 		select 
 		xzqhdm,(select name from xtgl_xzqh where id=xzqhdm)||'合计' v_1,
 		nvl(sum(v_4),0) v_4,nvl(sum(v_5),0) v_5,nvl(sum(v_6),0) v_6,
-		nvl(to_char(decode(nvl(sum(v_4),0),null,'0','0','0',round(nvl(sum(v_6),0)/nvl(sum(v_4),0)*100),2)),'0')||'%' v_7,
+		nvl(to_char(decode(nvl(sum(v_4),0),null,'0','0','0',round(nvl(sum(v_6),0)/nvl(sum(v_4),0)*100,2))),'0')||'%' v_7,
 		nvl(sum(v_8),0) v_8,nvl(sum(v_9),0) v_9,nvl(sum(v_10),0) v_10,
 		nvl(sum(v_11),0) v_11,nvl(sum(v_12),0) v_12,nvl(sum(v_13),0) v_13,
 		nvl(sum(v_14),0) v_14,nvl(sum(v_15),0) v_15,nvl(sum(v_16),0) v_16,

@@ -12,7 +12,7 @@ function loadjhxdwh(id,xmlx){
 			//开始
 			var years=[];
 			years.push({text:'全部',value:''});
-			
+			if(msg!=null)
 			for ( var i = 0; i < msg.length; i++) {
 				years.push({text:msg[i].text,value:i+1});
 			}
@@ -62,6 +62,8 @@ function loadjhxdwh(id,xmlx){
 					}
 				}
 			});
+			
+			
 			//$('#'+id).combobox("setText",'全部');
 			//$('#id全部').attr('checked', true);
 		}

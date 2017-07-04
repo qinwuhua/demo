@@ -19,6 +19,7 @@
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
 		) where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
@@ -48,6 +49,7 @@
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
 		) where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
@@ -76,6 +78,7 @@
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
 		) where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
@@ -244,6 +247,14 @@
 	<select id="queryChildGydw"  parameterType="xmZjdw" resultType="xmZjdw">
 		select * from XTGL_DEPARTMENT t where t.parent=#{gydw} and (t.id not like '%000_' or t.id  like '%0000')  order by t.id
 	</select>
+	<select id="queryChildGydwJtj"  parameterType="xmZjdw" resultType="xmZjdw">
+		select t.*,decode(parent,'11101360000',decode(substr(id,-2),'00',1,0),0) sfds,decode(parent,'11101360000',0,1) sftj from XTGL_DEPARTMENT t where (t.parent=#{gydw}
+			or id like substr(#{gydw},0,decode(instr(#{gydw},'00'),0,length(#{gydw}),instr(#{gydw},'00')-1))||'%' )
+			and parent !='36'
+<!-- 		and (t.id not like '%000_' or t.id  like '%0000')   -->
+		order by t.id
+	</select>
+	
 	<select id="queryShqxByOne" parameterType="xmZjdw" resultType="xmZjdw">
 		select * from xm_zjdw where 1=1 and gydwdm=#{gydwdm} and nf=#{nf}
 	</select>
@@ -293,5 +304,9 @@
 	
 	<select id="queryZjByGydwdm" parameterType="xmzjdw" resultType="xmzjdw">
 		select * from xm_zjdw z where dwyf=#{dwyf} and z.parent=#{gydwdm} order by gydwdm
+	</select>
+	
+	<select id="queryZjByGydwdmJtj" parameterType="xmzjdw" resultType="xmzjdw">
+		select * from xm_zjdw z where dwyf=#{dwyf} and z.parent=#{gydwdm} or id like rtrim(#{gydwdm}, '0')||'%' order by gydwdm
 	</select>
 </mapper>

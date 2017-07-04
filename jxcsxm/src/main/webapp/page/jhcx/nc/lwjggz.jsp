@@ -24,30 +24,7 @@
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
 			loadBmbm3('gcfl','路网结构改造项目类型');
 			loadjhxdwh("jhxdwh",'gs_lwjggz');
-			loadBmbm3('shzt','审核状态');
-			loadBmbm3('ssbzt','上报状态');
-			loadBmbm3('xsbzt','上报状态');
-			//YMLib.Var.jdbs=2;
 			
-			
-			if($.cookie('unit2').length==11){
-				$("td[name='xian']").show();
-				$("td[name='shi']").hide();
-				$("td[name='sheng']").hide();
-				$("a[name='sheng']").hide();
-			}
-			if($.cookie('unit2').length==9){
-				$("td[name='shi']").show();
-				$("td[name='xian']").hide();
-				$("td[name='sheng']").hide();
-				$("a[name='sheng']").hide();
-			}
-			if($.cookie('unit2').length==7){
-				$("a[name='sheng']").show();
-				$("td[name='sheng']").show();
-				$("td[name='xian']").hide();
-				$("td[name='shi']").hide();
-			}
 			//YMLib.Var.jdbs=2;
 			queryXmlist();
 			
@@ -80,55 +57,37 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':2,
+			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':1,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.gcfl':gcfl,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt")
+					   'xmjbxx.gcfl':gcfl
 			};
 	
 			loadTj();
 			
 			$('#grid').datagrid({    
-			    url:'/jxcsxm/zjbf/queryXmlist.do',
+			    url:'/jxcsxm/jhcx/queryXmlist.do',
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-157,
+			    height:$(window).height()-155,
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
-			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
-							{field:'cz',title:'操作',width:120,align:'center',
-								formatter: function(value,row,index){
-									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_lwjggz','zjbf'"+')" >项目详情</a>&nbsp;';
-									result+='<a style="color:#3399CC;" href="javascript:openZjbf('+"'"+row.xmbm+"','gs_lwjggz'"+')" >拨付详情</a>';	
+			    columns:[[	{field:'cz',title:'操作',width:130,align:'center',
+							formatter: function(value,row,index){
+								var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_lwjggz','jhcx'"+')" >项目详情</a>'
 									return result;
-								}
+							}
 							},
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
-							{field:'xmmc',title:'项目名称',width:250,align:'center'},
+// 							{field:'xmbm',title:'项目编码',width:110,align:'center'},
+							{field:'xmmc',title:'项目名称',width:400,align:'center'},
 							{field:'gydw',title:'管养单位',width:180,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
 							{field:'jhxdwh',title:'计划下达文号',width:390,align:'center'}
-			    ]],
-			    rowStyler:function(index,row){
-			    	if($.cookie('unit2').length==11){
-					if (row.xsbzt>0){
-						return 'background-color:pink;color:blue;font-weight:bold;';
-					}}
-			    	if($.cookie('unit2').length==9){
-						if (row.ssbzt>0){
-						return 'background-color:pink;color:blue;font-weight:bold;';
-					}}
-			    	if($.cookie('unit2').length==7){
-						if (row.shzt>0){
-						return 'background-color:pink;color:blue;font-weight:bold;';
-					}}
-			    	
-			    	
-				}
+			    ]]
 			}); 
 		}
 		
@@ -159,22 +118,19 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':2,
+			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':1,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.gcfl':gcfl,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt")
+					   'xmjbxx.gcfl':gcfl
 			};
 			$.ajax({
 				type:'post',
-				url:'/jxcsxm/zjbf/getbfTjAll.do',
+				url:'/jxcsxm/jhcx/getTjAll.do',
 				data:params,
 				dataType:'json',
 				success:function(msg){
 					$("#xmsl").html(msg.xmsl);
 					$("#jhxdzj").html(msg.jhxdzj);
-					$("#dwzj").html(msg.dwzj);
-					$("#bfzj").html(msg.bfzj);
-					$("#yshbfzj").html(msg.yshbfzj);
+					
 				}
 			});
 		}
@@ -191,7 +147,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金拨付>&nbsp;普通国省道>&nbsp;路网结构改造</div>
+		<div id="p_top">计划查询>&nbsp;农村公路>&nbsp;路网结构改造</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -216,22 +172,12 @@ text-decoration:none;
         					<tr height="28">
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
-        						<!-- 县市上报状态 省审核状态-->
-								<td align="right" name='sheng'>审核状态：</td>
-								<td name='sheng'><select name="shzt" id="shzt" style="width:80px;" ></select></td>
-        						<td align="right" name='shi'>上报状态：</td>
-								<td name='shi'><select name="ssbzt" id="ssbzt" style="width:80px;" ></select></td>
-        						<td align="right" name='xian'>上报状态：</td>
-								<td name='xian'><select name="xsbzt" id="xsbzt" style="width:80px;" ></select></td>
-        						
         						<td align="right">项目类型：</td>
-								<td><select name="gcfl" id="gcfl" style="width:144px;" ></select></td>
+								<td><select name="gcfl" id="gcfl" style="width:80px;" ></select></td>
         					</tr>
         					<tr height="28">
                             	<td colspan="8">
                             		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryXmlist()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
-									<a name='sheng' id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plshbf()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">批量审核</a>
-								
 								</td>
                             </tr>
         					</table>
@@ -243,11 +189,8 @@ text-decoration:none;
         	<tr>
             	<td style="padding-left: 10px; font-size:12px;">
             		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
-           		        计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                        到位资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
-                   	拨付资金共【<span id="bfzj" style="color: Red; font-weight: bold;">0</span>】万元，
-                   	其中，已审核拨付资金共【<span id="yshbfzj" style="color: Red; font-weight: bold;">0</span>】万元。
-            		</div>
+           		        计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元。
+           		    </div>
             		<div><table id="grid"></table></div>
             	</td>
         	</tr>

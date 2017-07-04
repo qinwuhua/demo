@@ -20,7 +20,11 @@
 
 	<script type="text/javascript">
 		$(function(){
-			loadUnit1("gydw",$.cookie("unit"));
+			if($.cookie("unit")=="36"){
+				loadUnit1("gydw",'21101360000');
+			}else{
+				loadUnit1("gydw",$.cookie("unit"));
+			}
 			loadBmbm3('nf','项目年份',new Date().getFullYear());
 			var yf=new Date().getMonth()+1;
 			if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
@@ -34,8 +38,10 @@
 			
 			var gydwdm=$("#gydw").combotree("getValues");
 			if(gydwdm.length==0){
+				if($.cookie('unit')=='36')
+					gydwstr='2110136'
+				else
 				gydwstr= $.cookie("unit2");
-				
 			}else if(gydwdm.length==1){
 				if(gydwdm[0].substr(gydwdm[0].length-2,gydwdm[0].length)=="00") gydwdm[0]=gydwdm[0].substr(0,gydwdm[0].length-2);
 				if(gydwdm[0].substr(gydwdm[0].length-2,gydwdm[0].length)=="00") gydwdm[0]=gydwdm[0].substr(0,gydwdm[0].length-2);

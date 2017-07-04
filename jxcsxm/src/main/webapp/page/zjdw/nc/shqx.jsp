@@ -21,15 +21,16 @@
 	<script type="text/javascript">
 		$(function(){
 			if($.cookie("unit")=="36"){
-				loadUnit1("gydw",'21101360000');
+				loadUnit1("gydw",'11101360000');
 			}else{
 				loadUnit1("gydw",$.cookie("unit"));
 			}
+			
 			loadBmbm3('nf','项目年份',new Date().getFullYear());
 			var yf=new Date().getMonth()+1;
 			if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
 			
-			
+// 			loadjhxdwh("jhxdwh",'gs_shqx');
 			queryXmlist();
 			
 			
@@ -39,10 +40,9 @@
 			var gydwdm=$("#gydw").combotree("getValues");
 			if(gydwdm.length==0){
 				if($.cookie('unit')=='36')
-					gydwstr='2110136'
+					gydwstr='1110136'
 				else
 				gydwstr= $.cookie("unit2");
-				
 			}else if(gydwdm.length==1){
 				if(gydwdm[0].substr(gydwdm[0].length-2,gydwdm[0].length)=="00") gydwdm[0]=gydwdm[0].substr(0,gydwdm[0].length-2);
 				if(gydwdm[0].substr(gydwdm[0].length-2,gydwdm[0].length)=="00") gydwdm[0]=gydwdm[0].substr(0,gydwdm[0].length-2);
@@ -57,13 +57,13 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
  */
-			var params={'gydw':gydwstr,'bfyf':$("#nf").combo('getValue')+"-"+$("#yf").combo('getValue')
+			var params={'gydw':gydwstr,'dwyf':$("#nf").combo('getValue')+"-"+$("#yf").combo('getValue')
 			};
 	
  			//loadLj(params);
 			
 			$('#grid').datagrid({    
-			    url:'/jxcsxm/zjbf/queryXmlistshqx.do',
+			    url:'/jxcsxm/zjdw/queryXmlistshqx.do',
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
@@ -75,9 +75,9 @@
 			    queryParams: params,
 			    columns:[[
 							
-							{field:'bd',title:'标段',width:90,align:'center'},
+							//{field:'bd',title:'标段',width:90,align:'center'},
 							{field:'jhxdwh',title:'计划下达文号',width:300,align:'center'},
-							{field:'bfyf',title:'拨付月份',width:90,align:'center'},
+							{field:'dwyf',title:'到位月份',width:90,align:'center'},
 							{field:'gydw',title:'管养单位',width:140,align:'center'},
 							{field:'ztz',title:'总投资(万元)',width:95,align:'center'},
 							{field:'cgs',title:'车购税(万元)',width:95,align:'center'},
@@ -104,7 +104,7 @@
 		}
 		
 		function addshqx(){
-			openWindow("添加或编辑","/jxcsxm/page/zjbf/gs/shqx_tj.jsp",940,450);
+			openWindow("添加或编辑","/jxcsxm/page/zjdw/nc/shqx_tj.jsp",940,450);
 		}
 		
 		
@@ -122,7 +122,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金拨付>&nbsp;普通国省道>&nbsp;水毁抢修</div>
+		<div id="p_top">资金到位>&nbsp;农村公路>&nbsp;水毁抢修</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -136,7 +136,7 @@ text-decoration:none;
 							<tr height="28">
 								<td align="right">管养单位：</td>
         						<td><select id="gydw" style="width:250px;"></select></td>
-								<td align="right">拨付月份：</td>
+								<td align="right">到位月份：</td>
         						<td><input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;"></td>
 								
 								</tr>

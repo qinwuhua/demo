@@ -40,7 +40,10 @@ public class JhcxServerImpl extends BaseOperate  implements JhcxServer{
 
 	@Override
 	public List<Xmjbxx> queryZjByGydwdm(Xmjbxx xmjbxx) {
-		return queryList("queryZjByGydwdm", xmjbxx);
+		if("1".equals(xmjbxx.getGydwdm().substring(0, 1)))
+			return queryList("queryZjByGydwdmJtj", xmjbxx);
+		else
+			return queryList("queryZjByGydwdm", xmjbxx);	
 	}
 	
 	

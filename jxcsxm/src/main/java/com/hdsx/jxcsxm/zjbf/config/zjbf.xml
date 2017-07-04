@@ -19,6 +19,7 @@
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
 		) where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
@@ -48,6 +49,7 @@
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
 		) where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
@@ -79,6 +81,7 @@
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
 		) where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
@@ -282,6 +285,8 @@
 		select * from xm_zjbf z where bfyf=#{bfyf} and z.parent=#{gydwdm} order by gydwdm
 	</select>
 	
-	
+	<select id="queryZjByGydwdmJtj" parameterType="xmzjbf" resultType="xmzjbf">
+		select * from xm_zjbf z where bfyf=#{bfyf} and z.parent=#{gydwdm} or id like rtrim(#{gydwdm}, '0')||'%' order by gydwdm
+	</select>
 	
 </mapper>

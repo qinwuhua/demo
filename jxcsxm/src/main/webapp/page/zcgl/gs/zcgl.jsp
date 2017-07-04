@@ -268,9 +268,9 @@
 		function openZcgl(id,flag){
 			YMLib.Var.index=id;
 			if(flag=='bj')
-			openWindow("编辑","/jxcsxm/page/zcgl/zcgl_bj.jsp",700,310);
+			openWindow("编辑","/jxcsxm/page/zcgl/gs/zcgl_bj.jsp",700,310);
 			if(flag=='info')
-			openWindow("详情","/jxcsxm/page/zcgl/zcgl_info.jsp",700,285);
+			openWindow("详情","/jxcsxm/page/zcgl/gs/zcgl_info.jsp",700,285);
 				
 		}
 		

@@ -74,8 +74,27 @@ public class XmZjdw{
     private String xmsl;
     private String btzzj;
     private String sffy;
+    private String sfds;//是否地市
+    private String sftj;//是否统计
     
-    public String getSffy() {
+    
+    public String getSfds() {
+		return sfds;
+	}
+
+	public void setSfds(String sfds) {
+		this.sfds = sfds;
+	}
+
+	public String getSftj() {
+		return sftj;
+	}
+
+	public void setSftj(String sftj) {
+		this.sftj = sftj;
+	}
+
+	public String getSffy() {
 		return sffy;
 	}
 
