@@ -66,8 +66,8 @@
 			openWindow("添加","/jxcsxm/page/zjbf/gs/zhhfzjbf_tj.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
 			openWindow("添加","/jxcsxm/page/zjbf/gs/lwjggzzjbf_tj.jsp",600,240);
-					
-			
+			if(parent.YMLib.Var.xmlx=="nc_lwjggz")
+			openWindow("添加","/jxcsxm/page/zjbf/nc/lwjggzzjbf_tj.jsp",600,240);
 			
 			
 		}
@@ -81,6 +81,9 @@
 			openWindow("详情","/jxcsxm/page/zjbf/gs/zhhfzjbf_info.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
 			openWindow("详情","/jxcsxm/page/zjbf/gs/lwjggzzjbf_info.jsp",600,240);
+			if(parent.YMLib.Var.xmlx=="nc_lwjggz")
+			openWindow("详情","/jxcsxm/page/zjbf/nc/lwjggzzjbf_info.jsp",600,240);
+			
 		}
 		function editDw(id){
 			YMLib.Var.id=id;
@@ -92,7 +95,8 @@
 			openWindow("编辑","/jxcsxm/page/zjbf/gs/zhhfzjbf_bj.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
 			openWindow("编辑","/jxcsxm/page/zjbf/gs/lwjggzzjbf_bj.jsp",600,240);
-					
+			if(parent.YMLib.Var.xmlx=="nc_lwjggz")
+			openWindow("编辑","/jxcsxm/page/zjbf/nc/lwjggzzjbf_bj.jsp",600,240);		
 			
 		}
 		function deldw(){
@@ -459,7 +463,7 @@
 				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
-			if(parent.YMLib.Var.xmlx=='gs_lwjggz')
+			if(parent.YMLib.Var.xmlx=='gs_lwjggz'||parent.YMLib.Var.xmlx=='nc_lwjggz')
 				col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
 					{field:'cz',title:'操作',width:230,align:'center',
 					formatter: function(value,row,index){

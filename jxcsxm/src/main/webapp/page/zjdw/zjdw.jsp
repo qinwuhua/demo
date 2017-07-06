@@ -67,9 +67,10 @@
 			openWindow("添加","/jxcsxm/page/zjdw/gs/zhhfzjdw_tj.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
 			openWindow("添加","/jxcsxm/page/zjdw/gs/lwjggzzjdw_tj.jsp",600,210);
-					
-			
-			
+			if(parent.YMLib.Var.xmlx=="nc_lwjggz")
+			openWindow("添加","/jxcsxm/page/zjdw/nc/lwjggzzjdw_tj.jsp",600,210);
+			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
+			openWindow("添加","/jxcsxm/page/zjdw/nc/nczjdw_tj.jsp",600,210);
 			
 		}
 		function openDwInfo(id){
@@ -82,6 +83,11 @@
 			openWindow("详情","/jxcsxm/page/zjdw/gs/zhhfzjdw_info.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
 			openWindow("详情","/jxcsxm/page/zjdw/gs/lwjggzzjdw_info.jsp",600,210);
+			if(parent.YMLib.Var.xmlx=="nc_lwjggz")
+			openWindow("详情","/jxcsxm/page/zjdw/nc/lwjggzzjdw_info.jsp",600,210);
+			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
+			openWindow("详情","/jxcsxm/page/zjdw/nc/nczjdw_info.jsp",600,210);
+			
 		}
 		function editDw(id){
 			YMLib.Var.id=id;
@@ -93,7 +99,9 @@
 			openWindow("编辑","/jxcsxm/page/zjdw/gs/zhhfzjdw_bj.jsp",600,310);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
 			openWindow("编辑","/jxcsxm/page/zjdw/gs/lwjggzzjdw_bj.jsp",600,210);
-					
+			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
+			openWindow("编辑","/jxcsxm/page/zjdw/nc/nczjdw_bj.jsp",600,210);
+						
 			
 		}
 		function deldw(){
@@ -459,7 +467,7 @@
 				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
 			
-			if(parent.YMLib.Var.xmlx=='gs_lwjggz')
+			if(parent.YMLib.Var.xmlx=='gs_lwjggz'||parent.YMLib.Var.xmlx=='nc_lwjggz')
 				col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
 					{field:'cz',title:'操作',width:230,align:'center',
 					formatter: function(value,row,index){
@@ -521,6 +529,71 @@
 				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
 				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
+			
+			if(parent.YMLib.Var.xmlx=='nc_gljs'||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
+				col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+					{field:'cz',title:'操作',width:230,align:'center',
+					formatter: function(value,row,index){
+						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+						if($.cookie('unit2').length==11){
+							if(row.xsbzt=='未上报'){
+								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								result+='<a style="color:#3399CC;" href="javascript:updateDwType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								if(row.sfth=='是')
+									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
+								else result+='退回原因&nbsp;&nbsp;';	
+							}else{
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+							}
+						}
+						if($.cookie('unit2').length==9){
+							if(row.ssbzt=='未上报'){
+								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								result+='<a style="color:#3399CC;" href="javascript:updateDwType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								if(row.sfth=='是')
+									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
+								else result+='退回原因&nbsp;&nbsp;';	
+							}else{
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+							}
+						}
+						if($.cookie('unit2').length==7){
+							if(row.shzt=='未审核'){
+								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								result+='<a style="color:#3399CC;" href="javascript:updateDwType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
+								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								result+='退回未审核&nbsp;&nbsp;';
+							}else{
+								result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
+								result+='退回下级&nbsp;&nbsp;';
+								result+='<a style="color:#3399CC;" href="javascript:updateDwType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+							}
+						}
+						return result; 
+					}
+				},
+				{field:'zt',title:'状态',width:50,align:'center',
+					formatter: function(value,row,index){
+						var zt="";if(row.shzt=='已审核'){zt='已审核';
+						}else{
+							if($.cookie('unit2').length==11){zt=row.xsbzt;}
+							if($.cookie('unit2').length==9){zt=row.ssbzt;}
+							if($.cookie('unit2').length==7){zt=row.shzt;}
+						}
+						return zt;
+				}},
+				{field:'dwyf',title:'到位月份',width:70,align:'center'},
+				{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+// 				{field:'bd',title:'标段',width:50,align:'center'},
+				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+				{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
+				{field:'rys',title:'燃油税(万元)',width:80,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			]]
+			
+			
 			
 			
 			$('#grid').datagrid({    

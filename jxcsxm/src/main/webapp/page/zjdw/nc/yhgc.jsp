@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>路网结构改造</title>
+	<title>养护工程</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -22,8 +22,8 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
-			loadBmbm3('gcfl','路网结构改造项目类型');
-			loadjhxdwh("jhxdwh",'gs_lwjggz');
+			//loadBmbm3('gcfl','养护大中修工程分类');
+			loadjhxdwh("jhxdwh",'nc_yhgc');
 			loadBmbm3('shzt','审核状态');
 			loadBmbm3('ssbzt','上报状态');
 			loadBmbm3('xsbzt','上报状态');
@@ -64,11 +64,9 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			
-			var jsxz="路网结构改造";
+			var jsxz="养护工程";
 			
-			var gcfl=$("#gcfl").combobox("getValues").join(",");
-			if(gcfl.substr(0,1)==',')
-				gcfl=gcfl.substr(1,gcfl.length);
+			
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
@@ -77,9 +75,8 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':1,
+			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.gcfl':gcfl,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt")
 			};
 	
@@ -99,17 +96,17 @@
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
 							{field:'cz',title:'操作',width:130,align:'center',
 								formatter: function(value,row,index){
-									
-									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_lwjggz','zjdw'"+')" >项目详情</a>&nbsp;';
-									result+='<a style="color:#3399CC;" href="javascript:openZjdw('+"'"+row.xmbm+"','nc_lwjggz'"+')" >到位详情</a>';
+									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','nc_yhgc','zjdw'"+')" >项目详情</a>&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:openZjdw('+"'"+row.xmbm+"','nc_yhgc'"+')" >到位详情</a>';	
 									return result;
 								}
 							},
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
+							{field:'xmbm',title:'项目编码',width:110,align:'center'},
 							{field:'xmmc',title:'项目名称',width:270,align:'center'},
 							{field:'gydw',title:'管养单位',width:180,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
-							{field:'jhxdwh',title:'计划下达文号',width:360,align:'center'}
+							{field:'jhxdwh',title:'计划下达文号',width:250,align:'center'}
 			    ]],
 			    rowStyler:function(index,row){
 			    	if($.cookie('unit2').length==11){
@@ -144,11 +141,9 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			
-			var jsxz="路网结构改造";
+			var jsxz="养护工程";
 			
-			var gcfl=$("#gcfl").combobox("getValues").join(",");
-			if(gcfl.substr(0,1)==',')
-				gcfl=gcfl.substr(1,gcfl.length);
+			
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
@@ -157,9 +152,8 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':1,
+			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.gcfl':gcfl,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt")
 			};
 			$.ajax({
@@ -188,7 +182,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金到位>&nbsp;农村公路>&nbsp;路网结构改造</div>
+		<div id="p_top">资金到位>&nbsp;农村公路>&nbsp;养护工程</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -204,8 +198,8 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:165px;"></select></td>
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 80px;"></select></td>
-<!-- 								<td align="right">项目编码：</td> -->
-<!--         						<td><input name="xmbm" type="text" id="xmbm" style="width:140px;" /></td> -->
+								<td align="right">项目编码：</td>
+        						<td><input name="xmbm" type="text" id="xmbm" style="width:140px;" /></td>
         						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:140px;" /></td>
         						
@@ -213,7 +207,7 @@ text-decoration:none;
         					<tr height="28">
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
-        						<!-- 县市上报状态 省审核状态-->
+								<!-- 县市上报状态 省审核状态-->
 								<td align="right" name='sheng'>审核状态：</td>
 								<td name='sheng'><select name="shzt" id="shzt" style="width:80px;" ></select></td>
         						<td align="right" name='shi'>上报状态：</td>
@@ -221,8 +215,6 @@ text-decoration:none;
         						<td align="right" name='xian'>上报状态：</td>
 								<td name='xian'><select name="xsbzt" id="xsbzt" style="width:80px;" ></select></td>
         						
-        						<td align="right">项目类型：</td>
-								<td><select name="gcfl" id="gcfl" style="width:144px;" ></select></td>
         					</tr>
         					<tr height="28">
                             	<td colspan="8">
