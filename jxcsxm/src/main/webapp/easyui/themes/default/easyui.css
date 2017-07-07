@@ -105,7 +105,7 @@ input{ line-height:20px;}
 }
 .panel-header,
 .panel-body {
-  border-color: #95B8E7;
+  border-color: #fb9b34;
 }
 .panel-header {
   background-color: #E0ECFF;
@@ -160,11 +160,11 @@ input{ line-height:20px;}
   border-color: #95B8E7;
 }
 .accordion .accordion-header {
-  background: #E0ECFF;
+  background: #fbe4cc;
   filter: none;
 }
 .accordion .accordion-header-selected {
-  background: #87CEFA;
+  background: #fedab2;
 }
 .accordion .accordion-header-selected .panel-title {
   color: #000000;
@@ -335,11 +335,11 @@ input{ line-height:20px;}
   background-color: #ffffff;
 }
 .combo {
-  border-color: #95B8E7;
+  border-color: #fdb567;
   background-color: #ffffff;
 }
 .combo-arrow {
-  background-color: #E0ECFF;
+  background-color: #fbe4cc;
 }
 .combo-arrow-hover {
   background-color: #eaf2ff;
@@ -775,7 +775,7 @@ input{ line-height:20px;}
 }
 .tabs-header,
 .tabs-tool {
-  background-color: #E0ECFF;
+  background-color: #feead4;
 }
 .tabs-header-plain {
   background: transparent;
@@ -791,7 +791,7 @@ input{ line-height:20px;}
 .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-left .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-right .tabs li.tabs-selected a.tabs-inner {
-  border-color: #95B8E7;
+  border-color: #fb9b34;
 }
 .tabs-p-tool a:hover,
 .tabs li a:hover.tabs-close,
@@ -2121,11 +2121,11 @@ a.s-btn-plain-active {
   border-color: #95B8E7;
 }
 .tree-node-hover {
-  background: #eaf2ff;
+  background: #feeedd;
   color: #000000;
 }
 .tree-node-selected {
-  background: #B0E2FF;
+  background: #fde7cf;
   color: #000000;
 }
 .validatebox-tip {

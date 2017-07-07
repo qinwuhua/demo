@@ -90,9 +90,9 @@ function clearscSession(){
 		<div class="header">
 			<div class="header_content">
 			    <div style="position:absolute;top:15px;right:250px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user"></span></div>
-			    <div class="system"><a onclick="edit()" href="javascript:void(0)">修改密码</a><em>|</em>
+			    <div class="system"><a onclick="edit()" href="javascript:void(0)" style="color:#d3fcff">修改密码</a><em style="color:#d3fcff">|</em>
 <!-- 			    	<a href="./index.jsp" target="_self">返回首页</a><em>|</em> -->
-			    	<a onclick="clearSession()" href="javascript:void(0)">退出系统</a></div>
+			    	<a onclick="clearSession()" href="javascript:void(0)" style="color:#d3fcff">退出系统</a></div>
 				<ul class="nav">
 					
 					<li id="menu_010101" style="display:none;"><a id="Menu_1" href="javascript:void(0)">电子地图</a></li>
