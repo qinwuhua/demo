@@ -207,6 +207,34 @@
 			{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 		]]
 		
+		if(parent.YMLib.Var.xmlx=='nc_gljs'||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
+			col=[[
+					{field:'cz',title:'操作',width:60,align:'center',
+					formatter: function(value,row,index){
+						var result='<a style="color:#3399CC;" href="javascript:openBfInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+						return result; 
+					}
+				},
+				{field:'zt',title:'状态',width:50,align:'center',
+					formatter: function(value,row,index){
+						var zt="";if(row.shzt=='已审核'){zt='已审核';
+						}else{
+							if($.cookie('unit2').length==11){zt=row.xsbzt;}
+							if($.cookie('unit2').length==9){zt=row.ssbzt;}
+							if($.cookie('unit2').length==7){zt=row.shzt;}
+						}
+						return zt;
+				}},
+				{field:'bfyf',title:'拨付月份',width:75,align:'center'},
+				{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
+				{field:'bd',title:'标段',width:50,align:'center'},
+				{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+				{field:'cgs',title:'车购税(万元)',width:75,align:'center'},
+				{field:'rys',title:'燃油税(万元)',width:75,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
+			]]
+		
 		
 		$('#zjbfgrid').datagrid({    
 		    url:'/jxcsxm/zjbf/queryzjbflist.do',
@@ -356,7 +384,35 @@
 			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
 			{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 		]]
-		
+		if(parent.YMLib.Var.xmlx=='nc_gljs'||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
+			col=[[
+					{field:'cz',title:'操作',width:60,align:'center',
+					formatter: function(value,row,index){
+						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+						
+						return result; 
+					}
+				},
+				{field:'zt',title:'状态',width:50,align:'center',
+					formatter: function(value,row,index){
+						var zt="";if(row.shzt=='已审核'){zt='已审核';
+						}else{
+							if($.cookie('unit2').length==11){zt=row.xsbzt;}
+							if($.cookie('unit2').length==9){zt=row.ssbzt;}
+							if($.cookie('unit2').length==7){zt=row.shzt;}
+						}
+						return zt;
+				}},
+				{field:'dwyf',title:'到位月份',width:75,align:'center'},
+				{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
+//					{field:'bd',title:'标段',width:50,align:'center'},
+				{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+				{field:'cgs',title:'车购税(万元)',width:75,align:'center'},
+				{field:'rys',title:'燃油税(万元)',width:75,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
+			]]
+			
 		
 		$('#zjdwgrid').datagrid({    
 		    url:'/jxcsxm/zjdw/queryzjdwlist.do',
@@ -433,6 +489,19 @@
 			{field:'stz',title:'省投资(万元)',width:75,align:'center'},
 			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'}
 		]]
+		
+		if(parent.YMLib.Var.xmlx=='nc_gljs'||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
+			col=[[
+				
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+//				{field:'bd',title:'标段',width:50,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
+			{field:'btzzj',title:'车购税(万元)',width:75,align:'center'},
+			{field:'rys',title:'燃油税(万元)',width:75,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'}
+		]]
+		
+		
 		
 		
 		$('#zjxdgrid').datagrid({    

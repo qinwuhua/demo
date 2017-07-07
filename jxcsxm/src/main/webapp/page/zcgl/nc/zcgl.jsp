@@ -64,8 +64,10 @@
 			
 			var xzqhdm=$("#gydw").combotree("getValues");
 			if(xzqhdm.length==0){
-				xzqhstr= $.cookie("dist2");
-				
+				if($.cookie('unit')=='36')
+					xzqhstr='1110136'
+				else
+					xzqhstr= $.cookie("unit2");
 			}else if(xzqhdm.length==1){
 				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
 				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
