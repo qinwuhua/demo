@@ -37,7 +37,29 @@ public class MyUtil implements Serializable{
 		return result;
 	}
 	
-	
+	/**
+	 * 
+	 * @param bh 要处理的参数
+	 * @param name 要加条件的数据库字段
+	 * @return 拼好的条件
+	 */
+	public static String getQueryTJDW(String bh,String name){
+		String result="";
+		if(bh!=null&&!"".equals(bh)){
+			
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" and ("+name+" like '%"+s[i].substring(0, 4)+"_"+s[i].substring(5, s[i].length())+"%'";
+				else
+					result+=" or "+name+" like '%"+s[i].substring(0, 4)+"_"+s[i].substring(5, s[i].length())+"%'";
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
+	}
 	
 	/**
 	 * 

@@ -61,7 +61,7 @@ public class ZcglController extends BaseActionSupport implements ModelDriven<Zcg
 	public void queryZclist(){
 		try {
 			
-			zcgl.setGydw(MyUtil.getQueryTJ(zcgl.getGydw(), "gydwdm"));
+			zcgl.setGydw(MyUtil.getQueryTJDW(zcgl.getGydw(), "gydwdm"));
 			zcgl.setShzt(MyUtil.getQueryTJ(zcgl.getShzt(), "shztstr||sftx"));
 			zcgl.setSsbzt(MyUtil.getQueryTJ(zcgl.getSsbzt(), "ssbztstr||sftx"));
 			zcgl.setXsbzt(MyUtil.getQueryTJ(zcgl.getXsbzt(), "xsbztstr||sftx"));
