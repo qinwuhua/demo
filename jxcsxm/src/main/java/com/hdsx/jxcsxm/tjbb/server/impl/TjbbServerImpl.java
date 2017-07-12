@@ -34,22 +34,67 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 
 	@Override
 	public List<Excel_list> getJhzxqkb(Excel_list elist) {
+		
 		List<Excel_list> l1=new ArrayList<Excel_list>();
 		List<Excel_list> l2=new ArrayList<Excel_list>();
 		List<Excel_list> l3=new ArrayList<Excel_list>();
 		l2=queryList("getJhzxqkbHj", elist);
+		if("wh".equals(elist.getPxfs()))
+			l3=queryList("getJhzxqkbWhHj", elist);
+		else if("xm".equals(elist.getPxfs()))
+			l3=queryList("getJhzxqkbXmHj", elist);
+		else
 		l3=queryList("getJhzxqkb", elist);
 		for (int i = 0; i < l2.size(); i++) {
 			l1.add(l2.get(i));
 			int k=1;
 			for (int j = 0; j < l3.size(); j++) {
 				if(l2.get(i).getXzqhdm().equals(l3.get(j).getXzqhdm())){
-					l3.get(j).setV_0(""+k);
-					l1.add(l3.get(j));
-					k++;
+					if(l3.get(j).getXmsl()>1){
+						
+						
+						List<Excel_list> l=new ArrayList<Excel_list>();
+						
+						if("wh".equals(elist.getPxfs())){
+							elist.setXzqh(l3.get(j).getXzqhdm());
+							elist.setV_1(l3.get(j).getV_1());
+							
+							l3.get(j).setV_3("");
+							l3.get(j).setV_2("");
+							l3.get(j).setV_1(l3.get(j).getV_1()+"合计");
+							l1.add(l3.get(j));
+							
+							l=queryList("getJhzxqkbWh", elist);
+						}
+							
+						if("xm".equals(elist.getPxfs())){
+							elist.setXzqh(l3.get(j).getXzqhdm());
+							elist.setXmbm(l3.get(j).getXmbm());
+							
+							l3.get(j).setV_2("");
+							l3.get(j).setV_1(l3.get(j).getV_3()+"合计");
+							l3.get(j).setV_3("");
+							l1.add(l3.get(j));
+							
+							l=queryList("getJhzxqkbXm", elist);
+						}
+						System.out.println(l3.get(j).getXmsl()+"-----"+l.size());
+						
+						for (Excel_list e : l) {
+							e.setV_0(""+k);
+							l1.add(e);
+							k++;
+						}
+						
+					}else{
+						l3.get(j).setV_0(""+k);
+						l1.add(l3.get(j));
+						k++;
+					}
 				}
 			}
 		}
+		
 		
 		return l1;
 	}

@@ -41,7 +41,22 @@ public class Excel_list implements Serializable {
 	private String bfbt;
 	private String nf;
 	private String sbthcd;
+	private String pxfs;
+	private int xmsl=0;
 	
+	
+	public int getXmsl() {
+		return xmsl;
+	}
+	public void setXmsl(int xmsl) {
+		this.xmsl = xmsl;
+	}
+	public String getPxfs() {
+		return pxfs;
+	}
+	public void setPxfs(String pxfs) {
+		this.pxfs = pxfs;
+	}
 	public String getSbthcd() {
 		return sbthcd;
 	}

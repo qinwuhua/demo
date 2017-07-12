@@ -31,7 +31,7 @@ img {_azimuth:expression(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" &&
 .right_zjhf1{height:100%;width: 100%;}
 .table_grid1 td{
 	
-	border: 1px solid #cbe0ff;
+	border: 1px solid #FFE7BA;
 	font-size: 12px;
 	padding: 6px 6px 6px 12px;
 }

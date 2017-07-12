@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
-	<style type="text/css">.table{border: 1px solid #CBE0FF;} .table tr{border: 1px solid #CBE0FF;} .table tr td{border: 1px solid #CBE0FF;}</style>
+	<style type="text/css">.table{border: 1px solid #FFE7BA;} .table tr{border: 1px solid #FFE7BA;} .table tr td{border: 1px solid #FFE7BA;}</style>
 
 	<script type="text/javascript">
 	$(function(){
@@ -546,19 +546,19 @@
 <body>
 <div>
 		<form id="xminfo">
-			<table class='table' style="width: 97%;margin-left:5px;margin-right:5px; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="6" cellspacing="1">
+			<table class='table' style="width: 97%;margin-left:5px;margin-right:5px; background-color: #FFE7BA; font-size: 12px" border="0" cellpadding="6" cellspacing="1">
 				<tr style="height: 25px;">
-					<td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					<td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #FFEFD5; width: 15%; padding-left: 10px;">
 						项目信息
 					</td>
 				</tr>
 				<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
 				项目年份</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
 					<input id="xmnf" name="xmnf" type="text" style="width: 230px;"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
 				项目名称</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
 					<input id="xmmc" name="xmmc" type="text" style="width: 230px;"/>
@@ -566,12 +566,12 @@
 				
             </tr>
             <tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
 				管养单位</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="gydw" name="gydw" type="text" style="width: 230px;"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
 				行政区划</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="xzqh" name="xzqh" type="text" style="width: 230px;"/>
@@ -579,12 +579,12 @@
 				
             </tr>
             <tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
 				项目类型</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input id="xmlx" name="xmlx" type="text" style="width: 230px;"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 				</td>
@@ -592,7 +592,7 @@
             </tr>
              <div id='zjxd'>
 	            <tr>
-	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;height: 30px;">
+	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #FFEFD5; width: 15%; padding-left: 10px;height: 30px;">
 		              	资金下达信息————计划下达资金共【<span id="jhxdzj_xd" style="color: Red; font-weight: bold;">0</span>】万元。
 		           </td>
 	            </tr>   
@@ -607,7 +607,7 @@
             
              <div id='zjdw'>
 	            <tr>
-	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;height: 30px;">
+	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #FFEFD5; width: 15%; padding-left: 10px;height: 30px;">
 		              	资金到位信息————计划下达资金共【<span id="jhxdzj_dw" style="color: Red; font-weight: bold;">0</span>】万元，
 		                    到位资金共【<span id="dwzj_dw" style="color: Red; font-weight: bold;">0</span>】万元，
 		                    其中，已审核到位资金共【<span id="yshdwzj_dw" style="color: Red; font-weight: bold;">0</span>】万元。
@@ -624,7 +624,7 @@
             
             <div id='zjbf'>
 	            <tr>
-	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;height: 30px;">
+	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #FFEFD5; width: 15%; padding-left: 10px;height: 30px;">
 		              	资金拨付信息————计划下达资金共【<span id="jhxdzj_bf" style="color: Red; font-weight: bold;">0</span>】万元，
 		                    到位资金共【<span id="dwzj_bf" style="color: Red; font-weight: bold;">0</span>】万元，
 		                    拨付资金共【<span id="bfzj_bf" style="color: Red; font-weight: bold;">0</span>】万元，

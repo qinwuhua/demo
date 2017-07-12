@@ -103,8 +103,8 @@ SCROLLBAR-DARKSHADOW-COLOR: #81c2ee;
 
 .bt{ background-color:#e9f4fc; overflow:hidden; padding-top:20px;}
 .table { width:100%;
-border-collapse: collapse; border:1px solid #cde0f3; margin:0 auto;}
-.table td{border:1px solid #cde0f3; height:26px; line-height:26px; text-align:center;}
+border-collapse: collapse; border:1px solid #FFEBCD; margin:0 auto;}
+.table td{border:1px solid #FFEBCD; height:26px; line-height:26px; text-align:center;}
 .lxxx span{font-weight:700;line-height:30px;color:#0b77c9;}
 </style>
 <div style="width:100%;">

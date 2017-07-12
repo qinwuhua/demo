@@ -91,7 +91,7 @@ var YMLib = {
 					+ _lineHeight
 					+ "px;line-height:"
 					+ _lineHeight
-					+ "px;border:1px solid #99bbe8;background:#E0ECFF;padding:0px;margin:0px;'>"
+					+ "px;border:1px solid #99bbe8;background:#FFDEAD;padding:0px;margin:0px;'>"
 					+ _txt + "</div>";
 			// 闭包操作关闭提示
 			function closeShow() {

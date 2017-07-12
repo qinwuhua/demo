@@ -24,9 +24,28 @@
 		a:hover {text-decoration: none;}
 		a:active {text-decoration: none;}
 		#bbtable {border-collapse:collapse;}
-		#bbtable thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid #cde0f3;padding:3px 7px 2px 7px;}
-		#bbtable tbody tr td {text-align:center;font-size:1em;border:1px solid #cde0f3;padding:3px 7px 2px 7px;}
+		#bbtable thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid #FFEBCD;padding:3px 7px 2px 7px;}
+		#bbtable tbody tr td {text-align:center;font-size:1em;border:1px solid #FFEBCD;padding:3px 7px 2px 7px;}
+		.radioSpan {
+		      position: relative;
+		      border: 1px solid #FFA54F;
+		      background-color: #fff;
+		      vertical-align: middle;
+		      display: inline-block;
+		      overflow: hidden;
+		      white-space: nowrap;
+		      margin: 0;
+		      padding: 0;
+		      -moz-border-radius: 5px 5px 5px 5px;
+		      -webkit-border-radius: 5px 5px 5px 5px;
+		      border-radius: 5px 5px 5px 5px;
+		      display:block;
+		    }
+		
 		-->
+		
+		
+		
 	</style>
 	<script type="text/javascript">
 	$(function(){
@@ -37,6 +56,9 @@
 	});
 		
 	function queryBb(){
+// 		alert($("input[name='pxfs']:checked").val());
+		
+		
 		YMLib.Var.flag='';
 		openWindow("字段选择","/jxcsxm/page/tjbb/jhzxqkb_zd.jsp",500,380);
 
@@ -73,7 +95,7 @@
 		
 		$.ajax({
 			url:"/jxcsxm/tjbb/getJhzxqkb.do",
-			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length,
+			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val(),
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -143,15 +165,22 @@ text-decoration:none;
 					
 								<tr height="28">
 									<td align="right">行政区划：</td>
-	        						<td><select id="xzqh" style="width:165px;"></select></td>
+	        						<td><select id="xzqh" style="width:160px;"></select></td>
 									<td align="right">计划年份：</td>
         							<td><select id="jhnf" style="width: 80px;"></select></td>
 									<td align="right">计划文号：</td>
-        							<td><select id="jhxdwh" style="width: 130px;"></select></td>
+        							<td><select id="jhxdwh" style="width: 120px;"></select></td>
 									<td align="right">项目名称：</td>
-        							<td><input type="text" id="xmmc" style="width: 130px;"></td>
+        							<td><input type="text" id="xmmc" style="width: 120px;"></td>
 									<td align="right">项目类型：</td>
-        							<td><select id="xmlx" style="width: 130px;"></select></td>
+        							<td><select id="xmlx" style="width: 100px;"></select></td>
+									<td align="right">排序方式：</td>
+        							<td>
+	        							<span class="radioSpan">
+	        								<input type="radio" name="pxfs" value="wh" checked="checked">文号</input>
+							                <input type="radio" name="pxfs" value="xm">项目</input>
+							            </span>
+        							</td>
 									
 								
 								</tr>

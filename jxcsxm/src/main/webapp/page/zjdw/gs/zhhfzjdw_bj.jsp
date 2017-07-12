@@ -16,7 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
-<style type="text/css">.table{border: 1px solid #CBE0FF;} .table tr{border: 1px solid #CBE0FF;} .table tr td{border: 1px solid #CBE0FF;}</style>
+<style type="text/css">.table{border: 1px solid #FFE7BA;} .table tr{border: 1px solid #FFE7BA;} .table tr td{border: 1px solid #FFE7BA;}</style>
 <script type="text/javascript">
 function yzsz(id){
 	if(isNaN(Number($(id).val()))){  
@@ -116,11 +116,11 @@ function zjdwtj(){
 
 </script>
 <form id="submit" action="/jxcsxm/zjdw/updateZjdw.do" method="post">
-<table class='table' style="width: 100%; background-color: #aacbf8; font-size: 12px"
+<table class='table' style="width: 100%; background-color: #FFE7BA; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
 				
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
 				<font color='red' size='1'>*</font>计划下达文号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
 					<input type="text"  id="jhxdwh1" style="width: 124px" />
@@ -130,7 +130,7 @@ function zjdwtj(){
 					<input type="hidden" name='ztz' id="ztz" style="width: 120px" />
 					<input type="hidden" name='dwyf' id="dwyf" style="width: 120px" />
 					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
 				到位月份：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
@@ -139,44 +139,44 @@ function zjdwtj(){
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				车购税：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="cgs" id="cgs" onchange="yzsz(this)" style="width: 120px" />万元</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				国债：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="gz" id="gz" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				省债：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="sz" id="sz" onchange="yzsz(this)" style="width: 120px" />万元</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				债券：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="zq" id="zq" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				厅贷款：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="tdk" id="tdk" onchange="yzsz(this)" style="width: 120px" />万元</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				奖励：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="jl" id="jl" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				其他：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qt" id="qt" onchange="yzsz(this)" style="width: 120px" />万元</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				地方自筹：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -184,21 +184,21 @@ function zjdwtj(){
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				厅统筹：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="ttc" id="ttc" onchange="yzsz(this)" style="width: 120px" />万元</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				填报人：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="tbr" id="tbr" style="width: 120px" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				填报时间：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">

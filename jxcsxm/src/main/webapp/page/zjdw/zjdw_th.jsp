@@ -16,7 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
-<style type="text/css">.table{border: 1px solid #CBE0FF;} .table tr{border: 1px solid #CBE0FF;} .table tr td{border: 1px solid #CBE0FF;}</style>
+<style type="text/css">.table{border: 1px solid #FFE7BA;} .table tr{border: 1px solid #FFE7BA;} .table tr td{border: 1px solid #FFE7BA;}</style>
 <script type="text/javascript">
 
 function thxj(){
@@ -48,11 +48,11 @@ function thxj(){
 <script type="text/javascript">
 
 </script>
-<table class='table' style="width: 100%; background-color: #aacbf8; font-size: 12px"
+<table class='table' style="width: 100%; background-color: #FFE7BA; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				退回原因：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<textarea rows="3"  name="thyy" id="thyy" style="width: 98%"></textarea>

@@ -17,15 +17,15 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
 	<style type="text/css">
-		.table{border: 1px solid #CBE0FF;}
-		.table tr{border: 1px solid #CBE0FF;}
-		.table tr td{border: 1px solid #CBE0FF;}
+		.table{border: 1px solid #FFE7BA;}
+		.table tr{border: 1px solid #FFE7BA;}
+		.table tr td{border: 1px solid #FFE7BA;}
 		.table tr td input{width: 50px;}
 	</style>
 	<style type="text/css">
-		.table1{border: 1px solid #CBE0FF;}
-		.table1 tr{border: 1px solid #CBE0FF;}
-		.table1 tr td{border: 1px solid #CBE0FF;}
+		.table1{border: 1px solid #FFE7BA;}
+		.table1 tr{border: 1px solid #FFE7BA;}
+		.table1 tr td{border: 1px solid #FFE7BA;}
 	</style>
 	<script type="text/javascript">
 		$(function(){
