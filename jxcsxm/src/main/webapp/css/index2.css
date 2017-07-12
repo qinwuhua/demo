@@ -32,8 +32,8 @@ img {_azimuth:expression(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" &&
 .nav{position:absolute;top:59px;right:0;height:39px;overflow:hidden;}
 .nav li{float:left;width:94px;height:38px;margin-right:5px;cursor:pointer;}
 .nav li a{display:block;width:94px;height:38px;font-size:14px;color:#fff;font-weight:bold;text-align:center;line-height:38px;background:url(../images/navbg.png) 0 0 no-repeat;}
-.nav li a:hover{background:url(../images/navbg_hover.png) 0 0 no-repeat;}
-.nav li a.now{background:url(../images/navbg_hover.png) 0 0 no-repeat;}
+.nav li a:hover{background:url(../images/navbg_hover2.png) 0 0 no-repeat;}
+.nav li a.now{background:url(../images/navbg_hover2.png) 0 0 no-repeat;}
 
 .nav1{position:absolute;top:59px;right:0;height:39px;overflow:hidden;}
 .nav1 li{float:left;width:150px;height:38px;margin-right:5px;cursor:pointer;}

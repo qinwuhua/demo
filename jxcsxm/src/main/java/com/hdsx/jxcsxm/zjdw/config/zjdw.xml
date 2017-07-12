@@ -163,6 +163,8 @@
 	      <if test="ssbzt != null and ssbzt != ''" >ssbzt,</if>
 	      <if test="dwyf != null and dwyf != ''" >dwyf,</if>
 	      <if test="ttc != null and ttc != ''" >ttc,</if>
+	      <if test="tbr != null and tbr != ''" >tbr,</if>
+	      <if test="tbsj != null and tbsj != ''" >tbsj,</if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	      <if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
@@ -185,6 +187,8 @@
 	      <if test="ssbzt != null and ssbzt != ''" >#{ssbzt},</if>
 	      <if test="dwyf != null and dwyf != ''" >#{dwyf},</if>
 	      <if test="ttc != null and ttc != ''" >#{ttc},</if>
+	      <if test="tbr != null and tbr != ''" >#{tbr},</if>
+	      <if test="tbsj != null and tbsj != ''" >#{tbsj},</if>
 	    </trim>
 	</insert>
 	<update id="updateZjdw" parameterType="xmzjdw">
@@ -213,6 +217,8 @@
       <if test="sfth != null" >sfth = #{sfth},</if>
       <if test="dwyf != null" >dwyf = #{dwyf},</if>
       <if test="ttc != null" >ttc = #{ttc},</if>
+      <if test="tbr != null and tbr != ''" >tbr = #{tbr},</if>
+      <if test="tbsj != null and tbsj != ''" >tbsj = #{tbsj},</if>
     </set>
     where 1=1 and ${id}
 	</update>
@@ -256,7 +262,7 @@
 	</select>
 	
 	<select id="queryShqxByOne" parameterType="xmZjdw" resultType="xmZjdw">
-		select * from xm_zjdw where 1=1 and gydwdm=#{gydwdm} and nf=#{nf}
+		select * from xm_zjdw where 1=1 and gydwdm=#{gydwdm} and dwyf=#{dwyf} and jhxdwh=#{jhxdwh}
 	</select>
 	<insert id="insertShqx" parameterType="xmzjdw">
 		insert into xm_zjdw
@@ -271,6 +277,7 @@
 	    	<if test="jhxdwh != null and jhxdwh != ''" >jhxdwh,</if>
 	    	<if test="parent != null and parent != ''" >parent,</if>
 	    	<if test="gydwdm != null and gydwdm != ''" >gydwdm,</if>
+	    	<if test="xmbm != null and xmbm != ''" >xmbm,</if>
 	  	</trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	    	<if test="ztz != null and ztz != ''" >#{ztz},</if>
@@ -283,6 +290,7 @@
 	    	<if test="jhxdwh != null and jhxdwh != ''" >#{jhxdwh},</if>
 	    	<if test="parent != null and parent != ''" >#{parent},</if>
 	    	<if test="gydwdm != null and gydwdm != ''" >#{gydwdm},</if>
+	    	<if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
 		</trim>
 	</insert>
 	<update id="updateShqx" parameterType="xmzjdw">
@@ -298,8 +306,9 @@
       <if test="jhxdwh != null" >jhxdwh = #{jhxdwh},</if>
       <if test="parent != null" >parent = #{parent},</if>
       <if test="gydwdm != null" >gydwdm = #{gydwdm},</if>
+      <if test="xmbm != null" >xmbm = #{xmbm},</if>
 	 </set>
-      where 1=1 and gydwdm=#{gydwdm} and nf=#{nf}
+      where 1=1 and gydwdm=#{gydwdm} and dwyf=#{dwyf}
 	</update>
 	
 	<select id="queryZjByGydwdm" parameterType="xmzjdw" resultType="xmzjdw">

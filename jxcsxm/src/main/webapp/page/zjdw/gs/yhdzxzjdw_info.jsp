@@ -94,6 +94,19 @@ $(function(){
 				</td>
 			</tr>
 			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				填报人：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="tbr" id="tbr" style="width: 120px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				填报时间：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				 	<input type="text" name="tbsj" id="tbsj" style="width: 120px" />
+				</td>
+				
+			</tr>
+			<tr style="height: 35px;">
 				<td colspan="4" style="background-color: #ffffff;"align="center">
 				<a id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:closeWindow()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">关闭</a>
 			</tr>

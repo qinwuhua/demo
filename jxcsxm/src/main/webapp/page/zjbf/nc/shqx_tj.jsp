@@ -40,8 +40,7 @@
 			
 			var yf=new Date().getMonth()+1;
 			if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
-			loadWhBmbm('jhxdwh',new Date().getFullYear()+"11101360000");
-			loadWhBmbm('jhxdwh',new Date().getFullYear()+"11101360000");
+			loadWhBmbmSh('jhxdwh',new Date().getFullYear()+"11101360000");
 			var gydw=$.cookie("unit");
 			if(gydw=="36"){
 				loadChildGydw("11101360000");

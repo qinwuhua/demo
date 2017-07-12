@@ -574,6 +574,23 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void getWhTreeByNameSh(){
+		try {
+			yhm=java.net.URLDecoder.decode(yhm,"UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		HashMap<String, String> hm=new HashMap<String, String>();
+		hm.put("name", yhm);
+		List<TreeNode> list =  xtglServer.getWhTreeByNameSh(hm);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	/**
 	 * 插入单位
 	 */

@@ -39,7 +39,7 @@
 			loadBmbm('nf','项目年份',new Date().getFullYear());
 			var yf=new Date().getMonth()+1;
 			if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
-			loadWhBmbm('jhxdwh',new Date().getFullYear()+"21101360000");
+			loadWhBmbmSh('jhxdwh',new Date().getFullYear()+"21101360000");
 			
 			var gydw=$.cookie("unit");
 			if(gydw=="36"){

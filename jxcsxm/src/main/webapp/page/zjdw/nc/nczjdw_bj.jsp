@@ -36,7 +36,7 @@ $(function(){
 		success:function(msg){
 			$('#submit').form("load",msg);
 			yztz=msg.ztz;
-// 			loadBmbm('bd1','标段',msg.bd);
+			$("#tbsj1").datebox('setValue',msg.tbsj);
 			loadBmbm('nf','项目年份',msg.dwyf.substr(0,4));
 			loadBmbm('yf','月份',msg.dwyf.substr(msg.dwyf.length-2,msg.dwyf.length))
 			loadWhBmbm('jhxdwh1',parent.parent.YMLib.Var.xmbm,msg.jhxdwh);
@@ -54,7 +54,7 @@ function zjdwtj(){
 	if($('#nf').combo("getValue")==""){alert("请选择年份");return;}
 	if($('#yf').combo("getValue")==""){alert("请选择月份");return;}
 	$('#dwyf').val($('#nf').combo("getValue")+"-"+$('#yf').combo("getValue"));
-// 	$('#bd').val($('#bd1').combo("getValue"));
+	$('#tbsj').val($('#tbsj1').datebox("getValue"));
 	$('#jhxdwh').val($('#jhxdwh1').combo("getValue"));
 	var result=true;var ztz=0;
 	result=validateInput("cgs","number",result);
@@ -151,6 +151,20 @@ function zjdwtj(){
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				 	<input type="text" name="ttc" id="ttc" onchange="yzsz(this)" style="width: 120px" />万元
+				</td>
+				
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				填报人：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="tbr" id="tbr" style="width: 120px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				填报时间：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				 	<input type="text" class='easyui-datebox' name="tbsj1" id="tbsj1" style="width: 124px" />
+				 	<input type="hidden" name="tbsj" id="tbsj" style="width: 124px" />
 				</td>
 				
 			</tr>

@@ -192,6 +192,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 					xm.setZtz(Double.parseDouble("".equals(ztz[i]) ? "0" : ztz[i]));
 					xm.setBd(bd[i]);
 					xm.setJhxdwh(jhxdwh[i]);
+					xm.setXmbm(bfyf[i].substring(0, 4)+gydwdm[i]+jhxdwh[i]);
 					if (zjbfServer.queryShqxByOne(xm) == null) {
 						save.add(xm);
 					} else {

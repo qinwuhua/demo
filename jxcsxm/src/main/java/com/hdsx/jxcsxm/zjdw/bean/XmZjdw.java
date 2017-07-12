@@ -76,9 +76,26 @@ public class XmZjdw{
     private String sffy;
     private String sfds;//是否地市
     private String sftj;//是否统计
+    private String tbr;
+    private String tbsj;
     
-    
-    public String getSfds() {
+    public String getTbr() {
+		return tbr;
+	}
+
+	public void setTbr(String tbr) {
+		this.tbr = tbr;
+	}
+
+	public String getTbsj() {
+		return tbsj;
+	}
+
+	public void setTbsj(String tbsj) {
+		this.tbsj = tbsj;
+	}
+
+	public String getSfds() {
 		return sfds;
 	}
 

@@ -1430,6 +1430,18 @@ function loadWhBmbm(id, name,str) {
 }
 
 
+function loadWhBmbmSh(id, name,str) {
+	$('#' + id).combobox({
+		url : '/jxcsxm/xtgl/getWhTreeByNameSh.do?yhm='
+				+ encodeURI(encodeURI(name)),
+		valueField : 'bmid',
+		textField : 'name',
+		panelHeight:'auto',
+		multiple:false
+	});
+	$('#' + id).combobox('setValue',str);
+}
+
 
 function returnindex(arr,str){
 	var j=0;

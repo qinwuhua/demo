@@ -165,6 +165,11 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 		return queryList("getWhTreeByName", hm);
 	}
 	@Override
+	public List<TreeNode> getWhTreeByNameSh(HashMap<String, String> hm) {
+		return queryList("getWhTreeByNameSh", hm);
+	}
+	
+	@Override
 	public boolean insertDw(Unit unit) {
 		int b=insert("insertDw", unit);
 		int b2;

@@ -36,6 +36,7 @@ $(function(){
 		success:function(msg){
 			$('#submit').form("load",msg);
 			yztz=msg.ztz;
+			$("#tbsj1").datebox('setValue',msg.tbsj);
 			loadBmbm('bd1','标段',msg.bd);
 			loadBmbm('nf','项目年份',msg.bfyf.substr(0,4));
 			loadBmbm('yf','月份',msg.bfyf.substr(msg.bfyf.length-2,msg.bfyf.length))
@@ -55,6 +56,7 @@ function zjbftj(){
 	if($('#yf').combo("getValue")==""){alert("请选择月份");return;}
 	$('#bfyf').val($('#nf').combo("getValue")+"-"+$('#yf').combo("getValue"));
 	$('#bd').val($('#bd1').combo("getValue"));
+	$('#tbsj').val($('#tbsj1').datebox("getValue"));
 	$('#jhxdwh').val($('#jhxdwh1').combo("getValue"));
 	var result=true;var ztz=0;
 	result=validateInput("tdk","number",result);
@@ -162,6 +164,20 @@ function zjbftj(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				 <input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;">
 				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				填报人：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="tbr" id="tbr" style="width: 120px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				填报时间：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				 	<input type="text" class='easyui-datebox' name="tbsj1" id="tbsj1" style="width: 124px" />
+				 	<input type="hidden" name="tbsj" id="tbsj" style="width: 124px" />
+				</td>
+				
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="4" style="background-color: #ffffff;"align="center">

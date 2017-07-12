@@ -132,6 +132,13 @@
 		select distinct jhxdwh id,jhxdwh name,'' parent,jhxdwh bmid from xm_gsd_jhxd where 1=1 and jhxdwh is not null and xmid like rtrim(#{name}, '0')||'%'
 		order by id
 	</select>
+	<select id="getWhTreeByNameSh" parameterType="hashmap" resultType="treenode">
+		select 'a' id,'请选择' name,'' parent,'' bmid from dual
+		union all
+		select distinct jhxdwh id,jhxdwh name,'' parent,jhxdwh bmid from xm_gsd_jhxd where 1=1 and jhxdwh is not null and xdnf||gydwdm like rtrim(#{name}, '0')||'%'
+		order by id
+	</select>
+	
 	
 	<insert id="insertDw" parameterType="unit">
 		insert into xtgl_department (id,parent,name,unit,bmid,desr) values 

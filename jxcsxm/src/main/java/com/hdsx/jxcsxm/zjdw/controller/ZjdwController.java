@@ -221,6 +221,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 				xm.setZtz(Double.parseDouble("".equals(ztz[i]) ? "0" : ztz[i]));
 				xm.setBd(bd[i]);
 				xm.setJhxdwh(jhxdwh[i]);
+				xm.setXmbm(dwyf[i].substring(0, 4)+gydwdm[i]+jhxdwh[i]);
 				if (zjdwServer.queryShqxByOne(xm) == null) {
 					save.add(xm);
 				} else {

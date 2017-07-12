@@ -30,7 +30,13 @@ $(function(){
 	loadBmbm('bd1','标段');
 	loadBmbm('nf','项目年份',new Date().getFullYear());
 	var yf=new Date().getMonth()+1;
+	var day=new Date().getDate();
+	
 	if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
+	if(yf<10) yf='0'+yf;
+	if(day<10) day='0'+day;
+	$("#tbr").val($.cookie('truename'));
+	$("#tbsj1").datebox('setValue',new Date().getFullYear()+"-"+yf+"-"+day);
 	loadWhBmbm('jhxdwh1',parent.parent.YMLib.Var.xmbm);
 	$("#sbthcd").val($.cookie('unit2').length);
 	var xsbzt="";var ssbzt="";
@@ -56,6 +62,7 @@ function zjdwtj(){
 	if($('#yf').combo("getValue")==""){alert("请选择月份");return;}
 	$('#bfyf').val($('#nf').combo("getValue")+"-"+$('#yf').combo("getValue"));
 	$('#bd').val($('#bd1').combo("getValue"));
+	$('#tbsj').val($('#tbsj1').datebox("getValue"));
 	$('#jhxdwh').val($('#jhxdwh1').combo("getValue"));
 	var result=true;var ztz=0;
 	result=validateInput("cgs","number",result);
@@ -210,6 +217,20 @@ function zjdwtj(){
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				填报人：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="tbr" id="tbr" style="width: 120px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;" align="right">
+				填报时间：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				 	<input type="text" class='easyui-datebox' name="tbsj1" id="tbsj1" style="width: 124px" />
+				 	<input type="hidden" name="tbsj" id="tbsj" style="width: 124px" />
+				</td>
+				
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="4" style="background-color: #ffffff;"align="center">
