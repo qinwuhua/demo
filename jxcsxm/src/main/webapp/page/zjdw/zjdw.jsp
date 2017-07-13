@@ -60,47 +60,47 @@
 		
 		function zjdwtj(){
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-			openWindow("添加","/jxcsxm/page/zjdw/gs/gsdgzzjdw_tj.jsp",600,310);
+			openWindow("添加","/jxcsxm/page/zjdw/gs/gsdgzzjdw_tj.jsp",600,350);
 			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-			openWindow("添加","/jxcsxm/page/zjdw/gs/yhdzxzjdw_tj.jsp",600,240);
+			openWindow("添加","/jxcsxm/page/zjdw/gs/yhdzxzjdw_tj.jsp",600,280);
 			if(parent.YMLib.Var.xmlx=="gs_zhhf")
-			openWindow("添加","/jxcsxm/page/zjdw/gs/zhhfzjdw_tj.jsp",600,310);
+			openWindow("添加","/jxcsxm/page/zjdw/gs/zhhfzjdw_tj.jsp",600,350);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-			openWindow("添加","/jxcsxm/page/zjdw/gs/lwjggzzjdw_tj.jsp",600,210);
+			openWindow("添加","/jxcsxm/page/zjdw/gs/lwjggzzjdw_tj.jsp",600,250);
 			if(parent.YMLib.Var.xmlx=="nc_lwjggz")
-			openWindow("添加","/jxcsxm/page/zjdw/nc/lwjggzzjdw_tj.jsp",600,210);
+			openWindow("添加","/jxcsxm/page/zjdw/nc/lwjggzzjdw_tj.jsp",600,250);
 			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
-			openWindow("添加","/jxcsxm/page/zjdw/nc/nczjdw_tj.jsp",600,210);
+			openWindow("添加","/jxcsxm/page/zjdw/nc/nczjdw_tj.jsp",600,250);
 			
 		}
 		function openDwInfo(id){
 			YMLib.Var.id=id;
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-			openWindow("详情","/jxcsxm/page/zjdw/gs/gsdgzzjdw_info.jsp",600,310);
+			openWindow("详情","/jxcsxm/page/zjdw/gs/gsdgzzjdw_info.jsp",600,350);
 			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-			openWindow("详情","/jxcsxm/page/zjdw/gs/yhdzxzjdw_info.jsp",600,240);
+			openWindow("详情","/jxcsxm/page/zjdw/gs/yhdzxzjdw_info.jsp",600,280);
 			if(parent.YMLib.Var.xmlx=="gs_zhhf")
-			openWindow("详情","/jxcsxm/page/zjdw/gs/zhhfzjdw_info.jsp",600,310);
+			openWindow("详情","/jxcsxm/page/zjdw/gs/zhhfzjdw_info.jsp",600,350);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-			openWindow("详情","/jxcsxm/page/zjdw/gs/lwjggzzjdw_info.jsp",600,210);
+			openWindow("详情","/jxcsxm/page/zjdw/gs/lwjggzzjdw_info.jsp",600,250);
 			if(parent.YMLib.Var.xmlx=="nc_lwjggz")
-			openWindow("详情","/jxcsxm/page/zjdw/nc/lwjggzzjdw_info.jsp",600,210);
+			openWindow("详情","/jxcsxm/page/zjdw/nc/lwjggzzjdw_info.jsp",600,250);
 			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
-			openWindow("详情","/jxcsxm/page/zjdw/nc/nczjdw_info.jsp",600,210);
+			openWindow("详情","/jxcsxm/page/zjdw/nc/nczjdw_info.jsp",600,250);
 			
 		}
 		function editDw(id){
 			YMLib.Var.id=id;
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-			openWindow("编辑","/jxcsxm/page/zjdw/gs/gsdgzzjdw_bj.jsp",600,310);
+			openWindow("编辑","/jxcsxm/page/zjdw/gs/gsdgzzjdw_bj.jsp",600,350);
 			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-			openWindow("编辑","/jxcsxm/page/zjdw/gs/yhdzxzjdw_bj.jsp",600,240);
+			openWindow("编辑","/jxcsxm/page/zjdw/gs/yhdzxzjdw_bj.jsp",600,280);
 			if(parent.YMLib.Var.xmlx=="gs_zhhf")
-			openWindow("编辑","/jxcsxm/page/zjdw/gs/zhhfzjdw_bj.jsp",600,310);
+			openWindow("编辑","/jxcsxm/page/zjdw/gs/zhhfzjdw_bj.jsp",600,350);
 			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-			openWindow("编辑","/jxcsxm/page/zjdw/gs/lwjggzzjdw_bj.jsp",600,210);
+			openWindow("编辑","/jxcsxm/page/zjdw/gs/lwjggzzjdw_bj.jsp",600,250);
 			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
-			openWindow("编辑","/jxcsxm/page/zjdw/nc/nczjdw_bj.jsp",600,210);
+			openWindow("编辑","/jxcsxm/page/zjdw/nc/nczjdw_bj.jsp",600,250);
 						
 			
 		}

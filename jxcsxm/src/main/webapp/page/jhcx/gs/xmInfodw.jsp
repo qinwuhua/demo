@@ -59,24 +59,33 @@
 	function openBfInfo(id){
 		YMLib.Var.id=id;
 		if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-		openWindow("详情","/jxcsxm/page/zjbf/gs/gsdgzzjbf_info.jsp",600,350);
+		openWindow("详情","/jxcsxm/page/zjbf/gs/gsdgzzjbf_info.jsp",600,390);
 		if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-		openWindow("详情","/jxcsxm/page/zjbf/gs/yhdzxzjbf_info.jsp",600,240);
+		openWindow("详情","/jxcsxm/page/zjbf/gs/yhdzxzjbf_info.jsp",600,280);
 		if(parent.YMLib.Var.xmlx=="gs_zhhf")
-		openWindow("详情","/jxcsxm/page/zjbf/gs/zhhfzjbf_info.jsp",600,310);
+		openWindow("详情","/jxcsxm/page/zjbf/gs/zhhfzjbf_info.jsp",600,350);
 		if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-		openWindow("详情","/jxcsxm/page/zjbf/gs/lwjggzzjbf_info.jsp",600,240);
+		openWindow("详情","/jxcsxm/page/zjbf/gs/lwjggzzjbf_info.jsp",600,280);
+		if(parent.YMLib.Var.xmlx=="nc_lwjggz")
+		openWindow("详情","/jxcsxm/page/zjbf/nc/lwjggzzjbf_info.jsp",600,280);
+		if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=="nc_tzrc"||parent.YMLib.Var.xmlx=="nc_yhgc")
+		openWindow("详情","/jxcsxm/page/zjbf/nc/nczjbf_info.jsp",600,270);
 	}
 	function openDwInfo(id){
 		YMLib.Var.id=id;
 		if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-		openWindow("详情","/jxcsxm/page/zjdw/gs/gsdgzzjdw_info.jsp",600,310);
+		openWindow("详情","/jxcsxm/page/zjdw/gs/gsdgzzjdw_info.jsp",600,350);
 		if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-		openWindow("详情","/jxcsxm/page/zjdw/gs/yhdzxzjdw_info.jsp",600,240);
+		openWindow("详情","/jxcsxm/page/zjdw/gs/yhdzxzjdw_info.jsp",600,280);
 		if(parent.YMLib.Var.xmlx=="gs_zhhf")
-		openWindow("详情","/jxcsxm/page/zjdw/gs/zhhfzjdw_info.jsp",600,310);
+		openWindow("详情","/jxcsxm/page/zjdw/gs/zhhfzjdw_info.jsp",600,350);
 		if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-		openWindow("详情","/jxcsxm/page/zjdw/gs/lwjggzzjdw_info.jsp",600,210);
+		openWindow("详情","/jxcsxm/page/zjdw/gs/lwjggzzjdw_info.jsp",600,250);
+		if(parent.YMLib.Var.xmlx=="nc_lwjggz")
+		openWindow("详情","/jxcsxm/page/zjdw/nc/lwjggzzjdw_info.jsp",600,250);
+		if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
+		openWindow("详情","/jxcsxm/page/zjdw/nc/nczjdw_info.jsp",600,250);
+		
 	}
 	
 	function queryzjbflist(){

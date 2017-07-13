@@ -107,6 +107,8 @@ function clearscSession(){
 			</div>
 		</div>
 	</div>
+	
+	
     <div data-options="region:'center',border:'false'" style="margin: 0px; padding: 0px;overflow: hidden">
     	
 		<div id="c1" style="width:100%;height:100%;">

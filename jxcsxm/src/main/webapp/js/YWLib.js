@@ -130,13 +130,13 @@ var Data={
 function openZjdw(xmbm,xmlx){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.xmlx=xmlx;
-	openWindow("资金到位详情","/jxcsxm/page/zjdw/zjdw.jsp",1000,430);
+	openWindow("资金到位详情","/jxcsxm/page/zjdw/zjdw.jsp",1000,450);
 }
 //打开资金拨付页面
 function openZjbf(xmbm,xmlx){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.xmlx=xmlx;
-	openWindow("资金拨付详情","/jxcsxm/page/zjbf/zjbf.jsp",1000,430);
+	openWindow("资金拨付详情","/jxcsxm/page/zjbf/zjbf.jsp",1000,450);
 }
 
 //打开查看项目详情页面
@@ -145,22 +145,22 @@ function openXmInfo(xmbm,xmlx,xmjd){
 	YMLib.Var.xmlx=xmlx;
 	
 	if(xmjd=='jhcx')
-	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfo.jsp",1000,340);
+	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfo.jsp",1000,360);
 	if(xmjd=='zjdw')
-	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfodw.jsp",1000,400);
+	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfodw.jsp",1000,420);
 	if(xmjd=='zjbf')
-	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfobf.jsp",1000,400);
+	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfobf.jsp",1000,420);
 }
 //打开查看项目详情页面
 function openXmInfoDt(xmbm,xmlx,xmjd){
 	parent.YMLib.Var.xmbm=xmbm;
 	parent.YMLib.Var.xmlx=xmlx;
 	if(xmjd=='jhcx')
-	openWindowDt("项目详情","/jxcsxm/page/jhcx/gs/xmInfo.jsp",1000,430);
+	openWindowDt("项目详情","/jxcsxm/page/jhcx/gs/xmInfo.jsp",1000,450);
 	if(xmjd=='zjdw')
-	openWindowDt("项目详情","/jxcsxm/page/jhcx/gs/xmInfodw.jsp",1000,430);
+	openWindowDt("项目详情","/jxcsxm/page/jhcx/gs/xmInfodw.jsp",1000,450);
 	if(xmjd=='zjbf')
-	openWindowDt("项目详情","/jxcsxm/page/jhcx/gs/xmInfobf.jsp",1000,430);
+	openWindowDt("项目详情","/jxcsxm/page/jhcx/gs/xmInfobf.jsp",1000,450);
 }
 function openWindowDt(title,jsp,width,height){
 	parent.YMLib.UI.createWindow('mywin',title,jsp,'mywin',width,height);	
