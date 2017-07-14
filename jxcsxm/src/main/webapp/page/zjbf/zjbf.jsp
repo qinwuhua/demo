@@ -130,6 +130,8 @@
 						alert("删除成功");
 						getdwTj();
 						$("#grid").datagrid('reload');
+						parent.$("#grid").datagrid('reload');
+						parent.loadTj();
 					}else{
 						alert("删除失败");
 					}
@@ -212,6 +214,8 @@
 						alert(str+"成功");
 						getdwTj();
 						$("#grid").datagrid('reload');
+						parent.$("#grid").datagrid('reload');
+						parent.loadTj();
 					}else{
 						alert(str+"失败");
 					}

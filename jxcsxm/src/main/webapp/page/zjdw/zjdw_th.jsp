@@ -32,6 +32,7 @@ function thxj(){
 					alert("退回成功");
 					parent.getdwTj();
 					parent.parent.loadTj();
+					parent.parent.$("#grid").datagrid('reload');
 					parent.$("#grid").datagrid('reload');
 					closeWindow();
 				}else{

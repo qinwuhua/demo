@@ -90,6 +90,7 @@ function zjbftj(){
 					alert("保存成功！");
 					parent.$("#grid").datagrid('reload');
 					parent.getdwTj();
+					parent.parent.$("#grid").datagrid('reload');
 					parent.parent.loadTj();
 					closeWindow();
 				}else{
