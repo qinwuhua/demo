@@ -87,6 +87,7 @@ function zjdwtj(){
 					alert("保存成功！");
 					parent.$("#grid").datagrid('reload');
 					parent.getdwTj();
+					parent.parent.loadTj();
 					closeWindow();
 				}else{
 					alert("保存失败！");

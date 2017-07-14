@@ -24,7 +24,7 @@ function thxj(){
 		//return;
 		$.ajax({
 			type:'post',
-			url:'/jxcsxm/zjdw/updateZjdwType.do',
+			url:'/jxcsxm/zjbf/updateZjbfType.do',
 			data:parent.YMLib.Var.data+"&thyy="+$("#thyy").val(),
 			dataType:'json',
 			success:function(msg){
