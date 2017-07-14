@@ -31,6 +31,7 @@ function thxj(){
 				if(msg){
 					alert("退回成功");
 					parent.getdwTj();
+					parent.parent.loadTj();
 					parent.$("#grid").datagrid('reload');
 					closeWindow();
 				}else{
