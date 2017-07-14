@@ -118,15 +118,15 @@
 			    rowStyler:function(index,row){
 			    	if($.cookie('unit2').length==11){
 					if (row.xsbzt>0 ){
-						return 'background-color:pink;color:blue;font-weight:bold;';
+						return 'background-color:pink;color:black;font-weight:bold;';
 					}}
 			    	if($.cookie('unit2').length==9){
 						if (row.ssbzt>0 && row.xsbzt==0){
-						return 'background-color:pink;color:blue;font-weight:bold;';
+						return 'background-color:pink;color:black;font-weight:bold;';
 					}}
 			    	if($.cookie('unit2').length==7){
 						if (row.shzt>0 && row.ssbzt==0){
-						return 'background-color:pink;color:blue;font-weight:bold;';
+						return 'background-color:pink;color:black;font-weight:bold;';
 					}}
 			    	
 			    	

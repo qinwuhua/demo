@@ -100,23 +100,36 @@
 							var result="";
 							if($.cookie('unit2').length==11){
 								if(row.xsbzt=='0')
-									result="未上报";
+									if(row.sfbj=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','xian'"+')" >未上报</a>';
+									else result="未上报";
+								else
+									result="已上报";
+							}else if($.cookie('unit2').length==9){
+								if(row.ssbzt=='0')
+									if(row.sfbj=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','shi'"+')" >未上报</a>';
+									else result="未上报";
 								else
 									result="已上报";
 							}else{
-								if(row.ssbzt=='0')
-									result="未上报";
-								else
+								if(row.ssbzt=='1')
 									result="已上报";
+								else
+									result="未上报";
 							}
+							
 							return result;
 						}
 					},
 					{field:'shzt',title:'审核状态',width:50,align:'center',
 						formatter: function(value,row,index){
 							var result="";
-							if(row.shzt=='0')
-								result="未审核";
+							if(row.shzt=='0'){
+								if($.cookie('unit2').length==7&&row.sfbj=='1'&&row.ssbzt=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','sheng'"+')" >未审核</a>';
+								else result="未审核";
+							}
 							else
 								result="已审核";
 							return result;
@@ -145,28 +158,41 @@
 						}
 					},
 					
-					{field:'sbzt',title:'上报状态',width:60,align:'center',
+					{field:'sbzt',title:'上报状态',width:50,align:'center',
 						formatter: function(value,row,index){
 							var result="";
 							if($.cookie('unit2').length==11){
 								if(row.xsbzt=='0')
-									result="未上报";
+									if(row.sfbj=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','xian'"+')" >未上报</a>';
+									else result="未上报";
+								else
+									result="已上报";
+							}else if($.cookie('unit2').length==9){
+								if(row.ssbzt=='0')
+									if(row.sfbj=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','shi'"+')" >未上报</a>';
+									else result="未上报";
 								else
 									result="已上报";
 							}else{
-								if(row.ssbzt=='0')
-									result="未上报";
-								else
+								if(row.ssbzt=='1')
 									result="已上报";
+								else
+									result="未上报";
 							}
+							
 							return result;
 						}
 					},
-					{field:'shzt',title:'审核状态',width:60,align:'center',
+					{field:'shzt',title:'审核状态',width:50,align:'center',
 						formatter: function(value,row,index){
 							var result="";
-							if(row.shzt=='0')
-								result="未审核";
+							if(row.shzt=='0'){
+								if($.cookie('unit2').length==7&&row.sfbj=='1'&&row.ssbzt=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','sheng'"+')" >未审核</a>';
+								else result="未审核";
+							}
 							else
 								result="已审核";
 							return result;
@@ -249,15 +275,15 @@
 			    rowStyler:function(index,row){
 			    	if($.cookie('unit2').length==11){
 					if (row.xsbzt==0&&row.sfbj==1){
-						return 'background-color:pink;color:blue;font-weight:bold;';
+						return 'background-color:pink;color:black;font-weight:bold;';
 					}}
 			    	if($.cookie('unit2').length==9){
 						if (row.ssbzt==0&&row.sfbj==1&&row.xsbzt==1){
-						return 'background-color:pink;color:blue;font-weight:bold;';
+						return 'background-color:pink;color:black;font-weight:bold;';
 					}}
 			    	if($.cookie('unit2').length==7){
 						if (row.shzt==0&&row.sfbj==1&&row.ssbzt==1){
-						return 'background-color:pink;color:blue;font-weight:bold;';
+						return 'background-color:pink;color:black;font-weight:bold;';
 					}}
 			    	
 			    	

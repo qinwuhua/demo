@@ -100,23 +100,36 @@
 							var result="";
 							if($.cookie('unit2').length==11){
 								if(row.xsbzt=='0')
-									result="未上报";
+									if(row.sfbj=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','xian'"+')" >未上报</a>';
+									else result="未上报";
+								else
+									result="已上报";
+							}else if($.cookie('unit2').length==9){
+								if(row.ssbzt=='0')
+									if(row.sfbj=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','shi'"+')" >未上报</a>';
+									else result="未上报";
 								else
 									result="已上报";
 							}else{
-								if(row.ssbzt=='0')
-									result="未上报";
-								else
+								if(row.ssbzt=='1')
 									result="已上报";
+								else
+									result="未上报";
 							}
+							
 							return result;
 						}
 					},
 					{field:'shzt',title:'审核状态',width:50,align:'center',
 						formatter: function(value,row,index){
 							var result="";
-							if(row.shzt=='0')
-								result="未审核";
+							if(row.shzt=='0'){
+								if($.cookie('unit2').length==7&&row.sfbj=='1'&&row.ssbzt=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','sheng'"+')" >未审核</a>';
+								else result="未审核";
+							}
 							else
 								result="已审核";
 							return result;
@@ -133,7 +146,8 @@
 					{field:'zcqcs',title:'资产期初数',width:70,align:'center'},
 					{field:'zcqms',title:'资产期末数',width:70,align:'center'},
 					{field:'fzqcs',title:'负债期初数',width:70,align:'center'},
-					{field:'fzqms',title:'负债期末数',width:70,align:'center'}
+					{field:'fzqms',title:'负债期末数',width:70,align:'center'},
+					{field:'thyy',title:'退回原因',width:70,align:'center'}
 					]]
 			}else{
 				columns=[[	{field:'allSel',title:'全选',width:50,align:'center',rowspan:1,checkbox:'true'},
@@ -145,28 +159,41 @@
 						}
 					},
 					
-					{field:'sbzt',title:'上报状态',width:60,align:'center',
+					{field:'sbzt',title:'上报状态',width:50,align:'center',
 						formatter: function(value,row,index){
 							var result="";
 							if($.cookie('unit2').length==11){
 								if(row.xsbzt=='0')
-									result="未上报";
+									if(row.sfbj=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','xian'"+')" >未上报</a>';
+									else result="未上报";
+								else
+									result="已上报";
+							}else if($.cookie('unit2').length==9){
+								if(row.ssbzt=='0')
+									if(row.sfbj=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','shi'"+')" >未上报</a>';
+									else result="未上报";
 								else
 									result="已上报";
 							}else{
-								if(row.ssbzt=='0')
-									result="未上报";
-								else
+								if(row.ssbzt=='1')
 									result="已上报";
+								else
+									result="未上报";
 							}
+							
 							return result;
 						}
 					},
-					{field:'shzt',title:'审核状态',width:60,align:'center',
+					{field:'shzt',title:'审核状态',width:50,align:'center',
 						formatter: function(value,row,index){
 							var result="";
-							if(row.shzt=='0')
-								result="未审核";
+							if(row.shzt=='0'){
+								if($.cookie('unit2').length==7&&row.sfbj=='1'&&row.ssbzt=='1')
+									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','sheng'"+')" >未审核</a>';
+								else result="未审核";
+							}
 							else
 								result="已审核";
 							return result;
@@ -181,7 +208,8 @@
 					{field:'jsdj',title:'技术等级',width:70,align:'center'},
 					{field:'gydw',title:'管养单位',width:170,align:'center'},
 					{field:'zcqms',title:'资产期末数',width:70,align:'center'},
-					{field:'fzqms',title:'负债期末数',width:70,align:'center'}
+					{field:'fzqms',title:'负债期末数',width:70,align:'center'},
+					{field:'thyy',title:'退回原因',width:70,align:'center'}
 					]]
 			}
 			
@@ -249,15 +277,15 @@
 			    rowStyler:function(index,row){
 			    	if($.cookie('unit2').length==11){
 					if (row.xsbzt==0&&row.sfbj==1){
-						return 'background-color:pink;color:blue;font-weight:bold;';
+						return 'background-color:pink;color:black;font-weight:bold;';
 					}}
 			    	if($.cookie('unit2').length==9){
 						if (row.ssbzt==0&&row.sfbj==1&&row.xsbzt==1){
-						return 'background-color:pink;color:blue;font-weight:bold;';
+						return 'background-color:pink;color:black;font-weight:bold;';
 					}}
 			    	if($.cookie('unit2').length==7){
 						if (row.shzt==0&&row.sfbj==1&&row.ssbzt==1){
-						return 'background-color:pink;color:blue;font-weight:bold;';
+						return 'background-color:pink;color:black;font-weight:bold;';
 					}}
 			    	
 			    	
@@ -347,6 +375,73 @@
 				}
 			});
 		}
+		
+		
+		function sbshzc(index,flag){
+			var rows;var _id="";
+			rows=$("#grid").datagrid('getRows')[index];
+			
+				if(rows.sfbj==0){
+					alert('请勾选已填写的记录！');
+					return;
+				}
+				if(flag=='xian'){
+					if(rows.xsbzt==1){
+						alert('请勾选未上报的记录！');
+						return;
+					}
+				}
+				if(flag=='shi'){
+					if(rows.ssbzt==1){
+						alert('请勾选未上报的记录！');
+						return;
+					}
+				}
+				if(flag=='sheng'){
+					if(rows.shzt==1){
+						alert('请勾选未审核的记录！');
+						return;
+					}
+				}
+				if(flag=='thsh'){
+					if(rows.shzt==0){
+						alert('请勾选已审核的记录！');
+						return;
+					}
+				}
+				
+			
+			_id=rows.id;
+			
+			var data="";
+			if(flag=='sheng'){
+				data="xsbzt=1&ssbzt=1&shzt=1";
+			}
+			if(flag=='shi'||flag=='thsh'){
+				data="xsbzt=1&ssbzt=1&shzt=0";
+			}
+			if(flag=='xian'){
+				data="xsbzt=1&ssbzt=0&shzt=0";
+			}
+			data+="&id="+_id+"&thyy=";
+			if(confirm("确认操作吗？"))
+			$.ajax({
+				type:'post',
+				url:'/jxcsxm/zcgl/plsbshzc.do',
+				async:false,
+				data:data,
+				dataType:'json',
+				success:function(msg){
+					if(msg){
+						$("#grid").datagrid('reload');
+						alert("操作成功。");
+					}
+					else
+						alert("操作失败。");
+				}
+			});
+		}
+		
 		
 		
 		function thxjzc(flag){

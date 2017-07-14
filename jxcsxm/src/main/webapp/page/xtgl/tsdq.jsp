@@ -89,7 +89,7 @@ $(function(){
 			width : 100,
 			align : 'center',
 			formatter : function(value,rec,index){
-				if(value=="启用") return '<a onclick=updateZt("'+rec.id+'","'+value+'") href="#" style="color:blue;">启用</a>';
+				if(value=="启用") return '<a onclick=updateZt("'+rec.id+'","'+value+'") href="#" style="color:black;">启用</a>';
 				else return '<a onclick=updateZt("'+rec.id+'","'+value+'") href="#" style="color:red;">禁用</a>';
 			}
 		},{
