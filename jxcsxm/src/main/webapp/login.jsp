@@ -18,9 +18,9 @@
 <div style="width:1000px;  height:258px;position:relative;top:49px;left:0px; margin:0 auto;">
 <script type="text/javascript" src="js/wpFlashWrite.js"></script>
 <script type="text/javascript">
-<!--
- wpFlashWrite('images/login.swf',1000,570,'wpFlash70814','','');
-//-->
+
+ wpFlashWrite('images/login.swf',1000,573,'wpFlash70814','','');
+
 $(function(){
 	$("#name").focus();
 	autoCompletelogin();

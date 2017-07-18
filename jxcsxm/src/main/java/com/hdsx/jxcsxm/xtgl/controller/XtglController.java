@@ -1137,8 +1137,13 @@ public class XtglController extends BaseActionSupport{
 	}
 	public void userlogin(){
 		try {
-			List<Master> l = xtglServer.userlogin(name);
-			JsonUtils.write(l, getresponse().getWriter());
+			if(name==null||"".equals(name))
+				JsonUtils.write(null, getresponse().getWriter());
+			else {
+				List<Master> l = xtglServer.userlogin(name);
+				JsonUtils.write(l, getresponse().getWriter());
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

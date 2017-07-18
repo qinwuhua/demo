@@ -17,7 +17,7 @@ i, em, big, small, strong {font-style:normal;font-weight:normal;font-size:12px;}
 a img, img, iframe,button{border:none;}
 a span, form label,button {cursor:pointer;}
 input,select{text-indent:4px;height: 20px;}
-a { color:#000; text-decoration:none; }
+a { color:#FFE7BA; text-decoration:none; }
 a:hover { color:#a4d71c;}
 li {list-style:none;}
 table {border-collapse:collapse;}
