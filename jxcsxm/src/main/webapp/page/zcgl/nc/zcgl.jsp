@@ -501,7 +501,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">当前位置>&nbsp;农村公路>&nbsp;资产管理</div>
+		<div id="p_top">当前位置>&nbsp;农村公路>&nbsp;公路资产管理</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>

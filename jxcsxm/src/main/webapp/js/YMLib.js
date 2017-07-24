@@ -37,7 +37,7 @@ function getBmbm(name,nameBm,value){
 var YMLib = {
 	version : '1.1',
 	url : document.location.protocol + "//" + document.location.host
-			+ "/jxhwyh/",
+			+ "/jxcsxm/",
 	page : document.location.href.split('/')[document.location.href.split('/').length - 1]
 			.replace('.jsp', ''),// 获取本页frame的文件名。
 
@@ -1523,7 +1523,7 @@ function locationXm1(_roadcode,_roadstart,_roadends){
 //	_roadstart="179.59-42.514";
 //	_roadends="190.643-84.903";
 	//locationXm("S201361121-S225360828","179.59-42.514","190.643-84.903","1");
-	YMLib.Var.xmbm=_roadcode+$.cookie("dist");
+	YMLib.Var.xmbm=_roadcode;
 	var data=new Array();
 	var jsonStr="";
 	if(_roadcode.lastIndexOf("-")>-1){
@@ -1540,6 +1540,7 @@ function locationXm1(_roadcode,_roadstart,_roadends){
 	}
 	YMLib.Var.bm=data;
 	YMLib.Var.type="1";
+	YMLib.Var.types="BM";
 	YMLib.UI.createWindow('locationXm','项目定位','/jxcsxm/openlayers.html','app_add',800,500);
 }
 

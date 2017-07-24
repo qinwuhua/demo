@@ -38,17 +38,19 @@
          var pointClick = null, geometry = null;
          var queryType;
           jQuery(document).ready(function () {
+        	  
           	$(".layout-button-right").click();
              OpenLayers.ProxyHost = "../../proxy.jsp?";
              initMap();
              //initDefaultStyle();
              console.log(parent.YMLib);
-                         
+                    
              test(parent.YMLib.Var.bm,parent.YMLib.Var.type);
              
          });
  		
           function test(_data,_lx){
+        	  
               if(_lx!="1"){
               	//桥梁图层
               	var qlList=_data;
@@ -56,6 +58,7 @@
               	attrQuery(_data[0].ROADBM);
                   //testQueryQLByLXMBZH(qlList);
               }else{
+            	  
               	//路线图层
               	var lxList=_data;
               	testQueryByLXBMZH(lxList);
@@ -573,6 +576,9 @@
           	} else if(param['queryAttribute']=="BM"){
           		url = "http://36.2.6.21:7001/geoserver-sde/rest/action/getSegment";
           		var bm=param['BM'];
+          		
+          		if(bm.substring(0,1)=='G'||bm.substring(0,1)=='S')
+          		bm=bm.substring(0,bm.length - 6);
           		var qdzh=param['ROADSTART'];
           		var zdzh=param['ROADENDS'];
           		/*$.ajax({
@@ -597,6 +603,11 @@
     					
     				}
     			});*/
+    			
+//     			alert(bm+"    "+qdzh+"    "+zdzh);
+    			//var lx_code=bm.substring(0,bm.length - 6);
+         		//var xzqhbm=
+    			//params={params:'{"layerName":"GIS_XZQH","filter":"lxdm=\''+lx_code+'\' AND xzqhbm=\''+xzqhbm+'\'","pager":{}}'};
           		params={params:'{"layerName":"GIS_LX","filter":"lxdm=\''+ bm +'\'","startPos":"' + qdzh + '","endPos":"'+ zdzh + '"}'};
           	}
           	var feature;
@@ -852,12 +863,15 @@
          }
 
          function testQueryByLXBMZH(listQueryParams) {
+        	
         	 var len = listQueryParams.length;
              var queryAttribute = "BM";
+             
              for (var i = 0; i < len; i++) {
                  var param = listQueryParams[i];
+                 if(parent.YMLib.Var.types!="BM")
                  if (param.BM.length > 7) {
-                     queryAttribute = "ROADCODE";
+                	 queryAttribute = "ROADCODE";
                  }
                  queryType = listQueryParams[i]['type'];
                  param.queryAttribute = queryAttribute;

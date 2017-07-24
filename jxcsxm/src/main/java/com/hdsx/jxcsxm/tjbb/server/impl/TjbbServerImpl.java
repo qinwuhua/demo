@@ -78,7 +78,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 							
 							l=queryList("getJhzxqkbXm", elist);
 						}
-						System.out.println(l3.get(j).getXmsl()+"-----"+l.size());
+//						System.out.println(l3.get(j).getXmsl()+"-----"+l.size());
 						
 						for (Excel_list e : l) {
 							e.setV_0(""+k);
@@ -221,26 +221,26 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		sql5+="null v_"+(x+0)+",nvl(bf2.ztz,0)+nvl(bf1.ztz,0) v_"+(x+1)+",null v_"+(x+2)+",null v_"+(x+3)+",null v_"+(x+4)+",'6' xh";
 		sql6+="null v_"+(x+0)+",nvl(bf2.ztz,0)+nvl(bf1.ztz,0) v_"+(x+1)+",null v_"+(x+2)+",null v_"+(x+3)+",null v_"+(x+4)+",'7' xh";
 		
-		dwsql0+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,dwyf,jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,jhxdwh,xmbm) dw group by xmbm) dws,";
-		dwsql+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,dwyf,jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,jhxdwh,xmbm) dw group by xmbm) dws,";
-		dwsql1+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,dwyf,jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,jhxdwh,xmbm) dw group by xmbm) dws,";
-		dwsql2+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,dwyf,jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,jhxdwh,xmbm) dw group by xmbm) dws,";
-		dwsql3+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,dwyf,jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,jhxdwh,xmbm) dw group by xmbm) dws,";
-		dwsql4+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,dwyf,jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,jhxdwh,xmbm) dw group by xmbm) dws,";
-		dwsql5+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,dwyf,jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,jhxdwh,xmbm) dw group by xmbm) dws,";
-		dwsql6+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,dwyf,jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,jhxdwh,xmbm) dw group by xmbm) dws,";
+		dwsql0+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,dwyf,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,xmbm) dw group by xmbm) dws,";
+		dwsql+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,dwyf,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,xmbm) dw group by xmbm) dws,";
+		dwsql1+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,dwyf,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,xmbm) dw group by xmbm) dws,";
+		dwsql2+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,dwyf,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,xmbm) dw group by xmbm) dws,";
+		dwsql3+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,dwyf,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,xmbm) dw group by xmbm) dws,";
+		dwsql4+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,dwyf,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,xmbm) dw group by xmbm) dws,";
+		dwsql5+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,dwyf,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,xmbm) dw group by xmbm) dws,";
+		dwsql6+="xmbm dwjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,dwyf,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+"  group by dwyf,xmbm) dw group by xmbm) dws,";
 		
-		bfsql0+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,bfyf,jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,jhxdwh,xmbm) bf group by xmbm) bfs," ;
-		bfsql+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,bfyf,jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,jhxdwh,xmbm) bf group by xmbm) bfs," ;
-		bfsql1+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,bfyf,jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,jhxdwh,xmbm) bf group by xmbm) bfs," ;
-		bfsql2+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,bfyf,jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,jhxdwh,xmbm) bf group by xmbm) bfs," ;
-		bfsql3+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,bfyf,jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,jhxdwh,xmbm) bf group by xmbm) bfs," ;
-		bfsql4+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,bfyf,jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,jhxdwh,xmbm) bf group by xmbm) bfs," ;
-		bfsql5+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,bfyf,jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+" and bd='标段一' group by bfyf,jhxdwh,xmbm) bf group by xmbm) bfs," ;
-		bfsql6+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,bfyf,jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+" and bd='标段二' group by bfyf,jhxdwh,xmbm) bf group by xmbm) bfs," ;
+		bfsql0+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,bfyf,xmbm jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,xmbm) bf group by xmbm) bfs," ;
+		bfsql+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,bfyf,xmbm jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,xmbm) bf group by xmbm) bfs," ;
+		bfsql1+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,bfyf,xmbm jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,xmbm) bf group by xmbm) bfs," ;
+		bfsql2+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,bfyf,xmbm jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,xmbm) bf group by xmbm) bfs," ;
+		bfsql3+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,bfyf,xmbm jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,xmbm) bf group by xmbm) bfs," ;
+		bfsql4+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,bfyf,xmbm jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+"  group by bfyf,xmbm) bf group by xmbm) bfs," ;
+		bfsql5+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,bfyf,xmbm jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+" and bd='标段一' group by bfyf,xmbm) bf group by xmbm) bfs," ;
+		bfsql6+="xmbm bfjhxdwh from (select sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmbm,bfyf,xmbm jhxdwh from xm_zjbf xm where jhxdwh is not null and substr(bfyf,0,4)="+elist.getJhnf()+" and bd='标段二' group by bfyf,xmbm) bf group by xmbm) bfs," ;
 		
 		String table0=
-			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmid,xdnf,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xdnf,xmid) xd," 
+			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmid,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xmid) xd," 
 						+dwsql0
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+" group by xmbm) dw1," 
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)<"+elist.getJhnf()+" group by xmbm) dw2," 
@@ -250,7 +250,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 						+" where xd.jhxdwh=dws.dwjhxdwh(+) and xd.jhxdwh=dw1.jhxdwh(+) and xd.jhxdwh=dw2.jhxdwh(+) and xd.jhxdwh=bfs.bfjhxdwh(+) and xd.jhxdwh=bf1.jhxdwh(+) and xd.jhxdwh=bf2.jhxdwh(+)"
 						+" and xd.xmid='"+elist.getXmbm()+"'";
 		String table=
-	      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmid,xdnf,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xdnf,jhxdwh,xmid) xd," 
+	      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmid,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xmid) xd," 
 				+dwsql
 				+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+" group by xmbm) dw1," 
 				+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)<"+elist.getJhnf()+" group by xmbm) dw2," 
@@ -260,7 +260,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 				+" where xd.jhxdwh=dws.dwjhxdwh(+) and xd.jhxdwh=dw1.jhxdwh(+) and xd.jhxdwh=dw2.jhxdwh(+) and xd.jhxdwh=bfs.bfjhxdwh(+) and xd.jhxdwh=bf1.jhxdwh(+) and xd.jhxdwh=bf2.jhxdwh(+)"
 				+" and xd.xmid='"+elist.getXmbm()+"'";
 		String table1=
-			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmid,xdnf,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xdnf,jhxdwh,xmid) xd," 
+			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmid,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xmid) xd," 
 						+dwsql1
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+" group by xmbm) dw1," 
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)<"+elist.getJhnf()+" group by xmbm) dw2," 
@@ -270,7 +270,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 						+" where xd.jhxdwh=dws.dwjhxdwh(+) and xd.jhxdwh=dw1.jhxdwh(+) and xd.jhxdwh=dw2.jhxdwh(+) and xd.jhxdwh=bfs.bfjhxdwh(+) and xd.jhxdwh=bf1.jhxdwh(+) and xd.jhxdwh=bf2.jhxdwh(+)"
 						+" and xd.xmid='"+elist.getXmbm()+"'";
 		String table2=
-			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmid,xdnf,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xdnf,jhxdwh,xmid) xd," 
+			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmid,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xmid) xd," 
 						+dwsql2
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+" group by xmbm) dw1," 
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)<"+elist.getJhnf()+" group by xmbm) dw2," 
@@ -280,7 +280,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 						+" where xd.jhxdwh=dws.dwjhxdwh(+) and xd.jhxdwh=dw1.jhxdwh(+) and xd.jhxdwh=dw2.jhxdwh(+) and xd.jhxdwh=bfs.bfjhxdwh(+) and xd.jhxdwh=bf1.jhxdwh(+) and xd.jhxdwh=bf2.jhxdwh(+)"
 						+" and xd.xmid='"+elist.getXmbm()+"'";
 		String table3=
-			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmid,xdnf,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xdnf,jhxdwh,xmid) xd," 
+			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmid,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xmid) xd," 
 						+dwsql3
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+" group by xmbm) dw1," 
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)<"+elist.getJhnf()+" group by xmbm) dw2," 
@@ -290,7 +290,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 						+" where xd.jhxdwh=dws.dwjhxdwh(+) and xd.jhxdwh=dw1.jhxdwh(+) and xd.jhxdwh=dw2.jhxdwh(+) and xd.jhxdwh=bfs.bfjhxdwh(+) and xd.jhxdwh=bf1.jhxdwh(+) and xd.jhxdwh=bf2.jhxdwh(+)"
 						+" and xd.xmid='"+elist.getXmbm()+"'";
 		String table4=
-			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmid,xdnf,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xdnf,jhxdwh,xmid) xd," 
+			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmid,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xmid) xd," 
 						+dwsql4
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+" group by xmbm) dw1," 
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)<"+elist.getJhnf()+" group by xmbm) dw2," 
@@ -300,7 +300,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 						+" where xd.jhxdwh=dws.dwjhxdwh(+) and xd.jhxdwh=dw1.jhxdwh(+) and xd.jhxdwh=dw2.jhxdwh(+) and xd.jhxdwh=bfs.bfjhxdwh(+) and xd.jhxdwh=bf1.jhxdwh(+) and xd.jhxdwh=bf2.jhxdwh(+)"
 						+" and xd.xmid='"+elist.getXmbm()+"'";
 		String table5=
-			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmid,xdnf,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xdnf,jhxdwh,xmid) xd," 
+			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmid,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xmid) xd," 
 						+dwsql5
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+" group by xmbm) dw1," 
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)<"+elist.getJhnf()+" group by xmbm) dw2," 
@@ -310,7 +310,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 						+" where xd.jhxdwh=dws.dwjhxdwh(+) and xd.jhxdwh=dw1.jhxdwh(+) and xd.jhxdwh=dw2.jhxdwh(+) and xd.jhxdwh=bfs.bfjhxdwh(+) and xd.jhxdwh=bf1.jhxdwh(+) and xd.jhxdwh=bf2.jhxdwh(+)"
 						+" and xd.xmid='"+elist.getXmbm()+"'";
 		String table6=
-			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmid,xdnf,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xdnf,jhxdwh,xmid) xd," 
+			      " from (select sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,sum(nvl(ztz,0)) ztz,xmid,xmid jhxdwh from xm_gsd_jhxd xm where jhxdwh is not null group by xmid) xd," 
 						+dwsql6
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)="+elist.getJhnf()+" group by xmbm) dw1," 
 						+" (select sum(nvl(ztz,0)) ztz,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc,xmbm,xmbm jhxdwh from xm_zjdw xm where jhxdwh is not null and substr(dwyf,0,4)<"+elist.getJhnf()+" group by xmbm) dw2," 

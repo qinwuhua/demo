@@ -18,8 +18,8 @@ select, textarea, input, button {vertical-align:middle;font-family:inherit;font-
 img {_azimuth:expression(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none", this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')", this.src = "./images/blank.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("', '').replace('")', ''), this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')", this.runtimeStyle.backgroundImage = "none")), this.pngSet=true);
 }
 
-.header{height:98px;background:url(../images/bg_x.jpg) 0 0 repeat-x;}
-.header_content{position:relative;height:96px;background:url(../images/top_bg1.jpg) 0 0 no-repeat;}
+.header{height:98px;background:url(../images/bg_x1.jpg) 0 0 repeat-x;}
+.header_content{position:relative;height:96px;background:url(../images/top_bg11.jpg) 0 0 no-repeat;}
 .header_content2{position:relative;height:96px;background:url(../images/top_bg2.jpg) 0 0 no-repeat;}
 .header_content3{position:relative;height:96px;background:url(../images/top_bg3.jpg) 0 0 no-repeat;}
 .header_content4{position:relative;height:96px;background:url(../images/top_bg4.jpg) 0 0 no-repeat;}

@@ -89,7 +89,8 @@
 				columns=[[	{field:'allSel',title:'全选',width:50,align:'center',rowspan:1,checkbox:'true'},
 					{field:'cz',title:'操作',width:90,align:'center',
 						formatter: function(value,row,index){
-							var result='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','info'"+')" >详情</a>&nbsp;';
+							var result='<a style="color:#3399CC;" href="javascript:locationXm1('+"'"+row.lxbm+"','"+row.qdzh+"','"+row.zdzh+"'"+')" >定位</a>&nbsp;'
+								+'<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','info'"+')" >详情</a>&nbsp;';
 							result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>';
 							return result;
 						}
@@ -153,7 +154,8 @@
 				columns=[[	{field:'allSel',title:'全选',width:50,align:'center',rowspan:1,checkbox:'true'},
 					{field:'cz',title:'操作',width:115,align:'center',
 						formatter: function(value,row,index){
-							var result='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','info'"+')" >详情</a>&nbsp;';
+							var result='<a style="color:#3399CC;" href="javascript:locationXm1('+"'"+row.lxbm+"','"+row.qdzh+"','"+row.zdzh+"'"+')" >定位</a>&nbsp;'
+							+'<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','info'"+')" >详情</a>&nbsp;';
 							result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>';
 							return result;
 						}
@@ -570,7 +572,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">当前位置>&nbsp;普通国省道>&nbsp;资产管理</div>
+		<div id="p_top">当前位置>&nbsp;普通国省道>&nbsp;公路资产管理</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
