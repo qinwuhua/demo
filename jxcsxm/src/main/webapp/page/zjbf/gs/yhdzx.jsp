@@ -104,7 +104,7 @@
 							{field:'cz',title:'操作',width:120,align:'center',
 								formatter: function(value,row,index){
 									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_yhdzx','zjbf'"+')" >项目详情</a>&nbsp;';
-									result+='<a style="color:#3399CC;" href="javascript:openZjbf('+"'"+row.xmbm+"','gs_yhdzx'"+')" >拨付详情</a>';	
+									result+='<a style="color:#3399CC;" href="javascript:openZjbf('+"'"+row.xmbm+"','"+row.gydwdm+"','gs_yhdzx'"+')" >拨付详情</a>';	
 									return result;
 								}
 							},

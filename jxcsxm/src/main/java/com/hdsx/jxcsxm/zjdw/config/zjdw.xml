@@ -316,6 +316,6 @@
 	</select>
 	
 	<select id="queryZjByGydwdmJtj" parameterType="xmzjdw" resultType="xmzjdw">
-		select * from xm_zjdw z where dwyf=#{dwyf} and z.parent=#{gydwdm} or id like rtrim(#{gydwdm}, '0')||'%' order by gydwdm
+		select * from xm_zjdw z where dwyf=#{dwyf} and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') order by gydwdm
 	</select>
 </mapper>

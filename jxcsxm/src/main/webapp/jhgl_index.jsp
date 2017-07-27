@@ -40,7 +40,7 @@ function urllogin(){
 	     		if(dist2.substr(dist2.length-2,dist2.length)=="00") dist2=dist2.substr(0,dist2.length-2);
 	     		if(dist2.substr(dist2.length-2,dist2.length)=="00") dist2=dist2.substr(0,dist2.length-2);		     		
 	     		$.cookie("dist2",dist2, {expires: 1});
-	     		
+	     		$.cookie("zgx",msg.ZGX, {expires: 1});
 	     		$.cookie("roleid",msg.ROLEID, {expires: 1});
 	     		//document.location.href="./index.jsp";
 	     		//$('#index_layout').css('visibility', 'visible');
@@ -130,7 +130,7 @@ function clearscSession(){
 			<iframe id="c6f" name="c6f"src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
 		<div id="c7" style="width:100%;height:100%;display:none">
-			<iframe id="c7f" name="c7f" src="" frameborder='0' height='100%' width='100%'></iframe>
+			<iframe id="c7f" name="c7f"src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
 		
     </div>

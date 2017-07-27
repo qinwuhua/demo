@@ -165,6 +165,9 @@
 						return;
 					}
 				}
+				if($.cookie('zgx').indexOf(parent.YMLib.Var.gydwdm)!=-1)
+				data="xsbzt=已上报&ssbzt=已上报&sbthcd=7&sfth=否&thyy=&id="+_id;	
+				else
 				data="xsbzt=已上报&sbthcd=9&sfth=否&thyy=&id="+_id;
 				str="上报";
 			}
@@ -249,6 +252,9 @@
 							return;
 						}
 					}
+				if($.cookie('zgx').indexOf(parent.YMLib.Var.gydwdm)!=-1)
+				YMLib.Var.data="ssbzt=未上报&xsbzt=未上报&sfth=是&sbthcd=11&id="+id;
+				else
 				YMLib.Var.data="ssbzt=未上报&sfth=是&sbthcd=9&id="+id;
 				openWindow("退回","/jxcsxm/page/zjdw/zjdw_th.jsp",400,150);
 			}

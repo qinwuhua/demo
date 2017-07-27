@@ -101,7 +101,7 @@
 								formatter: function(value,row,index){
 									
 									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_lwjggz','zjdw'"+')" >项目详情</a>&nbsp;';
-									result+='<a style="color:#3399CC;" href="javascript:openZjdw('+"'"+row.xmbm+"','gs_lwjggz'"+')" >到位详情</a>';
+									result+='<a style="color:#3399CC;" href="javascript:openZjdw('+"'"+row.xmbm+"','"+row.gydwdm+"','gs_lwjggz'"+')" >到位详情</a>';
 									return result;
 								}
 							},

@@ -100,7 +100,7 @@
 							{field:'cz',title:'操作',width:130,align:'center',
 								formatter: function(value,row,index){
 									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','nc_tzrc','zjbf'"+')" >项目详情</a>&nbsp;';
-									result+='<a style="color:#3399CC;" href="javascript:openZjbf('+"'"+row.xmbm+"','nc_tzrc'"+')" >拨付详情</a>';	
+									result+='<a style="color:#3399CC;" href="javascript:openZjbf('+"'"+row.xmbm+"','"+row.gydwdm+"','nc_tzrc'"+')" >拨付详情</a>';	
 									return result;
 								}
 							},

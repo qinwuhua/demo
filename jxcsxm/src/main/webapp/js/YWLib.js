@@ -127,15 +127,17 @@ var Data={
 	};
 
 //打开资金到位页面
-function openZjdw(xmbm,xmlx){
+function openZjdw(xmbm,gydwdm,xmlx){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.xmlx=xmlx;
+	YMLib.Var.gydwdm=gydwdm;
 	openWindow("资金到位详情","/jxcsxm/page/zjdw/zjdw.jsp",1000,450);
 }
 //打开资金拨付页面
-function openZjbf(xmbm,xmlx){
+function openZjbf(xmbm,gydwdm,xmlx){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.xmlx=xmlx;
+	YMLib.Var.gydwdm=gydwdm;
 	openWindow("资金拨付详情","/jxcsxm/page/zjbf/zjbf.jsp",1000,450);
 }
 

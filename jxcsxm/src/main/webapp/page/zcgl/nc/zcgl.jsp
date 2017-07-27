@@ -223,55 +223,7 @@
 			    height:$(window).height()-160,
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
-			    columns:columns/* [[	{field:'allSel',title:'全选',width:50,align:'center',rowspan:1,checkbox:'true'},
-							{field:'cz',title:'操作',width:105,align:'center',
-								formatter: function(value,row,index){
-									var result='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','info'"+')" >详情</a>&nbsp;';
-									result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>';
-									return result;
-								}
-							},
-							
-							{field:'sbzt',title:'上报状态',width:60,align:'center',
-								formatter: function(value,row,index){
-									var result="";
-									if($.cookie('unit2').length==11){
-										if(row.xsbzt=='0')
-											result="未上报";
-										else
-											result="已上报";
-									}else{
-										if(row.ssbzt=='0')
-											result="未上报";
-										else
-											result="已上报";
-									}
-									return result;
-								}
-							},
-							{field:'shzt',title:'审核状态',width:60,align:'center',
-								formatter: function(value,row,index){
-									var result="";
-									if(row.shzt=='0')
-										result="未审核";
-									else
-										result="已审核";
-									return result;
-								}
-							},
-							{field:'nf',title:'年份',width:50,align:'center'},
-							{field:'lxbm',title:'路线编码',width:80,align:'center'},
-							{field:'lxmc',title:'路线名称',width:110,align:'center'},
-							{field:'qdzh',title:'起点桩号',width:50,align:'center'},
-							{field:'zdzh',title:'止点桩号',width:50,align:'center'},
-							{field:'lc',title:'里程',width:50,align:'center'},
-							{field:'jsdj',title:'技术等级',width:60,align:'center'},
-							{field:'gydw',title:'管养单位',width:150,align:'center'},
-							{field:'zcqcs',title:'资产期初数',width:70,align:'center'},
-							{field:'zcqms',title:'资产期末数',width:70,align:'center'},
-							{field:'fzqcs',title:'负债期初数',width:70,align:'center'},
-							{field:'fzqms',title:'负债期末数',width:70,align:'center'}
-			    ]] */,
+			    columns:columns,
 			    rowStyler:function(index,row){
 			    	if($.cookie('unit2').length==11){
 					if (row.xsbzt==0&&row.sfbj==1){
@@ -353,6 +305,78 @@
 				data="xsbzt=1&ssbzt=1&shzt=0";
 			}
 			if(flag=='xian'){
+				
+				if($.cookie('zgx').indexOf(rows[0].gydwdm)!=-1)
+				data="xsbzt=1&ssbzt=1&shzt=0";	
+				else
+				data="xsbzt=1&ssbzt=0&shzt=0";
+			}
+			data+="&id="+_id+"&thyy=";
+			if(confirm("确认操作吗？"))
+			$.ajax({
+				type:'post',
+				url:'/jxcsxm/zcgl/plsbshzc.do',
+				async:false,
+				data:data,
+				dataType:'json',
+				success:function(msg){
+					if(msg){
+						$("#grid").datagrid('reload');
+						alert("操作成功。");
+					}
+					else
+						alert("操作失败。");
+				}
+			});
+		}
+		
+		
+		function sbshzc(index,flag){
+			var rows;var _id="";
+			rows=$("#grid").datagrid('getRows')[index];
+			
+				if(rows.sfbj==0){
+					alert('请勾选已填写的记录！');
+					return;
+				}
+				if(flag=='xian'){
+					if(rows.xsbzt==1){
+						alert('请勾选未上报的记录！');
+						return;
+					}
+				}
+				if(flag=='shi'){
+					if(rows.ssbzt==1){
+						alert('请勾选未上报的记录！');
+						return;
+					}
+				}
+				if(flag=='sheng'){
+					if(rows.shzt==1){
+						alert('请勾选未审核的记录！');
+						return;
+					}
+				}
+				if(flag=='thsh'){
+					if(rows.shzt==0){
+						alert('请勾选已审核的记录！');
+						return;
+					}
+				}
+				
+			
+			_id=rows.id;
+			
+			var data="";
+			if(flag=='sheng'){
+				data="xsbzt=1&ssbzt=1&shzt=1";
+			}
+			if(flag=='shi'||flag=='thsh'){
+				data="xsbzt=1&ssbzt=1&shzt=0";
+			}
+			if(flag=='xian'){
+				
+				if($.cookie('zgx').indexOf(rows.gydwdm)!=-1)
 				data="xsbzt=1&ssbzt=0&shzt=0";
 			}
 			data+="&id="+_id+"&thyy=";
@@ -424,6 +448,9 @@
 			  
 			var data="";
 			if(flag=='sheng'){
+				if($.cookie('zgx').indexOf(rows[0].gydwdm)!=-1)
+				data="xsbzt=0&ssbzt=0&shzt=0&thyy="+name;
+				else
 				data="xsbzt=1&ssbzt=0&shzt=0&thyy="+name;
 			}
 			if(flag=='shi'){

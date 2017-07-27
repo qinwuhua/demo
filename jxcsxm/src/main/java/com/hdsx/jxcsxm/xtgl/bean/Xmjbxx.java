@@ -36,6 +36,243 @@ public class Xmjbxx implements Serializable {
 	private String yhdk;
 	private String xmlx;
 	
+	    private double cgs;
+
+	    private double gz;
+
+	    private double sz;
+
+	    private double zq;
+
+	    private double tdk;
+
+	    private double jl;
+
+	    private double qt;
+
+	    private double dfzc;
+
+	    private double stz;
+
+	    private String bd;
+
+	    private String sbthcd;
+
+	    private String thyy;
+
+	    private Date xsbsj;
+
+	    private Date ssbsj;
+
+	    private Date shsj;
+
+	    private String sfth;
+
+	    private String dwyf;
+	    private String dwzj;
+	    private String yshdwzj;
+	    private String nf;
+	    private String name;
+	    private String cgs1;
+	    private String rys1;
+	    private String ttc1;
+	    private String dfzc1;
+	    private String ztz1;
+	    private String sffy;
+	    private String sfds;//是否地市
+	    private String sftj;//是否统计
+	    private String tbr;
+	    private String tbsj;
+	
+	
+	
+	
+	public double getCgs() {
+			return cgs;
+		}
+		public void setCgs(double cgs) {
+			this.cgs = cgs;
+		}
+		public double getGz() {
+			return gz;
+		}
+		public void setGz(double gz) {
+			this.gz = gz;
+		}
+		public double getSz() {
+			return sz;
+		}
+		public void setSz(double sz) {
+			this.sz = sz;
+		}
+		public double getZq() {
+			return zq;
+		}
+		public void setZq(double zq) {
+			this.zq = zq;
+		}
+		public double getTdk() {
+			return tdk;
+		}
+		public void setTdk(double tdk) {
+			this.tdk = tdk;
+		}
+		public double getJl() {
+			return jl;
+		}
+		public void setJl(double jl) {
+			this.jl = jl;
+		}
+		public double getQt() {
+			return qt;
+		}
+		public void setQt(double qt) {
+			this.qt = qt;
+		}
+		public double getDfzc() {
+			return dfzc;
+		}
+		public void setDfzc(double dfzc) {
+			this.dfzc = dfzc;
+		}
+		public double getStz() {
+			return stz;
+		}
+		public void setStz(double stz) {
+			this.stz = stz;
+		}
+		public String getBd() {
+			return bd;
+		}
+		public void setBd(String bd) {
+			this.bd = bd;
+		}
+		public String getSbthcd() {
+			return sbthcd;
+		}
+		public void setSbthcd(String sbthcd) {
+			this.sbthcd = sbthcd;
+		}
+		public String getThyy() {
+			return thyy;
+		}
+		public void setThyy(String thyy) {
+			this.thyy = thyy;
+		}
+		public Date getXsbsj() {
+			return xsbsj;
+		}
+		public void setXsbsj(Date xsbsj) {
+			this.xsbsj = xsbsj;
+		}
+		public Date getSsbsj() {
+			return ssbsj;
+		}
+		public void setSsbsj(Date ssbsj) {
+			this.ssbsj = ssbsj;
+		}
+		public Date getShsj() {
+			return shsj;
+		}
+		public void setShsj(Date shsj) {
+			this.shsj = shsj;
+		}
+		public String getSfth() {
+			return sfth;
+		}
+		public void setSfth(String sfth) {
+			this.sfth = sfth;
+		}
+		public String getDwyf() {
+			return dwyf;
+		}
+		public void setDwyf(String dwyf) {
+			this.dwyf = dwyf;
+		}
+		public String getDwzj() {
+			return dwzj;
+		}
+		public void setDwzj(String dwzj) {
+			this.dwzj = dwzj;
+		}
+		public String getYshdwzj() {
+			return yshdwzj;
+		}
+		public void setYshdwzj(String yshdwzj) {
+			this.yshdwzj = yshdwzj;
+		}
+		public String getNf() {
+			return nf;
+		}
+		public void setNf(String nf) {
+			this.nf = nf;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public String getCgs1() {
+			return cgs1;
+		}
+		public void setCgs1(String cgs1) {
+			this.cgs1 = cgs1;
+		}
+		public String getRys1() {
+			return rys1;
+		}
+		public void setRys1(String rys1) {
+			this.rys1 = rys1;
+		}
+		public String getTtc1() {
+			return ttc1;
+		}
+		public void setTtc1(String ttc1) {
+			this.ttc1 = ttc1;
+		}
+		public String getDfzc1() {
+			return dfzc1;
+		}
+		public void setDfzc1(String dfzc1) {
+			this.dfzc1 = dfzc1;
+		}
+		public String getZtz1() {
+			return ztz1;
+		}
+		public void setZtz1(String ztz1) {
+			this.ztz1 = ztz1;
+		}
+		public String getSffy() {
+			return sffy;
+		}
+		public void setSffy(String sffy) {
+			this.sffy = sffy;
+		}
+		public String getSfds() {
+			return sfds;
+		}
+		public void setSfds(String sfds) {
+			this.sfds = sfds;
+		}
+		public String getSftj() {
+			return sftj;
+		}
+		public void setSftj(String sftj) {
+			this.sftj = sftj;
+		}
+		public String getTbr() {
+			return tbr;
+		}
+		public void setTbr(String tbr) {
+			this.tbr = tbr;
+		}
+		public String getTbsj() {
+			return tbsj;
+		}
+		public void setTbsj(String tbsj) {
+			this.tbsj = tbsj;
+		}
 	public String getXmlx() {
 		return xmlx;
 	}

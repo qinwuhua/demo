@@ -17,8 +17,8 @@ $(function(){
 	$("#index_user").html(getQxfromSession('truename'));
 	menuQx();
 	
-	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_7,#Menu_5,#Menu_6").click(function(e){
-		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_7,#Menu_5,#Menu_6").removeClass('now');
+	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").click(function(e){
+		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").removeClass('now');
 		$("#"+ this.id).addClass('now');
 	});
     
@@ -71,11 +71,13 @@ $(function(){
     });
     
     $("#Menu_7").click(function () {
-        $("#c1,#c2,#c3,#c4,#5,#c6").hide();
+    	
+        $("#c1,#c2,#c3,#c4,#c5,#c6").hide();
         $("#c7").show();
         if (c7) {
             $("#c7f").attr("src", "page/xtgl/Menu.jsp");
         }
+
     });
 
     $(".header_content").css({"width":"100%"});

@@ -31,6 +31,7 @@
 		$(function(){
 			$("#nf").combobox({onSelect:function(record){
 				loadZj($.cookie("unit"));
+				loadWhBmbmSh('jhxdwh',$("#nf").combobox('getValue')+"21101360000");
 			}})
 			$("#yf").combobox({onSelect:function(record){
 				loadZj($.cookie("unit"));

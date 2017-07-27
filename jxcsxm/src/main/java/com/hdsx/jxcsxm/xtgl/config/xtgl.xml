@@ -18,10 +18,10 @@
 	select PASSWORD from xtgl_master M WHERE M.truename=#{value}
 	</select>
 	<select id="loginnum" parameterType="hashmap" resultType="hashmap">
-	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}
+	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID,(select replace(WMSYS.WM_CONCAT(to_char(l.id)),',',',') from xtgl_department l where parent='11101360000' and id not like '%00') zgx from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}
 	</select>
 	<select id="loginCheck" parameterType="hashmap" resultType="hashmap">
-	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID from xtgl_master M WHERE M.truename=#{truename}
+	select TRUENAME, UNIT, NAME, SEX, IDCARD, TEL, PHONE, ROLEID, CZSJ, ID,(select replace(WMSYS.WM_CONCAT(to_char(l.id)),',',',') from xtgl_department l where parent='11101360000' and id not like '%00') zgx from xtgl_master M WHERE M.truename=#{truename}
 	</select>
 	<select id="selAllXzqh" parameterType="String" resultType="treenode">
 	    select distinct x.id ,x.name text,'closed' state from xtgl_xzqh x where  x.id = #{yhdw} order by id

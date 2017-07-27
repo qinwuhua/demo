@@ -295,7 +295,7 @@
 	</select>
 	
 	<select id="queryZjByGydwdmJtj" parameterType="xmzjbf" resultType="xmzjbf">
-		select * from xm_zjbf z where bfyf=#{bfyf} and z.parent=#{gydwdm} or id like rtrim(#{gydwdm}, '0')||'%' order by gydwdm
+		select * from xm_zjbf z where bfyf=#{bfyf} and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') order by gydwdm
 	</select>
 	
 </mapper>

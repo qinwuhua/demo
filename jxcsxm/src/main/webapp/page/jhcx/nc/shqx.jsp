@@ -85,6 +85,7 @@
 							$(input[3]).val(item.dfzc);
 							$(input[4]).val(item.parent);
 							$("#jhxdwh").val(item.jhxdwh);
+							//alert(item.xdnf);
 							$("#nf").combobox('setValue',item.xdnf.substr(0,4));
 							
 							//$("#bd").combobox('setValue',item.bd);

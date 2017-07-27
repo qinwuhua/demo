@@ -44,6 +44,8 @@ function login(){
 		     		if(dist2.substr(dist2.length-2,dist2.length)=="00") dist2=dist2.substr(0,dist2.length-2);
 		     		if(dist2.substr(dist2.length-2,dist2.length)=="00") dist2=dist2.substr(0,dist2.length-2);		     		
 		     		$.cookie("dist2",dist2, {expires: 1});
+		     		$.cookie("zgx",msg.ZGX, {expires: 1});
+		     		
 		     		$.cookie("roleid",msg.ROLEID, {expires: 1});
 		     		selQxByUser1(msg.ROLEID);
 		    		
