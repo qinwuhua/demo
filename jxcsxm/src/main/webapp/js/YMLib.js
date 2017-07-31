@@ -180,6 +180,7 @@ var YMLib = {
 								resizable : true,
 								modal : false,
 								onClose : function() {
+								
 									var frame = $('iframe', $("#" + _id)); // 释放frame
 									if (frame.length > 0) {
 										frame[0].contentWindow.document
@@ -195,6 +196,56 @@ var YMLib = {
 									}
 									$("#" + _id).window('destroy');
 									$("#" + _id).remove();
+								}
+							});
+
+		},
+		createWindowFj : function(_id, _title, _href, _icon, _width, _height,
+				_onClose) {
+			if ($("#" + _id).size() != 0) {// 是否存在
+				return;
+			}
+			YMLib.Tools.createDivById(_id); // 创建div
+			$("#" + _id)
+					.window(
+							{// 渲染window
+								title : _title,
+								iconCls : _icon,
+								content : "<iframe id='"
+										+ _id
+										+ "_frame' name='"
+										+ _id
+										+ "_frame' src='"
+										+ _href
+										+ "' frameborder='0' height='100%' width='100%'></iframe>",
+								width : _width,
+								height : _height,
+								// collapsible: typeof _collapsible ==
+								// 'undefined',
+								minimizable : false,
+								maximizable : false,
+								resizable : true,
+								modal : false,
+								onClose : function() {
+								
+									var frame = $('iframe', $("#" + _id)); // 释放frame
+									if (frame.length > 0) {
+										frame[0].contentWindow.document
+												.write('');
+										frame[0].contentWindow.close();
+										frame.remove();
+										if ($.browser.msie) {
+											CollectGarbage();
+										}
+									}
+									if (typeof _onClose != 'undefined') {
+										_onClose();
+									}
+									$("#" + _id).window('destroy');
+									$("#" + _id).remove();
+								},
+								onBeforeClose:function(){
+									deleteFile(YMLib.Var.xmbm,YMLib.Var.xmbm,"fjTable","fid");
 								}
 							});
 
@@ -1198,7 +1249,7 @@ function loadDistadd(id, dwbm) {
 				checkbox : true,
 				multiple:true,
 				async:false,
-				url : '/jxcsxm/gcgl/selAllXzqh1.do?yhdw=' + dwbm,
+				url : '/jxcsxm/xtgl/selAllXzqh1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					//$('#' + id).combotree('setValue', dwbm);
 				},
@@ -1214,7 +1265,7 @@ function loadDistedit(id, dwbm,dwbm2) {
 				checkbox : true,
 				multiple:true,
 				async:false,
-				url : '/jxcsxm/gcgl/selAllXzqh1.do?yhdw=' + dwbm,
+				url : '/jxcsxm/xtgl/selAllXzqh1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					$('#' + id).combotree('setValues', dwbm2.split(","));
 				},
@@ -1247,7 +1298,7 @@ function loadUnitadd(id, dwbm) {
 				checkbox : true,
 				multiple:true,
 				async:false,
-				url : '/jxcsxm/gcgl/selAllUnit11.do?yhdw=' + dwbm,
+				url : '/jxcsxm/xtgl/selAllUnit11.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					//$('#' + id).combotree('setValue', dwbm);
 				}
@@ -1261,7 +1312,7 @@ function loadUnitedit(id, dwbm,dwbm2) {
 				checkbox : true,
 				multiple:true,
 				async:false,
-				url : '/jxcsxm/gcgl/selAllUnit11.do?yhdw=' + dwbm,
+				url : '/jxcsxm/xtgl/selAllUnit11.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					$('#' + id).combotree('setValues', dwbm2.split(","));
 				},
@@ -1278,7 +1329,7 @@ function loadUnits(id, dwbm,gydw) {
 				checkbox : false,
 				multiple:false,
 				async:false,
-				url : '/jxcsxm/gcgl/selAllUnit1.do?yhdw=' + dwbm,
+				url : '/jxcsxm/xtgl/selAllUnit1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					$('#' + id).combotree('setValue', gydw);
 				}
@@ -1292,7 +1343,7 @@ function loadUnit10(id, dwbm) {
 				checkbox : true,
 				multiple:true,
 				async:false,
-				url : '/jxcsxm/gcgl/selAllUnit1.do?yhdw=' + dwbm,
+				url : '/jxcsxm/xtgl/selAllUnit1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					$('#' + id).combotree('setValue', dwbm);
 				}

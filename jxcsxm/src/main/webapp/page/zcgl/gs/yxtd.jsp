@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>资产管理</title>
+	<title>沿线土地资产管理</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -21,15 +21,17 @@
 	<script type="text/javascript">
 		$(function(){
 			if($.cookie("unit")=='36')
-				loadUnit1("gydw",'11101360000');
-				else
-				loadUnit1("gydw",$.cookie("unit"));
+			loadUnit1("gydw",'21101360000');
+			else
+			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm('nf','资产年份',new Date().getFullYear());
 			loadBmbm3('jsdj','技术等级');
 			loadBmbm3('shzt','审核状态1');
 			loadBmbm3('ssbzt','上报状态1');
 			loadBmbm3('xsbzt','上报状态1');
 			//YMLib.Var.jdbs=2;
+			loadBmbm('oldnf','资产年份',new Date().getFullYear()-1);
+			loadBmbm('newnf','资产年份',new Date().getFullYear());
 			
 			
 			if($.cookie('unit2').length==11){
@@ -65,7 +67,7 @@
 			var xzqhdm=$("#gydw").combotree("getValues");
 			if(xzqhdm.length==0){
 				if($.cookie('unit')=='36')
-					xzqhstr='1110136'
+					xzqhstr='2110136'
 				else
 					xzqhstr= $.cookie("unit2");
 			}else if(xzqhdm.length==1){
@@ -77,7 +79,7 @@
 			}
 			
 			
-			var params={'lxbm':$("#lxbm").val(),'lxmc':$("#lxmc").val(),'gydw':xzqhstr,'dwlx':'1',
+			var params={'lxbm':$("#lxbm").val(),'lxmc':$("#lxmc").val(),'gydw':xzqhstr,'dwlx':'2',
 					   'nf':$("#nf").combobox('getValue'),'jsdj':$("#jsdj").combobox('getValues').join(','),
 					   'shzt':getValuesById("shzt"),'ssbzt':getValuesById("ssbzt"),'xsbzt':getValuesById("xsbzt")
 			};
@@ -146,7 +148,8 @@
 					{field:'zcqcs',title:'资产期初数',width:70,align:'center'},
 					{field:'zcqms',title:'资产期末数',width:70,align:'center'},
 					{field:'fzqcs',title:'负债期初数',width:70,align:'center'},
-					{field:'fzqms',title:'负债期末数',width:70,align:'center'}
+					{field:'fzqms',title:'负债期末数',width:70,align:'center'},
+					{field:'thyy',title:'退回原因',width:70,align:'center'}
 					]]
 			}else{
 				columns=[[	{field:'allSel',title:'全选',width:50,align:'center',rowspan:1,checkbox:'true'},
@@ -207,7 +210,8 @@
 					{field:'jsdj',title:'技术等级',width:70,align:'center'},
 					{field:'gydw',title:'管养单位',width:170,align:'center'},
 					{field:'zcqms',title:'资产期末数',width:70,align:'center'},
-					{field:'fzqms',title:'负债期末数',width:70,align:'center'}
+					{field:'fzqms',title:'负债期末数',width:70,align:'center'},
+					{field:'thyy',title:'退回原因',width:70,align:'center'}
 					]]
 			}
 			
@@ -223,7 +227,55 @@
 			    height:$(window).height()-160,
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
-			    columns:columns,
+			    columns:columns/* [[	{field:'allSel',title:'全选',width:50,align:'center',rowspan:1,checkbox:'true'},
+							{field:'cz',title:'操作',width:105,align:'center',
+								formatter: function(value,row,index){
+									var result='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','info'"+')" >详情</a>&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>';
+									return result;
+								}
+							},
+							
+							{field:'sbzt',title:'上报状态',width:60,align:'center',
+								formatter: function(value,row,index){
+									var result="";
+									if($.cookie('unit2').length==11){
+										if(row.xsbzt=='0')
+											result="未上报";
+										else
+											result="已上报";
+									}else{
+										if(row.ssbzt=='0')
+											result="未上报";
+										else
+											result="已上报";
+									}
+									return result;
+								}
+							},
+							{field:'shzt',title:'审核状态',width:60,align:'center',
+								formatter: function(value,row,index){
+									var result="";
+									if(row.shzt=='0')
+										result="未审核";
+									else
+										result="已审核";
+									return result;
+								}
+							},
+							{field:'nf',title:'年份',width:50,align:'center'},
+							{field:'lxbm',title:'路线编码',width:80,align:'center'},
+							{field:'lxmc',title:'路线名称',width:110,align:'center'},
+							{field:'qdzh',title:'起点桩号',width:50,align:'center'},
+							{field:'zdzh',title:'止点桩号',width:50,align:'center'},
+							{field:'lc',title:'里程',width:50,align:'center'},
+							{field:'jsdj',title:'技术等级',width:60,align:'center'},
+							{field:'gydw',title:'管养单位',width:150,align:'center'},
+							{field:'zcqcs',title:'资产期初数',width:70,align:'center'},
+							{field:'zcqms',title:'资产期末数',width:70,align:'center'},
+							{field:'fzqcs',title:'负债期初数',width:70,align:'center'},
+							{field:'fzqms',title:'负债期末数',width:70,align:'center'}
+			    ]] */,
 			    rowStyler:function(index,row){
 			    	if($.cookie('unit2').length==11){
 					if (row.xsbzt==0&&row.sfbj==1){
@@ -248,9 +300,9 @@
 		function openZcgl(id,flag){
 			YMLib.Var.index=id;
 			if(flag=='bj')
-			openWindow("编辑","/jxcsxm/page/zcgl/nc/zcgl_bj.jsp",700,310);
+			openWindow("编辑","/jxcsxm/page/zcgl/gs/zcgl_bj.jsp",700,310);
 			if(flag=='info')
-			openWindow("详情","/jxcsxm/page/zcgl/nc/zcgl_info.jsp",700,285);
+			openWindow("详情","/jxcsxm/page/zcgl/gs/zcgl_info.jsp",700,285);
 				
 		}
 		
@@ -305,10 +357,6 @@
 				data="xsbzt=1&ssbzt=1&shzt=0";
 			}
 			if(flag=='xian'){
-				
-				if($.cookie('zgx').indexOf(rows[0].gydwdm)!=-1)
-				data="xsbzt=1&ssbzt=1&shzt=0";	
-				else
 				data="xsbzt=1&ssbzt=0&shzt=0";
 			}
 			data+="&id="+_id+"&thyy=";
@@ -375,11 +423,7 @@
 				data="xsbzt=1&ssbzt=1&shzt=0";
 			}
 			if(flag=='xian'){
-				
-				if($.cookie('zgx').indexOf(rows.gydwdm)!=-1)
-				data="xsbzt=1&ssbzt=1&shzt=0";
-				else
-				data="xsbzt=1&ssbzt=0&shzt=0";	
+				data="xsbzt=1&ssbzt=0&shzt=0";
 			}
 			data+="&id="+_id+"&thyy=";
 			if(confirm("确认操作吗？"))
@@ -399,6 +443,7 @@
 				}
 			});
 		}
+		
 		
 		
 		function thxjzc(flag){
@@ -450,9 +495,6 @@
 			  
 			var data="";
 			if(flag=='sheng'){
-				if($.cookie('zgx').indexOf(rows[0].gydwdm)!=-1)
-				data="xsbzt=0&ssbzt=0&shzt=0&thyy="+name;
-				else
 				data="xsbzt=1&ssbzt=0&shzt=0&thyy="+name;
 			}
 			if(flag=='shi'){
@@ -517,6 +559,38 @@
 			});
 		}
 	
+		 function addInfo(){
+			 YMLib.Var.xmbm=newGuid();
+			 YMLib.UI.createWindowFj('mywin',"添加","/jxcsxm/page/zcgl/gs/yxtd_tj.jsp",'mywin',800,400);	
+		 }	
+		function copyInfo(){
+			$("#win").window('open');
+			$("#win").show();
+			
+		}
+	 function addInfoQd(){
+		var newnf=$("#newnf").datebox('getValue');
+		var oldnf=$("#oldnf").datebox('getValue');
+		alert(oldnf-newnf);
+		if((newnf-oldnf)!=1){
+			alert("请选择正确的年份");return;
+		}else{
+			$.ajax({
+				data:'zcgl.oldnf='+oldnf+"&zcgl.newnf="+newnf+"&zcgl.xmlx=yxtd",
+				type:'post',
+				dataType:'json',
+				url:'/jxcsxm/zcgl/copydatabyyear.do',
+				success:function(msg){
+					
+				}
+				
+			})
+		}
+		 
+		 $("#win").window('close');
+		 
+	 }
+	 
 	</script>
 	<style type="text/css">
 TD {
@@ -529,8 +603,31 @@ text-decoration:none;
 </style>
 </head>
 <body>
+<!-- 选择win -->
+	<div id="win" class="easyui-window" title="请选择" style="width:400px;height:120px;display: none;"
+    data-options="closed:true,collapsible: false, minimizable: false, maximizable: false, resizable: false">
+    <table style="width: 100%">
+    <tr>
+    <td style="padding-top: 15px;" align="center">
+   		
+   		复制<input type="text" id='oldnf' style="width: 65px;">年数据至<input type="text" id='newnf' style="width: 65px;">年
+   		
+    </td>
+    </tr>
+    <tr>
+   <td style="padding-top: 15px;" align="center">
+    	<a style="margin-top: 1px;margin-bottom: 1px;" href="javascript:addInfoQd()" class="button button-tiny button-rounded button-raised button-primary">确定</a>
+    	</td>
+    </tr>
+    
+    </table>
+    
+	</div>
+	
+
+	
 	<div id="righttop">
-		<div id="p_top">当前位置>&nbsp;农村公路>&nbsp;公路资产管理</div>
+		<div id="p_top">当前位置>&nbsp;普通国省道>&nbsp;沿线土地资产管理</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -546,15 +643,9 @@ text-decoration:none;
         						<td><select id="gydw" style="width:195px;"></select></td>
 								<td align="right">年份：</td>
         						<td><select id="nf" style="width: 80px;"></select></td>
-								<td align="right">路线编码：</td>
-        						<td><input name="lxbm" type="text" id="lxbm" style="width:140px;" /></td>
-        						<td align="right">路线名称：</td>
-        						<td><input name="lxmc" type="text" id="lxmc" style="width:140px;" /></td>
+								<td align="right">位置：</td>
+        						<td><input name="wz" type="text" id="wz" style="width:140px;" /></td>
         						
-								</tr>
-        					<tr height="28">
-								<td align="right">技术等级：</td>
-        						<td><select id="jsdj" style="width:195px;"></select></td>
         						<!-- 县市上报状态 省审核状态-->
 								<td align="right" name='sheng'>审核状态：</td>
 								<td name='sheng'><select name="shzt" id="shzt" style="width:80px;" ></select></td>
@@ -569,6 +660,10 @@ text-decoration:none;
         					<tr height="28">
                             	<td colspan="8">
                             		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryXmlist()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
+									<a id='mybuttion11' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:addInfo()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion11')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion11')"  class="button button-tiny button-rounded button-raised button-primary">添加</a>
+									<a id='mybuttion11' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:copyInfo()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion11')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion11')"  class="button button-tiny button-rounded button-raised button-primary">复制</a>
+									
+									
 									<a name='sheng' id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbshzc('sheng')" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">批量审核</a>
 									<a name='shi' id='mybuttion3' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbshzc('shi')" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
 									<a name='xian' id='mybuttion4' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbshzc('xian')" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>

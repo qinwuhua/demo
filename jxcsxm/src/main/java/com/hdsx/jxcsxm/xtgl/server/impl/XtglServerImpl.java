@@ -424,12 +424,12 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 			String roadcode=id.substring(0,1);
 			hm.put("xzqh",xzqh);
 			hm.put("roadcode",roadcode);
-			return queryListForJdbc("selectLxDataList", hm, "jdbc_jh");
+			return queryList("selectLxDataList", hm);
 		}else{
 			//桥梁
 			hm.put("roadcode",id);
 			
-			return queryListForJdbc("selectQlDataList", hm, "jdbc_jh");
+			return queryList("selectQlDataList", hm);
 		}
 	}
 	

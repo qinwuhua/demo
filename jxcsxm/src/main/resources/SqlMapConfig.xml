@@ -18,6 +18,7 @@
 	 <typeAlias type="com.hdsx.jxcsxm.zjbf.bean.XmZjbf" alias="xmzjbf"/>
      <typeAlias type="com.hdsx.jxcsxm.tjbb.bean.Excel_list" alias="elist"/>
      <typeAlias type="com.hdsx.jxcsxm.zcgl.bean.Zcgl" alias="zcgl"/>
+     <typeAlias type="com.hdsx.jxcsxm.utile.MyFile" alias="myfile"/>
   </typeAliases>
   <environments default="jdbc">
      <environment id="jdbc">

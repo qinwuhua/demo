@@ -48,6 +48,108 @@ public class Zcgl{
     
     private String dwlx;
     
+    private String xmlx;
+    
+    private String oldnf;
+    private String newnf;
+    private String fid;
+    private String xmbm;
+    
+    private double mj;
+    private double zc;
+    private double fz;
+    private String wz;
+    private String bz;
+    private String sbthcd;
+    
+	public String getSbthcd() {
+		return sbthcd;
+	}
+
+	public void setSbthcd(String sbthcd) {
+		this.sbthcd = sbthcd;
+	}
+
+	public double getMj() {
+		return mj;
+	}
+
+	public void setMj(double mj) {
+		this.mj = mj;
+	}
+
+	public double getZc() {
+		return zc;
+	}
+
+	public void setZc(double zc) {
+		this.zc = zc;
+	}
+
+	public double getFz() {
+		return fz;
+	}
+
+	public void setFz(double fz) {
+		this.fz = fz;
+	}
+
+	public String getWz() {
+		return wz;
+	}
+
+	public void setWz(String wz) {
+		this.wz = wz;
+	}
+
+	public String getBz() {
+		return bz;
+	}
+
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
+
+	public String getFid() {
+		return fid;
+	}
+
+	public void setFid(String fid) {
+		this.fid = fid;
+	}
+
+	public String getXmbm() {
+		return xmbm;
+	}
+
+	public void setXmbm(String xmbm) {
+		this.xmbm = xmbm;
+	}
+
+	public String getOldnf() {
+		return oldnf;
+	}
+
+	public void setOldnf(String oldnf) {
+		this.oldnf = oldnf;
+	}
+
+	public String getNewnf() {
+		return newnf;
+	}
+
+	public void setNewnf(String newnf) {
+		this.newnf = newnf;
+	}
+
+	public String getXmlx() {
+		return xmlx;
+	}
+
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
+
 	public String getDwlx() {
 		return dwlx;
 	}

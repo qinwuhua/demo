@@ -287,4 +287,101 @@
 	    where ${id}
 	
 	</update>
+	<!-- 查询附件 -->
+	<select id="queryFjByMd5" parameterType="myfile" resultType="myfile">
+		select  distinct fileurl from XTFILE 
+		where FILEMD5=#{filemd5}
+	</select>
+	<insert id="insertFile" parameterType="myfile">
+		insert into XTFILE
+		 <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="filename != null" >filename,</if>
+	      <if test="fid != null" >fid,</if>
+	      <if test="fileurl != null" >fileurl,</if>
+	      <if test="filemd5 != null" >filemd5,</if>
+	      <if test="xmlx != null" >xmlx,</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="filename != null" >#{filename},</if>
+	      <if test="fid != null" >#{fid},</if>
+	      <if test="fileurl != null" >#{fileurl},</if>
+	      <if test="filemd5 != null" >#{filemd5},</if>
+	      <if test="xmlx != null" >#{xmlx},</if>
+	    </trim>
+	</insert>
+	<select id="queryFjByfid" parameterType="myfile" resultType="myfile">
+		select * from XTFILE where fid=#{fid}
+	</select>
+	
+	<select id="queryFjByid" parameterType="myfile" resultType="myfile">
+		select * from XTFILE where id=#{id}
+	</select>
+	
+	<select id="queryFileBymd5" parameterType="myfile" resultType="myfile">
+		select * from XTFILE where id!=#{id} and filemd5=#{filemd5}
+	</select>
+	
+	<select id="deleteFileByid" parameterType="myfile">
+		delete from XTFILE where id=#{id}
+	</select>
+	
+	<select id="queryListzcqtbynf" parameterType="zcgl" resultType="zcgl">
+		select * from zcgl_qt where xmlx=#{xmlx} and nf=#{oldnf}
+		and xmbm not in (
+		select xmbm from zcgl_qt where xmlx=#{xmlx} and nf=#{newnf}
+		)
+	</select>
+	<select id="insertzcglqt" parameterType="zcgl">
+		insert into zcgl_qt(ID, WZ, MJ, ZC, FZ, BZ, FID, XMBM, NF, GYDW, GYDWDM, XMLX, SBTHCD, XSBZT, THYY, SSBZT, SHZT)
+		select 
+		sys_guid(), WZ, MJ, ZC, FZ, BZ, sys_guid(), XMBM, NF, GYDW, GYDWDM, XMLX,decode(substr(gydwdm,0,1),'1','11','9'),decode(substr(gydwdm,0,1),'1','未上报','已上报'),'','未上报','未审核'
+		from zcgl_qt where nf=#{oldnf} and xmlx=#{xmlx} and xmbm in (${xmbm})
+	</select>
+	<select id="insertzcglqtfj" parameterType="zcgl">
+		insert into XTFILE
+		
+		select sys_guid(), t1.FILENAME, t2.FID, t1.FILEURL, t1.FILEMD5, t1.XMLX from(
+			select x.FILENAME, x.FILEURL, x.FILEMD5, x.XMLX,z.xmbm  from XTFILE x left join zcgl_qt z on x.fid=z.fid where x.fid in
+			(select fid from zcgl_qt where nf=#{oldnf} and xmlx=#{xmlx} and xmbm in (${xmbm}))
+		)t1,
+		(
+		select * from zcgl_qt where nf=#{newnf} and xmlx=#{xmlx} and xmbm in (${xmbm})
+		) t2 where t1.xmbm=t2.xmbm
+		
+	</select>
+	<insert id="insertZcglqt" parameterType="myfile">
+		insert into zcgl_qt
+		 <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="wz != null" >wz,</if>
+	      <if test="mj > 0" >mj,</if>
+	      <if test="zc > 0" >zc,</if>
+	      <if test="fz > 0" >fz,</if>
+	      <if test="fid != null" >fid,</if>
+	      <if test="xmbm != null" >xmbm,</if>
+	      <if test="nf != null" >nf,</if>
+	      <if test="gydw != null" >gydw,</if>
+	      <if test="gydwdm != null" >gydwdm,</if>
+	      <if test="xmlx != null" >xmlx,</if>
+	      <if test="sbthcd != null" >sbthcd,</if>
+	      <if test="xsbzt != null" >xsbzt,</if>
+	      <if test="ssbzt != null" >ssbzt,</if>
+	      <if test="thyy != null" >thyy,</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="wz != null" >#{wz},</if>
+	      <if test="mj > 0" >#{mj},</if>
+	      <if test="zc > 0" >#{zc},</if>
+	      <if test="fz > 0" >#{fz},</if>
+	      <if test="fid != null" >#{fid},</if>
+	      <if test="xmbm != null" >#{xmbm},</if>
+	      <if test="nf != null" >#{nf},</if>
+	      <if test="gydw != null" >#{gydw},</if>
+	      <if test="gydwdm != null" >#{gydwdm},</if>
+	      <if test="xmlx != null" >#{xmlx},</if>
+	      <if test="sbthcd != null" >#{sbthcd},</if>
+	      <if test="xsbzt != null" >#{xsbzt},</if>
+	      <if test="ssbzt != null" >#{ssbzt},</if>
+	      <if test="thyy != null" >#{thyy},</if>
+	    </trim>
+	</insert>
 </mapper>

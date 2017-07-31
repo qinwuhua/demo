@@ -26,21 +26,7 @@
 		#bbtable {border-collapse:collapse;}
 		#bbtable thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid #FFEBCD;padding:3px 7px 2px 7px;}
 		#bbtable tbody tr td {text-align:center;font-size:1em;border:1px solid #FFEBCD;padding:3px 7px 2px 7px;}
-		.radioSpan {
-		      position: relative;
-		      border: 1px solid #FFA54F;
-		      background-color: #fff;
-		      vertical-align: middle;
-		      display: inline-block;
-		      overflow: hidden;
-		      white-space: nowrap;
-		      margin: 0;
-		      padding: 0;
-		      -moz-border-radius: 5px 5px 5px 5px;
-		      -webkit-border-radius: 5px 5px 5px 5px;
-		      border-radius: 5px 5px 5px 5px;
-		      display:block;
-		    }
+		
 		
 		-->
 		

@@ -162,3 +162,22 @@ img {_azimuth:expression(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" &&
 .searchTj tr{height: 30px;}
 .searchTj textarea{border:1px solid #95B8E7;}
 .searchButton{text-align:left;}
+
+.radioSpan {
+		      position: relative;
+		      border: 1px solid #FFA54F;
+		      background-color: #fff;
+		      vertical-align: middle;
+		      display: inline-block;
+		      overflow: hidden;
+		      white-space: nowrap;
+		      margin: 0;
+		      padding: 0;
+		      -moz-border-radius: 5px 5px 5px 5px;
+		      -webkit-border-radius: 5px 5px 5px 5px;
+		      border-radius: 5px 5px 5px 5px;
+		      display:block;
+		    }
+
+
+

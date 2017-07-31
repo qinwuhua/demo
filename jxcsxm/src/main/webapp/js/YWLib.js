@@ -293,6 +293,61 @@ function plshbf(){
 				
 			}
 		});
-	
-	
+}
+
+
+function newGuid()
+{
+    var guid = "";
+    for (var i = 1; i <= 32; i++){
+      var n = Math.floor(Math.random()*16.0).toString(16);
+      guid +=   n;
+    }
+    return guid;    
+}
+
+//显示文件带删除的。
+function fileShowdsc(fid,tableTyple){
+	$.ajax({
+		type:'post',
+		url:'/jxcsxm/zcgl/queryFjByfid.do',
+		dataType:'json',
+		data:'myFile.fid='+fid,
+		success:function(data){
+			$("#"+tableTyple).empty();
+			for ( var i = 0; i < data.length; i++) {
+					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"','"+fid+"','"+tableTyple+"','id"+"')>删除</a></td></tr>";
+					$("#"+tableTyple).append(tr);
+			}
+		}
+	});
+}
+
+//下载文件
+function downFile(id){
+	parent.window.location.href="/jxcsxm/zcgl/downFile.do?myFile.id="+id;
+}
+
+
+//删除文件
+
+function deleteFile(id,fid,tableTyple,flag){
+	var da='myFile.fid='+id+'&myFile.flag='+flag
+	$.ajax({
+		type:'post',
+		url:'/jxcsxm/zcgl/deleteFjByfidorid.do',
+		dataType:'json',
+		data:da,
+		success:function(msg){
+			if(msg){
+				if(flag=='id'){
+					alert("删除成功");
+					fileShowdsc(fid,tableTyple);
+				}
+			}
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) { 
+			alert("后台错误，请联系系统管理员"); 
+			}
+	});
 }

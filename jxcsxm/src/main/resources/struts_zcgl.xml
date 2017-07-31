@@ -7,6 +7,12 @@
 	<action name="getsfktj" class="zcglController" method="getsfktj"></action>
 	<action name="insertZcgl" class="zcglController" method="insertZcgl"></action>
 	<action name="plsbshzc" class="zcglController" method="plsbshzc"></action>
+	<action name="uploadFj" class="zcglController" method="uploadFj"></action>
+	<action name="queryFjByfid" class="zcglController" method="queryFjByfid"></action>
+	<action name="downFile" class="zcglController" method="downFile"></action>
+	<action name="deleteFjByfidorid" class="zcglController" method="deleteFjByfidorid"></action>
+	<action name="copydatabyyear" class="zcglController" method="copydatabyyear"></action>
+	<action name="insertZcglqt" class="zcglController" method="insertZcglqt"></action>
 	
 	
  </package>
