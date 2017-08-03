@@ -35,6 +35,8 @@
 			dataType:'json',
 			success:function(msg){
 				$("#jhxdzj_bf").html(msg.jhxdzj);
+				$("#jhxdzj_cgs").html(msg.jhxdcgs);
+				$("#jhxdzj_stz").html(msg.jhxdstz);
 				$("#dwzj_bf").html(msg.dwzj);
 				$("#bfzj_bf").html(msg.bfzj);
 				$("#yshbfzj_bf").html(msg.yshbfzj);
@@ -506,7 +508,7 @@
 //				{field:'bd',title:'标段',width:50,align:'center'},
 			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
 			{field:'btzzj',title:'车购税(万元)',width:75,align:'center'},
-			{field:'rys',title:'燃油税(万元)',width:75,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:75,align:'center'},
 			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'}
 		]]
 		
@@ -602,7 +604,7 @@
              <div id='zjxd'>
 	            <tr>
 	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #FFEFD5; width: 15%; padding-left: 10px;height: 30px;">
-		              	资金下达信息————计划下达资金共【<span id="jhxdzj_xd" style="color: Red; font-weight: bold;">0</span>】万元。
+		              	资金下达信息————计划下达资金共【<span id="jhxdzj_xd" style="color: Red; font-weight: bold;">0</span>】万元,车购税【<span id="jhxdzj_cgs" style="color: Red; font-weight: bold;">0</span>】万元,省投资【<span id="jhxdzj_stz" style="color: Red; font-weight: bold;">0</span>】万元。
 		           </td>
 	            </tr>   
 				

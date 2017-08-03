@@ -84,9 +84,21 @@ public class Xmjbxx implements Serializable {
 	    private String tbr;
 	    private String tbsj;
 	
+	    private String jhxdcgs;
+	    private String jhxdstz;
 	
-	
-	
+	public String getJhxdcgs() {
+			return jhxdcgs;
+		}
+		public void setJhxdcgs(String jhxdcgs) {
+			this.jhxdcgs = jhxdcgs;
+		}
+		public String getJhxdstz() {
+			return jhxdstz;
+		}
+		public void setJhxdstz(String jhxdstz) {
+			this.jhxdstz = jhxdstz;
+		}
 	public double getCgs() {
 			return cgs;
 		}

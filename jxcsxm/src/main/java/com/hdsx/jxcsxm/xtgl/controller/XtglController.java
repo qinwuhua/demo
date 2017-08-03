@@ -1300,11 +1300,23 @@ public class XtglController extends BaseActionSupport{
 				list=xtglServer.getjhxdwh(tablename);
 			}
 			if("gs_lwjggz".equals(type)){
-				tablename="and xmid in(select xmbm from xmjbxx where jsxz='路网结构改造')";
+				tablename="and xmid in(select xmbm from xmjbxx where jsxz='路网结构改造' and gydwdm like '2%')";
 				list=xtglServer.getjhxdwh(tablename);
 			}
-			if("gs_all".equals(type)){
-				tablename="";
+			if("nc_lwjggz".equals(type)){
+				tablename="and xmid in(select xmbm from xmjbxx where jsxz='路网结构改造' and gydwdm like '1%')";
+				list=xtglServer.getjhxdwh(tablename);
+			}
+			if("nc_gljs".equals(type)){
+				tablename="and xmid in(select xmbm from xmjbxx where jsxz='农村公路建设')";
+				list=xtglServer.getjhxdwh(tablename);
+			}
+			if("nc_tzrc".equals(type)){
+				tablename="and xmid in(select xmbm from xmjbxx where jsxz='通自然村')";
+				list=xtglServer.getjhxdwh(tablename);
+			}
+			if("nc_yhgc".equals(type)){
+				tablename="and xmid in(select xmbm from xmjbxx where jsxz='养护工程')";
 				list=xtglServer.getjhxdwh(tablename);
 			}
 			

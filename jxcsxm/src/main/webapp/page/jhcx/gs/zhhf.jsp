@@ -124,7 +124,8 @@
 				success:function(msg){
 					$("#xmsl").html(msg.xmsl);
 					$("#jhxdzj").html(msg.jhxdzj);
-					
+					$("#jhxdzjcgs").html(msg.jhxdcgs);
+					$("#jhxdzjstz").html(msg.jhxdstz);
 				}
 			});
 		}
@@ -183,7 +184,7 @@ text-decoration:none;
         	<tr>
             	<td style="padding-left: 10px; font-size:12px;">
             		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
-           		        计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元。
+           		          计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元,车购税【<span id="jhxdzjcgs" style="color: Red; font-weight: bold;">0</span>】万元,省投资【<span id="jhxdzjstz" style="color: Red; font-weight: bold;">0</span>】万元。
            		    </div>
             		<div><table id="grid"></table></div>
             	</td>

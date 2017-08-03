@@ -79,7 +79,27 @@ public class XmZjdw{
     private String tbr;
     private String tbsj;
     
-    public String getTbr() {
+    private String jhxdcgs;
+    private String jhxdstz;
+    
+    
+    public String getJhxdcgs() {
+		return jhxdcgs;
+	}
+
+	public void setJhxdcgs(String jhxdcgs) {
+		this.jhxdcgs = jhxdcgs;
+	}
+
+	public String getJhxdstz() {
+		return jhxdstz;
+	}
+
+	public void setJhxdstz(String jhxdstz) {
+		this.jhxdstz = jhxdstz;
+	}
+
+	public String getTbr() {
 		return tbr;
 	}
 
