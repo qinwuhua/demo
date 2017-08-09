@@ -347,7 +347,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "xm.jsxz||xm.gcfl"));
 				elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
 				elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
-				
+				System.out.println(elist.getGydw()+"++++++++++=");
 				List<Excel_list> l = tjbbServer.getTzhzb(elist);
 				JsonUtils.write(l, getresponse().getWriter());
 			}

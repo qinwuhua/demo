@@ -63,6 +63,7 @@
 			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
 			and xm.gydwdm!='11101360000'
 			<if test="jhnf != null">and xd.xdnf=#{jhnf}</if>
+			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
 			<if test="xzqhdm != null">${xzqhdm}</if>
 			<if test="jhxdwh != null">${jhxdwh}</if>
 			<if test="xmlx != null">${xmlx}</if>
@@ -91,6 +92,7 @@
 			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
 			and xm.gydwdm!='11101360000'
 			<if test="jhnf != null">and xd.xdnf=#{jhnf}</if>
+			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
 			<if test="xzqhdm != null">${xzqhdm}</if>
 			<if test="jhxdwh != null">${jhxdwh}</if>
 			<if test="xmlx != null">${xmlx}</if>
@@ -119,6 +121,7 @@
 			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
 			and xm.gydwdm!='11101360000'
 			<if test="jhnf != null">and xd.xdnf=#{jhnf}</if>
+			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
 			<if test="xzqhdm != null">${xzqhdm}</if>
 			<if test="jhxdwh != null">${jhxdwh}</if>
 			<if test="xmlx != null">${xmlx}</if>
@@ -162,6 +165,7 @@
 			and xm.gydwdm!='11101360000'
 			<if test="xzqhdm != null">${xzqhdm}</if>
 			<if test="jhnf != null">and xd.xdnf=#{jhnf}</if>
+			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
 			<if test="jhxdwh != null">${jhxdwh}</if>
 			<if test="xmlx != null">${xmlx}</if>
 			<if test="xmmc != null">and xm.xmmc like '%'||#{xmmc}||'%'</if>
@@ -205,6 +209,7 @@
 			and xm.gydwdm!='11101360000'
 			<if test="xzqhdm != null">${xzqhdm}</if>
 			<if test="jhnf != null">and xd.xdnf=#{jhnf}</if>
+			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
 			<if test="jhxdwh != null">${jhxdwh}</if>
 			<if test="xmlx != null">${xmlx}</if>
 			<if test="xmmc != null">and xm.xmmc like '%'||#{xmmc}||'%'</if>
@@ -248,6 +253,7 @@
 			and xm.gydwdm!='11101360000'
 			<if test="xzqhdm != null">${xzqhdm}</if>
 			<if test="jhnf != null">and xd.xdnf=#{jhnf}</if>
+			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
 			<if test="jhxdwh != null">${jhxdwh}</if>
 			<if test="xmlx != null">${xmlx}</if>
 			<if test="xmmc != null">and xm.xmmc like '%'||#{xmmc}||'%'</if>
@@ -269,6 +275,7 @@
 		where xm.xmbm=xd.xmid and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+)
 			<if test="xzqhdm != null">${xzqhdm}</if>
 			<if test="jhxdwh != null">${jhxdwh}</if>
+			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
 			<if test="xmmc != null">and xm.xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmlx != null">${xmlx}</if>
 		and xd.jhxdwh is not null and xd.jhxdwh!=' '
@@ -294,6 +301,7 @@
 		(select xmbm,jhxdwh,sum(decode(substr(bfyf,0,4),to_char(${jhnf}-1),ztz,0)) sn,sum(decode(substr(bfyf,0,4),to_char(${jhnf}),ztz,0)) bn,sum(ztz) ztz  from xm_zjbf group by xmbm,jhxdwh) bf
 		where xm.xmbm=xd.xmid and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+)
 			<if test="xzqhdm != null">${xzqhdm}</if>
+			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
 			<if test="jhxdwh != null">${jhxdwh}</if>
 			<if test="xmmc != null">and xm.xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmlx != null">${xmlx}</if>
@@ -316,6 +324,7 @@
 		from xm_zjdw group by xmbm) dw on t.xmbm=dw.xmids
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydw != null">and t.gydwdm like #{gydw}||'%'</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
@@ -345,6 +354,7 @@
 		from xm_zjdw group by xmbm) dw on t.xmbm=dw.xmids
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydw != null">and t.gydwdm like #{gydw}||'%'</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>

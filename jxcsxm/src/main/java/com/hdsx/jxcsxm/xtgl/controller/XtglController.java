@@ -1320,6 +1320,11 @@ public class XtglController extends BaseActionSupport{
 				list=xtglServer.getjhxdwh(tablename);
 			}
 			
+			if("gs_all".equals(type)){
+				tablename="and xmid in(select xmbm from xmjbxx)";
+				list=xtglServer.getjhxdwh(tablename);
+			}
+			
 			/*if(("wqgz").equals(unit.getXzqhdm())){
 				tablename="select distinct z.jhxdwh id,z.jhxdwh text from plan_wqgz p left join plan_zjxd z on p.id=z.xmid where z.jhxdwh is not null";
 				list=xtglServer.setjhxdwh1(tablename);

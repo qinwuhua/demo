@@ -79,9 +79,11 @@
 		if(xmlx.substr(0,1)==',')
 			xmlx=xmlx.substr(1,xmlx.length);
 		
+		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
+		
 		$.ajax({
 			url:"/jxcsxm/tjbb/getJhzxqkb.do",
-			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val(),
+			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val()+"&gydw="+gydw,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){

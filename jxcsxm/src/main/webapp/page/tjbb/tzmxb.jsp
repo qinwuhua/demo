@@ -65,9 +65,9 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			
+			var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
 			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gydw':gydw
 			};
 	
 			$('#grid').datagrid({    
@@ -90,7 +90,6 @@
 							},
 							
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
-							{field:'xmbm',title:'项目编码',width:110,align:'center'},
 							{field:'xmmc',title:'项目名称',width:270,align:'center'},
 							{field:'gydw',title:'管养单位',width:150,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},

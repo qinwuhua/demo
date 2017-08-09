@@ -198,7 +198,12 @@
         						<td width="100">拨付月份</td>
 								<td width="100"><input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;"></td>
 								<td width="100">标段</td>
-								<td width="100"><input type='text' id='bd' style="width: 65px;"></td>
+								<td width="100">
+									<elect id="bd" class='easyui-combobox' style="width: 124px">
+										<option value="没有标段" selected="selected">没有标段</option>
+									</select>
+									<br><span style="color: red">若有标段，请删掉手动输入</span>
+								</td>
 								<td width="100">计划下达文号</td>
 								<td width="100"><input type='text' id='jhxdwh' style="width: 125px;"></td>
 							</tr>

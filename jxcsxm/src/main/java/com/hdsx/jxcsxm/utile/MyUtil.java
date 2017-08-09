@@ -53,10 +53,30 @@ public class MyUtil implements Serializable{
 			
 			String[] s = bh.split(",");
 			for (int i = 0; i < s.length; i++) {
-				if(i==0)
+				if("1".equals(s[i].substring(0,1))&&("00".equals(s[i].substring(s[i].length()-2,s[i].length()))||s[i].length()<11)) {
+					if("00".equals(s[i].substring(s[i].length()-2,s[i].length()))) {
+						s[i]=s[i].substring(0, s[i].length()-2);
+					}
+					if("00".equals(s[i].substring(s[i].length()-2,s[i].length()))) {
+						s[i]=s[i].substring(0, s[i].length()-2);
+					}
+					if(i==0)
+						result+=" and ("+name+" like '%"+s[i].substring(0, 4)+"_"+s[i].substring(5, s[i].length())+"%'";
+					else
+						result+=" or "+name+" like '%"+s[i].substring(0, 4)+"_"+s[i].substring(5, s[i].length())+"%'";
+				}else {
+					if(i==0)
+						result+=" and ("+name+" like '%"+s[i]+"%'";
+					else
+						result+=" or "+name+" like '%"+s[i]+"%'";
+				}
+				
+				
+				//下面这段是11101和11102都能查到的。
+				/*if(i==0)
 					result+=" and ("+name+" like '%"+s[i].substring(0, 4)+"_"+s[i].substring(5, s[i].length())+"%'";
 				else
-					result+=" or "+name+" like '%"+s[i].substring(0, 4)+"_"+s[i].substring(5, s[i].length())+"%'";
+					result+=" or "+name+" like '%"+s[i].substring(0, 4)+"_"+s[i].substring(5, s[i].length())+"%'";*/
 			}
 			result+=")";
 			//System.out.println(result);

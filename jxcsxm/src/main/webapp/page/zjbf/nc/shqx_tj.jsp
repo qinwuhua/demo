@@ -36,7 +36,7 @@
 			$("#yf").combobox({onSelect:function(record){
 				loadZj($.cookie("unit"));
 			}})
-			loadBmbm('bd','标段');
+// 			loadBmbm('bd','标段');
 			loadBmbm('nf','项目年份',new Date().getFullYear());
 			
 			var yf=new Date().getMonth()+1;
@@ -118,7 +118,7 @@
 							$("#jhxdwh").combobox('setValue',item.jhxdwh);
 							$("#nf").combobox('setValue',item.bfyf.substr(0,4));
 							$("#yf").combobox('setValue',item.bfyf.substr(item.bfyf.length-2,item.bfyf.length));
-							$("#bd").combobox('setValue',item.bd);
+							$("#bd").combobox('setText',item.bd);
 						});
 					}else{
 						var tr = $("tr[name='"+gydwdm+"']");
@@ -135,7 +135,7 @@
 		}
 		
 		function save(){
-			if($('#bd').combo("getValue")==""){alert("请选择标段");return;}
+			if($('#bd1').combo("getText")==""){alert("请选择或输入标段");return;}
 			if($('#nf').combo("getValue")==""){alert("请选择年份");return;}
 			if($('#yf').combo("getValue")==""){alert("请选择月份");return;}
 			if($('#jhxdwh').combo("getValue")==""){alert("请选择计划下达文号");return;}
@@ -184,7 +184,7 @@
 					ztz1=accAdd(ztz1,$(inputList[2]).val()==""?0:$(inputList[2]).val());
 					ztz1=accAdd(ztz1,$(inputList[3]).val()==""?0:$(inputList[3]).val());
 					zj.ztz1+=ztz1;
-					zj.bd+=$("#bd").combo('getValue');
+					zj.bd+=$("#bd").combo('getText');
 					zj.jhxdwh+=$("#jhxdwh").combo('getValue');
 				}else{
 					zj.gydwdm+=","+item.id;
@@ -200,7 +200,7 @@
 					ztz1=accAdd(ztz1,$(inputList[2]).val()==""?0:$(inputList[2]).val());
 					ztz1=accAdd(ztz1,$(inputList[3]).val()==""?0:$(inputList[3]).val());
 					zj.ztz1+=","+ztz1;
-					zj.bd+=","+$("#bd").combo('getValue');
+					zj.bd+=","+$("#bd").combo('getText');
 					zj.jhxdwh+=","+$("#jhxdwh").combo('getValue');
 					
 				}
@@ -221,7 +221,10 @@
         						<td width="100">拨付月份</td>
 								<td width="100"><input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;"></td>
 								<td width="100">标段</td>
-								<td width="100"><input type='text' id='bd' style="width: 65px;"></td>
+								<td width="100"><select id="bd" class='easyui-combobox' style="width: 124px">
+								<option value="没有标段" selected="selected">没有标段</option>
+								</select>
+								<br><span style="color: red">若有标段，请删掉手动输入</span></td>
 								<td width="100">计划下达文号</td>
 								<td width="100"><input type='text' id='jhxdwh' style="width: 125px;"></td>
 							</tr>

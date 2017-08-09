@@ -54,9 +54,10 @@
 		}
 		
 		var nf=$("#nf").combobox('getValue');
+		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
 		$.ajax({
 			url:"/jxcsxm/tjbb/getGlzcqkb.do",
-			data:'flag=0&nf='+nf+"&gydw="+xzqhstr,
+			data:'flag=0&nf='+nf+"&gydw="+xzqhstr+"&gydw="+gydw,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -124,7 +125,8 @@
 		}
 		
 		var nf=$("#nf").combobox('getValue');
-		var data="flag=1&nf="+nf;
+		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
+		var data="flag=1&nf="+nf+"&gydw="+gydw;
 		loadjzt();
 		 $.post('/jxcsxm/xtgl/exportBb_set.do',{sql:datalist,gydw:xzqhstr},function(){
 			window.location.href='/jxcsxm/tjbb/getGlzcqkb.do?'+data;

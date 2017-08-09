@@ -27,7 +27,7 @@ function yzsz(id){
     }
 }
 $(function(){
-	loadBmbm('bd1','标段');
+// 	loadBmbm('bd1','标段');
 	loadBmbm('nf','项目年份',new Date().getFullYear());
 	var yf=new Date().getMonth()+1;
 	var day=new Date().getDate();
@@ -56,12 +56,12 @@ $(function(){
 })
 
 function zjbftj(){
-	if($('#bd1').combo("getValue")==""){alert("请选择标段");return;}
+	if($('#bd1').combo("getText")==""){alert("请选择或输入标段");return;}
 	if($('#jhxdwh1').combo("getValue")==""){alert("请选择计划下达文号");return;}
 	if($('#nf').combo("getValue")==""){alert("请选择年份");return;}
 	if($('#yf').combo("getValue")==""){alert("请选择月份");return;}
 	$('#bfyf').val($('#nf').combo("getValue")+"-"+$('#yf').combo("getValue"));
-	$('#bd').val($('#bd1').combo("getValue"));
+	$('#bd').val($('#bd1').combo("getText"));
 	$('#tbsj').val($('#tbsj1').datebox("getValue"));
 	$('#jhxdwh').val($('#jhxdwh1').combo("getValue"));
 	var result=true;var ztz=0;
@@ -124,7 +124,10 @@ function zjbftj(){
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
 				<font color='red' size='1'>*</font>标段：</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text"  id="bd1" style="width: 124px" />
+					<select id="bd1" class='easyui-combobox' style="width: 124px">
+						<option value="没有标段" selected="selected">没有标段</option>
+					</select>
+					<br><span style="color: red">若有标段，请删掉手动输入</span>
 					<input type="hidden" name='bd' id="bd" style="width: 120px" />
 					
 					<input type="hidden" name='xmbm' id="xmbm" style="width: 120px" />
