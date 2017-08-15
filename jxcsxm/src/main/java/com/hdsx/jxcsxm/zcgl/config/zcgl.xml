@@ -331,13 +331,13 @@
 		select xmbm from zcgl_qt where xmlx=#{xmlx} and nf=#{newnf}
 		)
 	</select>
-	<select id="insertzcglqt" parameterType="zcgl">
-		insert into zcgl_qt(ID, WZ, MJ, ZC, FZ, BZ, FID, XMBM, NF, GYDW, GYDWDM, XMLX, SBTHCD, XSBZT, THYY, SSBZT, SHZT)
+	<select id="copydatabyyear" parameterType="zcgl">
+		insert into zcgl_qt(ID, WZ, MJ, ZC, FZ, BZ, FID, XMBM, NF, GYDW, GYDWDM, XMLX, SBTHCD, XSBZT, THYY, SSBZT, SHZT,lxbm,szzh,dbmc,fwqmc,fwnr)
 		select 
-		sys_guid(), WZ, MJ, ZC, FZ, BZ, sys_guid(), XMBM, NF, GYDW, GYDWDM, XMLX,decode(substr(gydwdm,0,1),'1','11','9'),decode(substr(gydwdm,0,1),'1','未上报','已上报'),'','未上报','未审核'
+		sys_guid(), WZ, MJ, ZC, FZ, BZ, sys_guid(), XMBM, #{newnf}, GYDW, GYDWDM, XMLX,decode(substr(gydwdm,0,1),'1','11','9'),decode(substr(gydwdm,0,1),'1','未上报','已上报'),'','未上报','未审核',lxbm,szzh,dbmc,fwqmc,fwnr
 		from zcgl_qt where nf=#{oldnf} and xmlx=#{xmlx} and xmbm in (${xmbm})
 	</select>
-	<select id="insertzcglqtfj" parameterType="zcgl">
+	<select id="copydatabyyearfj" parameterType="zcgl">
 		insert into XTFILE
 		
 		select sys_guid(), t1.FILENAME, t2.FID, t1.FILEURL, t1.FILEMD5, t1.XMLX from(
@@ -366,6 +366,12 @@
 	      <if test="xsbzt != null" >xsbzt,</if>
 	      <if test="ssbzt != null" >ssbzt,</if>
 	      <if test="thyy != null" >thyy,</if>
+	      <if test="bz != null" >bz,</if>
+	      <if test="lxbm != null" >lxbm,</if>
+	      <if test="dbmc != null" >dbmc,</if>
+	      <if test="szzh != null" >szzh,</if>
+	      <if test="fwqmc != null" >fwqmc,</if>
+	      <if test="fwnr != null" >fwnr,</if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	      <if test="wz != null" >#{wz},</if>
@@ -382,6 +388,112 @@
 	      <if test="xsbzt != null" >#{xsbzt},</if>
 	      <if test="ssbzt != null" >#{ssbzt},</if>
 	      <if test="thyy != null" >#{thyy},</if>
+	      <if test="bz != null" >#{bz},</if>
+	      <if test="lxbm != null" >#{lxbm},</if>
+	      <if test="dbmc != null" >#{dbmc},</if>
+	      <if test="szzh != null" >#{szzh},</if>
+	      <if test="fwqmc != null" >#{fwqmc},</if>
+	      <if test="fwnr != null" >#{fwnr},</if>
 	    </trim>
 	</insert>
+	
+	
+	<select id="queryZcqtlist" parameterType="zcgl" resultType="zcgl">
+		select * from(select rownum num ,t1.* from(select * from (select t.*,xsbzt xsbztstr,ssbzt ssbztstr,shzt shztstr from
+		(
+		select * from ZCGL_QT where xmlx=#{xmlx} and to_number(sbthcd)&lt;=${sbthcd}
+		) t
+		where 1=1 
+		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="nf !='' and nf != null">and nf=#{nf}</if>
+		<if test="wz !='' and wz != null">and wz like '%'||#{wz}||'%'</if>
+		<if test="dbmc !='' and dbmc != null">and dbmc like '%'||#{dbmc}||'%'</if>
+		<if test="lxbm !='' and lxbm != null">and lxbm like '%'||#{lxbm}||'%'</if>
+		<if test="fwqmc !='' and fwqmc != null">and fwqmc like '%'||#{fwqmc}||'%'</if>
+		) where 1=1
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+		
+		) t1 
+		)t2
+		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		
+	</select>
+	<select id="queryZcqtlistCount" parameterType="zcgl" resultType="int">
+		select count(*) from (select t.*,xsbzt xsbztstr,ssbzt ssbztstr,shzt shztstr from
+		(
+		select * from ZCGL_QT where xmlx=#{xmlx} and to_number(sbthcd)&lt;=${sbthcd}
+		) t
+		where 1=1 
+		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="nf !='' and nf != null">and nf=#{nf}</if>
+		<if test="wz !='' and wz != null">and wz like '%'||#{wz}||'%'</if>
+		<if test="dbmc !='' and dbmc != null">and dbmc like '%'||#{dbmc}||'%'</if>
+		<if test="lxbm !='' and lxbm != null">and lxbm like '%'||#{lxbm}||'%'</if>
+		<if test="fwqmc !='' and fwqmc != null">and fwqmc like '%'||#{fwqmc}||'%'</if>
+		) where 1=1
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+		
+	</select>
+	<delete id="deleteZcqt" parameterType="zcgl">
+		delete from ZCGL_QT where id in(${id})
+	</delete>
+	
+	<select id="queryZcqtwj" parameterType="zcgl" resultType="myfile">
+		select * from XTFILE where fid in (${fid})
+	</select>
+	<insert id="updateZcglqt" parameterType="myfile">
+		update zcgl_qt
+		 <set>
+		  <if test="wz != null" >wz=#{wz},</if>
+	      <if test="mj > 0" >mj=#{mj},</if>
+	      <if test="zc > 0" >zc=#{zc},</if>
+	      <if test="fz > 0" >fz=#{fz},</if>
+	      <if test="fid != null" >fid=#{fid},</if>
+	      <if test="xmbm != null" >xmbm=#{xmbm},</if>
+	      <if test="nf != null" >nf=#{nf},</if>
+	      <if test="gydw != null" >gydw=#{gydw},</if>
+	      <if test="gydwdm != null" >gydwdm=#{gydwdm},</if>
+	      <if test="xmlx != null" >xmlx=#{xmlx},</if>
+	      <if test="sbthcd != null" >sbthcd=#{sbthcd},</if>
+	      <if test="xsbzt != null" >xsbzt=#{xsbzt},</if>
+	      <if test="ssbzt != null" >ssbzt=#{ssbzt},</if>
+	      <if test="thyy != null" >thyy=#{thyy},</if>
+	      <if test="bz != null" >bz=#{bz},</if>
+	      <if test="lxbm != null" >lxbm=#{lxbm},</if>
+	      <if test="dbmc != null" >dbmc=#{dbmc},</if>
+	      <if test="szzh != null" >szzh=#{szzh},</if>
+	      <if test="fwqmc != null" >fwqmc=#{fwqmc},</if>
+	      <if test="fwnr != null" >fwnr=#{fwnr},</if>
+		 </set>
+	     where id=#{id}
+	</insert>
+	
+	<update id="plsbshzcqt" parameterType="zcgl">
+	update ZCGL_QT
+	    <set >
+	      <if test="xsbzt != null" >
+	        XSBZT = #{xsbzt},
+	      </if>
+	      <if test="ssbzt != null" >
+	        SSBZT = #{ssbzt},
+	      </if>
+	      <if test="shzt != null" >
+	        SHZT = #{shzt},
+	      </if>
+	      <if test="thyy != null" >
+	        THYY = #{thyy},
+	      </if>
+	      <if test="sbthcd != null" >
+	        sbthcd = #{sbthcd},
+	      </if>
+	    </set>
+	    where ${id}
+	
+	</update>
+	
+	
 </mapper>

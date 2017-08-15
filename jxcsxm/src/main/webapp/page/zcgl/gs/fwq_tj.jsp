@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>资产管理编辑</title>
+<title>道班房添加</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css" />
@@ -29,6 +29,11 @@ function yzsz(id){
 		$(id).focus();
     }
 }
+
+function toupcase(id){
+	$(id).val($(id).val().toUpperCase());
+}
+
 $(function(){
 	_xmid=parent.YMLib.Var.xmbm;
 	loadBmbm('nf1','资产年份',new Date().getFullYear());
@@ -54,7 +59,7 @@ function zjdwtj(){
 		$("#xsbzt").val('已上报');$("#ssbzt").val('已上报');
 	}
 	$("#sbthcd").val($.cookie('unit2').length);
-	$("#xmlx").val("yxtd");
+	$("#xmlx").val("fwq");
 	$("#fid").val(_xmid);
 	var flag=true;
 	if($("#gydw1").combo("getValue")=='36'){
@@ -106,7 +111,7 @@ function loadFileUpload(){
 		'height' : 30,
 		'width' : 92,
 		'scriptData' : {
-			'zcgl.xmlx':"yxtd",
+			'zcgl.xmlx':"fwq",
 			'zcgl.id':_xmid
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
@@ -124,7 +129,7 @@ function loadFileUpload(){
 	});
 }
 function upload(){
-		$("#uploadFj").uploadifySettings('scriptData',{'zcgl.xmlx':"yxtd",'zcgl.id':_xmid});
+		$("#uploadFj").uploadifySettings('scriptData',{'zcgl.xmlx':"fwq",'zcgl.id':_xmid});
 		$('#uploadFj').uploadifyUpload();
 }
 
@@ -161,14 +166,27 @@ function upload(){
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
-				位置：</td>
+				服务区名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text" name='wz' id="wz"  style="width: 263px" />
+					<input type="text" name='fwqmc' id="fwqmc"  style="width: 263px" />
+					</td>
+			
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
+				路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
+					<input type="text"  id="lxbm" name='lxbm'  style="width: 263px" onchange="toupcase(this)"/>
+					</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
+				所在桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
+					<input type="text" name='szzh' id="szzh" onchange="yzsz(this)" style="width: 263px" />
 					
 					</td>
 			
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
-				面积（平方米）：</td>
+				占地面积（平方米）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
 					<input type="text"  id="mj" name='mj'  style="width: 263px" />
 					</td>
@@ -185,6 +203,14 @@ function upload(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				 	<input type="text" name="fz" id="fz" onchange="yzsz(this)" style="width: 263px" />
 				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				服务内容：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+					<textarea id='fwnr' name="fwnr" style="width: 550px"></textarea>
+				</td>
+				
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">

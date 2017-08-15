@@ -30,15 +30,18 @@ function yzsz(id){
     }
 }
 $(function(){
-	_xmid=parent.YMLib.Var.xmbm;
-	loadBmbm('nf1','资产年份',new Date().getFullYear());
+	var obj=parent.$("#grid").datagrid('getRows')[parent.YMLib.Var.index];
+	
+	$('#submit').form("load",obj);
+	_xmid=obj.fid;
+	loadBmbm('nf1','资产年份',obj.nf);
 	if($.cookie("unit")=='36')
-		loadUnits('gydw1','21101360000','21101360000');
+		loadUnits('gydw1','21101360000',obj.gydwdm);
 	else
-		loadUnits('gydw1',$.cookie('unit'),$.cookie('unit'));
+		loadUnits('gydw1',$.cookie('unit'),obj.gydwdm);
 	//文件上传
 	loadFileUpload();
-			
+	fileShowdsc(_xmid,"fjTable");		
 })
 
 function zjdwtj(){
@@ -134,7 +137,7 @@ function upload(){
 <script type="text/javascript">
 
 </script>
-<form id="submit" action="/jxcsxm/zcgl/insertZcglqt.do" method="post">
+<form id="submit" action="/jxcsxm/zcgl/updateZcglqt.do" method="post">
 <table class='table' style="width: 100%; background-color: #FFE7BA; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			
@@ -150,6 +153,7 @@ function upload(){
 					<input type="hidden" name="sbthcd" id='sbthcd'>
 					<input type="hidden" name="xmlx" id='xmlx'>
 					<input type="hidden" name="fid" id='fid'>
+					<input type="hidden" name="id" id='id'>
 					
 				</td>
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:25%" align="right">

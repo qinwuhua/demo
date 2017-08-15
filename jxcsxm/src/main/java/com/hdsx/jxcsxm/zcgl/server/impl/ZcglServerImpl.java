@@ -3,6 +3,8 @@ package com.hdsx.jxcsxm.zcgl.server.impl;
 
 
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -107,8 +109,8 @@ public class ZcglServerImpl extends BaseOperate  implements ZcglServer{
 				str+=",'"+zc.getXmbm()+"'";
 			}
 			zcgl.setXmbm(str);
-			insert("insertzcglqt", zcgl);
-			insert("insertzcglqtfj", zcgl);
+			insert("copydatabyyear", zcgl);
+			insert("copydatabyyearfj", zcgl);
 			
 			
 			
@@ -123,6 +125,55 @@ public class ZcglServerImpl extends BaseOperate  implements ZcglServer{
 	@Override
 	public boolean insertZcglqt(Zcgl zcgl) {
 		return insert("insertZcglqt", zcgl)==1;
+	}
+
+	@Override
+	public List<Zcgl> queryZcqtlist(Zcgl zcgl) {
+		return queryList("queryZcqtlist",zcgl);
+	}
+
+	@Override
+	public int queryZcqtlistCount(Zcgl zcgl) {
+		return queryOne("queryZcqtlistCount", zcgl);
+	}
+
+	@Override
+	public boolean deleteZcqt(Zcgl zcgl) {
+		//先删本地文件
+		
+		List<MyFile> l=new ArrayList<MyFile>();
+		l=queryList("queryZcqtwj",zcgl);
+		
+		if(l.size()>0)
+		for (MyFile m : l) {
+			//是否有别的文件。
+			List<MyFile> m1=queryList("queryFileBymd5",m);
+			if(m1.size()>0) {
+				//删除数据库即可
+				delete("deleteFileByid",m);
+			
+			}else {
+				//删除数据库和本地
+				delete("deleteFileByid",m);
+				File f=new File(m.getFileurl());
+				if(f.exists()) {//判断文件是否存在  
+					f.delete();
+				}
+				
+			}
+			
+		}
+		return delete("deleteZcqt",zcgl)>0;
+	}
+
+	@Override
+	public boolean updateZcglqt(Zcgl zcgl) {
+		return update("updateZcglqt", zcgl)>0;
+	}
+
+	@Override
+	public boolean plsbshzcqt(Zcgl zcgl) {
+		return update("plsbshzcqt", zcgl)>0;
 	}
 
 	

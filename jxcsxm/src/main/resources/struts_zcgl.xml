@@ -13,6 +13,11 @@
 	<action name="deleteFjByfidorid" class="zcglController" method="deleteFjByfidorid"></action>
 	<action name="copydatabyyear" class="zcglController" method="copydatabyyear"></action>
 	<action name="insertZcglqt" class="zcglController" method="insertZcglqt"></action>
+	<action name="queryZcqtlist" class="zcglController" method="queryZcqtlist"></action>
+	<action name="deleteZcqt" class="zcglController" method="deleteZcqt"></action>
+	<action name="updateZcglqt" class="zcglController" method="updateZcglqt"></action>
+	<action name="plsbshzcqt" class="zcglController" method="plsbshzcqt"></action>
+	
 	
 	
  </package>

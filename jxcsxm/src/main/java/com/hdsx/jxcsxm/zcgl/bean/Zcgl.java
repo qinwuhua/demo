@@ -61,7 +61,44 @@ public class Zcgl{
     private String wz;
     private String bz;
     private String sbthcd;
+    private String dbmc;
+    private String fwqmc;
+    private String fwnr;
+    private String szzh;
     
+    
+	public String getDbmc() {
+		return dbmc;
+	}
+
+	public void setDbmc(String dbmc) {
+		this.dbmc = dbmc;
+	}
+
+	public String getFwqmc() {
+		return fwqmc;
+	}
+
+	public void setFwqmc(String fwqmc) {
+		this.fwqmc = fwqmc;
+	}
+
+	public String getFwnr() {
+		return fwnr;
+	}
+
+	public void setFwnr(String fwnr) {
+		this.fwnr = fwnr;
+	}
+
+	public String getSzzh() {
+		return szzh;
+	}
+
+	public void setSzzh(String szzh) {
+		this.szzh = szzh;
+	}
+
 	public String getSbthcd() {
 		return sbthcd;
 	}

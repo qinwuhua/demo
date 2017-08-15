@@ -29,16 +29,24 @@ function yzsz(id){
 		$(id).focus();
     }
 }
+
+function toupcase(id){
+	$(id).val($(id).val().toUpperCase());
+}
+
 $(function(){
-	_xmid=parent.YMLib.Var.xmbm;
-	loadBmbm('nf1','资产年份',new Date().getFullYear());
+	var obj=parent.$("#grid").datagrid('getRows')[parent.YMLib.Var.index];
+	
+	$('#submit').form("load",obj);
+	_xmid=obj.fid;
+	loadBmbm('nf1','资产年份',obj.nf);
 	if($.cookie("unit")=='36')
-		loadUnits('gydw1','21101360000','21101360000');
+		loadUnits('gydw1','21101360000',obj.gydwdm);
 	else
-		loadUnits('gydw1',$.cookie('unit'),$.cookie('unit'));
+		loadUnits('gydw1',$.cookie('unit'),obj.gydwdm);
 	//文件上传
 	loadFileUpload();
-			
+	fileShowdsc(_xmid,"fjTable");		
 })
 
 function zjdwtj(){
@@ -54,7 +62,7 @@ function zjdwtj(){
 		$("#xsbzt").val('已上报');$("#ssbzt").val('已上报');
 	}
 	$("#sbthcd").val($.cookie('unit2').length);
-	$("#xmlx").val("yxtd");
+	$("#xmlx").val("fwq");
 	$("#fid").val(_xmid);
 	var flag=true;
 	if($("#gydw1").combo("getValue")=='36'){
@@ -106,7 +114,7 @@ function loadFileUpload(){
 		'height' : 30,
 		'width' : 92,
 		'scriptData' : {
-			'zcgl.xmlx':"yxtd",
+			'zcgl.xmlx':"fwq",
 			'zcgl.id':_xmid
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
@@ -124,7 +132,7 @@ function loadFileUpload(){
 	});
 }
 function upload(){
-		$("#uploadFj").uploadifySettings('scriptData',{'zcgl.xmlx':"yxtd",'zcgl.id':_xmid});
+		$("#uploadFj").uploadifySettings('scriptData',{'zcgl.xmlx':"fwq",'zcgl.id':_xmid});
 		$('#uploadFj').uploadifyUpload();
 }
 
@@ -134,7 +142,7 @@ function upload(){
 <script type="text/javascript">
 
 </script>
-<form id="submit" action="/jxcsxm/zcgl/insertZcglqt.do" method="post">
+<form id="submit" action="/jxcsxm/zcgl/updateZcglqt.do" method="post">
 <table class='table' style="width: 100%; background-color: #FFE7BA; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			
@@ -150,6 +158,7 @@ function upload(){
 					<input type="hidden" name="sbthcd" id='sbthcd'>
 					<input type="hidden" name="xmlx" id='xmlx'>
 					<input type="hidden" name="fid" id='fid'>
+					<input type="hidden" name="id" id='id'>
 					
 				</td>
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:25%" align="right">
@@ -161,14 +170,27 @@ function upload(){
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
-				位置：</td>
+				服务区名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text" name='wz' id="wz"  style="width: 263px" />
+					<input type="text" name='fwqmc' id="fwqmc"  style="width: 263px" />
+					</td>
+			
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
+				路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
+					<input type="text"  id="lxbm" name='lxbm'  style="width: 263px" onchange="toupcase(this)"/>
+					</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
+				所在桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
+					<input type="text" name='szzh' id="szzh" onchange="yzsz(this)" style="width: 263px" />
 					
 					</td>
 			
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
-				面积（平方米）：</td>
+				占地面积（平方米）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
 					<input type="text"  id="mj" name='mj'  style="width: 263px" />
 					</td>
@@ -185,6 +207,14 @@ function upload(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				 	<input type="text" name="fz" id="fz" onchange="yzsz(this)" style="width: 263px" />
 				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				服务内容：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+					<textarea id='fwnr' name="fwnr" style="width: 550px"></textarea>
+				</td>
+				
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">

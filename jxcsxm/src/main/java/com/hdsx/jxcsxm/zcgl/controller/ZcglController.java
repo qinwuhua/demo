@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -94,7 +95,7 @@ public class ZcglController extends BaseActionSupport implements ModelDriven<Zcg
 	
 	public void queryZclist(){
 		try {
-			
+			//sftx是否填写
 			zcgl.setGydw(MyUtil.getQueryTJDW(zcgl.getGydw(), "gydwdm"));
 			zcgl.setShzt(MyUtil.getQueryTJ(zcgl.getShzt(), "shztstr||sftx"));
 			zcgl.setSsbzt(MyUtil.getQueryTJ(zcgl.getSsbzt(), "ssbztstr||sftx"));
@@ -268,12 +269,57 @@ public class ZcglController extends BaseActionSupport implements ModelDriven<Zcg
 	//添加
 	public void insertZcglqt() {
 		try {
+			zcgl.setXmbm(zcgl.getNf()+zcgl.getGydw()+new Date().getTime());
 			boolean bl=zcglServer.insertZcglqt(zcgl);
 			ResponseUtils.write(getresponse(), bl+"");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+	//查询其他资产管理（道班房，沿线土地，服务区）
+	public void queryZcqtlist(){
+		try {
+			//sftx是否填写
+			zcgl.setGydw(MyUtil.getQueryTJDW(zcgl.getGydw(), "gydwdm"));
+			zcgl.setShzt(MyUtil.getQueryTJ(zcgl.getShzt(), "shztstr"));
+			zcgl.setSsbzt(MyUtil.getQueryTJ(zcgl.getSsbzt(), "ssbztstr"));
+			zcgl.setXsbzt(MyUtil.getQueryTJ(zcgl.getXsbzt(), "xsbztstr"));
+			List<Zcgl> list=zcglServer.queryZcqtlist(zcgl);
+			int count=zcglServer.queryZcqtlistCount(zcgl);
+			EasyUIPage<Zcgl> e=new EasyUIPage<Zcgl>();
+			e.setRows(list);
+			e.setTotal(count);
+			JsonUtils.write(e, getresponse().getWriter());	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	//删除资产管理其他
+	public void deleteZcqt() {
+		try {
+			boolean bl = zcglServer.deleteZcqt(zcgl);
+			ResponseUtils.write(getresponse(), bl + "");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//修改资产管理其他
+	public void updateZcglqt() {
+		try {
+			boolean bl = zcglServer.updateZcglqt(zcgl);
+			ResponseUtils.write(getresponse(), bl + "");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//修改状态
+	public void plsbshzcqt(){
+		String tj=MyUtil.getQueryTJ(zcgl.getId(), "id");
+		tj=tj.substring(4, tj.length());
+		zcgl.setId(tj);
+		ResponseUtils.write(getresponse(), ""+zcglServer.plsbshzcqt(zcgl));
+	}
 	
 }

@@ -323,6 +323,23 @@ function fileShowdsc(fid,tableTyple){
 	});
 }
 
+//显示文件不带删除的。
+function fileShowbdsc(fid,tableTyple){
+	$.ajax({
+		type:'post',
+		url:'/jxcsxm/zcgl/queryFjByfid.do',
+		dataType:'json',
+		data:'myFile.fid='+fid,
+		success:function(data){
+			$("#"+tableTyple).empty();
+			for ( var i = 0; i < data.length; i++) {
+					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a></td></tr>";
+					$("#"+tableTyple).append(tr);
+			}
+		}
+	});
+}
+
 //下载文件
 function downFile(id){
 	parent.window.location.href="/jxcsxm/zcgl/downFile.do?myFile.id="+id;

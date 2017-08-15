@@ -39,4 +39,14 @@ public interface ZcglServer {
 
 	boolean insertZcglqt(Zcgl zcgl);
 
+	List<Zcgl> queryZcqtlist(Zcgl zcgl);
+
+	int queryZcqtlistCount(Zcgl zcgl);
+
+	boolean deleteZcqt(Zcgl zcgl);
+
+	boolean updateZcglqt(Zcgl zcgl);
+
+	boolean plsbshzcqt(Zcgl zcgl);
+	
 }
