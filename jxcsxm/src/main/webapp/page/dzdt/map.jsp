@@ -474,19 +474,19 @@ list-style-type:none;
             var params = null;
             var layers = null;
             if(iQueryType == "luxian") {
-            	layers = "[{\"name\":\"GISDB_2016.GIS_LX\"}]"
+            	type = "3"
             }
             else if(iQueryType == "luduan") {
-            	layers = "[{\"name\":\"GISDB_2016.GISROAD_EVENTS\"}]"
+            	type = "2"
             }
             params = {
               resolution: map.map.getView().getResolution(),
               geometry: wkt,
-              identityType: "all",
-              layers: layers
+              type: type,
+              z: "3"
             };
             map.removeFeatureByLayerName('resultLayer');
-            var url="http://36.2.6.21:7001/mapserver/rest/mapserver/mapQuery";
+            var url="http://36.2.6.21:8085/mapserver/identify/3";
             $.ajax({  
                 url:url,  
                 dataType:'json',  
