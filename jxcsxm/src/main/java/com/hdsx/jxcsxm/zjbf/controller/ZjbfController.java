@@ -177,6 +177,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 				String[] ztz = xmZjbf.getZtz1().split(",");
 				String[] bd = xmZjbf.getBd().split(",");
 				String[] jhxdwh = xmZjbf.getJhxdwh().split(",");
+				String[] bz = xmZjbf.getBz().split(",");
 				
 				List<XmZjbf> save = new ArrayList<XmZjbf>();
 				List<XmZjbf> update = new ArrayList<XmZjbf>();
@@ -193,6 +194,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 					xm.setBd(bd[i]);
 					xm.setJhxdwh(jhxdwh[i]);
 					xm.setXmbm(bfyf[i].substring(0, 4)+gydwdm[i]+jhxdwh[i]);
+					xm.setBz(bz[i]);
 					if (zjbfServer.queryShqxByOne(xm) == null) {
 						save.add(xm);
 					} else {

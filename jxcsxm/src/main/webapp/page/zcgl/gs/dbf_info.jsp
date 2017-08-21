@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>资产管理编辑</title>
+<title>道班房详情</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css" />

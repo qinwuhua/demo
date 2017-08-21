@@ -142,6 +142,13 @@ $(function(){
 				
 			</tr>
 			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				备注：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+					<textarea readonly="readonly" name="bz" id="bz" rows="2" style="width: 310px;"></textarea>
+				
+			</tr>
+			<tr style="height: 35px;">
 				<td colspan="4" style="background-color: #ffffff;"align="center">
 				<a id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:closeWindow()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">关闭</a>
 			</tr>

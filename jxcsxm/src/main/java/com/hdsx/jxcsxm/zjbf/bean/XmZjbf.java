@@ -79,8 +79,18 @@ public class XmZjbf{
     private String sftj;//是否统计
     private String tbr;//是否统计
     private String tbsj;//是否统计
+    private String bz;//备注
     
-    public String getTbr() {
+    
+    public String getBz() {
+		return bz;
+	}
+
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
+
+	public String getTbr() {
 		return tbr;
 	}
 

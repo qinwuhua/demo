@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>沿线土地资产管理</title>
+	<title>道班房资产管理</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />

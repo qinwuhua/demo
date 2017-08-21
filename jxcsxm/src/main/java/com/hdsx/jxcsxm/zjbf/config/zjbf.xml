@@ -137,6 +137,7 @@
 	      <if test="ttc != null and ttc != ''" >ttc,</if>
 	      <if test="tbr != null and tbr != ''" >tbr,</if>
 	      <if test="tbsj != null and tbsj != ''" >tbsj,</if>
+	      <if test="bz != null and bz != ''" >bz,</if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	      <if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
@@ -161,6 +162,7 @@
 	      <if test="ttc != null and ttc != ''" >#{ttc},</if>
 	      <if test="tbr != null and tbr != ''" >#{tbr},</if>
 	      <if test="tbsj != null and tbsj != ''" >#{tbsj},</if>
+	      <if test="bz != null and bz != ''" >#{bz},</if>
 	    </trim>
 	</insert>
 	<update id="updateZjbf" parameterType="xmzjbf">
@@ -191,6 +193,7 @@
       <if test="ttc != null" >ttc = #{ttc},</if>
       <if test="tbr != null and tbr != ''" >tbr = #{tbr},</if>
       <if test="tbsj != null and tbsj != ''" >tbsj = #{tbsj},</if>
+      <if test="bz != null and bz != ''" >bz = #{bz},</if>
     </set>
     where 1=1 and ${id}
 	</update>
@@ -240,7 +243,7 @@
 		
 	</select>
 	
-	<select id="queryShqxByOne" parameterType="xmZjdw" resultType="xmZjdw">
+	<select id="queryShqxByOne" parameterType="xmZjbf" resultType="xmZjbf">
 		select * from xm_zjbf where 1=1 and gydwdm=#{gydwdm} and bfyf=#{bfyf} and jhxdwh=#{jhxdwh}
 	</select>
 	<insert id="insertShqx" parameterType="xmzjbf">
@@ -257,6 +260,7 @@
 	    	<if test="parent != null and parent != ''" >parent,</if>
 	    	<if test="gydwdm != null and gydwdm != ''" >gydwdm,</if>
 	    	<if test="xmbm != null and xmbm != ''" >xmbm,</if>
+	    	<if test="bz != null and bz != ''" >bz,</if>
 	  	</trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	    	<if test="ztz != null and ztz != ''" >#{ztz},</if>
@@ -270,6 +274,7 @@
 	    	<if test="parent != null and parent != ''" >#{parent},</if>
 	    	<if test="gydwdm != null and gydwdm != ''" >#{gydwdm},</if>
 	    	<if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
+	    	<if test="bz != null and bz != ''" >#{bz},</if>
 		</trim>
 	</insert>
 	<update id="updateShqx" parameterType="xmzjbf">
@@ -286,6 +291,7 @@
       <if test="parent != null" >parent = #{parent},</if>
       <if test="gydwdm != null" >gydwdm = #{gydwdm},</if>
       <if test="xmbm != null" >xmbm = #{xmbm},</if>
+      <if test="bz != null" >bz = #{bz},</if>
 	 </set>
       where 1=1 and gydwdm=#{gydwdm} and bfyf=#{bfyf}
 	</update>

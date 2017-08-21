@@ -119,6 +119,8 @@
 							$("#nf").combobox('setValue',item.bfyf.substr(0,4));
 							$("#yf").combobox('setValue',item.bfyf.substr(item.bfyf.length-2,item.bfyf.length));
 							$("#bd").combobox('setText',item.bd);
+							$("#bz").val(item.bz);
+							
 						});
 					}else{
 						var tr = $("tr[name='"+gydwdm+"']");
@@ -135,7 +137,7 @@
 		}
 		
 		function save(){
-			if($('#bd1').combo("getText")==""){alert("请选择或输入标段");return;}
+			if($('#bd').combo("getText")==""){alert("请选择或输入标段");return;}
 			if($('#nf').combo("getValue")==""){alert("请选择年份");return;}
 			if($('#yf').combo("getValue")==""){alert("请选择月份");return;}
 			if($('#jhxdwh').combo("getValue")==""){alert("请选择计划下达文号");return;}
@@ -163,7 +165,7 @@
 		
 		
 		function caiji(name){
- 			var zj = {gydwdm:"",parent:"",bfyf:"",cgs1:"",rys1:"",ttc1:"",dfzc1:"",ztz1:"",bd:"",jhxdwh:""};
+ 			var zj = {gydwdm:"",parent:"",bfyf:"",cgs1:"",rys1:"",ttc1:"",dfzc1:"",ztz1:"",bd:"",jhxdwh:"",bz:''};
 			var tr = $("tr[name='"+name+"']");
 			 $.each(tr,function(index,item){
 				 
@@ -186,6 +188,7 @@
 					zj.ztz1+=ztz1;
 					zj.bd+=$("#bd").combo('getText');
 					zj.jhxdwh+=$("#jhxdwh").combo('getValue');
+					zj.bz=$("#bz").val();
 				}else{
 					zj.gydwdm+=","+item.id;
 					zj.parent+=","+$(inputList[4]).val();
@@ -202,7 +205,7 @@
 					zj.ztz1+=","+ztz1;
 					zj.bd+=","+$("#bd").combo('getText');
 					zj.jhxdwh+=","+$("#jhxdwh").combo('getValue');
-					
+					zj.bz+=","+$("#bz").val();
 				}
 			}); 
 			return zj;
@@ -219,14 +222,20 @@
         				<table class="table1" cellpadding="0" cellspacing="0" width="800">
         				<tr align='center' height="28">
         						<td width="100">拨付月份</td>
-								<td width="100"><input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;"></td>
+								<td width="150"><input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;"></td>
 								<td width="100">标段</td>
-								<td width="100"><select id="bd" class='easyui-combobox' style="width: 124px">
+								<td width="140"><select id="bd" class='easyui-combobox' style="width: 124px">
 								<option value="没有标段" selected="selected">没有标段</option>
 								</select>
 								<br><span style="color: red">若有标段，请删掉手动输入</span></td>
 								<td width="100">计划下达文号</td>
 								<td width="100"><input type='text' id='jhxdwh' style="width: 125px;"></td>
+							</tr>
+							<tr align='center' height="28">
+        						<td >备注</td>
+								<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+									<textarea name="bz" id="bz" rows="2" style="width: 510px;"></textarea>
+								</td>
 							</tr>
 						</table>
 						<table id="zjbf_table" width="800" class="table" cellpadding="0" cellspacing="0">
