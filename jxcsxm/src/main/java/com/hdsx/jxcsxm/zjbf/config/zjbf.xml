@@ -13,6 +13,7 @@
 	    ) dw on t.xmbm=dw.xmids
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
@@ -43,6 +44,7 @@
 	    ) dw on t.xmbm=dw.xmids
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
@@ -75,6 +77,7 @@
 	    ) zj on t.xmbm=zj.xmbms1
 	    where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
@@ -228,7 +231,7 @@
 	<select id="queryXmlistshqx" parameterType="xmzjbf" resultType="xmzjbf">
 		select * from(select rownum num ,t1.* from (select t.*,(select name from xtgl_department where id=t.gydwdm) gydw  from xm_zjbf t
 		where 1=1 and gydwdm is not null 
-		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="bfyf !='' and bfyf != null">and bfyf like '%'||#{bfyf}||'%'</if>
 		order by nf,gydwdm
 		) t1 
@@ -238,7 +241,7 @@
 	<select id="queryXmlistshqxCount" parameterType="xmzjbf" resultType="int">
 		select count(*) from xm_zjbf t
 		where 1=1 and gydwdm is not null 
-		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="bfyf !='' and bfyf != null">and bfyf like '%'||#{bfyf}||'%'</if>
 		
 	</select>

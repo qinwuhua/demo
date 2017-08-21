@@ -59,7 +59,7 @@
 
 			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':1,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.gcfl':gcfl
+					   'xmjbxx.gcfl':gcfl,'xmjbxx.gydwdm':$.cookie('unit2')
 			};
 	
 			loadTj();
@@ -120,7 +120,7 @@
 
 			var params={'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':1,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.gcfl':gcfl
+					   'xmjbxx.gcfl':gcfl,'xmjbxx.gydwdm':$.cookie('unit2')
 			};
 			$.ajax({
 				type:'post',

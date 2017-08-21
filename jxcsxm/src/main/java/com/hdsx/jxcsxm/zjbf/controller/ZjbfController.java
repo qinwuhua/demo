@@ -52,6 +52,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		if(xmZjbf.getPage()>0){
 			xmjbxx.setPage(xmZjbf.getPage());
 			xmjbxx.setRows(xmZjbf.getRows());
@@ -83,7 +84,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
-		
+		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		try {
 			JsonUtils.write(zjbfServer.getbfTjAll(xmjbxx), getresponse().getWriter());
 		} catch (Exception e) {

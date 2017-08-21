@@ -11,7 +11,7 @@
 		) t
 		where 1=1 
 		<if test="dwlx !='' and dwlx != null">and gydwdm like #{dwlx}||'%'</if>
-		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="jsdj !='' and jsdj != null">${jsdj}</if>
 		<if test="nf !='' and nf != null">and nf=#{nf}</if>
 		<if test="lxbm !='' and lxbm != null">and lxbm like '%'||#{lxbm}||'%'</if>
@@ -36,7 +36,7 @@
 		) t
 		where 1=1 
 		<if test="dwlx !='' and dwlx != null">and gydwdm like #{dwlx}||'%'</if>
-		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="jsdj !='' and jsdj != null">${jsdj}</if>
 		<if test="nf !='' and nf != null">and nf=#{nf}</if>
 		<if test="lxbm !='' and lxbm != null">and lxbm like '%'||#{lxbm}||'%'</if>
@@ -404,7 +404,7 @@
 		select * from ZCGL_QT where xmlx=#{xmlx} and to_number(sbthcd)&lt;=${sbthcd}
 		) t
 		where 1=1 
-		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="nf !='' and nf != null">and nf=#{nf}</if>
 		<if test="wz !='' and wz != null">and wz like '%'||#{wz}||'%'</if>
 		<if test="dbmc !='' and dbmc != null">and dbmc like '%'||#{dbmc}||'%'</if>
@@ -426,7 +426,7 @@
 		select * from ZCGL_QT where xmlx=#{xmlx} and to_number(sbthcd)&lt;=${sbthcd}
 		) t
 		where 1=1 
-		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="nf !='' and nf != null">and nf=#{nf}</if>
 		<if test="wz !='' and wz != null">and wz like '%'||#{wz}||'%'</if>
 		<if test="dbmc !='' and dbmc != null">and dbmc like '%'||#{dbmc}||'%'</if>

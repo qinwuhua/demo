@@ -44,6 +44,7 @@ public class JhcxController extends BaseActionSupport{
 		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
 		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
 		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		xmjbxx.setPage(page);
 		xmjbxx.setRows(rows);
 		List<Xmjbxx> list=jhcxServer.queryXmlist(xmjbxx);
@@ -66,6 +67,7 @@ public class JhcxController extends BaseActionSupport{
 		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
 		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
 		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		try {
 			JsonUtils.write(jhcxServer.getTjAll(xmjbxx), getresponse().getWriter());
 		} catch (Exception e1) {

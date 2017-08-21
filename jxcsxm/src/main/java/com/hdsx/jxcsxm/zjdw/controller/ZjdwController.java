@@ -52,7 +52,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
-		
+		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		if(xmZjdw.getPage()>0){
 			xmjbxx.setPage(xmZjdw.getPage());
 			xmjbxx.setRows(xmZjdw.getRows());
@@ -83,6 +83,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		try {
 			JsonUtils.write(zjdwServer.getdwTjAll(xmjbxx), getresponse().getWriter());
 		} catch (Exception e) {

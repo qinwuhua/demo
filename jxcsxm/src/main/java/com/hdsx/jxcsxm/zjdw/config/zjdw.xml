@@ -13,6 +13,7 @@
 		from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmids
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
@@ -43,6 +44,7 @@
 		from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmids
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
@@ -72,6 +74,7 @@
 	    ) zj on t.xmbm=zj.xmbms1
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
@@ -88,7 +91,7 @@
 	<select id="queryXmlistshqx" parameterType="xmzjdw" resultType="xmzjdw">
 		select * from(select rownum num ,t1.* from (select t.*,(select name from xtgl_department where id=t.gydwdm) gydw   from xm_zjdw t
 		where 1=1 and gydwdm is not null 
-		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="dwyf !='' and dwyf != null">and dwyf like '%'||#{dwyf}||'%'</if>
 		order by nf,gydwdm
 		) t1 
@@ -98,7 +101,7 @@
 	<select id="queryXmlistshqxCount" parameterType="xmzjdw" resultType="int">
 		select count(*) from xm_zjdw t
 		where 1=1 and gydwdm is not null 
-		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="dwyf !='' and dwyf != null">and dwyf like '%'||#{dwyf}||'%'</if>
 		
 	</select>
