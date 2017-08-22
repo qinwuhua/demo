@@ -12,12 +12,16 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/datagrid-detailview.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
-
+	
 	<script type="text/javascript">
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
@@ -32,18 +36,24 @@
 				$("td[name='shi']").hide();
 				$("td[name='sheng']").hide();
 				$("a[name='sheng']").hide();
+				$("a[name='xian']").show();
+				$("a[name='shi']").hide();
 			}
 			if($.cookie('unit2').length==9){
 				$("td[name='shi']").show();
 				$("td[name='xian']").hide();
 				$("td[name='sheng']").hide();
 				$("a[name='sheng']").hide();
+				$("a[name='xian']").hide();
+				$("a[name='shi']").show();
 			}
 			if($.cookie('unit2').length==7){
 				$("a[name='sheng']").show();
 				$("td[name='sheng']").show();
 				$("td[name='xian']").hide();
 				$("td[name='shi']").hide();
+				$("a[name='xian']").hide();
+				$("a[name='shi']").hide();
 			}
 			//YMLib.Var.jdbs=2;
 			queryXmlist();
@@ -169,6 +179,99 @@
 				}
 			});
 		}
+		
+		function dcmb(){
+			loadjzt();
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+			
+			var jsxz="通自然村";
+			
+			
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2')
+			};
+			postDownLoadFile({
+	            url:'/jxcsxm/zjdw/dcmb.do',
+	            data:params,
+	            method:'post'
+	          });
+			//window.location.href='/jxcsxm/zjdw/dcmb.do';
+				
+			setTimeout('disLoadjzt()',4000);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*===================post请求下载文件
+		 * options:{
+		 * url:'',  //下载地址
+		 * data:{name:value}, //要发送的数据
+		 * method:'post'
+		 * }
+		 */
+		var postDownLoadFile = function (options) {
+		    var config = $.extend(true, { method: 'post' }, options);
+		    var $iframe = $('<iframe id="down-file-iframe" />');
+		    var $form = $('<form target="down-file-iframe" method="' + config.method + '" />');
+		    $form.attr('action', config.url);
+		    for (var key in config.data) {
+		        $form.append('<input type="hidden" name="' + key + '" value="' + config.data[key] + '" />');
+		    }
+		    $iframe.append($form);
+		    $(document.body).append($iframe);
+		    $form[0].submit();
+		    $iframe.remove();
+		}
+		function drsj(){
+			var url="";
+			url="/jxcsxm/zjdw/importZjdw.do?gydwdm="+$.cookie("unit");
+			
+			var weatherDlg = new J.dialog( {
+				id : 'ids',
+				title : '请选择EXCEL文档！',
+				page : '/jxcsxm/js/uploader/upload.jsp?url='+url+'&flag='+'tzrczjdw',
+				width : 450,
+				height : 400,
+				top : 0,
+				rang : true,
+				resize : false,
+				cover : true
+			});
+			
+			weatherDlg.ShowDialog();
+			
+			return false;
+		} 
+		 
+		 
+		 
+		 
 	</script>
 	<style type="text/css">
 TD {
@@ -220,7 +323,11 @@ text-decoration:none;
                             	<td colspan="8">
                             		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryXmlist()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
 									<a name='sheng' id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plshdw()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">批量审核</a>
-								
+									<a name='xian' id='mybuttion3' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:dcmb()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">导出模版</a>
+									<a name='xian' id='mybuttion4' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:drsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">导入数据</a>
+									<a name='xian' id='mybuttion5' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbdwxj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion5')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion5')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
+									<a name='shi' id='mybuttion6' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbdwsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion6')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion6')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
+									
 								</td>
                             </tr>
         					</table>

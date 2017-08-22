@@ -48,12 +48,16 @@ public class MyUtil implements Serializable{
 	 * @return 拼好的条件
 	 */
 	public static String getQueryTJDW(String bh,String name){
-		String result="";
+		String result="";boolean sf1110136=false;boolean sfjtj=false;
+		
 		if(bh!=null&&!"".equals(bh)){
 			
 			String[] s = bh.split(",");
 			for (int i = 0; i < s.length; i++) {
+				if("_____36".equals(s[i]))
+					sf1110136=true;
 				if("1".equals(s[i].substring(0,1))&&("00".equals(s[i].substring(s[i].length()-2,s[i].length()))||s[i].length()<11)) {
+					sfjtj=true;
 					if("00".equals(s[i].substring(s[i].length()-2,s[i].length()))) {
 						s[i]=s[i].substring(0, s[i].length()-2);
 					}
@@ -64,6 +68,7 @@ public class MyUtil implements Serializable{
 						result+=" and ("+name+" like '%"+s[i].substring(0, 4)+"_"+s[i].substring(5, s[i].length())+"%'";
 					else
 						result+=" or "+name+" like '%"+s[i].substring(0, 4)+"_"+s[i].substring(5, s[i].length())+"%'";
+					
 				}else {
 					
 					if(("00".equals(s[i].substring(s[i].length()-2,s[i].length()))||s[i].length()<11)) {
@@ -95,6 +100,11 @@ public class MyUtil implements Serializable{
 					result+=" or "+name+" like '%"+s[i].substring(0, 4)+"_"+s[i].substring(5, s[i].length())+"%'";*/
 			}
 			result+=")";
+			
+			if(sfjtj&&!sf1110136) {
+				result+= " and "+name+" not in ('11101361021','11101361128','11101360829','11101360981','11101360781','11101360482')";
+			}
+			
 			//System.out.println(result);
 			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
 		}

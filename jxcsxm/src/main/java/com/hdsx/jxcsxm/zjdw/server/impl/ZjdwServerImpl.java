@@ -3,6 +3,7 @@ package com.hdsx.jxcsxm.zjdw.server.impl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -129,5 +130,27 @@ public class ZjdwServerImpl extends BaseOperate  implements ZjdwServer{
 	public int queryzjxdlistCount(XmZjdw xmZjdw) {
 		return queryOne("queryzjxdlistCount", xmZjdw);
 	}
+
+	@Override
+	public List<XmZjdw> queryzjdwmb(Xmjbxx xmjbxx) {
+		return queryList("queryzjdwmb",xmjbxx);
+	}
+
+	@Override
+	public boolean importZjdw(List<Map> data) {
+		return insertBatch("importZjdw", data)==data.size();
+	}
+
+	@Override
+	public boolean plsbdwxj(XmZjdw xmZjdw) {
+		return update("plsbdwxj", xmZjdw)>0;
+	}
+
+	@Override
+	public boolean plsbdwsj(XmZjdw xmZjdw) {
+		return update("plsbdwsj", xmZjdw)>0;
+	}
+
+	
 	
 }

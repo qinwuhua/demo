@@ -81,9 +81,72 @@ public class XmZjdw{
     
     private String jhxdcgs;
     private String jhxdstz;
+    private String jhztz;
+    private String xdcgs;
+    private String xdrys;
+    private String xdttc;
+    private String xddfzc;
+    private String xmnf;
+    private String xzqh;
     
     
-    public String getJhxdcgs() {
+    public String getXzqh() {
+		return xzqh;
+	}
+
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+
+	public String getXmnf() {
+		return xmnf;
+	}
+
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+
+	public String getJhztz() {
+		return jhztz;
+	}
+
+	public void setJhztz(String jhztz) {
+		this.jhztz = jhztz;
+	}
+
+	public String getXdcgs() {
+		return xdcgs;
+	}
+
+	public void setXdcgs(String xdcgs) {
+		this.xdcgs = xdcgs;
+	}
+
+	public String getXdrys() {
+		return xdrys;
+	}
+
+	public void setXdrys(String xdrys) {
+		this.xdrys = xdrys;
+	}
+
+	public String getXdttc() {
+		return xdttc;
+	}
+
+	public void setXdttcs(String xdttc) {
+		this.xdttc = xdttc;
+	}
+
+	public String getXddfzc() {
+		return xddfzc;
+	}
+
+	public void setXddfzc(String xddfzc) {
+		this.xddfzc = xddfzc;
+	}
+
+	public String getJhxdcgs() {
 		return jhxdcgs;
 	}
 

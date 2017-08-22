@@ -1,6 +1,7 @@
 package com.hdsx.jxcsxm.zjdw.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxcsxm.xtgl.bean.Xmjbxx;
 import com.hdsx.jxcsxm.zjdw.bean.XmZjdw;
@@ -49,6 +50,14 @@ public interface ZjdwServer {
 	List<XmZjdw> queryzjxdlist(XmZjdw xmZjdw);
 
 	int queryzjxdlistCount(XmZjdw xmZjdw);
+
+	List<XmZjdw> queryzjdwmb(Xmjbxx xmjbxx);
+
+	boolean importZjdw(List<Map> data);
+
+	boolean plsbdwxj(XmZjdw xmZjdw);
+	
+	boolean plsbdwsj(XmZjdw xmZjdw);
 
 	
 

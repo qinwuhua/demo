@@ -143,6 +143,39 @@ public class ExcelExportUtil {
 		}
 	}
 	
+	public static void excelWritelock(ExcelEntity excel,String fileName,HttpServletResponse response){
+		try{
+			//创建Excel工作对象
+			HSSFWorkbook wb = new HSSFWorkbook();
+			//设置Excel的sheet对象
+			HSSFSheet sheet = wb.createSheet(excel.getSheetName());
+			int rowNumber=0;
+			//居中样式
+			HSSFCellStyle styleCenter = wb.createCellStyle(); 
+			HSSFCellStyle styleCenterlock = wb.createCellStyle();
+			styleCenterlock.setLocked(true);
+			styleCenter.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+			styleCenterlock.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+			
+			styleCenter.setBorderBottom(HSSFCellStyle.BORDER_THIN); //下边框
+			styleCenter.setBorderLeft(HSSFCellStyle.BORDER_THIN);//左边框
+			styleCenter.setBorderTop(HSSFCellStyle.BORDER_THIN);//上边框
+			styleCenter.setBorderRight(HSSFCellStyle.BORDER_THIN);//右边框
+			//创建表头
+			rowNumber = createTitle(sheet,excel.getTitleArray(),rowNumber,styleCenter,styleCenterlock);
+			rowNumber++;
+			createMainBody(sheet,excel.getAttributes(),excel.getExcelData(),rowNumber,styleCenter);
+			response.setContentType("octets/stream");
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(fileName.getBytes("gb2312"), "ISO-8859-1")+ ".xls");
+			OutputStream out = response.getOutputStream();
+			wb.write(out);
+			out.flush();
+			out.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 创建Excel表头
 	 * @param sheet sheet对象
@@ -167,6 +200,38 @@ public class ExcelExportUtil {
 				}
 				//根据开始的单元格坐标创建单元格
 				createCell = title.createCell(cell.getStartCell().getY_index());
+				createCell.setCellStyle(styleCenter);
+				//设置值
+				createCell.setCellValue(cell.getCellTitleName());
+			}
+			sheet.setColumnHidden((int)cell.getStartCell().getY_index(), cell.isHidden());
+			sheet.setColumnWidth(cell.getStartCell().getY_index(), cell.getWidth()*256);
+		}
+		return rowNumber;
+	}
+	
+	
+	@SuppressWarnings("deprecation")
+	public static int createTitle(HSSFSheet sheet,ExcelTitleCell [] titleArray,int rowNumber,HSSFCellStyle styleCenter,HSSFCellStyle styleCenterlock){
+		HSSFRow title=sheet.createRow(0);
+		for (ExcelTitleCell cell : titleArray) {
+			HSSFCell createCell=null;
+			//如果开始的单元格坐标不为null
+			if(cell.getStartCell()!=null){
+				//如果结束单元格坐标不为null，则进行合并单元格
+				if(cell.getEndCell()!=null){
+					sheet.addMergedRegion(
+							new Region(cell.getStartCell().getX_index(), cell.getStartCell().getY_index(), 
+									cell.getEndCell().getX_index(), cell.getEndCell().getY_index()));
+					//设置行号为标头占有的最大行
+					if(rowNumber<cell.getEndCell().getX_index())
+						rowNumber=cell.getEndCell().getX_index();
+				}
+				//根据开始的单元格坐标创建单元格
+				createCell = title.createCell(cell.getStartCell().getY_index());
+				if(cell.isLock())
+					createCell.setCellStyle(styleCenterlock);
+				else
 				createCell.setCellStyle(styleCenter);
 				//设置值
 				createCell.setCellValue(cell.getCellTitleName());

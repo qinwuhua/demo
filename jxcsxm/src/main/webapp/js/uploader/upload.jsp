@@ -14,6 +14,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 <script type="text/javascript"src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 <link href="${pageContext.request.contextPath }/js/uploader/uploadify.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/util/jquery.cookie.js"></script>
 <style type="text/css">
 .as {
@@ -58,10 +59,8 @@
 			'width' : 92,
 			//另外上传的参数
 			'scriptData' : {
-				'tbbmbm1':$.cookie("unit2"),
-				'tbbmbm2':$.cookie("unit"),
 				'xmlx':flag,
-				'sbthcd1':$.cookie("unit2").length
+				'sbthcd':$.cookie("unit2").length
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {
 				/* $('<li></li>').appendTo('.files').text(response); */
@@ -103,95 +102,11 @@
 	function fanhui() {
 		var flag=request('flag');
 		//基础库数据导入返回
-		if(flag=='wqgz'){
-			parent.window.location = '/jxcsxm/page/lwxm/jckgl/wqgz.jsp';
+		if(flag=='tzrczjdw'){
+			window.parent.frames.$("#grid").datagrid('reload');
+			window.parent.frames.loadTj();
 		}
-		if(flag=='abgc'){
-			parent.window.location = '/jxcsxm/page/lwxm/jckgl/abgc.jsp';
-		}
-		if(flag=='zhfz'){
-			parent.window.location = '/jxcsxm/page/lwxm/jckgl/zhfz.jsp';
-		}
-		//审查库数据导入返回
-		if(flag=='wqgz_sc'){
-			parent.window.location = '/jxcsxm/page/lwxm/sckgl/wqgz.jsp';
-		}
-		if(flag=='abgc_sc'){
-			parent.window.location = '/jxcsxm/page/lwxm/sckgl/abgc.jsp';
-		}
-		if(flag=='zhfz_sc'){
-			parent.window.location = '/jxcsxm/page/lwxm/sckgl/zhfz.jsp';
-		}
-		//计划库数据导入返回
-		if(flag=='wqgz_jh'){
-			parent.window.location = '/jxcsxm/page/jhgl/jhkgl/wqgz.jsp';
-		}
-		if(flag=='abgc_jh'){
-			parent.window.location = '/jxcsxm/page/jhgl/jhkgl/abgc.jsp';
-		}
-		if(flag=='zhfz_jh'){
-			parent.window.location = '/jxcsxm/page/jhgl/jhkgl/zhfz.jsp';
-		}
-		if(flag=='gcgj_jh'){
-			parent.window.location = '/jxcsxm/page/jhgl/jhkgl/gclmgj.jsp';
-		}
-		if(flag=='gcsj_jh'){
-			parent.window.location = '/jxcsxm/page/jhgl/jhkgl/gclmsj.jsp';
-		}
-		if(flag=='shuih_jh'){
-			parent.window.location = '/jxcsxm/page/jhgl/jhkgl/shxm.jsp';
-		}
-		if(flag=='yhdzx_jh'){
-			parent.window.location = '/jxcsxm/page/jhgl/jhkgl/yhdzx.jsp';
-		}
-		if(flag=='hsly_jh'){
-			parent.window.location = '/jxcsxm/page/jhgl/jhkgl/hslygl.jsp';
-		}
-		if(flag==1){
-			parent.window.location = '/jxcsxm/page/qqgl/jhsh/gsdgz.jsp';
-		}
-		if(flag==2){
-			parent.window.location = '/jxcsxm/page/qqgl/jhsh/gsdgz.jsp';
-		}
-		if(flag==3){
-			parent.window.location = '/jxcsxm/page/qqgl/jhsh/gsdgz.jsp';
-		}
-		if(flag==4){
-			parent.window.location = '/jxcsxm/page/qqgl/zjxd/gsdgz.jsp';
-		}
-		if(flag==5){
-			parent.window.location = '/jxcsxm/page/qqgl/zjxd/gsdgz.jsp';
-		}
-		if(flag==6){
-			parent.window.location = '/jxcsxm/page/qqgl/zjxd/gsdgz.jsp';
-		}
-		if(flag=="yhlxsh"){
-			parent.window.location = '/jxcsxm/page/qqgl/jhsh/yhdzxgl.jsp';
-		}
-		if(flag=="shlxsh"){
-			parent.window.location = '/jxcsxm/page/qqgl/jhsh/shxmgl.jsp';
-		}
-		if(flag=="yhcbsj"){
-			parent.window.location = '/jxcsxm/page/qqgl/cbsj/yhdzx_sh.jsp';
-		}
-		if(flag=="shcbsj"){
-			parent.window.location = '/jxcsxm/page/qqgl/cbsj/shxm_sh.jsp';
-		}
-		if(flag=="gzcbsj"){
-			parent.window.location = '/jxcsxm/page/qqgl/cbsj/lmgz_sh.jsp';
-		}
-		if(flag=="sjcbsj"){
-			parent.window.location = '/jxcsxm/page/qqgl/cbsj/lmsj_sh.jsp';
-		}
-		if(flag=="xjcbsj"){
-			parent.window.location = '/jxcsxm/page/qqgl/cbsj/xjgc_sh.jsp';
-		}
-		if(flag=="yhjhxd"){
-			parent.window.location = '/jxcsxm/page/qqgl/jhsh/yhdzxsh.jsp';
-		}
-		if(flag=="shjhxd"){
-			parent.window.location = '/jxcsxm/page/qqgl/jhsh/shxmsh.jsp';
-		}
+		
  		dg.cancel();
 	}
 </script>
@@ -205,11 +120,16 @@
 		<input type="file" name="fileupload" id="fileupload" />
 		<div id="fileQueue"></div>
 		<p>
+		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:uploadifyUpload()" class="button button-tiny button-rounded button-raised button-primary">上传</a>
+<!-- 		<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:jQuery('#fileupload').uploadifyClearQueue()" class="button button-tiny button-rounded button-raised button-primary">取消上传</a> -->
+		<a id='mybuttion3' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:fanhui()" class="button button-tiny button-rounded button-raised button-primary">返回</a>
+		
+		<!-- 
 			<a href="javascript:;" onClick="javascript:uploadifyUpload()"
 				class="as"> 开始上传 </a> &nbsp; <a
 				href="javascript:jQuery('#fileupload').uploadifyClearQueue()"
 				class="as"> 取消所有上传 </a> 
-            <a href="#" class="as" onclick="fanhui()" >返回 </a>
+            <a href="#" class="as" onclick="fanhui()" >返回 </a> -->
 		</p>
 		<ol class=files>
 		</ol>

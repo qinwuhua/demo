@@ -18,6 +18,12 @@
 	<action name="getdwTjAll" class="zjdwController" method="getdwTjAll"></action>
 	<action name="plshdw" class="zjdwController" method="plshdw"></action>
 	<action name="queryzjxdlist" class="zjdwController" method="queryzjxdlist"></action>
+	<action name="dcmb" class="zjdwController" method="dcmb"></action>
+	<action name="importZjdw" class="zjdwController" method="importZjdw"></action>
+	<action name="plsbdwxj" class="zjdwController" method="plsbdwxj"></action>
+	<action name="plsbdwsj" class="zjdwController" method="plsbdwsj"></action>
+	
+	
 	
  </package>
 </struts>

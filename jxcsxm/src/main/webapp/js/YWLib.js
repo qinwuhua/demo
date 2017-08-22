@@ -255,6 +255,92 @@ function plshdw(){
 	
 }
 
+//批量上报到位县级
+function plsbdwxj(){
+	var rows;var isMore=false;var _id="";
+	rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请勾选记录！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].xsbzt>0){
+			_id+=","+rows[i].xmbm;
+		}else{
+			alert("所选项目资金到位必须为未上报");
+			return;
+		}
+		
+	}
+	if($.cookie('zgx').indexOf(rows[0].gydwdm)!=-1)
+	data="xsbzt=已上报&ssbzt=已上报&sbthcd=7&sfth=否&thyy=&id="+_id.substr(1,_id.length);	
+	else
+	data="xsbzt=已上报&sbthcd=9&sfth=否&thyy=&id="+_id.substr(1,_id.length);
+	
+	if(confirm("您确认上报吗？"))
+		
+	$.ajax({
+		type:'post',
+		url:'/jxcsxm/zjdw/plsbdwxj.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("上报成功");
+				$("#grid").datagrid('reload');
+				loadTj();
+			}else{
+				alert("上报失败");
+			}
+			
+		}
+	});
+	
+	
+}
+
+//批量上报到位市级
+function plsbdwsj(){
+	var rows;var isMore=false;var _id="";
+	rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) {
+		alert("请勾选记录！");
+		return;
+	}
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].ssbzt>0){
+			_id+=","+rows[i].xmbm;
+		}else{
+			alert("所选项目资金到位必须为未上报");
+			return;
+		}
+		
+	}
+	
+	data="xsbzt=已上报&ssbzt=已上报&sbthcd=7&sfth=否&thyy=&id="+_id.substr(1,_id.length);	
+	
+	if(confirm("您确认上报吗？"))
+		
+	$.ajax({
+		type:'post',
+		url:'/jxcsxm/zjdw/plsbdwsj.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(msg){
+				alert("上报成功");
+				$("#grid").datagrid('reload');
+				loadTj();
+			}else{
+				alert("上报失败");
+			}
+			
+		}
+	});
+	
+	
+}
+
 //批量审核拨付
 function plshbf(){
 	var rows;var _id="";

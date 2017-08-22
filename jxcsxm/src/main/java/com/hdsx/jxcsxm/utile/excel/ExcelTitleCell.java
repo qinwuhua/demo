@@ -39,16 +39,18 @@ public class ExcelTitleCell {
 	 * @param width 单元格宽度
 	 */
 	public ExcelTitleCell(String cellTitleName,boolean hidden, ExcelCoordinate startCell,
-			ExcelCoordinate endCell,int width) {
+			ExcelCoordinate endCell,int width,boolean lock) {
 		super();
 		this.cellTitleName = cellTitleName;
 		this.hidden=hidden;
 		this.startCell = startCell;
 		this.endCell = endCell;
 		this.width=width;
+		this.lock=lock;
 	}
 	private String cellTitleName;
 	private boolean hidden;
+	private boolean lock;
 	private int width;
 	private ExcelCoordinate startCell;
 	private ExcelCoordinate endCell;
@@ -82,4 +84,11 @@ public class ExcelTitleCell {
 	public void setWidth(int width) {
 		this.width = width;
 	}
+	public boolean isLock() {
+		return lock;
+	}
+	public void setLock(boolean lock) {
+		this.lock = lock;
+	}
+	
 }
