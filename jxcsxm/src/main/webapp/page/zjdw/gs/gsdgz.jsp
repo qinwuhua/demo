@@ -35,18 +35,24 @@
 				$("td[name='shi']").hide();
 				$("td[name='sheng']").hide();
 				$("a[name='sheng']").hide();
+				$("a[name='xian']").show();
+				$("a[name='shi']").hide();
 			}
 			if($.cookie('unit2').length==9){
 				$("td[name='shi']").show();
 				$("td[name='xian']").hide();
 				$("td[name='sheng']").hide();
 				$("a[name='sheng']").hide();
+				$("a[name='xian']").hide();
+				$("a[name='shi']").show();
 			}
 			if($.cookie('unit2').length==7){
 				$("a[name='sheng']").show();
 				$("td[name='sheng']").show();
 				$("td[name='xian']").hide();
 				$("td[name='shi']").hide();
+				$("a[name='xian']").hide();
+				$("a[name='shi']").hide();
 			}
 			
 			queryXmlist();
@@ -231,7 +237,8 @@ text-decoration:none;
                             	<td colspan="8">
                             		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryXmlist()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
 									<a name='sheng' id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plshdw()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">批量审核</a>
-								
+									<a name='shi' id='mybuttion6' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbdwsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion6')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion6')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
+									
 								</td>
 								
                             </tr>

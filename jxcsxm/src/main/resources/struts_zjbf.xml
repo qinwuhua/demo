@@ -16,6 +16,10 @@
 	<action name="queryZjByGydwdm" class="zjbfController" method="queryZjByGydwdm"></action>
 	<action name="getbfTjAll" class="zjbfController" method="getbfTjAll"></action>
 	<action name="plshbf" class="zjbfController" method="plshbf"></action>
+	<action name="dcmb" class="zjbfController" method="dcmb"></action>
+	<action name="importZjbf" class="zjbfController" method="importZjbf"></action>
+	<action name="plsbbfxj" class="zjbfController" method="plsbbfxj"></action>
+	<action name="plsbbfsj" class="zjbfController" method="plsbbfsj"></action>
 	
 	
 	

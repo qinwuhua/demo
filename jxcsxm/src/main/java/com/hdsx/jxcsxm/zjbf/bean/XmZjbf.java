@@ -80,9 +80,72 @@ public class XmZjbf{
     private String tbr;//是否统计
     private String tbsj;//是否统计
     private String bz;//备注
+    private String dwcgs;
+    private String dwrys;
+    private String dwttc;
+    private String dwdfzc;
+    private String xmnf;
+    private String xzqh;
+    private String jhztz;
     
     
-    public String getBz() {
+    public String getJhztz() {
+		return jhztz;
+	}
+
+	public void setJhztz(String jhztz) {
+		this.jhztz = jhztz;
+	}
+
+	public String getXzqh() {
+		return xzqh;
+	}
+
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+
+	public String getXmnf() {
+		return xmnf;
+	}
+
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+
+	public String getDwcgs() {
+		return dwcgs;
+	}
+
+	public void setDwcgs(String dwcgs) {
+		this.dwcgs = dwcgs;
+	}
+
+	public String getDwrys() {
+		return dwrys;
+	}
+
+	public void setDwrys(String dwrys) {
+		this.dwrys = dwrys;
+	}
+
+	public String getDwttc() {
+		return dwttc;
+	}
+
+	public void setDwttc(String dwttc) {
+		this.dwttc = dwttc;
+	}
+
+	public String getDwdfzc() {
+		return dwdfzc;
+	}
+
+	public void setDwdfzc(String dwdfzc) {
+		this.dwdfzc = dwdfzc;
+	}
+
+	public String getBz() {
 		return bz;
 	}
 

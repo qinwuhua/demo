@@ -30,6 +30,8 @@
 				$("a[name='shi']").show();
 				$("a[name='xian']").hide();
 				$("a[name='sheng']").hide();
+				if($.cookie('unit2').substr(0,1)=='2')
+				$("#mybuttion51").hide();
 			}
 			if($.cookie('unit2').length==7){
 				$("a[name='sheng']").show();

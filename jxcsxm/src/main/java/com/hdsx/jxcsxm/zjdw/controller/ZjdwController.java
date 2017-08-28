@@ -324,7 +324,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 			ExcelTitleCell[] title = null;
 			title = new ExcelTitleCell[18];
 			title[0] = new ExcelTitleCell("项目编码", true,
-					new ExcelCoordinate(0, (short) 0), null, 20,false);
+					new ExcelCoordinate(0, (short) 0), null, 10,false);
 			title[1] = new ExcelTitleCell("项目年份", false,
 					new ExcelCoordinate(0, (short) 1), null, 20,false);
 			title[2] = new ExcelTitleCell("项目名称", false,
@@ -334,27 +334,27 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 			title[4] = new ExcelTitleCell("行政区划", false,
 					new ExcelCoordinate(0, (short) 4), null, 20,false);
 			title[5] = new ExcelTitleCell("计划总投资", false,
-					new ExcelCoordinate(0, (short) 5), null, 20,false);
+					new ExcelCoordinate(0, (short) 5), null, 15,false);
 			title[6] = new ExcelTitleCell("计划下达车购税", false,
-					new ExcelCoordinate(0, (short) 6), null, 20,false);
+					new ExcelCoordinate(0, (short) 6), null, 15,false);
 			title[7] = new ExcelTitleCell("计划下达燃油税", false,
-					new ExcelCoordinate(0, (short) 7), null, 20,false);
+					new ExcelCoordinate(0, (short) 7), null, 15,false);
 			title[8] = new ExcelTitleCell("计划下达地方自筹", false,
-					new ExcelCoordinate(0, (short) 8), null, 20,false);
+					new ExcelCoordinate(0, (short) 8), null, 15,false);
 			title[9] = new ExcelTitleCell("计划下达厅统筹", false,
-					new ExcelCoordinate(0, (short) 9), null, 20,false);
+					new ExcelCoordinate(0, (short) 9), null, 15,false);
 			title[10] = new ExcelTitleCell("计划下达文号", false,
 					new ExcelCoordinate(0, (short) 10), null, 20,false);
 			title[11] = new ExcelTitleCell("到位车购税", false,
-					new ExcelCoordinate(0, (short) 11), null, 20,false);
+					new ExcelCoordinate(0, (short) 11), null, 15,false);
 			title[12] = new ExcelTitleCell("到位燃油税", false,
-					new ExcelCoordinate(0, (short) 12), null, 20,false);
+					new ExcelCoordinate(0, (short) 12), null, 15,false);
 			title[13] = new ExcelTitleCell("到位地方自筹", false,
-					new ExcelCoordinate(0, (short) 13), null, 20,false);
+					new ExcelCoordinate(0, (short) 13), null, 15,false);
 			title[14] = new ExcelTitleCell("到位厅统筹", false,
-					new ExcelCoordinate(0, (short) 14), null, 20,false);
+					new ExcelCoordinate(0, (short) 14), null, 15,false);
 			title[15] = new ExcelTitleCell("到位月份", false,
-					new ExcelCoordinate(0, (short) 15), null, 20,false);
+					new ExcelCoordinate(0, (short) 15), null, 15,false);
 			title[16] = new ExcelTitleCell("填报人", false,
 					new ExcelCoordinate(0, (short) 16), null, 20,false);
 			title[17] = new ExcelTitleCell("填报时间", false,
@@ -417,7 +417,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			System.out.println(dataMapArray[0]);
+			//System.out.println(dataMapArray[0]);
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
 			
 			if(data.size()>=1) {

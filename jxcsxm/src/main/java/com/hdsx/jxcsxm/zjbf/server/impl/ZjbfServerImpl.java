@@ -3,6 +3,7 @@ package com.hdsx.jxcsxm.zjbf.server.impl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -110,6 +111,26 @@ public class ZjbfServerImpl extends BaseOperate  implements ZjbfServer{
 	@Override
 	public boolean plshbf(XmZjbf xmZjbf) {
 		return update("plshbf", xmZjbf)>0;
+	}
+
+	@Override
+	public List<XmZjbf> queryzjbfmb(Xmjbxx xmjbxx) {
+		return queryList("queryzjbfmb", xmjbxx);
+	}
+
+	@Override
+	public boolean importZjbf(List<Map> data) {
+		return insertBatch("importZjbf", data)==data.size();
+	}
+
+	@Override
+	public boolean plsbbfxj(XmZjbf xmZjbf) {
+		return update("plsbbfxj", xmZjbf)>0;
+	}
+
+	@Override
+	public boolean plsbbfsj(XmZjbf xmZjbf) {
+		return update("plsbbfsj", xmZjbf)>0;
 	}
 	
 }

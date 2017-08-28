@@ -106,7 +106,10 @@
 			window.parent.frames.$("#grid").datagrid('reload');
 			window.parent.frames.loadTj();
 		}
-		
+		if(flag=='tzrczjbf'){
+			window.parent.frames.$("#grid").datagrid('reload');
+			window.parent.frames.loadTj();
+		}
  		dg.cancel();
 	}
 </script>

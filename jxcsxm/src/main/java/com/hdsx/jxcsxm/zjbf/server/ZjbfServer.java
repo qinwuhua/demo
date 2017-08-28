@@ -1,9 +1,11 @@
 package com.hdsx.jxcsxm.zjbf.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxcsxm.xtgl.bean.Xmjbxx;
 import com.hdsx.jxcsxm.zjbf.bean.XmZjbf;
+import com.hdsx.jxcsxm.zjdw.bean.XmZjdw;
 
 
 public interface ZjbfServer {
@@ -43,6 +45,14 @@ public interface ZjbfServer {
 	XmZjbf getbfTjAll(Xmjbxx xmjbxx);
 
 	boolean plshbf(XmZjbf xmZjbf);
+
+	List<XmZjbf> queryzjbfmb(Xmjbxx xmjbxx);
+
+	boolean importZjbf(List<Map> data);
+
+	boolean plsbbfxj(XmZjbf xmZjbf);
+
+	boolean plsbbfsj(XmZjbf xmZjbf);
 
 	
 

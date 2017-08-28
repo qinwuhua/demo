@@ -68,7 +68,7 @@
 	    (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
 	    (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
 	    (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
-	    from xm_zjdw  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmids
+	    from xm_zjbf  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmids
 	    left join
 	      (select distinct xm.xmbm xmbms1,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(jhxdzj,0) jhxdzj from xmjbxx xm left join 
 	      (select xmbm,sum(ztz) dwzj from xm_zjdw  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on xm.xmbm=dw.xmbm left join
@@ -306,5 +306,69 @@
 	<select id="queryZjByGydwdmJtj" parameterType="xmzjbf" resultType="xmzjbf">
 		select * from xm_zjbf z where bfyf=#{bfyf} and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') order by gydwdm
 	</select>
+	
+	<select id="queryzjbfmb" parameterType="xmjbxx" resultType="xmzjbf">
+		select xmbm,xmnf,xmmc,gydw,xzqh,ztz jhztz,dwcgs dwcgs,dwrys dwrys,dwdfzc dwdfzc,dwttc dwttc,jhxdwh,'没有标段' bd,
+    	'0' cgs,'0' rys,'0' dfzc,'0' ttc,to_char(sysdate,'yyyy-mm') bfyf,gydw tbr,to_char(sysdate,'yyyy-mm-dd') tbsj,'' bz 
+    	 from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+	    left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
+	    on t.xmbm=xd.xmid 
+	    left join(
+	      select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+	    (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+	    (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+	    (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
+	    from xm_zjbf  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmids
+	    left join
+	      (select distinct xm.xmbm xmbms1,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(jhxdzj,0) jhxdzj,nvl(dwcgs,0) dwcgs,nvl(dwrys,0) dwrys,nvl(dwttc,0) dwttc,nvl(dwdfzc,0) dwdfzc from xmjbxx xm left join 
+	      (select xmbm,sum(nvl(ztz,0)) dwzj,sum(nvl(cgs,0)) dwcgs,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) dwttc,sum(nvl(rys,0)) dwrys,sum(nvl(dfzc,0)) dwdfzc from xm_zjdw  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on xm.xmbm=dw.xmbm left join
+			  (select xmbm,sum(ztz) bfzj,sum(decode(shzt,'已审核',ztz,0)) yshbfzj from xm_zjbf  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) bf on xm.xmbm=bf.xmbm left join
+			  (select xmid xmbm,sum(nvl(ztz,0)) jhxdzj from xm_gsd_jhxd where f_str_or_num(ztz)!=1 group by xmid) xd on xm.xmbm=xd.xmbm 
+	    ) zj on t.xmbm=zj.xmbms1
+	    where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		) where 1=1
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+	</select>
+	<insert id="importZjbf" parameterType="hashMap">
+		insert into xm_zjbf (id,jhxdwh,ztz,cgs,rys,ttc,dfzc,bfyf,xmbm,tbr,tbsj,sbthcd,bd,bz)
+		values(sys_guid(),#{10},#{12}+#{13}+#{14}+#{15},#{12},#{13},#{14},#{15},${16},#{0},#{17},#{18},11,#{11},#{19}) 
+	</insert>
+	
+	<update id="plsbbfxj" parameterType="xmzjbf">
+	update xm_zjbf
+    <set>
+      <if test="sbthcd != null" >sbthcd = #{sbthcd},</if>
+      <if test="thyy != null" >thyy = #{thyy},</if>
+      <if test="xsbzt != null" >xsbzt = #{xsbzt},xsbsj=sysdate,</if>
+      <if test="ssbzt != null" >ssbzt = #{ssbzt},ssbsj=sysdate,</if>
+      <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
+      <if test="sfth != null" >sfth = #{sfth},</if>
+    </set>
+    where 1=1 and xsbzt='未上报' and sbthcd='11' ${xmbm} 
+	</update>
+	<update id="plsbbfsj" parameterType="xmzjbf">
+	update xm_zjbf
+    <set>
+      <if test="sbthcd != null" >sbthcd = #{sbthcd},</if>
+      <if test="thyy != null" >thyy = #{thyy},</if>
+      <if test="xsbzt != null" >xsbzt = #{xsbzt},xsbsj=sysdate,</if>
+      <if test="ssbzt != null" >ssbzt = #{ssbzt},ssbsj=sysdate,</if>
+      <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
+      <if test="sfth != null" >sfth = #{sfth},</if>
+    </set>
+    where 1=1 and ssbzt='未上报' and sbthcd='9' ${xmbm} 
+	</update>
+	
 	
 </mapper>
