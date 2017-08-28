@@ -20,6 +20,7 @@
 	<action name="importZjbf" class="zjbfController" method="importZjbf"></action>
 	<action name="plsbbfxj" class="zjbfController" method="plsbbfxj"></action>
 	<action name="plsbbfsj" class="zjbfController" method="plsbbfsj"></action>
+	<action name="queryZjdwbfByGydwdm" class="zjbfController" method="queryZjdwbfByGydwdm"></action>
 	
 	
 	

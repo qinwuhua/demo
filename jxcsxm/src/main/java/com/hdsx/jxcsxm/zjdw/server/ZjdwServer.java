@@ -59,6 +59,8 @@ public interface ZjdwServer {
 	
 	boolean plsbdwsj(XmZjdw xmZjdw);
 
+	List<XmZjdw> queryZjxddwByGydwdm(XmZjdw xmZjdw);
+
 	
 
 }

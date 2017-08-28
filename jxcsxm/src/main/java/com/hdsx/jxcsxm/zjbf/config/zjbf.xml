@@ -231,7 +231,7 @@
 	<select id="queryXmlistshqx" parameterType="xmzjbf" resultType="xmzjbf">
 		select * from(select rownum num ,t1.* from (select t.*,(select name from xtgl_department where id=t.gydwdm) gydw  from xm_zjbf t
 		where 1=1 and gydwdm is not null 
-		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="gydw !='' and gydw != null">${gydw}</if>
 		<if test="bfyf !='' and bfyf != null">and bfyf like '%'||#{bfyf}||'%'</if>
 		order by nf,gydwdm
 		) t1 
@@ -264,6 +264,9 @@
 	    	<if test="gydwdm != null and gydwdm != ''" >gydwdm,</if>
 	    	<if test="xmbm != null and xmbm != ''" >xmbm,</if>
 	    	<if test="bz != null and bz != ''" >bz,</if>
+	    	<if test="nf != null and nf != ''" >nf,</if>
+	    	<if test="tbr != null and tbr != ''" >tbr,</if>
+	    	<if test="tbsj != null and tbsj != ''" >tbsj,</if>
 	  	</trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	    	<if test="ztz != null and ztz != ''" >#{ztz},</if>
@@ -278,6 +281,9 @@
 	    	<if test="gydwdm != null and gydwdm != ''" >#{gydwdm},</if>
 	    	<if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
 	    	<if test="bz != null and bz != ''" >#{bz},</if>
+	    	<if test="nf != null and nf != ''" >#{nf},</if>
+	    	<if test="tbr != null and tbr != ''" >#{tbr},</if>
+	    	<if test="tbsj != null and tbsj != ''" >#{tbsj},</if>
 		</trim>
 	</insert>
 	<update id="updateShqx" parameterType="xmzjbf">
@@ -295,18 +301,43 @@
       <if test="gydwdm != null" >gydwdm = #{gydwdm},</if>
       <if test="xmbm != null" >xmbm = #{xmbm},</if>
       <if test="bz != null" >bz = #{bz},</if>
+      <if test="nf != null and nf != ''" >nf=#{nf},</if>
+	  <if test="tbr != null and tbr != ''" >tbr=#{tbr},</if>
+	  <if test="tbsj != null and tbsj != ''" >tbsj=#{tbsj},</if>
 	 </set>
-      where 1=1 and gydwdm=#{gydwdm} and bfyf=#{bfyf}
+      where 1=1 and gydwdm=#{gydwdm} and bfyf=#{bfyf} and nf=#{nf} and jhxdwh=#{jhxdwh}
 	</update>
 	
 	<select id="queryZjByGydwdm" parameterType="xmzjbf" resultType="xmzjbf">
-		select * from xm_zjbf z where bfyf=#{bfyf} and z.parent=#{gydwdm} order by gydwdm
+		select * from xm_zjbf z where bfyf=#{bfyf} and z.parent=#{gydwdm}  and nf=#{nf}  and jhxdwh=#{jhxdwh} order by gydwdm
 	</select>
 	
 	<select id="queryZjByGydwdmJtj" parameterType="xmzjbf" resultType="xmzjbf">
-		select * from xm_zjbf z where bfyf=#{bfyf} and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') order by gydwdm
+		select * from xm_zjbf z where bfyf=#{bfyf}  and nf=#{nf}  and jhxdwh=#{jhxdwh} and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') order by gydwdm
 	</select>
 	
+	<select id="queryZjdwbfByGydwdm" parameterType="xmzjbf" resultType="xmzjbf">
+		 select 
+		  t1.xmbm,decode(t2.gydwdm,null,t1.gydwdm,t2.gydwdm) gydwdm,nvl(t1.cgs,0)-nvl(t2.cgs,0) cgs,nvl(t1.rys,0)-nvl(t2.rys,0) rys,nvl(t1.ttc,0)-nvl(t2.ttc,0) ttc,nvl(t1.dfzc,0)-nvl(t2.dfzc,0) dfzc
+		  from  (
+		  select xmbm,gydwdm,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ttc,0)) ttc,sum(nvl(dfzc,0)) dfzc from xm_zjdw z where 1=1 and (z.parent=#{gydwdm}) and nf=#{nf} and jhxdwh=#{jhxdwh} group by xmbm,gydwdm order by gydwdm 
+			) t1 left join
+		  (
+		  select xmbm,gydwdm,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ttc,0)) ttc,sum(nvl(dfzc,0)) dfzc from xm_zjbf z where 1=1 and (z.parent=#{gydwdm}) and nf=#{nf} and jhxdwh=#{jhxdwh} group by xmbm,gydwdm order by gydwdm 
+			) t2
+		  on t1.xmbm=t2.xmbm order by gydwdm
+	</select>
+	<select id="queryZjdwbfByGydwdmJtj" parameterType="xmzjbf" resultType="xmzjbf">
+		 select 
+		  t1.xmbm,decode(t2.gydwdm,null,t1.gydwdm,t2.gydwdm) gydwdm,nvl(t1.cgs,0)-nvl(t2.cgs,0) cgs,nvl(t1.rys,0)-nvl(t2.rys,0) rys,nvl(t1.ttc,0)-nvl(t2.ttc,0) ttc,nvl(t1.dfzc,0)-nvl(t2.dfzc,0) dfzc
+		  from  (
+		  select xmbm,gydwdm,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ttc,0)) ttc,sum(nvl(dfzc,0)) dfzc from xm_zjdw z where 1=1 and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') and nf=#{nf} and jhxdwh=#{jhxdwh} group by xmbm,gydwdm order by gydwdm 
+			) t1 left join
+		  (
+		  select xmbm,gydwdm,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ttc,0)) ttc,sum(nvl(dfzc,0)) dfzc from xm_zjbf z where 1=1 and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') and nf=#{nf} and jhxdwh=#{jhxdwh} group by xmbm,gydwdm order by gydwdm 
+			) t2
+		  on t1.xmbm=t2.xmbm order by gydwdm
+	</select>
 	<select id="queryzjbfmb" parameterType="xmjbxx" resultType="xmzjbf">
 		select xmbm,xmnf,xmmc,gydw,xzqh,ztz jhztz,dwcgs dwcgs,dwrys dwrys,dwdfzc dwdfzc,dwttc dwttc,jhxdwh,'没有标段' bd,
     	'0' cgs,'0' rys,'0' dfzc,'0' ttc,to_char(sysdate,'yyyy-mm') bfyf,gydw tbr,to_char(sysdate,'yyyy-mm-dd') tbsj,'' bz 

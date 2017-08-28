@@ -193,6 +193,11 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 				String[] jhxdwh = xmZjbf.getJhxdwh().split(",");
 				String[] bz = xmZjbf.getBz().split(",");
 				
+				String[] nf = xmZjbf.getNf().split(",");
+				String[] tbr = xmZjbf.getTbr().split(",");
+				String[] tbsj = xmZjbf.getTbsj().split(",");
+				
+				
 				List<XmZjbf> save = new ArrayList<XmZjbf>();
 				List<XmZjbf> update = new ArrayList<XmZjbf>();
 				for (int i = 0; i < gydwdm.length; i++) {
@@ -207,8 +212,12 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 					xm.setZtz(Double.parseDouble("".equals(ztz[i]) ? "0" : ztz[i]));
 					xm.setBd(bd[i]);
 					xm.setJhxdwh(jhxdwh[i]);
-					xm.setXmbm(bfyf[i].substring(0, 4)+gydwdm[i]+jhxdwh[i]);
+					xm.setXmbm(nf[i]+gydwdm[i]+jhxdwh[i]);
 					xm.setBz(bz[i]);
+					xm.setNf(nf[i]);
+					xm.setTbr(tbr[i]);
+					xm.setTbsj(tbsj[i]);
+					
 					if (zjbfServer.queryShqxByOne(xm) == null) {
 						save.add(xm);
 					} else {
@@ -240,6 +249,16 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 				e.printStackTrace();
 			}
 		}
+		//根据单位查询资金
+		public void queryZjdwbfByGydwdm(){
+			try {
+				List<XmZjbf> list =zjbfServer.queryZjdwbfByGydwdm(xmZjbf);
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		//批量审核拨付
 		public void plshbf(){
 			xmZjbf.setXmbm(MyUtil.getQueryTJ(xmZjbf.getXmbm(), "xmbm").replaceAll("and", ""));

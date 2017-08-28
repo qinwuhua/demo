@@ -72,10 +72,10 @@
 	</select>
 	
 	<select id="queryZjByGydwdm" parameterType="xmjbxx" resultType="xmjbxx">
-		select * from xm_gsd_jhxd z where xdnf=#{xdnf} and z.parent=#{gydwdm} order by gydwdm
+		select * from xm_gsd_jhxd z where xdnf=#{xdnf} <if test="jhxdwh !=null">and jhxdwh=#{jhxdwh}</if> and z.parent=#{gydwdm} order by gydwdm
 	</select>
 	<select id="queryZjByGydwdmJtj" parameterType="xmjbxx" resultType="xmjbxx">
-		select * from xm_gsd_jhxd z where xdnf=#{xdnf} and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') order by gydwdm
+		select * from xm_gsd_jhxd z where xdnf=#{xdnf} <if test="jhxdwh !=null">and jhxdwh=#{jhxdwh}</if> and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') order by gydwdm
 	</select>
 	
 </mapper>

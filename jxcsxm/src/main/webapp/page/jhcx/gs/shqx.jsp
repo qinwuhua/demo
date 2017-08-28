@@ -31,11 +31,13 @@
 	<script type="text/javascript">
 		$(function(){
 			$("#nf").combobox({onSelect:function(record){
-				loadZj($.cookie("unit"));
+				//loadZj($.cookie("unit"));
+				
+				loadWhBmbmSh('jhxdwh',$("#nf").combobox('getValue')+"21101360000");
 			}})
 			
 			loadBmbm('nf','项目年份',new Date().getFullYear());
-			
+			loadWhBmbmSh('jhxdwh',new Date().getFullYear()+"21101360000");
 			var gydw=$.cookie("unit");
 			if(gydw=="36"){
 				loadChildGydw("21101360000");
@@ -59,16 +61,19 @@
 				}
 			});
 			
-			loadZj($.cookie("unit"));
+			//loadZj($.cookie("unit"));
 		}
 		
 		
 		function loadZj(gydwdm){
-			
+			if($("#jhxdwh").combo('getValue')==""||$("#jhxdwh").combo('getValue')==""){
+				alert("请选择计划下达文号");
+				return;
+			}
 			var zj;
 			if($.cookie("unit")=="36")
-			zj={'xmjbxx.gydwdm':"21101360000",'xmjbxx.xdnf':$("#nf").combo('getValue')};
-			else zj={'xmjbxx.gydwdm':gydwdm,'xmjbxx.xdnf':$("#nf").combo('getValue')};
+			zj={'xmjbxx.gydwdm':"21101360000",'xmjbxx.xdnf':$("#nf").combo('getValue'),'jhxdwh':$("#jhxdwh").combo('getValue')};
+			else zj={'xmjbxx.gydwdm':gydwdm,'xmjbxx.xdnf':$("#nf").combo('getValue'),'jhxdwh':$("#jhxdwh").combo('getValue')};
 			$.ajax({
 				type:'post',
 				async:false,
@@ -193,7 +198,13 @@
 								<td width="100">
 								<input type="text" class='easyui-combobox' id='nf' style="width: 65px;">
 								<td width="100">计划下达文号</td>
-								<td width="100"><input readonly="readonly" type='text' id='jhxdwh'style="width: 145px;"></td>
+								<td width="100">
+<!-- 								<input readonly="readonly" type='text' id='jhxdwh'style="width: 145px;"> -->
+								<input type='text' id='jhxdwh'style="width: 145px;">
+								</td>
+								<td width="100">
+									<input value=" 查询  " onclick="loadZj()" style="text-align: center;" type="button"/>
+								</td>
 							</tr>
 						</table>
 						<table id="zjdw_table" width="800" class="table" cellpadding="0" cellspacing="0">

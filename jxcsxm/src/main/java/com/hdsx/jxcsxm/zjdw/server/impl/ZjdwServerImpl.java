@@ -112,6 +112,14 @@ public class ZjdwServerImpl extends BaseOperate  implements ZjdwServer{
 	}
 
 	@Override
+	public List<XmZjdw> queryZjxddwByGydwdm(XmZjdw xmZjdw) {
+		if("1".equals(xmZjdw.getGydwdm().substring(0, 1)))
+			return queryList("queryZjxddwByGydwdmJtj", xmZjdw);
+		else
+			return queryList("queryZjxddwByGydwdm", xmZjdw);	
+	}
+	
+	@Override
 	public XmZjdw getdwTjAll(Xmjbxx xmZjdw) {
 		return queryOne("getdwTjAll", xmZjdw);
 	}

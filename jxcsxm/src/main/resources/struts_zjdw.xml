@@ -22,6 +22,8 @@
 	<action name="importZjdw" class="zjdwController" method="importZjdw"></action>
 	<action name="plsbdwxj" class="zjdwController" method="plsbdwxj"></action>
 	<action name="plsbdwsj" class="zjdwController" method="plsbdwsj"></action>
+	<action name="queryZjxddwByGydwdm" class="zjdwController" method="queryZjxddwByGydwdm"></action>
+	
 	
 	
 	
