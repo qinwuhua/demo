@@ -421,6 +421,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 	}
 	
 	public void importZjdw() {
+		System.out.println("进入方法");
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		HttpServletResponse response = getresponse();
 		try{

@@ -270,6 +270,7 @@
 	<insert id="insertShqx" parameterType="xmzjdw">
 		insert into xm_zjdw
 	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	    	xsbzt,ssbzt,shzt,
 	    	<if test="ztz != null and ztz != ''" >ztz,</if>
 	    	<if test="cgs != null and cgs != ''" >cgs,</if>
 	    	<if test="rys != null and rys != ''" >rys,</if>
@@ -286,6 +287,7 @@
 	    	<if test="tbsj != null and tbsj != ''" >tbsj,</if>
 	  	</trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	    	'已上报','已上报','已审核',
 	    	<if test="ztz != null and ztz != ''" >#{ztz},</if>
 	    	<if test="cgs != null and cgs != ''" >#{cgs},</if>
 	    	<if test="rys != null and rys != ''" >#{rys},</if>
@@ -392,7 +394,7 @@
 	
 	<insert id="importZjdw" parameterType="hashMap">
 		insert into xm_zjdw (id,jhxdwh,ztz,cgs,rys,ttc,dfzc,dwyf,xmbm,tbr,tbsj,sbthcd)
-		values(sys_guid(),#{10},#{11}+#{12}+#{13}+#{14},#{11},#{12},#{13},#{14},${15},#{0},#{16},#{17},11) 
+		values(sys_guid(),#{10},#{11}+#{12}+#{13}+#{14},#{11},#{12},#{13},#{14},#{15},#{0},#{16},#{17},11) 
 	</insert>
 	<update id="plsbdwxj" parameterType="xmzjdw">
 	update xm_zjdw

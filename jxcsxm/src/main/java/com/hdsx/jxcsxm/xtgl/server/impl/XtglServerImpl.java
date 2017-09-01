@@ -47,7 +47,14 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 			return false;
 		}
 	}
-
+	@Override
+	public boolean updateName(HashMap hm) {
+		if (update("updateName", hm) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	@Override
 	public HashMap<String, String> login(HashMap hm) {
 		HashMap lhm=queryOne("loginnum",hm);

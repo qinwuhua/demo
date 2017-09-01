@@ -196,6 +196,20 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void updateName(){
+		
+		HashMap hm=new HashMap();
+		hm.put("id", username);
+		hm.put("mm", password);
+		boolean bl = xtglServer.updateName(hm);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	
 	/**
 	 * 登陆
 	 */

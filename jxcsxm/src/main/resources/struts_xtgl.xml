@@ -16,6 +16,8 @@
 	<action name="seldw" class="xtglController" method="seldw"></action>
 	<action name="seldw2" class="xtglController" method="seldw2"></action>
 	<action name="updatePassword" class="xtglController" method="updatePassword"></action>
+	<action name="updateName" class="xtglController" method="updateName"></action>
+	
 	<action name="login" class="xtglController" method="login"></action>
 	<action name="loginCheck" class="xtglController" method="loginCheck"></action>
 	<action name="selAllXzqh" class="xtglController" method="selAllXzqh"></action>

@@ -26,6 +26,10 @@ function urllogin(){
 		success : function(msg){
 			if(msg){
 	     		$.cookie("truename",msg.TRUENAME, {expires: 1});//将用户名放入cookie中
+	     		if(msg.NAME!=null)
+		     		$.cookie("name",msg.NAME, {expires: 1});//将用户名放入cookie中
+		     		else
+		     			$.cookie("name","", {expires: 1});//将用户名放入cookie中
 	     		$.cookie("unit",msg.UNIT, {expires: 1});
 	     		var unit2=msg.UNIT;
 	     		if(unit2.substr(unit2.length-2,unit2.length)=="00") unit2=unit2.substr(0,unit2.length-2);
@@ -79,6 +83,10 @@ function clearscSession(){
 		//selQxByUser();
 		selSes();
 	}
+	
+	if($.cookie("name")==""){
+		alert('未查询到您的真实姓名，请在右上角点击"修改真实姓名"录入');
+	}
 }); 
 
 
@@ -89,8 +97,11 @@ function clearscSession(){
     <div data-options="region:'north',border:false" style="height: 98px;" >
 		<div class="header">
 			<div class="header_content">
-			    <div style="position:absolute;top:15px;right:250px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user"></span></div>
-			    <div class="system"><a onclick="edit()" href="javascript:void(0)" style="color:#d3fcff">修改密码</a><em style="color:#d3fcff">|</em>
+			    <div style="position:absolute;top:15px;right:400px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user"></span></div>
+			   
+			    <div class="system">
+			    <a onclick="editname()" href="javascript:void(0)" style="color:#d3fcff">修改真实姓名</a><em style="color:#d3fcff">|</em>
+			    <a onclick="edit()" href="javascript:void(0)" style="color:#d3fcff">修改密码</a><em style="color:#d3fcff">|</em>
 <!-- 			    	<a href="./index.jsp" target="_self">返回首页</a><em>|</em> -->
 			    	<a onclick="clearSession()" href="javascript:void(0)" style="color:#d3fcff">退出系统</a></div>
 				<ul class="nav">

@@ -14,6 +14,10 @@
 		UPDATE xtgl_MASTER SET PASSWORD=#{mm} WHERE truename=#{id}
 	</update>
 	
+	<update id="updateName" parameterType="HashMap" >
+		UPDATE xtgl_MASTER SET name=#{mm} WHERE truename=#{id}
+	</update>
+	
 	<select id="selectPwd" parameterType="String" resultType="master">
 	select PASSWORD from xtgl_master M WHERE M.truename=#{value}
 	</select>

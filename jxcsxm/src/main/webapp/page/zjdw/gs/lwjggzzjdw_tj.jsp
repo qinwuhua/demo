@@ -35,7 +35,7 @@ $(function(){
 	if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
 	if(yf<10) yf='0'+yf;
 	if(day<10) day='0'+day;
-	$("#tbr").val($.cookie('truename'));
+	$("#tbr").val($.cookie('name'));
 	$("#tbsj1").datebox('setValue',new Date().getFullYear()+"-"+yf+"-"+day);
 	
 	loadWhBmbm('jhxdwh1',parent.parent.YMLib.Var.xmbm);

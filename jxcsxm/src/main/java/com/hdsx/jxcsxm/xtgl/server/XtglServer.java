@@ -159,5 +159,7 @@ public interface XtglServer {
 
 	List<TreeNode> getWhTreeByNameSh(HashMap<String, String> hm);
 
+	boolean updateName(HashMap hm);
+
 	
 }

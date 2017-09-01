@@ -48,7 +48,7 @@ $(function(){
 	if($.cookie('unit2').length==11){
 		xsbzt='未上报';ssbzt='未上报'
 	}
-	$("#tbr").val($.cookie('truename'));
+	$("#tbr").val($.cookie('name'));
 	$("#tbsj1").datebox('setValue',new Date().getFullYear()+"-"+yf+"-"+day);
 	
 	$("#xsbzt").val(xsbzt);

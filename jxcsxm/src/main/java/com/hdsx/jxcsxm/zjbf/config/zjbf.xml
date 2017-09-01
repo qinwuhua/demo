@@ -252,6 +252,7 @@
 	<insert id="insertShqx" parameterType="xmzjbf">
 		insert into xm_zjbf
 	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	    	xsbzt,ssbzt,shzt,
 	    	<if test="ztz != null and ztz != ''" >ztz,</if>
 	    	<if test="cgs != null and cgs != ''" >cgs,</if>
 	    	<if test="rys != null and rys != ''" >rys,</if>
@@ -269,6 +270,7 @@
 	    	<if test="tbsj != null and tbsj != ''" >tbsj,</if>
 	  	</trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	    	'已上报','已上报','已审核',
 	    	<if test="ztz != null and ztz != ''" >#{ztz},</if>
 	    	<if test="cgs != null and cgs != ''" >#{cgs},</if>
 	    	<if test="rys != null and rys != ''" >#{rys},</if>
@@ -373,7 +375,7 @@
 	</select>
 	<insert id="importZjbf" parameterType="hashMap">
 		insert into xm_zjbf (id,jhxdwh,ztz,cgs,rys,ttc,dfzc,bfyf,xmbm,tbr,tbsj,sbthcd,bd,bz)
-		values(sys_guid(),#{10},#{12}+#{13}+#{14}+#{15},#{12},#{13},#{14},#{15},${16},#{0},#{17},#{18},11,#{11},#{19}) 
+		values(sys_guid(),#{10},#{12}+#{13}+#{14}+#{15},#{12},#{13},#{14},#{15},#{16},#{0},#{17},#{18},11,#{11},#{19}) 
 	</insert>
 	
 	<update id="plsbbfxj" parameterType="xmzjbf">

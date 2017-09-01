@@ -9,7 +9,7 @@
 <constant name="struts.devMode" value="true" /> 
 <constant name="struts.objectFactory" value="spring"/>
 <constant name="struts.multipart.maxSize" value="200000000000" />
- <constant name="struts.multipart.saveDir" value="e:\cache" />
+<constant name="struts.multipart.saveDir" value="d:\cache" />
 <!-- <include file="struts_xtgl.xml"></include>
  -->
 
