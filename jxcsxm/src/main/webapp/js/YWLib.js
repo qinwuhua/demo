@@ -547,3 +547,25 @@ function deleteFile(id,fid,tableTyple,flag){
 			}
 	});
 }
+
+//通过id获取权限
+
+function getxqxbyid(id){
+	var da='param.id='+id+'&param.name='+$.cookie('roleid');
+	var str="";
+	$.ajax({
+		type:'post',
+		url:'/jxcsxm/xtgl/getxqxbyid.do',
+		dataType:'json',
+		data:da,
+		async: false,
+		success:function(msg){
+			str=msg.name;
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) { 
+			alert("后台错误，请联系系统管理员"); 
+			}
+	});
+	
+	return str;
+}

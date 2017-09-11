@@ -19,7 +19,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
 
 	<script type="text/javascript">
-		$(function(){
+	var anqxstr="";
+	$(function(){
+		anqxstr=getxqxbyid(getUrlParame("id"));
 			if($.cookie("unit")=='36')
 				loadUnit1("gydw",'11101360000');
 				else
@@ -39,6 +41,11 @@
 				$("a[name='xian']").show();
 				$("a[name='shi']").hide();
 				$("a[name='sheng']").hide();
+				if(anqxstr.indexOf("上报")!=-1){
+					$("a[name='xian']").show();
+				}else{
+					$("a[name='xian']").hide();
+				}
 			}
 			if($.cookie('unit2').length==9){
 				$("td[name='shi']").show();
@@ -47,6 +54,11 @@
 				$("a[name='shi']").show();
 				$("a[name='xian']").hide();
 				$("a[name='sheng']").hide();
+				if(anqxstr.indexOf("上报")!=-1){
+					$("a[name='shi']").show();
+				}else{
+					$("a[name='shi']").hide();
+				}
 			}
 			if($.cookie('unit2').length==7){
 				$("a[name='sheng']").show();
@@ -55,6 +67,11 @@
 				$("td[name='sheng']").show();
 				$("td[name='xian']").hide();
 				$("td[name='shi']").hide();
+				if(anqxstr.indexOf("审核")!=-1){
+					$("a[name='sheng']").show();
+				}else{
+					$("a[name='sheng']").hide();
+				}
 			}
 			
 			queryXmlist();
@@ -91,7 +108,11 @@
 						formatter: function(value,row,index){
 							var result='<a style="color:#3399CC;" href="javascript:locationXm1('+"'"+row.lxbm+"','"+row.qdzh+"','"+row.zdzh+"'"+')" >定位</a>&nbsp;'
 							+'<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','info'"+')" >详情</a>&nbsp;';
-							result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>';
+							if(anqxstr.indexOf("增删改")!=-1){
+								result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>';
+							}else{
+								result+='编辑';
+							}
 							return result;
 						}
 					},
@@ -101,15 +122,25 @@
 							var result="";
 							if($.cookie('unit2').length==11){
 								if(row.xsbzt=='0')
-									if(row.sfbj=='1')
-									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','xian'"+')" >未上报</a>';
+									if(row.sfbj=='1'){
+										if(anqxstr.indexOf("上报")!=-1){
+											result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','xian'"+')" >未上报</a>';
+										}else{
+											result="未上报";
+										}
+									}
 									else result="未上报";
 								else
 									result="已上报";
 							}else if($.cookie('unit2').length==9){
 								if(row.ssbzt=='0')
-									if(row.sfbj=='1')
-									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','shi'"+')" >未上报</a>';
+									if(row.sfbj=='1'){
+										if(anqxstr.indexOf("上报")!=-1){
+											result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','shi'"+')" >未上报</a>';
+										}else{
+											result="未上报";
+										}
+									}
 									else result="未上报";
 								else
 									result="已上报";
@@ -127,12 +158,28 @@
 						formatter: function(value,row,index){
 							var result="";
 							if(row.shzt=='0'){
-								if($.cookie('unit2').length==7&&row.sfbj=='1'&&row.ssbzt=='1')
-									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','sheng'"+')" >未审核</a>';
+								if($.cookie('unit2').length==7&&row.sfbj=='1'&&row.ssbzt=='1'){
+									if(anqxstr.indexOf("审核")!=-1){
+										result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','sheng'"+')" >未审核</a>';
+									}else{
+										result="未审核";
+									}
+								}
 								else result="未审核";
 							}
 							else
 								result="已审核";
+							return result;
+						}
+					},
+					{field:'thyy',title:'退回原因',width:55,align:'center',
+						formatter: function(value,row,index){
+							var result="";
+							if(row.thyy!='')
+								result='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>';
+							else
+								result="退回原因";
+							
 							return result;
 						}
 					},
@@ -155,7 +202,11 @@
 						formatter: function(value,row,index){
 							var result='<a style="color:#3399CC;" href="javascript:locationXm1('+"'"+row.lxbm+"','"+row.qdzh+"','"+row.zdzh+"'"+')" >定位</a>&nbsp;'
 							+'<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','info'"+')" >详情</a>&nbsp;';
-							result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>';
+							if(anqxstr.indexOf("增删改")!=-1){
+								result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>';
+							}else{
+								result+='编辑';
+							}
 							return result;
 						}
 					},
@@ -165,15 +216,25 @@
 							var result="";
 							if($.cookie('unit2').length==11){
 								if(row.xsbzt=='0')
-									if(row.sfbj=='1')
-									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','xian'"+')" >未上报</a>';
+									if(row.sfbj=='1'){
+										if(anqxstr.indexOf("上报")!=-1){
+											result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','xian'"+')" >未上报</a>';
+										}else{
+											result="未上报";
+										}
+									}
 									else result="未上报";
 								else
 									result="已上报";
 							}else if($.cookie('unit2').length==9){
 								if(row.ssbzt=='0')
-									if(row.sfbj=='1')
-									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','shi'"+')" >未上报</a>';
+									if(row.sfbj=='1'){
+										if(anqxstr.indexOf("上报")!=-1){
+											result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','shi'"+')" >未上报</a>';
+										}else{
+											result="未上报";
+										}
+									}
 									else result="未上报";
 								else
 									result="已上报";
@@ -191,12 +252,28 @@
 						formatter: function(value,row,index){
 							var result="";
 							if(row.shzt=='0'){
-								if($.cookie('unit2').length==7&&row.sfbj=='1'&&row.ssbzt=='1')
-									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','sheng'"+')" >未审核</a>';
+								if($.cookie('unit2').length==7&&row.sfbj=='1'&&row.ssbzt=='1'){
+									if(anqxstr.indexOf("审核")!=-1){
+										result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','sheng'"+')" >未审核</a>';
+									}else{
+										result="未审核";
+									}
+								}
 								else result="未审核";
 							}
 							else
 								result="已审核";
+							return result;
+						}
+					},
+					{field:'thyy',title:'退回原因',width:55,align:'center',
+						formatter: function(value,row,index){
+							var result="";
+							if(row.thyy!='')
+								result='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>';
+							else
+								result="退回原因";
+							
 							return result;
 						}
 					},

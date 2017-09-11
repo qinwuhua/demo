@@ -17,7 +17,7 @@ function editname(){
 }
 
 $(function(){
-	selSes();
+	//selSes();
 	$("#index_user").html($.cookie('name'));
 	
 	

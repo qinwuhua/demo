@@ -90,6 +90,9 @@
 	<action name="insertxmsx" class="xtglController" method="insertxmsx"></action>
 	<action name="selectXmsx" class="xtglController" method="selectXmsx"></action>
 	<action name="getbmbmbyid" class="xtglController" method="getbmbmbyid"></action>
+	<action name="getxqxbyid" class="xtglController" method="getxqxbyid"></action>
+	
+	
 	
  </package>
 </struts>

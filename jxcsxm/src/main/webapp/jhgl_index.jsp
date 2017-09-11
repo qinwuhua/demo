@@ -46,10 +46,9 @@ function urllogin(){
 	     		$.cookie("dist2",dist2, {expires: 1});
 	     		$.cookie("zgx",msg.ZGX, {expires: 1});
 	     		$.cookie("roleid",msg.ROLEID, {expires: 1});
-	     		//document.location.href="./index.jsp";
-	     		//$('#index_layout').css('visibility', 'visible');
-	     		selSes();
-	    		selQxByUser();
+	     		selQxByUser1(msg.ROLEID);
+	     		
+	     		
 	     	 }
 	     	 else{
 	     		alert("用户名或密码不正确！！");
@@ -66,6 +65,7 @@ function clearscSession(){
 		 type : "POST",
 		 url : "xtgl/clearSession.do",
 		 dataType : 'json',
+		 ansync:false,
 	     success : function(msg){
 	    	 urllogin();
 		  },
@@ -76,10 +76,13 @@ function clearscSession(){
 }
 
  $(function(){
+	 
 	if(getUrlParame("un")!=null&&getUrlParame("pw")!=null){
 		clearscSession();
+		//alert("2");
+		//urllogin();
 	}else{
-		
+		//alert("3");
 		//selQxByUser();
 		selSes();
 	}

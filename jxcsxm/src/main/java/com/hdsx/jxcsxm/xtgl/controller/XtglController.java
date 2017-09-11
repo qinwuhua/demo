@@ -1,6 +1,7 @@
 package com.hdsx.jxcsxm.xtgl.controller;
 
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.security.MessageDigest;
@@ -1441,4 +1442,12 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	
+	public void getxqxbyid() {
+		try {
+			JsonUtils.write(xtglServer.getxqxbyid(param), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -19,7 +19,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
 
 	<script type="text/javascript">
+		var anqxstr="";
 		$(function(){
+			anqxstr=getxqxbyid(getUrlParame("id"));
 			if($.cookie("unit")=='36')
 			loadUnit1("gydw",'21101360000');
 			else
@@ -40,6 +42,21 @@
 				$("a[name='xian']").show();
 				$("a[name='shi']").hide();
 				$("a[name='sheng']").hide();
+				if(anqxstr.indexOf("上报")!=-1){
+					$("a[name='xian']").show();
+				}else{
+					$("a[name='xian']").hide();
+				}
+				if(anqxstr.indexOf("增删改")!=-1){
+					$("#mybuttion11").show();
+					$("#mybuttion13").show();
+					$("#mybuttion14").show();
+				}else{
+					$("#mybuttion11").hide();
+					$("#mybuttion13").hide();
+					$("#mybuttion14").hide();
+				}
+				
 			}
 			if($.cookie('unit2').length==9){
 				$("td[name='shi']").show();
@@ -48,6 +65,23 @@
 				$("a[name='shi']").show();
 				$("a[name='xian']").hide();
 				$("a[name='sheng']").hide();
+				if(anqxstr.indexOf("上报")!=-1){
+					$("a[name='shi']").show();
+				}else{
+					$("a[name='shi']").hide();
+				}
+				if($.cookie('unit2').substr(0,1)=='2')
+					$("#mybuttion5").hide();
+				
+				if(anqxstr.indexOf("增删改")!=-1){
+					$("#mybuttion11").show();
+					$("#mybuttion12").show();
+					$("#mybuttion14").show();
+				}else{
+					$("#mybuttion11").hide();
+					$("#mybuttion12").hide();
+					$("#mybuttion14").hide();
+				}
 			}
 			if($.cookie('unit2').length==7){
 				$("a[name='sheng']").show();
@@ -56,6 +90,20 @@
 				$("td[name='sheng']").show();
 				$("td[name='xian']").hide();
 				$("td[name='shi']").hide();
+				
+				if(anqxstr.indexOf("审核")!=-1){
+					$("a[name='sheng']").show();
+				}else{
+					$("a[name='sheng']").hide();
+				}
+				if(anqxstr.indexOf("增删改")!=-1){
+					$("#mybuttion11").show();
+					$("#mybuttion14").show();
+				}else{
+					$("#mybuttion11").hide();
+					$("#mybuttion14").hide();
+				}
+				
 			}
 			
 			queryXmlist();
@@ -91,20 +139,35 @@
 						formatter: function(value,row,index){
 							var result='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','info'"+')" >详情</a>&nbsp;';
 							if($.cookie('unit2').length==11){
-								if(row.xsbzt=='未上报')
-									result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>&nbsp;'+'<a style="color:#3399CC;" href="javascript:deleteInfo('+"'"+index+"'"+')" >删除</a>';
+								if(row.xsbzt=='未上报'){
+									if(anqxstr.indexOf("增删改")!=-1){
+										result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>&nbsp;'+'<a style="color:#3399CC;" href="javascript:deleteInfo('+"'"+index+"'"+')" >删除</a>';
+									}else{
+										result+='编辑&nbsp;删除&nbsp;';
+									}
+								}
 								else
 									result+='编辑&nbsp;删除&nbsp;';
 							}
 							if($.cookie('unit2').length==9){
-								if(row.ssbzt=='未上报')
-									result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>&nbsp;'+'<a style="color:#3399CC;" href="javascript:deleteInfo('+"'"+index+"'"+')" >删除</a>';
+								if(row.ssbzt=='未上报'){
+									if(anqxstr.indexOf("增删改")!=-1){
+										result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>&nbsp;'+'<a style="color:#3399CC;" href="javascript:deleteInfo('+"'"+index+"'"+')" >删除</a>';
+									}else{
+										result+='编辑&nbsp;删除&nbsp;';
+									}
+								}
 								else
 									result+='编辑&nbsp;删除&nbsp;';
 							}
 							if($.cookie('unit2').length==7){
-								if(row.shzt=='未审核')
-									result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>&nbsp;'+'<a style="color:#3399CC;" href="javascript:deleteInfo('+"'"+index+"'"+')" >删除</a>';
+								if(row.shzt=='未审核'){
+									if(anqxstr.indexOf("增删改")!=-1){
+										result+='<a style="color:#3399CC;" href="javascript:openZcgl('+"'"+index+"','bj'"+')" >编辑</a>&nbsp;'+'<a style="color:#3399CC;" href="javascript:deleteInfo('+"'"+index+"'"+')" >删除</a>';
+									}else{
+										result+='编辑&nbsp;删除&nbsp;';
+									}
+								}
 								else
 									result+='编辑&nbsp;删除&nbsp;';
 							}
@@ -119,13 +182,23 @@
 						formatter: function(value,row,index){
 							var result="";
 							if($.cookie('unit2').length==11){
-								if(row.xsbzt=='未上报')
-									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','xian'"+')" >未上报</a>';
+								if(row.xsbzt=='未上报'){
+									if(anqxstr.indexOf("上报")!=-1){
+										result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','xian'"+')" >未上报</a>';
+									}else{
+										result="未上报";
+									}
+								}
 								else
 									result="已上报";
 							}else if($.cookie('unit2').length==9){
-								if(row.ssbzt=='未上报')
-									result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','shi'"+')" >未上报</a>';
+								if(row.ssbzt=='未上报'){
+									if(anqxstr.indexOf("上报")!=-1){
+										result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','shi'"+')" >未上报</a>';
+									}else{
+										result="未上报";
+									}
+								}
 								else
 									result="已上报";
 							}else{
@@ -143,8 +216,13 @@
 						formatter: function(value,row,index){
 							var result="";
 							if(row.shzt=='未审核'){
-								if($.cookie('unit2').length==7)
-								result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','sheng'"+')" >未审核</a>';
+								if($.cookie('unit2').length==7){
+									if(anqxstr.indexOf("审核")!=-1){
+										result='<a style="color:#3399CC;" href="javascript:sbshzc('+"'"+index+"','sheng'"+')" >未审核</a>';
+									}else{
+										result="未审核";
+									}
+								}
 								else
 								result='未审核';
 							}

@@ -19,7 +19,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
 
 	<script type="text/javascript">
+		var anqxstr="";
 		$(function(){
+			anqxstr=getxqxbyid(getUrlParame("id"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
 			loadBmbm3('jsxz','国省道改造建设性质');
@@ -37,6 +39,11 @@
 				$("a[name='sheng']").hide();
 				$("a[name='xian']").show();
 				$("a[name='shi']").hide();
+				if(anqxstr.indexOf("上报")!=-1){
+					$("a[name='xian']").show();
+				}else{
+					$("a[name='xian']").hide();
+				}
 			}
 			if($.cookie('unit2').length==9){
 				$("td[name='shi']").show();
@@ -45,6 +52,11 @@
 				$("a[name='sheng']").hide();
 				$("a[name='xian']").hide();
 				$("a[name='shi']").show();
+				if(anqxstr.indexOf("上报")!=-1){
+					$("a[name='shi']").show();
+				}else{
+					$("a[name='shi']").hide();
+				}
 			}
 			if($.cookie('unit2').length==7){
 				$("a[name='sheng']").show();
@@ -53,6 +65,11 @@
 				$("td[name='shi']").hide();
 				$("a[name='xian']").hide();
 				$("a[name='shi']").hide();
+				if(anqxstr.indexOf("审核")!=-1){
+					$("a[name='sheng']").show();
+				}else{
+					$("a[name='sheng']").hide();
+				}
 			}
 			//YMLib.Var.jdbs=2;
 			queryXmlist();

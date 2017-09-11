@@ -19,7 +19,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
 
 	<script type="text/javascript">
+		var anqxstr="";
 		$(function(){
+			anqxstr=getxqxbyid(getUrlParame("id"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
 			loadBmbm3('gcfl','养护大中修工程分类');
@@ -34,6 +36,12 @@
 				$("a[name='sheng']").hide();
 				$("a[name='xian']").show();
 				$("a[name='shi']").hide();
+				if(anqxstr.indexOf("上报")!=-1){
+					$("a[name='xian']").show();
+				}else{
+					$("a[name='xian']").hide();
+				}
+				
 			}
 			if($.cookie('unit2').length==9){
 				$("td[name='shi']").show();
@@ -41,15 +49,26 @@
 				$("td[name='sheng']").hide();
 				$("a[name='sheng']").hide();
 				$("a[name='xian']").hide();
-				$("a[name='shi']").show();
+				$("a[name='shi']").hide();
+				if(anqxstr.indexOf("上报")!=-1){
+					$("a[name='shi']").show();
+				}else{
+					$("a[name='shi']").hide();
+				}
+				
 			}
 			if($.cookie('unit2').length==7){
-				$("a[name='sheng']").show();
+				$("a[name='sheng']").hide();
 				$("td[name='sheng']").show();
 				$("td[name='xian']").hide();
 				$("td[name='shi']").hide();
 				$("a[name='xian']").hide();
 				$("a[name='shi']").hide();
+				if(anqxstr.indexOf("审核")!=-1){
+					$("a[name='sheng']").show();
+				}else{
+					$("a[name='sheng']").hide();
+				}
 			}
 			//YMLib.Var.jdbs=2;
 			queryXmlist();

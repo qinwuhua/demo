@@ -161,5 +161,7 @@ public interface XtglServer {
 
 	boolean updateName(HashMap hm);
 
+	Param getxqxbyid(Param param);
+
 	
 }

@@ -245,10 +245,10 @@
 		select * from xtgl_master where id=#{id}
 	</select>
 	<select id="selAllQx" parameterType="String" resultType="treenode">
-	    select distinct x.id ,x.name text from xtgl_resource_cs x where  x.parent = #{yhdw}  and id is not null and parent is not null order by id
+	    select distinct x.id ,x.name text from xtgl_resource_cs x where  x.parent = #{yhdw} and state!='no'  and id is not null and parent is not null order by id
 	</select>
 	<select id="selAllQx2" parameterType="String" resultType="treenode">
-	  select  distinct x.id , x.name text from xtgl_resource_cs x where  x.parent = #{yhdw} and id is not null and parent is not null order by id
+	  select  distinct x.id , x.name text from xtgl_resource_cs x where  x.parent = #{yhdw} and state!='no' and id is not null and parent is not null order by id
 	</select>
 	<select id="selectJsById" parameterType="param" resultType="param">
 		select roleid,rolename,desr,(select F_LINK_LOB(sourceid) from xtgl_role_resource_cs where  roleid=t.roleid) sourceid from xtgl_role_cs t
@@ -327,7 +327,7 @@
 		</if>
 	</select>
 	<select id="createMenu" parameterType="unit" resultType="treenode">
-		select * from (select t.*,t.name text,url attributes from xtgl_resource_cs t where t.id like #{parent}||'%') where id in (${id}) order by id
+		select * from (select t.*,t.name text,url attributes from xtgl_resource_cs t where t.id like #{parent}||'%' and state!='no' ) where id in (${id}) order by id
 	</select>
 
 	<select id="selBmbmList"  resultType="hashmap">
@@ -343,5 +343,9 @@
 	</select>
 	<select id="selAllUnit1" parameterType="String" resultType="treenode">
 	  select distinct x.id ,x.name text,parent ,'open' state from XTGL_DEPARTMENT x where  (id like '%'||${value}||'%' or id like '%'||substr(#{value},0,4)||'_'||substr(#{value},6)||'%') and x.id not in ('21101360001','21101360002','21101360003','21101360004','21101360005','21101360006','21101360007','21101360008')  order by decode(substr(id,0,1),'2',decode(id,'21101360000',1,decode(substr(id,8,2),'00',3,2)),'1',4,decode(id,'36',0,5)),to_number(parent),to_number(id) 
+	</select>
+	
+	<select id="getxqxbyid" resultType="param" parameterType="param">
+		select replace(WMSYS.WM_CONCAT(to_char(name)),',',',') name from XTGL_RESOURCE_CS where id in(select sourceid from XTGL_ROLE_RESOURCE_CS where roleid=#{name} and sourceid like #{id}||'%' and sourceid != #{id} ) 
 	</select>
 </mapper>

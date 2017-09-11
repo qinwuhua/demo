@@ -208,6 +208,7 @@ function selSes(type){
 		 type : "POST",
 		 url : "xtgl/selQx.do",
 		 dataType : 'json',
+		 ansync:false,
 	     success : function(msg){
 	    	 if(msg){
 	    		 //var qx = ","+msg.resourceid+",";

@@ -25,6 +25,12 @@
 				$("a[name='xian']").show();
 				$("a[name='shi']").hide();
 				$("a[name='sheng']").hide();
+				if(parent.anqxstr.indexOf("上报")!=-1){
+					$("a[name='xian']").show();
+				}else{
+					$("a[name='xian']").hide();
+				}
+				
 			}
 			if($.cookie('unit2').length==9){
 				$("a[name='shi']").show();
@@ -32,12 +38,38 @@
 				$("a[name='sheng']").hide();
 				if($.cookie('unit2').substr(0,1)=='2')
 					$("#mybuttion51").hide();
+				if(parent.anqxstr.indexOf("上报")!=-1){
+					$("a[name='shi']").show();
+				}else{
+					$("a[name='shi']").hide();
+				}
 			}
 			if($.cookie('unit2').length==7){
 				$("a[name='sheng']").show();
 				$("a[name='xian']").hide();
 				$("a[name='shi']").hide();
+				if(parent.anqxstr.indexOf("审核")!=-1){
+					$("a[name='sheng']").show();
+				}else{
+					$("a[name='sheng']").hide();
+				}
+				
 			}
+			
+			if(parent.anqxstr.indexOf("增删改")!=-1){
+				$("a[name='tianjia']").show();$("a[name='shanchu']").hide();
+				if($.cookie('unit2').length==11){
+					$("a[name='shanchu']").show();
+				}else{
+					$("a[name='shanchu']").hide();
+				}
+				if($.cookie('unit2').substr(0,1)=='2'&&$.cookie('unit2').length==9){
+					$("a[name='shanchu']").show();
+				}
+			}else{
+				$("a[name='tianjia']").hide();$("a[name='shanchu']").hide();
+			}
+			
 			getdwTj();
 			queryzjbflist();
 		});
@@ -60,6 +92,11 @@
 		}
 		var dwzj=0;var bfzj=0;
 		function zjbftj(){
+			if(parent.anqxstr.indexOf("增删改")==-1){
+				alert("你不具备增删改的权限");
+				return;
+			}
+			
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
 			openWindow("添加","/jxcsxm/page/zjbf/gs/gsdgzzjbf_tj.jsp",600,385);
 			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
@@ -91,6 +128,11 @@
 			openWindow("详情","/jxcsxm/page/zjbf/nc/nczjbf_info.jsp",600,275);
 		}
 		function editDw(id){
+			if(parent.anqxstr.indexOf("增删改")==-1){
+				alert("你不具备增删改的权限");
+				return;
+			}
+			
 			YMLib.Var.id=id;
 			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
 			openWindow("编辑","/jxcsxm/page/zjbf/gs/gsdgzzjbf_bj.jsp",600,385);
@@ -106,6 +148,11 @@
 			openWindow("编辑","/jxcsxm/page/zjbf/nc/nczjbf_bj.jsp",600,275);		
 		}
 		function deldw(){
+			if(parent.anqxstr.indexOf("增删改")==-1){
+				alert("你不具备增删改的权限");
+				return;
+			}
+			
 			var rows=$('#grid').datagrid('getSelections');
 			if(rows.length==0) {
 				alert("请勾选记录！");
@@ -284,8 +331,16 @@
 					var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
 					if($.cookie('unit2').length==11){
 						if(row.xsbzt=='未上报'){
-							result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-							result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+							if(parent.anqxstr.indexOf("增删改")!=-1){
+								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+							}else{
+								result+='编辑&nbsp;&nbsp;';
+							}
+							if(parent.anqxstr.indexOf("上报")!=-1){
+								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+							}else{
+								result+='未上报&nbsp;&nbsp;';
+							}	
 							if(row.sfth=='是')
 								result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
 							else result+='退回原因&nbsp;&nbsp;';	
@@ -295,26 +350,57 @@
 					}
 					if($.cookie('unit2').length==9){
 						if(row.ssbzt=='未上报'){
-							result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-							result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
-							result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+							if(parent.anqxstr.indexOf("增删改")!=-1){
+								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+							}else{
+								result+='编辑&nbsp;&nbsp;';
+							}
+							if(parent.anqxstr.indexOf("上报")!=-1){
+								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								if($.cookie('unit2').substr(0,1)=='1')
+								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+							}else{
+								result+='未上报&nbsp;&nbsp;';
+								if($.cookie('unit2').substr(0,1)=='1')
+									result+='退回下级&nbsp;&nbsp;';
+								
+							}	
+							
 							if(row.sfth=='是')
 								result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
 							else result+='退回原因&nbsp;&nbsp;';	
 						}else{
+							if($.cookie('unit2').substr(0,1)=='1')
 							result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+							else
+							result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
 						}
 					}
 					if($.cookie('unit2').length==7){
 						if(row.shzt=='未审核'){
-							result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-							result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
-							result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
-							result+='退回未审核&nbsp;&nbsp;';
+							if(parent.anqxstr.indexOf("增删改")!=-1){
+								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+							}else{
+								result+='编辑&nbsp;&nbsp;';
+							}
+							
+							if(parent.anqxstr.indexOf("审核")!=-1){
+								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
+								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								result+='退回未审核&nbsp;&nbsp;';
+							}else{
+								result+='未审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+							}
+							
 						}else{
-							result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
-							result+='退回下级&nbsp;&nbsp;';
-							result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+							if(parent.anqxstr.indexOf("审核")!=-1){
+								result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
+								result+='退回下级&nbsp;&nbsp;';
+								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+							}else{
+								result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+							}
+							
 						}
 					}
 					return result; 
@@ -354,8 +440,16 @@
 						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
 						if($.cookie('unit2').length==11){
 							if(row.xsbzt=='未上报'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+								}	
 								if(row.sfth=='是')
 									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
 								else result+='退回原因&nbsp;&nbsp;';	
@@ -365,26 +459,57 @@
 						}
 						if($.cookie('unit2').length==9){
 							if(row.ssbzt=='未上报'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+										result+='退回下级&nbsp;&nbsp;';
+									
+								}	
+								
 								if(row.sfth=='是')
 									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
 								else result+='退回原因&nbsp;&nbsp;';	
 							}else{
+								if($.cookie('unit2').substr(0,1)=='1')
 								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+								else
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
 							}
 						}
 						if($.cookie('unit2').length==7){
 							if(row.shzt=='未审核'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
-								result+='退回未审核&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+									result+='退回未审核&nbsp;&nbsp;';
+								}else{
+									result+='未审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
 							}else{
-								result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
-								result+='退回下级&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
+									result+='退回下级&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
 							}
 						}
 						return result; 
@@ -418,8 +543,16 @@
 						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
 						if($.cookie('unit2').length==11){
 							if(row.xsbzt=='未上报'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+								}	
 								if(row.sfth=='是')
 									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
 								else result+='退回原因&nbsp;&nbsp;';	
@@ -429,26 +562,57 @@
 						}
 						if($.cookie('unit2').length==9){
 							if(row.ssbzt=='未上报'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+										result+='退回下级&nbsp;&nbsp;';
+									
+								}	
+								
 								if(row.sfth=='是')
 									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
 								else result+='退回原因&nbsp;&nbsp;';	
 							}else{
+								if($.cookie('unit2').substr(0,1)=='1')
 								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+								else
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
 							}
 						}
 						if($.cookie('unit2').length==7){
 							if(row.shzt=='未审核'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
-								result+='退回未审核&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+									result+='退回未审核&nbsp;&nbsp;';
+								}else{
+									result+='未审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
 							}else{
-								result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
-								result+='退回下级&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
+									result+='退回下级&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
 							}
 						}
 						return result; 
@@ -487,8 +651,16 @@
 						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
 						if($.cookie('unit2').length==11){
 							if(row.xsbzt=='未上报'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+								}	
 								if(row.sfth=='是')
 									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
 								else result+='退回原因&nbsp;&nbsp;';	
@@ -498,26 +670,57 @@
 						}
 						if($.cookie('unit2').length==9){
 							if(row.ssbzt=='未上报'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+										result+='退回下级&nbsp;&nbsp;';
+									
+								}	
+								
 								if(row.sfth=='是')
 									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
 								else result+='退回原因&nbsp;&nbsp;';	
 							}else{
+								if($.cookie('unit2').substr(0,1)=='1')
 								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+								else
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
 							}
 						}
 						if($.cookie('unit2').length==7){
 							if(row.shzt=='未审核'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
-								result+='退回未审核&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+									result+='退回未审核&nbsp;&nbsp;';
+								}else{
+									result+='未审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
 							}else{
-								result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
-								result+='退回下级&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
+									result+='退回下级&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
 							}
 						}
 						return result; 
@@ -550,8 +753,16 @@
 						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
 						if($.cookie('unit2').length==11){
 							if(row.xsbzt=='未上报'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+								}	
 								if(row.sfth=='是')
 									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
 								else result+='退回原因&nbsp;&nbsp;';	
@@ -561,26 +772,57 @@
 						}
 						if($.cookie('unit2').length==9){
 							if(row.ssbzt=='未上报'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+										result+='退回下级&nbsp;&nbsp;';
+									
+								}	
+								
 								if(row.sfth=='是')
 									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
 								else result+='退回原因&nbsp;&nbsp;';	
 							}else{
+								if($.cookie('unit2').substr(0,1)=='1')
 								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+								else
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
 							}
 						}
 						if($.cookie('unit2').length==7){
 							if(row.shzt=='未审核'){
-								result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
-								result+='退回未审核&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+									result+='退回未审核&nbsp;&nbsp;';
+								}else{
+									result+='未审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
 							}else{
-								result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
-								result+='退回下级&nbsp;&nbsp;';
-								result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
+									result+='退回下级&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
 							}
 						}
 						return result; 
@@ -643,20 +885,15 @@
             </tr>
             <tr>
             <td>
-            <a id='mybuttion1' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:zjbftj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">添加</a>
-			<a name='xian' id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:deldw()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">删除</a>
+            <a name='tianjia' id='mybuttion1' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:zjbftj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">添加</a>
+			<a name='shanchu' id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:deldw()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">删除</a>
 			<a name='xian' id='mybuttion3' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:updateBfType('xsbzt')" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">上报</a>
 			<a name='shi' id='mybuttion31' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:updateBfType('ssbzt')" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion31')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion31')"  class="button button-tiny button-rounded button-raised button-primary">上报</a>
 			
 			<a name='sheng' id='mybuttion4' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:updateBfType('shzt')" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">审核</a>
 			<a name='sheng' id='mybuttion5' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:thXj('thsj')" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion5')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion5')"  class="button button-tiny button-rounded button-raised button-primary">退回下级</a>
 			<a name='shi' id='mybuttion51' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:thXj('thxj')" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion51')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion51')"  class="button button-tiny button-rounded button-raised button-primary">退回下级</a>
-			
 			<a name='sheng' id='mybuttion6' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:updateBfType('thwsh')" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion6')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion6')"  class="button button-tiny button-rounded button-raised button-primary">退回未审核</a>
-			
-			
-			
-			
 			
             </td>
             </tr>

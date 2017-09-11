@@ -526,5 +526,10 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public List<TreeNode> selAllUnit1(String yhdw) {
 		return queryList("selAllUnit1", yhdw);
 	}
+
+	@Override
+	public Param getxqxbyid(Param param) {
+		return queryOne("getxqxbyid", param);
+	}
 	
 }

@@ -5,7 +5,7 @@
 		select * from webroadline where roadcode='G6001'
 	</select>
 	<select id="xmlxCountTj" parameterType="param" resultType="param">
-		select id,name,(select name from xtgl_resource_cs where id=t.parent) parent from xtgl_resource_cs t where parent in ('01010201','01010203','01010301','01010402')
+		select id,name,(select name from xtgl_resource_cs where id=t.parent and state!='no') parent from xtgl_resource_cs t where parent in ('01010201','01010203','01010301','01010402')
 		and id !='0101030110' and id !='0101030109'
 		order by id
 	</select>
