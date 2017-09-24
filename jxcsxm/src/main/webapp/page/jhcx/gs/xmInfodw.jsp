@@ -34,12 +34,12 @@
 			data:'xmbm='+parent.YMLib.Var.xmbm+"&sbthcd="+$.cookie("unit2").length,
 			dataType:'json',
 			success:function(msg){
-				$("#jhxdzj_bf").html(msg.jhxdzj);
-				$("#jhxdzj_cgs").html(msg.jhxdcgs);
-				$("#jhxdzj_stz").html(msg.jhxdstz);
-				$("#dwzj_bf").html(msg.dwzj);
-				$("#bfzj_bf").html(msg.bfzj);
-				$("#yshbfzj_bf").html(msg.yshbfzj);
+				$("#jhxdzj_bf").html(msg.jhxdzj.toFixed(2));
+				$("#jhxdzj_cgs").html(msg.jhxdcgs.toFixed(2));
+				$("#jhxdzj_stz").html(msg.jhxdstz.toFixed(2));
+				$("#dwzj_bf").html(msg.dwzj.toFixed(2));
+				$("#bfzj_bf").html(msg.bfzj.toFixed(2));
+				$("#yshbfzj_bf").html(msg.yshbfzj.toFixed(2));
 			}
 		});
 	}
@@ -50,10 +50,10 @@
 			data:'xmbm='+parent.YMLib.Var.xmbm+"&sbthcd="+$.cookie("unit2").length,
 			dataType:'json',
 			success:function(msg){
-				$("#jhxdzj_xd").html(msg.jhxdzj);
-				$("#jhxdzj_dw").html(msg.jhxdzj);
-				$("#dwzj_dw").html(msg.dwzj);
-				$("#yshdwzj_dw").html(msg.yshdwzj);
+				$("#jhxdzj_xd").html(msg.jhxdzj.toFixed(2));
+				$("#jhxdzj_dw").html(msg.jhxdzj.toFixed(2));
+				$("#dwzj_dw").html(msg.dwzj.toFixed(2));
+				$("#yshdwzj_dw").html(msg.yshdwzj.toFixed(2));
 			}
 		});
 	}

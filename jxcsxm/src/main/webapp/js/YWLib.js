@@ -560,7 +560,10 @@ function getxqxbyid(id){
 		data:da,
 		async: false,
 		success:function(msg){
+			if(msg)
 			str=msg.name;
+			else
+				str="";
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) { 
 			alert("后台错误，请联系系统管理员"); 

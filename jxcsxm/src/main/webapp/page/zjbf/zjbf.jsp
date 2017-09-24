@@ -163,7 +163,7 @@
 				_id+=","+rows[i].id;
 			}
 			for(var i=0;i<rows.length;i++){
-				if(rows[i].xsbzt!='未上报'){
+				if(rows[i].xsbzt!='未上报'&&rows[i].ssbzt!='未上报'){
 					alert('请勾选未上报的记录！');
 					return;
 				}

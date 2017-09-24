@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxcsxm.zjbf">
 	<select id="queryXmlist" parameterType="xmjbxx" resultType="xmjbxx">
-		select * from(select rownum num ,t1.* from(select * from (select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+		select * from(select rownum num ,t1.*  from (select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
 		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
 		on t.xmbm=xd.xmid	
 		left join(
@@ -21,15 +21,15 @@
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
-		) where 1=1
+		) t1 where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
 		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+		and rownum &lt;=(#{page} * #{rows}) 
 		order by decode(xsbzt,null,0,xsbzt) desc,decode(ssbzt,null,0,ssbzt) desc,decode(shzt,null,0,shzt) desc,xmnf
 	
-		) t1 
 		)t2
-		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		where t2.num>(#{page}-1)*#{rows}
 		
 	</select>
 	<select id="queryXmlistCount" parameterType="xmjbxx" resultType="int">
@@ -60,7 +60,7 @@
 	</select>
 	
 	<select id="getbfTjAll" parameterType="xmjbxx" resultType="xmzjbf">
-		select count(*) xmsl,sum(nvl(dwzj,0)) dwzj,sum(nvl(bfzj,0)) bfzj,sum(nvl(yshbfzj,0)) yshbfzj,sum(nvl(jhxdzj,0)) jhxdzj from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+		select count(*) xmsl,round(sum(nvl(dwzj,0)),2) dwzj,sum(nvl(bfzj,0)) bfzj,sum(nvl(yshbfzj,0)) yshbfzj,sum(nvl(jhxdzj,0)) jhxdzj from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
 	    left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
 	    on t.xmbm=xd.xmid 
 	    left join(
@@ -92,12 +92,12 @@
 	</select>
 	
 	<select id="queryzjbflist" parameterType="xmzjbf" resultType="xmzjbf">
-		select * from(select rownum num ,t1.* from (select t.*  from xm_zjbf t
+		select * from(select rownum num ,t.*  from xm_zjbf t
 		where 1=1 and xmbm=#{xmbm} and to_number(sbthcd)&lt;=to_number(#{sbthcd})
+		and rownum &lt;=(#{page} * #{rows}) 
 		order by xsbzt,ssbzt,shzt,bfyf
-		) t1 
 		)t2
-		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		where t2.num>(#{page}-1)*#{rows}
 		
 	</select>
 	<select id="queryzjbflistCount" parameterType="xmzjbf" resultType="int">
@@ -229,14 +229,15 @@
 	</select>
 	
 	<select id="queryXmlistshqx" parameterType="xmzjbf" resultType="xmzjbf">
-		select * from(select rownum num ,t1.* from (select t.*,(select name from xtgl_department where id=t.gydwdm) gydw  from xm_zjbf t
+		select * from(select rownum num ,t.*,(select name from xtgl_department where id=t.gydwdm) gydw  from xm_zjbf t
 		where 1=1 and gydwdm is not null 
 		<if test="gydw !='' and gydw != null">${gydw}</if>
 		<if test="bfyf !='' and bfyf != null">and bfyf like '%'||#{bfyf}||'%'</if>
+		and rownum &lt;=(#{page} * #{rows}) 
 		order by nf,gydwdm
 		) t1 
 		)t2
-		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		where t2.num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryXmlistshqxCount" parameterType="xmzjbf" resultType="int">
 		select count(*) from xm_zjbf t

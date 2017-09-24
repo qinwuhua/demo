@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxcsxm.zcgl">
 	<select id="queryZclist" parameterType="zcgl" resultType="zcgl">
-		select * from(select rownum num ,t1.* from(select * from (select t.*,decode(xsbzt,'0','未上报',1,'已上报') xsbztstr,decode(ssbzt,'0','未上报',1,'已上报') ssbztstr,decode(shzt,'0','未审核',1,'已审核') shztstr,decode(sfbj,'0','未填写','已填写') sftx from
+		select * from(select rownum num ,t1.* from (select t.*,decode(xsbzt,'0','未上报',1,'已上报') xsbztstr,decode(ssbzt,'0','未上报',1,'已上报') ssbztstr,decode(shzt,'0','未审核',1,'已审核') shztstr,decode(sfbj,'0','未填写','已填写') sftx from
 		(
 		select id,lxbm,gydw,gydwdm,lxmc,qdzh,zdzh,jsdj,lc,nf,zcqcs,zcqms,fzqcs,fzqms,xsbzt,ssbzt,shzt ,thyy,sfbj from zcgl where nf=#{nf}    
 		union all
@@ -16,15 +16,14 @@
 		<if test="nf !='' and nf != null">and nf=#{nf}</if>
 		<if test="lxbm !='' and lxbm != null">and lxbm like '%'||#{lxbm}||'%'</if>
 		<if test="lxmc !='' and lxmc != null">and lxmc like '%'||#{lxmc}||'%'</if>
-		) where 1=1
+		)t1 where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
 		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+		and rownum &lt;=(#{page} * #{rows}) 
 		order by decode(substr(lxbm,0,1),'G',1,'S',2,'X',3,'Y',4,'C',5,'Z',6),substr(lxbm,-6),qdzh
-	
-		) t1 
 		)t2
-		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		where t2.num>(#{page}-1)*#{rows}
 		
 	</select>
 	<select id="queryZclistCount" parameterType="zcgl" resultType="int">
@@ -399,7 +398,7 @@
 	
 	
 	<select id="queryZcqtlist" parameterType="zcgl" resultType="zcgl">
-		select * from(select rownum num ,t1.* from(select * from (select t.*,xsbzt xsbztstr,ssbzt ssbztstr,shzt shztstr from
+		select * from(select rownum num ,t1.* from (select t.*,xsbzt xsbztstr,ssbzt ssbztstr,shzt shztstr from
 		(
 		select * from ZCGL_QT where xmlx=#{xmlx} and to_number(sbthcd)&lt;=${sbthcd}
 		) t
@@ -410,14 +409,13 @@
 		<if test="dbmc !='' and dbmc != null">and dbmc like '%'||#{dbmc}||'%'</if>
 		<if test="lxbm !='' and lxbm != null">and lxbm like '%'||#{lxbm}||'%'</if>
 		<if test="fwqmc !='' and fwqmc != null">and fwqmc like '%'||#{fwqmc}||'%'</if>
-		) where 1=1
+		) t1 where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
 		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
-		
-		) t1 
+		and rownum &lt;=(#{page} * #{rows})
 		)t2
-		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		where t2.num>(#{page}-1)*#{rows}
 		
 	</select>
 	<select id="queryZcqtlistCount" parameterType="zcgl" resultType="int">

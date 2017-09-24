@@ -189,13 +189,14 @@
 			if($('#jhxdwh').combo("getValue")==""){alert("请选择计划下达文号");return;}
 			/* var json_data = JSON.stringify(caiji($.cookie("unit"))); 
 			alert(json_data); */
-			
+			loadjzt();
 			$.ajax({
 				type:'post',
 				url:'/jxcsxm/zjdw/insertOrUpdateShqx.do',
 				data:caiji($.cookie("unit")),
 				dataType:'json',
 				success:function(data){
+					disLoadjzt();
 					alert("保存成功！");
 					parent.queryXmlist();
 					closeWindow();

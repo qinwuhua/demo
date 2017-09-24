@@ -79,10 +79,12 @@ function zjdwtj(){
 		}
 	}
 	if(result){
+		loadjzt();
 		$('#submit').ajaxSubmit({
 			dataType:'json',
 			success:function(msg){
 				if(msg){
+					disLoadjzt();
 					alert("保存成功！");
 					parent.$("#grid").datagrid('reload');
 					parent.getdwTj();

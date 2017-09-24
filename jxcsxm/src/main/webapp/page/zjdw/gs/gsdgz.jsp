@@ -17,10 +17,11 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWLib.js"></script>
-
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<script type="text/javascript">
 		var anqxstr="";
 		$(function(){
+			
 			anqxstr=getxqxbyid(getUrlParame("id"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
@@ -212,6 +213,8 @@ text-decoration:none;
 </style>
 </head>
 <body>
+<fmt:formatNumber type="number" value="${688.87 / 0.8 }" pattern="0.00" maxFractionDigits="2"/> 
+
 	<div id="righttop">
 		<div id="p_top">资金到位>&nbsp;普通国省道>&nbsp;国省道改造</div>
 	</div>

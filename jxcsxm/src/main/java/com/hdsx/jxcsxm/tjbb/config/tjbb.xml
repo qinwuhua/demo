@@ -313,7 +313,7 @@
 	
 	
 	<select id="queryXmlist" parameterType="xmjbxx" resultType="xmjbxx">
-		select * from(select rownum num ,t1.* from (select * from(select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+		select * from(select rownum num ,t1.* from(select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
 		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
 		on t.xmbm=xd.xmid	
 		left join(
@@ -331,15 +331,14 @@
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
-		) where 1=1
+		) t1 where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
 		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
 		order by decode(xsbzt,null,0,xsbzt) desc,decode(ssbzt,null,0,ssbzt) desc,decode(shzt,null,0,shzt) desc,xmnf
-		) t1
-		
+		and rownum &lt;=(#{page} * #{rows}) 
 		)t2
-		where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		where t2.num>(#{page}-1)*#{rows}
 		
 	</select>
 	<select id="queryXmlistCount" parameterType="xmjbxx" resultType="int">

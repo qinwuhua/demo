@@ -74,7 +74,7 @@
 			    queryParams: params,
 			    columns:[[	{field:'cz',title:'操作',width:130,align:'center',
 							formatter: function(value,row,index){
-								var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_zhhf','jhcx'"+')" >项目详情</a>'
+								var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','nc_tzrc','jhcx'"+')" >项目详情</a>'
 									return result;
 							}
 							},

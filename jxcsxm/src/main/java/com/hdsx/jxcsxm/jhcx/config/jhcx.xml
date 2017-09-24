@@ -15,7 +15,9 @@
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
-		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		and rownum &lt;=(#{page} * #{rows})
+		) t1 
+		 where t1.num>(#{page}-1)*#{rows}
 		order by jhxdwh,xmnf,xmbm
 	</select>
 	<select id="queryXmlistCount" parameterType="xmjbxx" resultType="int">
@@ -35,7 +37,7 @@
 		
 	</select>
 	<select id="getTjAll" parameterType="xmjbxx" resultType="xmjbxx">
-		select count(*) xmsl,sum(nvl(dwzj,0)) dwzj,sum(nvl(yshdwzj,0)) yshdwzj,sum(nvl(jhxdzj,0)) jhxdzj,sum(nvl(jhxdcgs,0)) jhxdcgs,sum(nvl(jhxdstz,0)) jhxdstz from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+		select count(*) xmsl,round(sum(nvl(dwzj,0)),2) dwzj,round(sum(nvl(yshdwzj,0)),2) yshdwzj,round(sum(nvl(jhxdzj,0)),2) jhxdzj,round(sum(nvl(jhxdcgs,0)),2) jhxdcgs,round(sum(nvl(jhxdstz,0)),2) jhxdstz from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
 		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
 		on t.xmbm=xd.xmid	
 		left join(
