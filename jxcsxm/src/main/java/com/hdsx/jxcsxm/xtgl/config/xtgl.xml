@@ -39,7 +39,7 @@
 			select id,truename,name,(select distinct min(name) from xtgl_department where id=t.unit) unit,sex,idcard,tel,phone,(select rolename from xtgl_role_cs where roleid=t.roleid) roleid from xtgl_master t
 		where 1=1
 		 <if test="yhm != null and  yhm != ''">
-		and truename like #{yhm}||'%'
+		and truename like '%'||#{yhm}||'%'
 		</if>
 		<if test="unit != null and  unit != ''">
 		and unit like substr(rtrim(#{unit},'0'),0,4)||'_'||substr(rtrim(#{unit},'0'),6,length(rtrim(#{unit},'0')))||'%'
@@ -54,7 +54,7 @@
 		select count(*) from xtgl_master 
 		where 1=1
 		<if test="yhm != null and  yhm != ''">
-		and truename like #{yhm}||'%'
+		and truename like '%'||#{yhm}||'%'
 		</if>
 		<if test="unit != null and  unit != ''">
 		and unit like substr(rtrim(#{unit},'0'),0,4)||'_'||substr(rtrim(#{unit},'0'),6,length(rtrim(#{unit},'0')))||'%'

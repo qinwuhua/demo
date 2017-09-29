@@ -335,8 +335,8 @@
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
 		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
-		order by decode(xsbzt,null,0,xsbzt) desc,decode(ssbzt,null,0,ssbzt) desc,decode(shzt,null,0,shzt) desc,xmnf
 		and rownum &lt;=(#{page} * #{rows}) 
+		order by decode(xsbzt,null,0,xsbzt) desc,decode(ssbzt,null,0,ssbzt) desc,decode(shzt,null,0,shzt) desc,xmnf
 		)t2
 		where t2.num>(#{page}-1)*#{rows}
 		
@@ -459,6 +459,163 @@
 
 	order by px
 	) t
+	</select>
+	
+	<delete id="deleteTjbb" parameterType="hashMap">
+		DELETE FROM YY2CSBB WHERE NF=#{NF} AND YF=#{YF} AND GYDW=#{GYDW} AND XMLX=#{XMLX}
+	</delete>
+	<insert id="importTjbb" parameterType="hashMap">
+	insert into YY2CSBB
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="GYDW != null and GYDW != ''" >GYDW,</if>
+	      <if test="NF != null and NF != ''" >NF,</if>
+	      <if test="YF != null and YF != ''" >YF,</if>
+	      <if test="XMLX != null and XMLX != ''" >XMLX,</if>
+	      <if test="XH != null and XH != ''" >XH,</if>
+	      <if test="V_0 != null and V_0 != ''" >V_0,</if>
+	      <if test="V_1 != null and V_1 != ''" >V_1,</if>
+	      <if test="V_2 != null and V_2 != ''" >V_2,</if>
+	      <if test="V_3 != null and V_3 != ''" >V_3,</if>
+	      <if test="V_4 != null and V_4 != ''" >V_4,</if>
+	      <if test="V_5 != null and V_5 != ''" >V_5,</if>
+	      <if test="V_6 != null and V_6 != ''" >V_6,</if>
+	      <if test="V_7 != null and V_7 != ''" >V_7,</if>
+	      <if test="V_8 != null and V_8 != ''" >V_8,</if>
+	      <if test="V_9 != null and V_9 != ''" >V_9,</if>
+	      <if test="V_10 != null and V_10 != ''" >V_10,</if>
+	      <if test="V_11 != null and V_11 != ''" >V_11,</if>
+	      <if test="V_12 != null and V_12 != ''" >V_12,</if>
+	      <if test="V_13 != null and V_13 != ''" >V_13,</if>
+	      <if test="V_14 != null and V_14 != ''" >V_14,</if>
+	      <if test="V_15 != null and V_15 != ''" >V_15,</if>
+	      <if test="V_16 != null and V_16 != ''" >V_16,</if>
+	      <if test="V_17 != null and V_17 != ''" >V_17,</if>
+	      <if test="V_18 != null and V_18 != ''" >V_18,</if>
+	      <if test="V_19 != null and V_19 != ''" >V_19,</if>
+	      
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="GYDW != null and GYDW != ''" >#{GYDW},</if>
+	      <if test="NF != null and NF != ''" >#{NF},</if>
+	      <if test="YF != null and YF != ''" >#{YF},</if>
+	      <if test="XMLX != null and XMLX != ''" >#{XMLX},</if>
+	      <if test="XH != null and XH != ''" >#{XH},</if>
+	      <if test="V_0 != null and V_0 != ''" >#{V_0},</if>
+	      <if test="V_1 != null and V_1 != ''" >#{V_1},</if>
+	      <if test="V_2 != null and V_2 != ''" >#{V_2},</if>
+	      <if test="V_3 != null and V_3 != ''" >#{V_3},</if>
+	      <if test="V_4 != null and V_4 != ''" >#{V_4},</if>
+	      <if test="V_5 != null and V_5 != ''" >#{V_5},</if>
+	      <if test="V_6 != null and V_6 != ''" >#{V_6},</if>
+	      <if test="V_7 != null and V_7 != ''" >#{V_7},</if>
+	      <if test="V_8 != null and V_8 != ''" >#{V_8},</if>
+	      <if test="V_9 != null and V_9 != ''" >#{V_9},</if>
+	      <if test="V_10 != null and V_10 != ''" >#{V_10},</if>
+	      <if test="V_11 != null and V_11 != ''" >#{V_11},</if>
+	      <if test="V_12 != null and V_12 != ''" >#{V_12},</if>
+	      <if test="V_13 != null and V_13 != ''" >#{V_13},</if>
+	      <if test="V_14 != null and V_14 != ''" >#{V_14},</if>
+	      <if test="V_15 != null and V_15 != ''" >#{V_15},</if>
+	      <if test="V_16 != null and V_16 != ''" >#{V_16},</if>
+	      <if test="V_17 != null and V_17 != ''" >#{V_17},</if>
+	      <if test="V_18 != null and V_18 != ''" >#{V_18},</if>
+	      <if test="V_19 != null and V_19 != ''" >#{V_19},</if>
+	    </trim>
+	
+	</insert>
+	<select id="getTjbbOfbzsrzcb" parameterType="elist" resultType="elist">
+		SELECT 
+		XH,MIN(V_0) V_0,FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_1),'1',0,V_1)),2) V_1,DECODE(MAX(V_2),'——','——',FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_2),'1',0,V_2)),2)) V_2		
+		FROM YY2CSBB WHERE 1=1 AND XMLX=#{xmlx}
+			<if test="gydw != null and gydw != ''">${gydw}</if>
+			<if test="nf != null and nf != ''">AND NF = #{nf}</if>
+			<if test="yf != null and yf != ''">${yf}</if>
+			
+		GROUP BY XH
+		ORDER BY XH
+	</select>
+	<select id="getTjbbOfbycbb" parameterType="elist" resultType="elist">
+		SELECT 
+		XH,MIN(V_0) V_0,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_1),'1',0,v_1))),2)) v_1,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_2),'1',0,v_2))),2)) v_2,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_3),'1',0,v_3))),2)) v_3,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_4),'1',0,v_4))),2)) v_4,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_5),'1',0,v_5))),2)) v_5,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_6),'1',0,v_6))),2)) v_6,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_7),'1',0,v_7))),2)) v_7,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_8),'1',0,v_8))),2)) v_8,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_9),'1',0,v_9))),2)) v_9,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_10),'1',0,v_10))),2)) v_10,
+		DECODE(SUBSTR(max(V_0),-1),'%',('要计算百分百'),FUN_CHAR(SUM(DECODE(SUBSTR(V_0,-1),'%',0,decode(f_str_or_num(v_11),'1',0,v_11))),2)) v_11
+		FROM  YY2CSBB WHERE 1=1 AND XMLX=#{xmlx}
+		<if test="gydw != null and gydw != ''">${gydw}</if>
+		<if test="nf != null and nf != ''">AND NF = #{nf}</if>
+		<if test="yf != null and yf != ''">${yf}</if>
+			
+		GROUP BY XH
+		ORDER BY XH
+	</select>
+	
+	<select id="getTjbbOfzjbdb" parameterType="elist" resultType="elist">
+		SELECT 
+		XH,MIN(V_0) V_0,
+		FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_1),'1',0,V_1)),2) V_1,
+    	MIN(V_2) V_2,
+		FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_3),'1',0,V_3)),2) V_3
+    	FROM YY2CSBB WHERE 1=1 AND XMLX=#{xmlx}
+		<if test="gydw != null and gydw != ''">${gydw}</if>
+		<if test="nf != null and nf != ''">AND NF = #{nf}</if>
+		<if test="yf != null and yf != ''">${yf}</if>
+			
+		GROUP BY XH
+		ORDER BY XH
+	</select>
+	<select id="getTjbbOfsrzcb" parameterType="elist" resultType="elist">
+		SELECT 
+		XH,MIN(V_0) V_0,
+		FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_1),'1',0,V_1)),2) V_1,
+    	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_2),'1',0,V_2)),2) V_2
+    	FROM YY2CSBB WHERE 1=1 AND XMLX=#{xmlx}
+		<if test="gydw != null and gydw != ''">${gydw}</if>
+		<if test="nf != null and nf != ''">AND NF = #{nf}</if>
+		<if test="yf != null and yf != ''">${yf}</if>
+			
+		GROUP BY XH
+		ORDER BY XH
+	</select>
+	<select id="getTjbbOfzxqkb" parameterType="elist" resultType="elist">
+		SELECT XH,
+       	MIN(V_0) V_0,
+       	MIN(V_1) V_1,
+       	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_2), '1', 0, V_2)),2) V_2,
+      	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_3), '1', 0, V_3)),2) V_3,
+       	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_4), '1', 0, V_4)),2) V_4,
+       	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_5), '1', 0, V_5)),2) V_5,
+       	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_6), '1', 0, V_6)),2) V_6,
+       	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_7), '1', 0, V_7)),2) V_7,
+       	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_8), '1', 0, V_8)),2) V_8
+  		FROM YY2CSBB WHERE 1=1 AND XMLX=#{xmlx}
+		<if test="gydw != null and gydw != ''">${gydw}</if>
+		<if test="nf != null and nf != ''">AND NF = #{nf}</if>
+		<if test="yf != null and yf != ''">${yf}</if>
+		GROUP BY XH
+		ORDER BY XH
+	</select>
+	<select id="getTjbbOfzcfzb" parameterType="elist" resultType="elist">
+		SELECT XH,
+       	MIN(V_0) V_0,
+       	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_1), '1', 0, V_1)),2) V_1,
+       	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_2), '1', 0, V_2)),2) V_2,      
+       	MIN(V_3) V_3,
+       	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_4), '1', 0, V_4)),2) V_4,
+       	FUN_CHAR(SUM(DECODE(F_STR_OR_NUM(V_5), '1', 0, V_5)),2) V_5
+  		FROM YY2CSBB WHERE 1=1 AND XMLX=#{xmlx}
+		<if test="gydw != null and gydw != ''">${gydw}</if>
+		<if test="nf != null and nf != ''">AND NF = #{nf}</if>
+		<if test="yf != null and yf != ''">${yf}</if>
+		GROUP BY XH
+		ORDER BY XH
 	</select>
 	
 </mapper>

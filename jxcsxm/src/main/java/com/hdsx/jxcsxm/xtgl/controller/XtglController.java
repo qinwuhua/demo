@@ -71,7 +71,8 @@ public class XtglController extends BaseActionSupport{
 	private String sql;
 	private String nameValue;
 	private String colValue;
-	
+	private String nf;
+	private String yf;
 	
 	
 	public XtglServer getXtglServer() {
@@ -127,6 +128,18 @@ public class XtglController extends BaseActionSupport{
 	}
 	public void setParent(String parent) {
 		this.parent = parent;
+	}
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
+	}
+	public String getYf() {
+		return yf;
+	}
+	public void setYf(String yf) {
+		this.yf = yf;
 	}
 	/**
 	 * 重置密碼
@@ -1435,6 +1448,11 @@ public class XtglController extends BaseActionSupport{
 			session.setAttribute("sql", sql);
 			session.setAttribute("nameValue", nameValue);
 			session.setAttribute("colValue", colValue);
+			session.setAttribute("nf", nf);
+			session.setAttribute("yf", yf);
+			
+			
+			
 			//ResponseUtils.write(getresponse(), ""+true);
 			JsonUtils.write(null, getresponse().getWriter());
 		} catch (Exception e) {

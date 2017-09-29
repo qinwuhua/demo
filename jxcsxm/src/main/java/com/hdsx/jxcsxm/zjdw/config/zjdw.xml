@@ -141,7 +141,7 @@
 		select * from xm_zjdw t where id=#{id}
 	</select>
 	<select id="getdwTj" parameterType="xmzjdw" resultType="xmzjdw">
-		select distinct xmmc,nvl(dwzj,0) dwzj,nvl(yshdwzj,0) yshdwzj,nvl(jhxdzj,0) jhxdzj,nvl(jhxdcgs,0) jhxdcgs,nvl(jhxdstz,0) jhxdstz from xmjbxx xm left join 
+		select distinct xmmc,nvl(dwzj,0) dwzj,nvl(yshdwzj,0) yshdwzj,nvl(jhxdzj,0) jhxdzj,nvl(jhxdcgs,0) jhxdcgs,(case when round(nvl(jhxdstz,0),2)&lt;0 then 0 else round(nvl(jhxdstz,0),2) end) jhxdstz from xmjbxx xm left join 
 		(select xmbm,sum(ztz) dwzj,sum(decode(shzt,'已审核',ztz,0)) yshdwzj from xm_zjdw where to_number(sbthcd)&lt;=to_number(#{sbthcd}) group by xmbm) dw on xm.xmbm=dw.xmbm left join
 		(select xmid xmbm,sum(nvl(ztz,0)) jhxdzj,sum(nvl(btzzj,0)) jhxdcgs,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(dfzc,0)) jhxdstz from xm_gsd_jhxd group by xmid) xd on xm.xmbm=xd.xmbm 
 		where xm.xmbm=#{xmbm}
@@ -363,7 +363,7 @@
 	
 	
 	<select id="queryzjdwmb" parameterType="xmjbxx" resultType="xmzjdw">
-		select xmbm,xmnf,xmmc,gydw,xzqh,ztz jhztz,jhxdcgs xdcgs,jhxdrys xdrys,jhxddfzc xddfzc,jhxdzj-jhxdcgs-jhxdrys-jhxddfzc xdttc,jhxdwh,
+		select xmbm,xmnf,xmmc,gydw,xzqh,ztz jhztz,jhxdcgs xdcgs,jhxdrys xdrys,jhxddfzc xddfzc,(case when (jhxdzj-jhxdcgs-jhxdrys-jhxddfzc)&lt;0 then 0 else (jhxdzj-jhxdcgs-jhxdrys-jhxddfzc) end) xdttc,jhxdwh,
 		'0' cgs,'0' rys,'0' dfzc,'0' ttc,to_char(sysdate,'yyyy-mm') dwyf,gydw tbr,to_char(sysdate,'yyyy-mm-dd') tbsj
 		from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
 		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd

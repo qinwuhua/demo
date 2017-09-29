@@ -5,6 +5,7 @@ package com.hdsx.jxcsxm.tjbb.server.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
@@ -338,6 +339,35 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 	@Override
 	public List<Excel_list> getGlzcqkb(Excel_list elist) {
 		return queryList("getGlzcqkb",elist);
+	}
+
+	@Override
+	public boolean importTjbb(List<Map> data) {
+		deleteBatch("deleteTjbb", data);
+		
+		for (Map map : data) {
+			System.out.println(map);
+		}
+		
+		return insertBatch("importTjbb", data)==data.size();
+	}
+
+	@Override
+	public List<Excel_list> getTjbb(Excel_list elist) {
+		if("bzsrzcb".equals(elist.getXmlx()))
+		return queryList("getTjbbOfbzsrzcb",elist);
+		else if("bycbb".equals(elist.getXmlx()))
+			return queryList("getTjbbOfbycbb",elist);
+		else if("zjbdb".equals(elist.getXmlx()))
+			return queryList("getTjbbOfzjbdb",elist);
+		else if("srzcb".equals(elist.getXmlx()))
+			return queryList("getTjbbOfsrzcb",elist);
+		else if("zxqkb".equals(elist.getXmlx()))
+			return queryList("getTjbbOfzxqkb",elist);
+		else if("zcfzb".equals(elist.getXmlx()))
+			return queryList("getTjbbOfzcfzb",elist);
+		else
+			return null;
 	}
 
 	

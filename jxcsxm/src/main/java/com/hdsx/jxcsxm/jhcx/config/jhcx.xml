@@ -37,7 +37,7 @@
 		
 	</select>
 	<select id="getTjAll" parameterType="xmjbxx" resultType="xmjbxx">
-		select count(*) xmsl,round(sum(nvl(dwzj,0)),2) dwzj,round(sum(nvl(yshdwzj,0)),2) yshdwzj,round(sum(nvl(jhxdzj,0)),2) jhxdzj,round(sum(nvl(jhxdcgs,0)),2) jhxdcgs,round(sum(nvl(jhxdstz,0)),2) jhxdstz from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+		select count(*) xmsl,round(sum(nvl(dwzj,0)),2) dwzj,round(sum(nvl(yshdwzj,0)),2) yshdwzj,round(sum(nvl(jhxdzj,0)),2) jhxdzj,round(sum(nvl(jhxdcgs,0)),2) jhxdcgs,(case when round(sum(nvl(jhxdstz,0)),2)&lt;0 then 0 else round(sum(nvl(jhxdstz,0)),2) end) jhxdstz from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
 		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
 		on t.xmbm=xd.xmid	
 		left join(

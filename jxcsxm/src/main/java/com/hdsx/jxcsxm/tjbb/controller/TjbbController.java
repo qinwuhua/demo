@@ -1,8 +1,11 @@
 package com.hdsx.jxcsxm.tjbb.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,13 +25,12 @@ import com.hdsx.jxcsxm.tjbb.bean.Excel_list;
 import com.hdsx.jxcsxm.tjbb.bean.Excel_tilte;
 import com.hdsx.jxcsxm.tjbb.server.TjbbServer;
 import com.hdsx.jxcsxm.utile.EasyUIPage;
+import com.hdsx.jxcsxm.utile.ExcelReader;
 import com.hdsx.jxcsxm.utile.JsonUtils;
 import com.hdsx.jxcsxm.utile.MyUtil;
 import com.hdsx.jxcsxm.utile.ResponseUtils;
 import com.hdsx.jxcsxm.xtgl.bean.TreeNode;
 import com.hdsx.jxcsxm.xtgl.bean.Xmjbxx;
-import com.hdsx.jxcsxm.zjdw.bean.XmZjdw;
-import com.hdsx.jxcsxm.zjdw.server.ZjdwServer;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -50,6 +52,8 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 	private int page=1;
 	private int rows=10;
 	private Excel_list elist=new Excel_list();
+	private File fileupload;
+	private String fileuploadFileName;
 	@Override
 	public Excel_list getModel() {
 		return elist;
@@ -77,6 +81,22 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+
+	public File getFileupload() {
+		return fileupload;
+	}
+
+	public void setFileupload(File fileupload) {
+		this.fileupload = fileupload;
+	}
+
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
+	}
+
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
 	}
 
 	public void createBtTree(){
@@ -514,13 +534,172 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 	}
 	
 	
+	//导入用友报表
+	public void importTjbb() {
+		
+		System.out.println("进入方法");
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		HttpServletResponse response = getresponse();
+		try{
+			if(!"xls".equals(fileType)&&!"xlsx".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是系统导出的excel模版文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader.readExcelContent(0,20,fs,Object.class);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			//System.out.println(dataMapArray[0]);
+			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			
+			if(data.size()>=1) {
+				//验证()
+				if("bzsrzcb".equals(elist.getXmlx())) {
+					if(data.get(3).get("0").equals("项目")&&data.get(3).get("1").equals("本年数")&&data.get(3).get("2").equals("上年数")&&data.size()==51) {
+						List<Map> rm =new ArrayList<Map>();
+						rm.add(data.get(0));rm.add(data.get(1));rm.add(data.get(2));rm.add(data.get(3));
+						data.removeAll(rm);
+					}else {
+						response.getWriter().print(fileuploadFileName+"数据有误");
+						return;
+					}
+				}
+				else if("bycbb".equals(elist.getXmlx())) {
+					
+					if(data.get(2).get("0").equals("项       目")&&data.get(2).get("1").equals("合   计")&&data.get(2).get("2").equals("国     道")&&data.size()==20) {
+						List<Map> rm =new ArrayList<Map>();
+						rm.add(data.get(0));rm.add(data.get(1));rm.add(data.get(2));rm.add(data.get(3));rm.add(data.get(4));
+						data.removeAll(rm);
+					}else {
+						response.getWriter().print(fileuploadFileName+"数据有误");
+						return;
+					}
+					
+				}
+				
+				else if("zjbdb".equals(elist.getXmlx())) {
+					if(data.get(3).get("0").equals("项目")&&data.get(3).get("1").equals("金额")&&data.get(3).get("2").equals("项目")&&data.size()==28) {
+						List<Map> rm =new ArrayList<Map>();
+						rm.add(data.get(0));rm.add(data.get(1));rm.add(data.get(2));rm.add(data.get(3));
+						data.removeAll(rm);
+					}else {
+						response.getWriter().print(fileuploadFileName+"数据有误");
+						return;
+					}
+					
+				}
+				
+				else if("srzcb".equals(elist.getXmlx())) {
+					for (Map map : data) {
+						System.out.println(map);
+					}
+					System.out.println(data.size());
+					if(data.get(3).get("0").equals("项目")&&data.get(3).get("1").equals("本月数")&&data.get(3).get("2").equals("本年累计数")&&data.size()==29) {
+						List<Map> rm =new ArrayList<Map>();
+						rm.add(data.get(0));rm.add(data.get(1));rm.add(data.get(2));rm.add(data.get(3));
+						data.removeAll(rm);
+					}else {
+						response.getWriter().print(fileuploadFileName+"数据有误");
+						return;
+					}
+				}
+				else if("zxqkb".equals(elist.getXmlx())) {
+					
+					if(data.get(2).get("0").equals("项        目")&&data.get(2).get("1").equals("行次")&&data.get(2).get("2").equals("上年结转")&&data.size()==26) {
+						List<Map> rm =new ArrayList<Map>();
+						rm.add(data.get(0));rm.add(data.get(1));rm.add(data.get(2));rm.add(data.get(3));
+						data.removeAll(rm);
+					}else {
+						response.getWriter().print(fileuploadFileName+"数据有误");
+						return;
+					}
+				}
+				else if("zcfzb".equals(elist.getXmlx())) {
+					
+					if(data.get(3).get("0").equals("资产")&&data.get(3).get("1").equals("期末余额")&&data.get(3).get("2").equals("年初余额")&&data.size()==33) {
+						List<Map> rm =new ArrayList<Map>();
+						rm.add(data.get(0));rm.add(data.get(1));rm.add(data.get(2));rm.add(data.get(3));
+						data.removeAll(rm);
+					}else {
+						response.getWriter().print(fileuploadFileName+"数据有误");
+						return;
+					}
+				}
+				else {
+					response.getWriter().print(fileuploadFileName+"数据有误");
+					return;
+				}
+			}else {
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			//处理数据
+			for (int i = 0; i < data.size(); i++) {
+				HttpServletRequest request = getRequest();
+				HttpSession session = request.getSession();
+				//			
+				data.get(i).put("XH", i+1);
+				data.get(i).put("XMLX", elist.getXmlx());
+				data.get(i).put("GYDW", elist.getGydw());
+				data.get(i).put("NF", (String) session.getAttribute("nf"));
+				data.get(i).put("YF", (String) session.getAttribute("yf"));
+				data.get(i).put("V_0", data.get(i).get("0").toString().trim());
+				data.get(i).put("V_1", data.get(i).get("1").toString().trim());
+				data.get(i).put("V_2", data.get(i).get("2").toString().trim());
+				data.get(i).put("V_3", data.get(i).get("3").toString().trim());
+				data.get(i).put("V_4", data.get(i).get("4").toString().trim());
+				data.get(i).put("V_5", data.get(i).get("5").toString().trim());
+				data.get(i).put("V_6", data.get(i).get("6").toString().trim());
+				data.get(i).put("V_7", data.get(i).get("7").toString().trim());
+				data.get(i).put("V_8", data.get(i).get("8").toString().trim());
+				data.get(i).put("V_9", data.get(i).get("9").toString().trim());
+				data.get(i).put("V_10", data.get(i).get("10").toString().trim());
+				data.get(i).put("V_11", data.get(i).get("11").toString().trim());
+				data.get(i).put("V_12", data.get(i).get("12").toString().trim());
+				data.get(i).put("V_13", data.get(i).get("13").toString().trim());
+				data.get(i).put("V_14", data.get(i).get("14").toString().trim());
+				data.get(i).put("V_15", data.get(i).get("15").toString().trim());
+				data.get(i).put("V_16", data.get(i).get("16").toString().trim());
+				data.get(i).put("V_17", data.get(i).get("17").toString().trim());
+				data.get(i).put("V_18", data.get(i).get("18").toString().trim());
+				data.get(i).put("V_19", data.get(i).get("19").toString().trim());
+				
+				
+			}
+		
+			//将数据插入到数据库
+			boolean b=tjbbServer.importTjbb(data);
+			if(b)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 	
-	
-	
-	
-	
-	
+	/**
+	 * 查询用友报表
+	 */
+	public void getTjbb() {
+		try {
+			elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydw"));
+			elist.setYf(MyUtil.getQueryTJ(elist.getYf(), "yf"));
+			List<Excel_list> list = tjbbServer.getTjbb(elist);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	

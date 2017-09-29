@@ -43,8 +43,15 @@ public class Excel_list implements Serializable {
 	private String sbthcd;
 	private String pxfs;
 	private int xmsl=0;
+	private String yf;
 	
 	
+	public String getYf() {
+		return yf;
+	}
+	public void setYf(String yf) {
+		this.yf = yf;
+	}
 	public int getXmsl() {
 		return xmsl;
 	}
