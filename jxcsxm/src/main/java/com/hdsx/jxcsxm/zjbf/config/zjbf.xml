@@ -109,8 +109,8 @@
 		select * from xm_zjbf t where id=#{id}
 	</select>
 	<select id="getbfTj" parameterType="xmzjbf" resultType="xmzjbf">
-		select distinct xmmc,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(jhxdzj,0) jhxdzj from xmjbxx xm left join 
-		(select xmbm,sum(decode(shzt,'已审核',ztz,0)) dwzj from xm_zjdw group by xmbm) dw on xm.xmbm=dw.xmbm left join
+		select distinct xmmc,nvl(dwzj,0) dwzj,nvl(dwcgs,0) dwcgs,nvl(dwrys,0) dwrys,nvl(dwtdk,0) dwtdk,nvl(dwdfzc,0) dwdfzc,nvl(dwttc,0) dwttc,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(jhxdzj,0) jhxdzj from xmjbxx xm left join 
+		(select xmbm,sum(ztz) dwzj,sum(cgs) dwcgs,sum(rys) dwrys,sum(ztz)-sum(cgs)-sum(rys)-sum(tdk)-sum(dfzc) dwttc,sum(tdk) dwtdk,sum(dfzc) dwdfzc from xm_zjdw where to_number(sbthcd)&lt;=to_number(#{sbthcd}) group by xmbm) dw on xm.xmbm=dw.xmbm left join
 		(select xmbm,sum(ztz) bfzj,sum(decode(shzt,'已审核',ztz,0)) yshbfzj from xm_zjbf where to_number(sbthcd)&lt;=to_number(#{sbthcd}) group by xmbm) bf on xm.xmbm=bf.xmbm left join
 		(select xmid xmbm,sum(nvl(ztz,0)) jhxdzj from xm_gsd_jhxd group by xmid) xd on xm.xmbm=xd.xmbm 
 		where xm.xmbm=#{xmbm}

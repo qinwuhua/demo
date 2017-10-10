@@ -85,6 +85,12 @@
 					$("#xmmc").html(msg.xmmc);
 					$("#jhxdzj").html(msg.jhxdzj);
 					$("#dwzj").html(msg.dwzj);
+					$("#dwcgs").html(msg.dwcgs);
+					$("#dwrys").html(msg.dwrys);
+					$("#dwttc").html(msg.dwttc);
+					$("#dwtdk").html(msg.dwtdk);
+					$("#dwdfzc").html(msg.dwdfzc);
+					
 					$("#bfzj").html(msg.bfzj);
 					$("#yshbfzj").html(msg.yshbfzj);
 				}
@@ -879,6 +885,11 @@
 	                    项目【<span id="xmmc" style="color: Red; font-weight: bold;">xxx</span>】<br/>
 	                    计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
 	                    到位资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
+	                    其中，车购税【<span id="dwcgs" style="color: Red; font-weight: bold;">0</span>】万元，
+	                    燃油税【<span id="dwrys" style="color: Red; font-weight: bold;">0</span>】万元，
+	                    厅统筹【<span id="dwttc" style="color: Red; font-weight: bold;">0</span>】万元，
+	                    厅贷款【<span id="dwtdk" style="color: Red; font-weight: bold;">0</span>】万元，
+	                    地方自筹【<span id="dwdfzc" style="color: Red; font-weight: bold;">0</span>】万元。<br/>
 	                    拨付资金共【<span id="bfzj" style="color: Red; font-weight: bold;">0</span>】万元，
 	                    其中，已审核拨付资金共【<span id="yshbfzj" style="color: Red; font-weight: bold;">0</span>】万元。
             </td>

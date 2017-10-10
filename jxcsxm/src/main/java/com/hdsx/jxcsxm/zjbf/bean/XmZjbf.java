@@ -83,13 +83,22 @@ public class XmZjbf{
     private String dwcgs;
     private String dwrys;
     private String dwttc;
+    private String dwtdk;
     private String dwdfzc;
     private String xmnf;
     private String xzqh;
     private String jhztz;
     
     
-    public String getJhztz() {
+    public String getDwtdk() {
+		return dwtdk;
+	}
+
+	public void setDwtdk(String dwtdk) {
+		this.dwtdk = dwtdk;
+	}
+
+	public String getJhztz() {
 		return jhztz;
 	}
 
