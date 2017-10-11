@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -89,6 +90,10 @@ public class ExcelExportUtil {
 			//居中样式
 			HSSFCellStyle styleCenter = wb.createCellStyle(); 
 			styleCenter.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+			/**设置单元格格式为文本格式*/
+			HSSFDataFormat format = wb.createDataFormat();
+			styleCenter.setDataFormat(format.getFormat("@"));
+			
 			rowNumber = createTitle(sheet,title,rowNumber,styleCenter);
 			rowNumber++;
 			for(int i= 0;i<data.size();i++){
@@ -97,7 +102,8 @@ public class ExcelExportUtil {
 				for (int j = 0; j < filedArray.length; j++) {
 					HSSFCell createCell = row.createCell(j);
 					createCell.setCellValue(item.get(filedArray[j].substring(filedArray[j].indexOf("as ")+3).toUpperCase()));
-					createCell.setCellStyle(styleCenter);
+					createCell.setCellStyle(styleCenter);//设置单元格格式为"文本"
+					createCell.setCellType(HSSFCell.CELL_TYPE_STRING);
 				}
 			}
 			response.setContentType("octets/stream");
@@ -128,6 +134,10 @@ public class ExcelExportUtil {
 			//居中样式
 			HSSFCellStyle styleCenter = wb.createCellStyle(); 
 			styleCenter.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+			/**设置单元格格式为文本格式*/
+			HSSFDataFormat format = wb.createDataFormat();
+			styleCenter.setDataFormat(format.getFormat("@"));
+			
 			//创建表头
 			rowNumber = createTitle(sheet,excel.getTitleArray(),rowNumber,styleCenter);
 			rowNumber++;
@@ -153,6 +163,9 @@ public class ExcelExportUtil {
 			//居中样式
 			HSSFCellStyle styleCenter = wb.createCellStyle(); 
 			HSSFCellStyle styleCenterlock = wb.createCellStyle();
+			/**设置单元格格式为文本格式*/
+			HSSFDataFormat format = wb.createDataFormat();
+			styleCenter.setDataFormat(format.getFormat("@"));
 			styleCenterlock.setLocked(true);
 			styleCenter.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 			styleCenterlock.setAlignment(HSSFCellStyle.ALIGN_CENTER);
