@@ -11,6 +11,9 @@
 		(case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
 		(case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
 		from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmids
+		left join (select xmb.xmbm sfxmbm,decode(dwbz,null,'否',xdbz,'是','否') sfqbdw from 
+		xmjbxx xmb left join (select xmbm,sum(ztz)-sum(dfzc) dwbz from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} and (case when ${sbthcd}=7 then shzt else '已审核' end)='已审核' group by xmbm) dwb on xmb.xmbm=dwb.xmbm left join (select xmid,sum(ztz)-sum(dfzc) xdbz from xm_gsd_jhxd group by xmid) xdb
+		on dwb.xmbm=xdb.xmid) sf on t.xmbm=sf.sfxmbm
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
 		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
@@ -21,6 +24,7 @@
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		<if test="sfqbdw !='' and sfqbdw != null">${sfqbdw}</if>
 		) t1 where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
@@ -41,6 +45,9 @@
 		(case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
 		(case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
 		from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmids
+		left join (select xmb.xmbm sfxmbm,decode(dwbz,null,'否',xdbz,'是','否') sfqbdw from 
+		xmjbxx xmb left join (select xmbm,sum(ztz)-sum(dfzc) dwbz from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} and (case when ${sbthcd}=7 then shzt else '已审核' end)='已审核' group by xmbm) dwb on xmb.xmbm=dwb.xmbm left join (select xmid,sum(ztz)-sum(dfzc) xdbz from xm_gsd_jhxd group by xmid) xdb
+		on dwb.xmbm=xdb.xmid) sf on t.xmbm=sf.sfxmbm
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
 		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
@@ -51,6 +58,7 @@
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		<if test="sfqbdw !='' and sfqbdw != null">${sfqbdw}</if>
 		) where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
@@ -75,6 +83,9 @@
 			(select xmbm,sum(ztz) dwzj,sum(decode(shzt,'已审核',ztz,0)) yshdwzj from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on xm.xmbm=dw.xmbm left join
 			(select xmid xmbm,sum(nvl(ztz,0)) jhxdzj,sum(nvl(btzzj,0)) jhxdcgs,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(dfzc,0)) jhxdstz,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(dfzc,0))-sum(nvl(rys,0))-sum(nvl(dk,0)) jhxdttc,sum(nvl(dk,0)) jhxdtdk,sum(nvl(rys,0)) jhxdrys,sum(nvl(dfzc,0)) jhxddfzc from xm_gsd_jhxd group by xmid) xd on xm.xmbm=xd.xmbm 
 	    ) zj on t.xmbm=zj.xmbms1
+		left join (select xmb.xmbm sfxmbm,decode(dwbz,null,'否',xdbz,'是','否') sfqbdw from 
+		xmjbxx xmb left join (select xmbm,sum(ztz)-sum(dfzc) dwbz from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} and (case when ${sbthcd}=7 then shzt else '已审核' end)='已审核' group by xmbm) dwb on xmb.xmbm=dwb.xmbm left join (select xmid,sum(ztz)-sum(dfzc) xdbz from xm_gsd_jhxd group by xmid) xdb
+		on dwb.xmbm=xdb.xmid) sf on t.xmbm=sf.sfxmbm
 		where 1=1 
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
 		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
@@ -85,6 +96,7 @@
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		<if test="sfqbdw !='' and sfqbdw != null">${sfqbdw}</if>
 		) where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>

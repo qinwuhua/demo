@@ -30,6 +30,7 @@
 			loadBmbm3('shzt','审核状态');
 			loadBmbm3('ssbzt','上报状态');
 			loadBmbm3('xsbzt','上报状态');
+			loadBmbm3('sfqbdw','是否全部到位','否');
 			if($.cookie('unit2').length==11){
 				$("td[name='xian']").show();
 				$("td[name='shi']").hide();
@@ -102,11 +103,13 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-
+			var sfqbdw=$("#sfqbdw").combobox("getValues").join(",");
+			if(sfqbdw.substr(0,1)==',')
+				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':1,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.gcfl':gcfl,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2')
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbdw':sfqbdw
 			};
 	
 			loadTj();
@@ -183,10 +186,13 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
+			var sfqbdw=$("#sfqbdw").combobox("getValues").join(",");
+			if(sfqbdw.substr(0,1)==',')
+				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':1,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.gcfl':gcfl,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2')
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbdw':sfqbdw
 			};
 			$.ajax({
 				type:'post',
@@ -234,6 +240,8 @@ text-decoration:none;
 <!--         						<td><input name="xmbm" type="text" id="xmbm" style="width:140px;" /></td> -->
         						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:140px;" /></td>
+        						<td align="right">是否全部到位：</td>
+								<td><select name="sfqbdw" id="sfqbdw" style="width:144px;" ></select></td>
         						
 								</tr>
         					<tr height="28">

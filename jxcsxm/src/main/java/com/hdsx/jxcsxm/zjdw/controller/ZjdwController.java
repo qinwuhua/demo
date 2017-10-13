@@ -69,7 +69,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 	}
 	//方法
 	public void queryXmlist(){
-		
+		try {
 		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
 		xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
 		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
@@ -79,6 +79,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
 		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
+		xmjbxx.setSfqbdw(MyUtil.getQueryTJ(xmjbxx.getSfqbdw(), "sfqbdw"));
 		if(xmZjdw.getPage()>0){
 			xmjbxx.setPage(xmZjdw.getPage());
 			xmjbxx.setRows(xmZjdw.getRows());
@@ -86,13 +87,12 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 			xmjbxx.setPage(page);
 			xmjbxx.setRows(rows);
 		}
-		
 		List<Xmjbxx> list=zjdwServer.queryXmlist(xmjbxx);
 		int count=zjdwServer.queryXmlistCount(xmjbxx);
 		EasyUIPage<Xmjbxx> e=new EasyUIPage<Xmjbxx>();
 		e.setRows(list);
 		e.setTotal(count);
-		try {
+		
 			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -101,6 +101,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 	}
 	//getdwTjAll  统计
 	public void getdwTjAll(){
+		try {
 		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
 		xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
 		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
@@ -110,7 +111,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
 		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
-		try {
+		xmjbxx.setSfqbdw(MyUtil.getQueryTJ(xmjbxx.getSfqbdw(), "sfqbdw"));
 			JsonUtils.write(zjdwServer.getdwTjAll(xmjbxx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();

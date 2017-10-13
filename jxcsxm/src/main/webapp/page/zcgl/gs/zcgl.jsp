@@ -37,7 +37,7 @@
 			if($.cookie('unit2').length==11){
 				$("td[name='xian']").show();
 				$("td[name='shi']").hide();
-				$("td[name='sheng']").hide();
+				$("td[name='sheng']").show();
 				$("a[name='xian']").show();
 				$("a[name='shi']").hide();
 				$("a[name='sheng']").hide();
@@ -50,7 +50,7 @@
 			if($.cookie('unit2').length==9){
 				$("td[name='shi']").show();
 				$("td[name='xian']").hide();
-				$("td[name='sheng']").hide();
+				$("td[name='sheng']").show();
 				$("a[name='shi']").show();
 				$("a[name='xian']").hide();
 				$("a[name='sheng']").hide();
@@ -66,7 +66,7 @@
 				$("a[name='shi']").hide();
 				$("td[name='sheng']").show();
 				$("td[name='xian']").hide();
-				$("td[name='shi']").hide();
+				$("td[name='shi']").show();
 				if(anqxstr.indexOf("审核")!=-1){
 					$("a[name='sheng']").show();
 				}else{

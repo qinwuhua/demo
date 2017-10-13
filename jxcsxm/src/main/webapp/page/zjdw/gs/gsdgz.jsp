@@ -30,6 +30,7 @@
 			loadBmbm3('shzt','审核状态');
 			loadBmbm3('ssbzt','上报状态');
 			loadBmbm3('xsbzt','上报状态');
+			loadBmbm3('sfqbdw','是否全部到位','否');
 			//YMLib.Var.jdbs=2;
 			
 			if($.cookie('unit2').length==11){
@@ -77,6 +78,7 @@
 			queryXmlist();
 			
 		});
+		var myparam;
 		function queryXmlist(){
 			
 			var xzqhdm=$("#xzqh").combotree("getValues");
@@ -104,14 +106,13 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			
-			
-			
+			var sfqbdw=$("#sfqbdw").combobox("getValues").join(",");
+			if(sfqbdw.substr(0,1)==',')
+				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt")
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbdw':sfqbdw
 			};
-	
 			loadTj();
 			
 			$('#grid').datagrid({    
@@ -183,9 +184,12 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+			var sfqbdw=$("#sfqbdw").combobox("getValues").join(",");
+			if(sfqbdw.substr(0,1)==',')
+				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt")
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbdw':sfqbdw
 			};
 			$.ajax({
 				type:'post',
@@ -251,7 +255,9 @@ text-decoration:none;
         						
         						<td align="right">建设性质：</td>
 								<td><select name="jsxz" id="jsxz" style="width:144px;" ></select></td>
-								
+								<td align="right">是否全部到位：</td>
+								<td><select name="sfqbdw" id="sfqbdw" style="width:144px;" ></select></td>
+        						
         					
         					</tr>
         					<tr height="28">

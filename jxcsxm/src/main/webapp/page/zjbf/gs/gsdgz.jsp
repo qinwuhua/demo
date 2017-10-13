@@ -29,9 +29,7 @@
 			loadBmbm3('shzt','审核状态');
 			loadBmbm3('ssbzt','上报状态');
 			loadBmbm3('xsbzt','上报状态');
-			//YMLib.Var.jdbs=2;
-			
-			
+			loadBmbm3('sfqbbf','是否全部拨付','否');
 			if($.cookie('unit2').length==11){
 				$("td[name='xian']").show();
 				$("td[name='shi']").hide();
@@ -103,10 +101,12 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-
+			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
+			if(sfqbbf.substr(0,1)==',')
+				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt")
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbbf':sfqbbf
 			};
 	
 			loadTj();
@@ -186,10 +186,12 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-
+			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
+			if(sfqbbf.substr(0,1)==',')
+				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt")
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbbf':sfqbbf
 			};
 			$.ajax({
 				type:'post',
@@ -253,7 +255,9 @@ text-decoration:none;
         						
         						<td align="right">建设性质：</td>
 								<td><select name="jsxz" id="jsxz" style="width:144px;" ></select></td>
-								
+								<td align="right">是否全部拨付：</td>
+								<td><select name="sfqbbf" id="sfqbbf" style="width:144px;" ></select></td>
+        						
         					</tr>
         					<tr height="28">
                             	<td colspan="8">
