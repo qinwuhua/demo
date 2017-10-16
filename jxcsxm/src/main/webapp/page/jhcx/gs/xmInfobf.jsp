@@ -54,6 +54,9 @@
 				$("#jhxdzj_dw").html(msg.jhxdzj);
 				$("#dwzj_dw").html(msg.dwzj);
 				$("#yshdwzj_dw").html(msg.yshdwzj);
+				
+				$("#jhxdzj_cgs").html(msg.jhxdcgs);
+				$("#jhxdzj_stz").html(msg.jhxdstz);
 			}
 		});
 	}
