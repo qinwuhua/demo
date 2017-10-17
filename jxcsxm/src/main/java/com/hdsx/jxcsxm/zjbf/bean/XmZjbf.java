@@ -88,9 +88,18 @@ public class XmZjbf{
     private String xmnf;
     private String xzqh;
     private String jhztz;
+    private String zddzjl;
     
     
-    public String getDwtdk() {
+    public String getZddzjl() {
+		return zddzjl;
+	}
+
+	public void setZddzjl(String zddzjl) {
+		this.zddzjl = zddzjl;
+	}
+
+	public String getDwtdk() {
 		return dwtdk;
 	}
 

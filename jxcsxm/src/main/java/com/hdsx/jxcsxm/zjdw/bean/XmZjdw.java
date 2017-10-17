@@ -92,8 +92,17 @@ public class XmZjdw{
     private String jhxdttc;
     private String jhxdtdk;
     private String jhxddfzc;
+    private String zddzjl;
     
-    public String getJhxdrys() {
+    public String getZddzjl() {
+		return zddzjl;
+	}
+
+	public void setZddzjl(String zddzjl) {
+		this.zddzjl = zddzjl;
+	}
+
+	public String getJhxdrys() {
 		return jhxdrys;
 	}
 

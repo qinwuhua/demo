@@ -108,7 +108,43 @@
 			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'}
 		]]
 		
+		//-------------示范路---------
 		
+		if(parent.YMLib.Var.xmlx=='gs_sfl')
+			col=[[
+// 			{field:'dwyf',title:'到位月份',width:70,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//-----------------
+		//-------------养护中心---------
+		
+		if(parent.YMLib.Var.xmlx=='gs_yhzx')
+			col=[[
+// 			{field:'dwyf',title:'到位月份',width:70,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
+			{field:'zddzjl',title:'重点打造奖励(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//-----------------
+		//-------------服务区---------
+		
+		if(parent.YMLib.Var.xmlx=='gs_fwq')
+			col=[[
+// 			{field:'dwyf',title:'到位月份',width:70,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//-----------------
 		
 		
 		$('#zjxdgrid').datagrid({    

@@ -93,7 +93,7 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			
-			
+			alert(xzqhstr);
 			var params={'lxbm':$("#lxbm").val(),'lxmc':$("#lxmc").val(),'gydw':xzqhstr,'dwlx':'1',
 					   'nf':$("#nf").combobox('getValue'),'jsdj':$("#jsdj").combobox('getValues').join(','),
 					   'shzt':getValuesById("shzt"),'ssbzt':getValuesById("ssbzt"),'xsbzt':getValuesById("xsbzt")

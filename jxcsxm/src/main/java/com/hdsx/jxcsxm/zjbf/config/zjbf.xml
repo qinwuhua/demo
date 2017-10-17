@@ -150,6 +150,7 @@
 	      <if test="tbr != null and tbr != ''" >tbr,</if>
 	      <if test="tbsj != null and tbsj != ''" >tbsj,</if>
 	      <if test="bz != null and bz != ''" >bz,</if>
+	      <if test="zddzjl != null and zddzjl != ''" >zddzjl,</if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	      <if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
@@ -175,6 +176,8 @@
 	      <if test="tbr != null and tbr != ''" >#{tbr},</if>
 	      <if test="tbsj != null and tbsj != ''" >#{tbsj},</if>
 	      <if test="bz != null and bz != ''" >#{bz},</if>
+	      <if test="zddzjl != null and zddzjl != ''" >#{zddzjl},</if>
+	      
 	    </trim>
 	</insert>
 	<update id="updateZjbf" parameterType="xmzjbf">
@@ -206,6 +209,7 @@
       <if test="tbr != null and tbr != ''" >tbr = #{tbr},</if>
       <if test="tbsj != null and tbsj != ''" >tbsj = #{tbsj},</if>
       <if test="bz != null and bz != ''" >bz = #{bz},</if>
+      <if test="zddzjl != null and zddzjl != ''" >zddzjl = #{zddzjl},</if>
     </set>
     where 1=1 and ${id}
 	</update>
@@ -385,7 +389,7 @@
 	</select>
 	<insert id="importZjbf" parameterType="hashMap">
 		insert into xm_zjbf (id,jhxdwh,ztz,cgs,rys,ttc,dfzc,bfyf,xmbm,tbr,tbsj,sbthcd,bd,bz)
-		values(sys_guid(),#{10},#{12}+#{13}+#{14}+#{15},#{12},#{13},#{14},#{15},#{16},#{0},#{17},#{18},11,#{11},#{19}) 
+		values(sys_guid(),#{10},#{12}+#{13}+#{14}+#{15},#{12},#{13},#{15},#{14},#{16},#{0},#{17},#{18},11,#{11},#{19}) 
 	</insert>
 	
 	<update id="plsbbfxj" parameterType="xmzjbf">

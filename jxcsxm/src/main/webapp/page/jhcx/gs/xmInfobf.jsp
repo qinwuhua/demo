@@ -75,6 +75,13 @@
 		openWindow("详情","/jxcsxm/page/zjbf/nc/lwjggzzjbf_info.jsp",600,280);
 		if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=="nc_tzrc"||parent.YMLib.Var.xmlx=="nc_yhgc")
 		openWindow("详情","/jxcsxm/page/zjbf/nc/nczjbf_info.jsp",600,280);
+		if(parent.YMLib.Var.xmlx=="gs_sfl")
+			openWindow("详情","/jxcsxm/page/zjbf/gs/sflzjbf_info.jsp",600,275);	
+		if(parent.YMLib.Var.xmlx=="gs_fwq")
+			openWindow("详情","/jxcsxm/page/zjbf/gs/fwqzjbf_info.jsp",600,275);	
+		if(parent.YMLib.Var.xmlx=="gs_yhzx")
+			openWindow("详情","/jxcsxm/page/zjbf/gs/yhzxzjbf_info.jsp",600,295);	
+	
 	}
 	function openDwInfo(id){
 		YMLib.Var.id=id;
@@ -90,7 +97,12 @@
 		openWindow("详情","/jxcsxm/page/zjdw/nc/lwjggzzjdw_info.jsp",600,250);
 		if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=='nc_tzrc'||parent.YMLib.Var.xmlx=='nc_yhgc')
 		openWindow("详情","/jxcsxm/page/zjdw/nc/nczjdw_info.jsp",600,250);
-		
+		if(parent.YMLib.Var.xmlx=="gs_sfl")
+		openWindow("详情","/jxcsxm/page/zjdw/gs/sflzjdw_info.jsp",600,250);
+		if(parent.YMLib.Var.xmlx=="gs_yhzx")
+		openWindow("详情","/jxcsxm/page/zjdw/gs/yhzxzjdw_info.jsp",600,270);
+		if(parent.YMLib.Var.xmlx=="gs_fwq")
+		openWindow("详情","/jxcsxm/page/zjdw/gs/fwqzjdw_info.jsp",600,250);
 	}
 	
 	function queryzjbflist(){
@@ -248,6 +260,62 @@
 				{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
 				{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 			]]
+		
+		//--------------示范路-------
+		if(parent.YMLib.Var.xmlx=='gs_sfl')
+			col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+				{field:'cz',title:'操作',width:230,align:'center',
+				formatter: function(value,row,index){
+					var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+					return result; 
+				}
+			},
+			{field:'bfyf',title:'拨付月份',width:70,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'bd',title:'标段',width:50,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//--------------服务区-------
+		if(parent.YMLib.Var.xmlx=='gs_fwq')
+			col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+				{field:'cz',title:'操作',width:230,align:'center',
+				formatter: function(value,row,index){
+					var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+					return result; 
+				}
+			},
+			{field:'bfyf',title:'拨付月份',width:70,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'bd',title:'标段',width:50,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//--------------养护中心-------
+		if(parent.YMLib.Var.xmlx=='gs_yhzx')
+			col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+				{field:'cz',title:'操作',width:230,align:'center',
+				formatter: function(value,row,index){
+					var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+					return result; 
+				}
+			},
+			
+			{field:'bfyf',title:'拨付月份',width:70,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'bd',title:'标段',width:50,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
+			{field:'zddzjl',title:'重点打造奖励(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		
+		
 		
 		
 		$('#zjbfgrid').datagrid({    
@@ -427,7 +495,92 @@
 				{field:'ttc',title:'厅统筹(万元)',width:75,align:'center'}
 			]]
 			
+//-------------示范路---------
 		
+		if(parent.YMLib.Var.xmlx=='gs_sfl')
+			col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+				{field:'cz',title:'操作',width:230,align:'center',
+				formatter: function(value,row,index){
+					var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+					return result; 
+				}
+			},
+			{field:'zt',title:'状态',width:50,align:'center',
+				formatter: function(value,row,index){
+					var zt="";if(row.shzt=='已审核'){zt='已审核';
+					}else{
+						if($.cookie('unit2').length==11){zt=row.xsbzt;}
+						if($.cookie('unit2').length==9){zt=row.ssbzt;}
+						if($.cookie('unit2').length==7){zt=row.shzt;}
+					}
+					return zt;
+			}},
+			{field:'dwyf',title:'到位月份',width:70,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//-----------------
+		//-------------养护中心---------
+		
+		if(parent.YMLib.Var.xmlx=='gs_yhzx')
+			col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+				{field:'cz',title:'操作',width:230,align:'center',
+				formatter: function(value,row,index){
+					var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+					
+					return result; 
+				}
+			},
+			{field:'zt',title:'状态',width:50,align:'center',
+				formatter: function(value,row,index){
+					var zt="";if(row.shzt=='已审核'){zt='已审核';
+					}else{
+						if($.cookie('unit2').length==11){zt=row.xsbzt;}
+						if($.cookie('unit2').length==9){zt=row.ssbzt;}
+						if($.cookie('unit2').length==7){zt=row.shzt;}
+					}
+					return zt;
+			}},
+			{field:'dwyf',title:'到位月份',width:70,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
+			{field:'zddzjl',title:'重点打造奖励(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//-----------------
+		//-------------服务区---------
+		
+		if(parent.YMLib.Var.xmlx=='gs_fwq')
+			col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+				{field:'cz',title:'操作',width:230,align:'center',
+				formatter: function(value,row,index){
+					var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+					return result; 
+				}
+			},
+			{field:'zt',title:'状态',width:50,align:'center',
+				formatter: function(value,row,index){
+					var zt="";if(row.shzt=='已审核'){zt='已审核';
+					}else{
+						if($.cookie('unit2').length==11){zt=row.xsbzt;}
+						if($.cookie('unit2').length==9){zt=row.ssbzt;}
+						if($.cookie('unit2').length==7){zt=row.shzt;}
+					}
+					return zt;
+			}},
+			{field:'dwyf',title:'到位月份',width:70,align:'center'},
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//-----------------
 		$('#zjdwgrid').datagrid({    
 		    url:'/jxcsxm/zjdw/queryzjdwlist.do',
 		    striped:true,
@@ -514,7 +667,40 @@
 			{field:'stz',title:'省投资(万元)',width:75,align:'center'},
 			{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'}
 		]]
+//-------------示范路---------
 		
+		if(parent.YMLib.Var.xmlx=='gs_sfl')
+			col=[[
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//-----------------
+		//-------------养护中心---------
+		
+		if(parent.YMLib.Var.xmlx=='gs_yhzx')
+			col=[[
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'stz',title:'省投资(万元)',width:80,align:'center'},
+			{field:'zddzjl',title:'重点打造奖励(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//-----------------
+		//-------------服务区---------
+		
+		if(parent.YMLib.Var.xmlx=='gs_fwq')
+			col=[[
+			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'btzzj',title:'车购税(万元)',width:80,align:'center'},
+			{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+			{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+		]]
+		//-----------------
 		
 		
 		

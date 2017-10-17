@@ -11,7 +11,7 @@
 		) t
 		where 1=1 
 		<if test="dwlx !='' and dwlx != null">and gydwdm like #{dwlx}||'%'</if>
-		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="gydw !='' and gydw != null">${gydw}</if>
 		<if test="jsdj !='' and jsdj != null">${jsdj}</if>
 		<if test="nf !='' and nf != null">and nf=#{nf}</if>
 		<if test="lxbm !='' and lxbm != null">and lxbm like '%'||#{lxbm}||'%'</if>
@@ -35,7 +35,7 @@
 		) t
 		where 1=1 
 		<if test="dwlx !='' and dwlx != null">and gydwdm like #{dwlx}||'%'</if>
-		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="gydw !='' and gydw != null">${gydw}</if>
 		<if test="jsdj !='' and jsdj != null">${jsdj}</if>
 		<if test="nf !='' and nf != null">and nf=#{nf}</if>
 		<if test="lxbm !='' and lxbm != null">and lxbm like '%'||#{lxbm}||'%'</if>

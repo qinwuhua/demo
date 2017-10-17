@@ -115,7 +115,12 @@
 			openWindow("添加","/jxcsxm/page/zjbf/nc/lwjggzzjbf_tj.jsp",600,275);
 			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=="nc_tzrc"||parent.YMLib.Var.xmlx=="nc_yhgc")
 			openWindow("添加","/jxcsxm/page/zjbf/nc/nczjbf_tj.jsp",600,275);
-				
+			if(parent.YMLib.Var.xmlx=="gs_sfl")
+				openWindow("添加","/jxcsxm/page/zjbf/gs/sflzjbf_tj.jsp",600,275);	
+			if(parent.YMLib.Var.xmlx=="gs_fwq")
+				openWindow("添加","/jxcsxm/page/zjbf/gs/fwqzjbf_tj.jsp",600,275);	
+			if(parent.YMLib.Var.xmlx=="gs_yhzx")
+				openWindow("添加","/jxcsxm/page/zjbf/gs/yhzxzjbf_tj.jsp",600,295);	
 			
 		}
 		function openDwInfo(id){
@@ -132,6 +137,13 @@
 			openWindow("详情","/jxcsxm/page/zjbf/nc/lwjggzzjbf_info.jsp",600,275);
 			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=="nc_tzrc"||parent.YMLib.Var.xmlx=="nc_yhgc")
 			openWindow("详情","/jxcsxm/page/zjbf/nc/nczjbf_info.jsp",600,275);
+			if(parent.YMLib.Var.xmlx=="gs_sfl")
+				openWindow("详情","/jxcsxm/page/zjbf/gs/sflzjbf_info.jsp",600,275);	
+			if(parent.YMLib.Var.xmlx=="gs_fwq")
+				openWindow("详情","/jxcsxm/page/zjbf/gs/fwqzjbf_info.jsp",600,275);	
+			if(parent.YMLib.Var.xmlx=="gs_yhzx")
+				openWindow("详情","/jxcsxm/page/zjbf/gs/yhzxzjbf_info.jsp",600,295);	
+		
 		}
 		function editDw(id){
 			if(parent.anqxstr.indexOf("增删改")==-1){
@@ -152,6 +164,12 @@
 			openWindow("编辑","/jxcsxm/page/zjbf/nc/lwjggzzjbf_bj.jsp",600,275);		
 			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=="nc_tzrc"||parent.YMLib.Var.xmlx=="nc_yhgc")
 			openWindow("编辑","/jxcsxm/page/zjbf/nc/nczjbf_bj.jsp",600,275);		
+			if(parent.YMLib.Var.xmlx=="gs_sfl")
+				openWindow("编辑","/jxcsxm/page/zjbf/gs/sflzjbf_bj.jsp",600,275);	
+			if(parent.YMLib.Var.xmlx=="gs_fwq")
+				openWindow("编辑","/jxcsxm/page/zjbf/gs/fwqzjbf_bj.jsp",600,275);	
+			if(parent.YMLib.Var.xmlx=="gs_yhzx")
+				openWindow("编辑","/jxcsxm/page/zjbf/gs/yhzxzjbf_bj.jsp",600,295);	
 		}
 		function deldw(){
 			if(parent.anqxstr.indexOf("增删改")==-1){
@@ -850,6 +868,311 @@
 				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
 				{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
 				{field:'rys',title:'燃油税(万元)',width:80,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			]]
+			
+			//--------------示范路-------
+			if(parent.YMLib.Var.xmlx=='gs_sfl')
+				col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+					{field:'cz',title:'操作',width:230,align:'center',
+					formatter: function(value,row,index){
+						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+						if($.cookie('unit2').length==11){
+							if(row.xsbzt=='未上报'){
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+								}	
+								if(row.sfth=='是')
+									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
+								else result+='退回原因&nbsp;&nbsp;';	
+							}else{
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+							}
+						}
+						if($.cookie('unit2').length==9){
+							if(row.ssbzt=='未上报'){
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+										result+='退回下级&nbsp;&nbsp;';
+									
+								}	
+								
+								if(row.sfth=='是')
+									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
+								else result+='退回原因&nbsp;&nbsp;';	
+							}else{
+								if($.cookie('unit2').substr(0,1)=='1')
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+								else
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+							}
+						}
+						if($.cookie('unit2').length==7){
+							if(row.shzt=='未审核'){
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+									result+='退回未审核&nbsp;&nbsp;';
+								}else{
+									result+='未审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
+							}else{
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
+									result+='退回下级&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
+							}
+						}
+						return result; 
+					}
+				},
+				{field:'zt',title:'状态',width:50,align:'center',
+					formatter: function(value,row,index){
+						var zt="";if(row.shzt=='已审核'){zt='已审核';
+						}else{
+							if($.cookie('unit2').length==11){zt=row.xsbzt;}
+							if($.cookie('unit2').length==9){zt=row.ssbzt;}
+							if($.cookie('unit2').length==7){zt=row.shzt;}
+						}
+						return zt;
+				}},
+				{field:'bfyf',title:'拨付月份',width:70,align:'center'},
+				{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+				{field:'bd',title:'标段',width:50,align:'center'},
+				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+				{field:'stz',title:'省投资(万元)',width:80,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			]]
+			//--------------服务区-------
+			if(parent.YMLib.Var.xmlx=='gs_fwq')
+				col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+					{field:'cz',title:'操作',width:230,align:'center',
+					formatter: function(value,row,index){
+						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+						if($.cookie('unit2').length==11){
+							if(row.xsbzt=='未上报'){
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+								}	
+								if(row.sfth=='是')
+									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
+								else result+='退回原因&nbsp;&nbsp;';	
+							}else{
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+							}
+						}
+						if($.cookie('unit2').length==9){
+							if(row.ssbzt=='未上报'){
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+										result+='退回下级&nbsp;&nbsp;';
+									
+								}	
+								
+								if(row.sfth=='是')
+									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
+								else result+='退回原因&nbsp;&nbsp;';	
+							}else{
+								if($.cookie('unit2').substr(0,1)=='1')
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+								else
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+							}
+						}
+						if($.cookie('unit2').length==7){
+							if(row.shzt=='未审核'){
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+									result+='退回未审核&nbsp;&nbsp;';
+								}else{
+									result+='未审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
+							}else{
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
+									result+='退回下级&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
+							}
+						}
+						return result; 
+					}
+				},
+				{field:'zt',title:'状态',width:50,align:'center',
+					formatter: function(value,row,index){
+						var zt="";if(row.shzt=='已审核'){zt='已审核';
+						}else{
+							if($.cookie('unit2').length==11){zt=row.xsbzt;}
+							if($.cookie('unit2').length==9){zt=row.ssbzt;}
+							if($.cookie('unit2').length==7){zt=row.shzt;}
+						}
+						return zt;
+				}},
+				{field:'bfyf',title:'拨付月份',width:70,align:'center'},
+				{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+				{field:'bd',title:'标段',width:50,align:'center'},
+				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+				{field:'cgs',title:'车购税(万元)',width:80,align:'center'},
+				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
+				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
+			]]
+			//--------------养护中心-------
+			if(parent.YMLib.Var.xmlx=='gs_yhzx')
+				col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+					{field:'cz',title:'操作',width:230,align:'center',
+					formatter: function(value,row,index){
+						var result='<a style="color:#3399CC;" href="javascript:openDwInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
+						if($.cookie('unit2').length==11){
+							if(row.xsbzt=='未上报'){
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'xsbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+								}	
+								if(row.sfth=='是')
+									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
+								else result+='退回原因&nbsp;&nbsp;';	
+							}else{
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+							}
+						}
+						if($.cookie('unit2').length==9){
+							if(row.ssbzt=='未上报'){
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								if(parent.anqxstr.indexOf("上报")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'ssbzt','"+row.id+"'"+')" >未上报</a>&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thxj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+								}else{
+									result+='未上报&nbsp;&nbsp;';
+									if($.cookie('unit2').substr(0,1)=='1')
+										result+='退回下级&nbsp;&nbsp;';
+									
+								}	
+								
+								if(row.sfth=='是')
+									result+='<a style="color:#3399CC;" href="javascript:showStr('+"'"+row.thyy+"'"+')" >退回原因</a>&nbsp;&nbsp;';
+								else result+='退回原因&nbsp;&nbsp;';	
+							}else{
+								if($.cookie('unit2').substr(0,1)=='1')
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+								else
+								result+='编辑&nbsp;&nbsp;已上报&nbsp;&nbsp;退回原因&nbsp;&nbsp;';
+							}
+						}
+						if($.cookie('unit2').length==7){
+							if(row.shzt=='未审核'){
+								if(parent.anqxstr.indexOf("增删改")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:editDw('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;';
+								}
+								
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'shzt','"+row.id+"'"+')" >未审核</a>&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:thXj('+"'thsj','"+row.id+"'"+')" >退回下级</a>&nbsp;&nbsp;';
+									result+='退回未审核&nbsp;&nbsp;';
+								}else{
+									result+='未审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
+							}else{
+								if(parent.anqxstr.indexOf("审核")!=-1){
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;';
+									result+='退回下级&nbsp;&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:updateBfType('+"'thwsh','"+row.id+"'"+')" >退回未审核</a>&nbsp;&nbsp;';
+								}else{
+									result+='编辑&nbsp;&nbsp;已审核&nbsp;&nbsp;退回下级&nbsp;&nbsp;退回未审核&nbsp;&nbsp;';
+								}
+								
+							}
+						}
+						return result; 
+					}
+				},
+				{field:'zt',title:'状态',width:50,align:'center',
+					formatter: function(value,row,index){
+						var zt="";if(row.shzt=='已审核'){zt='已审核';
+						}else{
+							if($.cookie('unit2').length==11){zt=row.xsbzt;}
+							if($.cookie('unit2').length==9){zt=row.ssbzt;}
+							if($.cookie('unit2').length==7){zt=row.shzt;}
+						}
+						return zt;
+				}},
+				{field:'bfyf',title:'拨付月份',width:70,align:'center'},
+				{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
+				{field:'bd',title:'标段',width:50,align:'center'},
+				{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+				{field:'stz',title:'省投资(万元)',width:80,align:'center'},
+				{field:'zddzjl',title:'重点打造奖励(万元)',width:80,align:'center'},
 				{field:'dfzc',title:'地方自筹(万元)',width:80,align:'center'},
 				{field:'ttc',title:'厅统筹(万元)',width:80,align:'center'}
 			]]
