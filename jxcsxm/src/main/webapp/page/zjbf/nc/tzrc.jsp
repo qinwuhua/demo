@@ -33,7 +33,7 @@
 			loadBmbm3('shzt','审核状态');
 			loadBmbm3('ssbzt','上报状态');
 			loadBmbm3('xsbzt','上报状态');
-			loadBmbm3('sfqbbf','是否全部拨付','否');
+			loadBmbm3('sfqbbf','是否全部拨付');
 			
 			if($.cookie('unit2').length==11){
 				$("td[name='xian']").show();

@@ -1311,7 +1311,7 @@ public class XtglController extends BaseActionSupport{
 	
 	
 	public void getjhxdwh(){
-		System.out.println("1111");
+//		System.out.println("1111");
 		try {
 			String tablename="";
 			List<TreeNode> list=null;
@@ -1352,6 +1352,19 @@ public class XtglController extends BaseActionSupport{
 				tablename="and xmid in(select xmbm from xmjbxx)";
 				list=xtglServer.getjhxdwh(tablename);
 			}
+			if("gs_sfl".equals(type)){
+				tablename="and xmid in(select xmbm from xmjbxx where jsxz='示范路')";
+				list=xtglServer.getjhxdwh(tablename);
+			}
+			if("gs_fwq".equals(type)){
+				tablename="and xmid in(select xmbm from xmjbxx where jsxz='服务区')";
+				list=xtglServer.getjhxdwh(tablename);
+			}
+			if("gs_yhzx".equals(type)){
+				tablename="and xmid in(select xmbm from xmjbxx where jsxz='养护中心')";
+				list=xtglServer.getjhxdwh(tablename);
+			}
+			
 			
 			/*if(("wqgz").equals(unit.getXzqhdm())){
 				tablename="select distinct z.jhxdwh id,z.jhxdwh text from plan_wqgz p left join plan_zjxd z on p.id=z.xmid where z.jhxdwh is not null";

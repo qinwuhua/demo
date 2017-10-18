@@ -34,7 +34,7 @@
 			loadBmbm3('shzt','审核状态');
 			loadBmbm3('ssbzt','上报状态');
 			loadBmbm3('xsbzt','上报状态');
-			loadBmbm3('sfqbdw','是否全部到位','否');
+			loadBmbm3('sfqbdw','是否全部到位');
 			if($.cookie('unit2').length==11){
 				$("td[name='xian']").show();
 				$("td[name='shi']").hide();
