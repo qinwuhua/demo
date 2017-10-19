@@ -61,7 +61,9 @@
 				}else{
 					$("a[name='shi']").hide();
 				}
-				
+				//导入功能开放
+				$("#mybuttion3").show();
+				$("#mybuttion4").show();
 			}
 			if($.cookie('unit2').length==7){
 				$("a[name='sheng']").hide();

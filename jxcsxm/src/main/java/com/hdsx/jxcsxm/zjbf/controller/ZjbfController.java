@@ -274,7 +274,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 				//设置表头
 				ExcelTitleCell[] title = null;
 				title = new ExcelTitleCell[20];
-				title[0] = new ExcelTitleCell("项目编码", true,
+				title[0] = new ExcelTitleCell("项目编码", false,
 						new ExcelCoordinate(0, (short) 0), null, 20,false);
 				title[1] = new ExcelTitleCell("项目年份", false,
 						new ExcelCoordinate(0, (short) 1), null, 10,false);
@@ -376,7 +376,6 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 					response.getWriter().print(fileuploadFileName+"数据有误");
 					return;
 				}
-				System.out.println(dataMapArray[0]);
 				List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
 				
 				if(data.size()>=1) {
@@ -390,7 +389,9 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 					response.getWriter().print(fileuploadFileName+"数据有误");
 					return;
 				}
-				
+				for (Map map : data) {
+					map.put("SBTHCD", xmZjbf.getSbthcd());
+				}
 				//将数据插入到数据库
 				boolean b=zjbfServer.importZjbf(data);
 				if(b)

@@ -344,7 +344,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 			//设置表头
 			ExcelTitleCell[] title = null;
 			title = new ExcelTitleCell[18];
-			title[0] = new ExcelTitleCell("项目编码", true,
+			title[0] = new ExcelTitleCell("项目编码", false,
 					new ExcelCoordinate(0, (short) 0), null, 10,false);
 			title[1] = new ExcelTitleCell("项目年份", false,
 					new ExcelCoordinate(0, (short) 1), null, 20,false);
@@ -422,7 +422,9 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 	}
 	
 	public void importZjdw() {
-		System.out.println("进入方法");
+//		System.out.println("进入方法");
+		
+//		System.out.println(xmZjdw.getSbthcd());
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		HttpServletResponse response = getresponse();
 		try{
@@ -453,7 +455,9 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			
+			for (Map map : data) {
+				map.put("SBTHCD", xmZjdw.getSbthcd());
+			}
 			//将数据插入到数据库
 			boolean b=zjdwServer.importZjdw(data);
 			if(b)

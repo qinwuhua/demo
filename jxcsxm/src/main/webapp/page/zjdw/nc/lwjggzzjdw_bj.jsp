@@ -58,7 +58,6 @@ function zjdwtj(){
 	$('#jhxdwh').val($('#jhxdwh1').combo("getValue"));
 	var result=true;var ztz=0;
 	result=validateInput("cgs","number",result);
-	result=validateInput("cgs","number",result);
 	if(result) ztz=accAdd(ztz,$("#cgs").val()==""?0:$("#cgs").val());
 	result=validateInput("stz","number",result);
 	if(result) ztz=accAdd(ztz,$("#stz").val()==""?0:$("#stz").val());
