@@ -212,7 +212,7 @@
 		
 		
 		function caiji(name){
- 			var zj = {gydwdm:"",parent:"",bfyf:"",cgs1:"",rys1:"",ttc1:"",dfzc1:"",ztz1:"",bd:"",jhxdwh:"",bz:'',nf:"",tbr:"",rbsj:""};
+ 			var zj = {gydwdm:"",parent:"",bfyf:"",cgs1:"",rys1:"",ttc1:"",dfzc1:"",ztz1:"",bd:"",jhxdwh:"",bz:'',nf:"",tbr:"",tbsj:""};
 			var tr = $("tr[name='"+name+"']");
 			 $.each(tr,function(index,item){
 				 

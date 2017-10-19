@@ -187,7 +187,7 @@
 		
 		
 		function caiji(name){
-			var zj = {gydwdm:"",parent:"",dwyf:"",cgs1:"",rys1:"",ttc1:"",dfzc1:"",ztz1:"",bd:"",jhxdwh:"",nf:"",tbr:"",rbsj:""};
+			var zj = {gydwdm:"",parent:"",dwyf:"",cgs1:"",rys1:"",ttc1:"",dfzc1:"",ztz1:"",bd:"",jhxdwh:"",nf:"",tbr:"",tbsj:""};
 			var tr = $("tr[name='"+name+"']");
 			 $.each(tr,function(index,item){
 				 

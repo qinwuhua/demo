@@ -129,6 +129,7 @@
 							$("#nf").combobox('setValue',item.dwyf.substr(0,4));
 							$("#yf").combobox('setValue',item.dwyf.substr(item.dwyf.length-2,item.dwyf.length));
 							$("#tbr").val(item.tbr);
+							//alert(item.tbsj);
 							$("#tbsj").datebox('setValue',item.tbsj);
 							
 						});
@@ -212,7 +213,7 @@
 		
 		
 		function caiji(name){
- 			var zj = {gydwdm:"",parent:"",dwyf:"",cgs1:"",rys1:"",ttc1:"",dfzc1:"",ztz1:"",bd:"",jhxdwh:"",nf:"",tbr:"",rbsj:""};
+ 			var zj = {gydwdm:"",parent:"",dwyf:"",cgs1:"",rys1:"",ttc1:"",dfzc1:"",ztz1:"",bd:"",jhxdwh:"",nf:"",tbr:"",tbsj:""};
 			var tr = $("tr[name='"+name+"']");
 			 $.each(tr,function(index,item){
 				 
@@ -238,6 +239,7 @@
 					zj.nf+=$("#nf1").combo('getValue');
 					zj.tbr+=$("#tbr").val();
 					zj.tbsj+=$("#tbsj").combo('getValue');
+					
 				}else{
 					zj.gydwdm+=","+item.id;
 					zj.parent+=","+$(inputList[4]).val();
