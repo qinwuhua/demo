@@ -282,8 +282,26 @@
 		} 
 		 
 		 
-		 
-		 
+		 //批量删除数据
+		 function plscsj(){
+			 var xzqhdm=$("#xzqh").combotree("getValues");
+				if(xzqhdm.length==0){
+					xzqhstr= $.cookie("dist2");
+					
+				}else if(xzqhdm.length==1){
+					if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+					if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+					xzqhstr=xzqhdm[0] ;
+				}else{
+					xzqhstr= xzqhdm.join(',');
+				}
+				
+				var jsxz="通自然村";
+				
+			 if(confirm("按填报时间进行删除操作,删除后不可恢复,确认吗？")){
+				 
+			 }
+		 }
 	</script>
 	<style type="text/css">
 TD {
@@ -341,7 +359,7 @@ text-decoration:none;
 									<a name='xian' id='mybuttion4' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:drsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">导入数据</a>
 									<a name='xian' id='mybuttion5' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbdwxj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion5')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion5')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
 									<a name='shi' id='mybuttion6' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbdwsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion6')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion6')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
-									
+<!-- 									<a name='xian' id='mybuttion7' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plscsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">批量删除</a> -->
 								</td>
                             </tr>
         					</table>

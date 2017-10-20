@@ -58,8 +58,8 @@
 			sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
 			from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
 			xmjbxx xm,xm_xmwc wc,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
 			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
 			and xm.gydwdm!='11101360000'
 			<if test="jhnf != null">and xd.xdnf=#{jhnf}</if>
@@ -87,8 +87,8 @@
 			sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
 			from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
 			xmjbxx xm,xm_xmwc wc,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
 			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
 			and xm.gydwdm!='11101360000'
 			<if test="jhnf != null">and xd.xdnf=#{jhnf}</if>
@@ -116,8 +116,8 @@
 			sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
 			from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
 			xmjbxx xm,xm_xmwc wc,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
 			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
 			and xm.gydwdm!='11101360000'
 			<if test="jhnf != null">and xd.xdnf=#{jhnf}</if>
@@ -159,8 +159,8 @@
 			sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
 			from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
 			xmjbxx xm,xm_xmwc wc,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
 			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
 			and xm.gydwdm!='11101360000'
 			<if test="xzqhdm != null">${xzqhdm}</if>
@@ -203,8 +203,8 @@
 			sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
 			from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
 			xmjbxx xm,xm_xmwc wc,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
 			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
 			and xm.gydwdm!='11101360000'
 			<if test="xzqhdm != null">${xzqhdm}</if>
@@ -247,8 +247,8 @@
 			sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
 			from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
 			xmjbxx xm,xm_xmwc wc,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
-			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
+			(select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
 			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
 			and xm.gydwdm!='11101360000'
 			<if test="xzqhdm != null">${xzqhdm}</if>
