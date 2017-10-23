@@ -102,10 +102,13 @@
 	function fanhui() {
 		var flag=request('flag');
 		//基础库数据导入返回
-		if(flag=='tzrczjdw'){
+		if(flag=='tzrczjdw'||flag=='ncgljszjdw'||flag=='yhgczjdw'||flag=='nclwjggzzjdw'||flag=='fwqzjdw'||flag=='gsdgzzjdw'||flag=='gslwjggzzjdw'||flag=='sflzjdw'||flag=='yhdzxzjdw'||flag=='yhzxzjdw'||flag=='zhhfzjdw'){
 			window.parent.frames.$("#grid").datagrid('reload');
 			window.parent.frames.loadTj();
 		}
+		
+		
+		
 		if(flag=='tzrczjbf'){
 			window.parent.frames.$("#grid").datagrid('reload');
 			window.parent.frames.loadTj();

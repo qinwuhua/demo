@@ -93,8 +93,17 @@ public class XmZjdw{
     private String jhxdtdk;
     private String jhxddfzc;
     private String zddzjl;
+    private String jyzj;
     
-    public String getZddzjl() {
+    public String getJyzj() {
+		return jyzj;
+	}
+
+	public void setJyzj(String jyzj) {
+		this.jyzj = jyzj;
+	}
+
+	public String getZddzjl() {
 		return zddzjl;
 	}
 

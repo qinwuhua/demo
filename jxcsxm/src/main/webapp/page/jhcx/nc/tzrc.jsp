@@ -24,7 +24,7 @@
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
 			//loadBmbm3('gcfl','养护大中修工程分类');
 			loadjhxdwh("jhxdwh",'nc_tzrc');
-			
+			loadBmbm3('knw','库内外');
 			//YMLib.Var.jdbs=2;
 			queryXmlist();
 			
@@ -55,7 +55,7 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':getValuesById("knw"),
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gydwdm':$.cookie('unit2')
 			};
 	
@@ -113,7 +113,7 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':getValuesById("knw"),
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gydwdm':$.cookie('unit2')
 			};
 			$.ajax({
@@ -169,6 +169,9 @@ text-decoration:none;
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
 <!--         						<td align="right">建设性质：</td> -->
 <!-- 								<td><select name="gcfl" id="gcfl" style="width:80px;" ></select></td> -->
+        						<td align="right">库内外：</td>
+								<td><select id="knw" style="width:80px;"></select></td>
+        						
         					</tr>
         					<tr height="28">
                             	<td colspan="8">

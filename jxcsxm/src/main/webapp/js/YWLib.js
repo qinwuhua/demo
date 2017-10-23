@@ -595,3 +595,23 @@ var postDownLoadFile = function (options) {
     $iframe.remove();
 }
 
+function importSj(url,flag){
+	var weatherDlg = new J.dialog( {
+		id : 'ids',
+		title : '请选择EXCEL文档！',
+		page : '/jxcsxm/js/uploader/upload.jsp?url='+url+'&flag='+flag,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	
+	weatherDlg.ShowDialog();
+	
+	//return false;
+} 
+ 
+
+

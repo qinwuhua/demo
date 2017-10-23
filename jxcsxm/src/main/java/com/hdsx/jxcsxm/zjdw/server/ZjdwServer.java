@@ -52,14 +52,22 @@ public interface ZjdwServer {
 	int queryzjxdlistCount(XmZjdw xmZjdw);
 
 	List<XmZjdw> queryzjdwmb(Xmjbxx xmjbxx);
+	
+	List<XmZjdw> queryzjdwmbjyzj(Xmjbxx xmjbxx);
 
 	boolean importZjdw(List<Map> data);
-
+	
 	boolean plsbdwxj(XmZjdw xmZjdw);
 	
 	boolean plsbdwsj(XmZjdw xmZjdw);
 
 	List<XmZjdw> queryZjxddwByGydwdm(XmZjdw xmZjdw);
+
+	List<XmZjdw> queryZjjyByXmbm(String data);
+
+	boolean importZjdwjyzjtj(List<Map<String, String>> l);
+	
+	boolean importZjdwjyzjxg(List<Map<String, String>> l);
 
 	
 

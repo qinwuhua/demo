@@ -34,7 +34,7 @@
 			loadBmbm3('ssbzt','上报状态');
 			loadBmbm3('xsbzt','上报状态');
 			loadBmbm3('sfqbbf','是否全部拨付');
-			
+			loadBmbm3('knw','库内外');
 			if($.cookie('unit2').length==11){
 				$("td[name='xian']").show();
 				$("td[name='shi']").hide();
@@ -112,7 +112,7 @@
 			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
 			if(sfqbbf.substr(0,1)==',')
 				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':getValuesById("knw"),
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbbf':sfqbbf
 			};
@@ -192,7 +192,7 @@
 			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
 			if(sfqbbf.substr(0,1)==',')
 				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':getValuesById("knw"),
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbbf':sfqbbf
 			};
@@ -238,7 +238,7 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':getValuesById("knw"),
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2')
 			};
@@ -247,7 +247,6 @@
 	            data:params,
 	            method:'post'
 	          });
-			//window.location.href='/jxcsxm/zjdw/dcmb.do';
 				
 			setTimeout('disLoadjzt()',4000);
 		}
@@ -263,24 +262,9 @@
 		
 		
 		function drsj(){
-			var url="";
-			url="/jxcsxm/zjbf/importZjbf.do?gydwdm="+$.cookie("unit");
-			
-			var weatherDlg = new J.dialog( {
-				id : 'ids',
-				title : '请选择EXCEL文档！',
-				page : '/jxcsxm/js/uploader/upload.jsp?url='+url+'&flag='+'tzrczjbf',
-				width : 450,
-				height : 400,
-				top : 0,
-				rang : true,
-				resize : false,
-				cover : true
-			});
-			
-			weatherDlg.ShowDialog();
-			
-// 			return false;
+			var url="/jxcsxm/zjbf/importZjbf.do?gydwdm="+$.cookie("unit");
+			var flag='tzrczjbf';
+			importSj(url,flag);
 		} 
 	</script>
 	<style type="text/css">
@@ -329,6 +313,8 @@ text-decoration:none;
 								<td name='xian'><select name="xsbzt" id="xsbzt" style="width:80px;" ></select></td>
         						<td align="right">是否全部拨付：</td>
 								<td><select name="sfqbbf" id="sfqbbf" style="width:144px;" ></select></td>
+        						<td align="right">库内外：</td>
+								<td><select id="knw" style="width:144px;"></select></td>
         						
         					</tr>
         					<tr height="28">

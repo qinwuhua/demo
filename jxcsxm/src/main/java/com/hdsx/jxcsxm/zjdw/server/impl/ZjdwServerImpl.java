@@ -145,10 +145,15 @@ public class ZjdwServerImpl extends BaseOperate  implements ZjdwServer{
 	}
 
 	@Override
+	public List<XmZjdw> queryzjdwmbjyzj(Xmjbxx xmjbxx) {
+		return queryList("queryzjdwmbjyzj",xmjbxx);
+	}
+	
+	@Override
 	public boolean importZjdw(List<Map> data) {
 		return insertBatch("importZjdw", data)==data.size();
 	}
-
+	
 	@Override
 	public boolean plsbdwxj(XmZjdw xmZjdw) {
 		return update("plsbdwxj", xmZjdw)>0;
@@ -157,6 +162,21 @@ public class ZjdwServerImpl extends BaseOperate  implements ZjdwServer{
 	@Override
 	public boolean plsbdwsj(XmZjdw xmZjdw) {
 		return update("plsbdwsj", xmZjdw)>0;
+	}
+
+	@Override
+	public List<XmZjdw> queryZjjyByXmbm(String data) {
+		return queryList("queryZjjyByXmbm", data);
+	}
+
+	@Override
+	public boolean importZjdwjyzjtj(List<Map<String, String>> l) {
+		return insertBatch("importZjdwjyzjtj", l)==l.size();
+	}
+
+	@Override
+	public boolean importZjdwjyzjxg(List<Map<String, String>> l) {
+		return updateBatch("importZjdwjyzjxg", l)==l.size();
 	}
 
 	

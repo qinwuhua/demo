@@ -19,7 +19,9 @@
 	<action name="plshdw" class="zjdwController" method="plshdw"></action>
 	<action name="queryzjxdlist" class="zjdwController" method="queryzjxdlist"></action>
 	<action name="dcmb" class="zjdwController" method="dcmb"></action>
+	<action name="dcmbjyzj" class="zjdwController" method="dcmbjyzj"></action>
 	<action name="importZjdw" class="zjdwController" method="importZjdw"></action>
+	<action name="importZjdwjyzj" class="zjdwController" method="importZjdwjyzj"></action>
 	<action name="plsbdwxj" class="zjdwController" method="plsbdwxj"></action>
 	<action name="plsbdwsj" class="zjdwController" method="plsbdwsj"></action>
 	<action name="queryZjxddwByGydwdm" class="zjdwController" method="queryZjxddwByGydwdm"></action>

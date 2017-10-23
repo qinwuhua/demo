@@ -36,61 +36,68 @@ public class Xmjbxx implements Serializable {
 	private String yhdk;
 	private String xmlx;
 	
-	    private double cgs;
+    private double cgs;
 
-	    private double gz;
+    private double gz;
 
-	    private double sz;
+    private double sz;
 
-	    private double zq;
+    private double zq;
 
-	    private double tdk;
+    private double tdk;
 
-	    private double jl;
+    private double jl;
 
-	    private double qt;
+    private double qt;
 
-	    private double dfzc;
+    private double dfzc;
 
-	    private double stz;
+    private double stz;
 
-	    private String bd;
+    private String bd;
 
-	    private String sbthcd;
+    private String sbthcd;
 
-	    private String thyy;
+    private String thyy;
 
-	    private Date xsbsj;
+    private Date xsbsj;
 
-	    private Date ssbsj;
+    private Date ssbsj;
 
-	    private Date shsj;
+    private Date shsj;
 
-	    private String sfth;
+    private String sfth;
 
-	    private String dwyf;
-	    private String dwzj;
-	    private String yshdwzj;
-	    private String nf;
-	    private String name;
-	    private String cgs1;
-	    private String rys1;
-	    private String ttc1;
-	    private String dfzc1;
-	    private String ztz1;
-	    private String sffy;
-	    private String sfds;//是否地市
-	    private String sftj;//是否统计
-	    private String tbr;
-	    private String tbsj;
-	
-	    private String jhxdcgs;
-	    private String jhxdstz;
-	
-	    private String sfqbdw;
-	    private String sfqbbf;
-	    private String zddzjl;
+    private String dwyf;
+    private String dwzj;
+    private String yshdwzj;
+    private String nf;
+    private String name;
+    private String cgs1;
+    private String rys1;
+    private String ttc1;
+    private String dfzc1;
+    private String ztz1;
+    private String sffy;
+    private String sfds;//是否地市
+    private String sftj;//是否统计
+    private String tbr;
+    private String tbsj;
+
+    private String jhxdcgs;
+    private String jhxdstz;
+
+    private String sfqbdw;
+    private String sfqbbf;
+    private String zddzjl;
+    private String knw;
 	    
+	public String getKnw() {
+			return knw;
+		}
+		public void setKnw(String knw) {
+			this.knw = knw;
+		}
 	public String getZddzjl() {
 			return zddzjl;
 		}

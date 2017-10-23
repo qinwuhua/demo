@@ -2,10 +2,13 @@ package com.hdsx.jxcsxm.zjdw.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -78,6 +81,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+		xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
 		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		xmjbxx.setSfqbdw(MyUtil.getQueryTJ(xmjbxx.getSfqbdw(), "sfqbdw"));
 		if(xmZjdw.getPage()>0){
@@ -110,6 +114,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+		xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
 		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		xmjbxx.setSfqbdw(MyUtil.getQueryTJ(xmjbxx.getSfqbdw(), "sfqbdw"));
 			JsonUtils.write(zjdwServer.getdwTjAll(xmjbxx), getresponse().getWriter());
@@ -411,6 +416,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 			xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
 			xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 			xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+			xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
 			xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 			List<XmZjdw> ql = zjdwServer.queryzjdwmb(xmjbxx);
 			excelData.addAll(ql);
@@ -421,10 +427,74 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		}
 	}
 	
+	
+	public void dcmbjyzj() {
+		try {
+			//System.out.println("进入方法");
+			//设置表头
+			ExcelTitleCell[] title = null;
+			title = new ExcelTitleCell[11];
+			title[0] = new ExcelTitleCell("项目编码", false,
+					new ExcelCoordinate(0, (short) 0), null, 10,false);
+			title[1] = new ExcelTitleCell("项目年份", false,
+					new ExcelCoordinate(0, (short) 1), null, 20,false);
+			title[2] = new ExcelTitleCell("项目名称", false,
+					new ExcelCoordinate(0, (short) 2), null, 20,false);
+			title[3] = new ExcelTitleCell("管养单位", false,
+					new ExcelCoordinate(0, (short) 3), null, 20,false);
+			title[4] = new ExcelTitleCell("行政区划", false,
+					new ExcelCoordinate(0, (short) 4), null, 20,false);
+			title[5] = new ExcelTitleCell("计划总投资", false,
+					new ExcelCoordinate(0, (short) 5), null, 15,false);
+			title[6] = new ExcelTitleCell("计划下达车购税", false,
+					new ExcelCoordinate(0, (short) 6), null, 15,false);
+			title[7] = new ExcelTitleCell("计划下达燃油税", false,
+					new ExcelCoordinate(0, (short) 7), null, 15,false);
+			title[8] = new ExcelTitleCell("计划下达地方自筹", false,
+					new ExcelCoordinate(0, (short) 8), null, 15,false);
+			title[9] = new ExcelTitleCell("计划下达厅统筹", false,
+					new ExcelCoordinate(0, (short) 9), null, 15,false);
+			title[10] = new ExcelTitleCell("结余资金", false,
+					new ExcelCoordinate(0, (short) 10), null, 15,false);
+			
+			//设置列与字段对应
+			Map<String, String> attribute = new HashMap<String, String>();
+			attribute.put("0", "xmbm");//项目编码
+			attribute.put("1", "xmnf");//项目年份
+			attribute.put("2", "xmmc");//项目名称
+			attribute.put("3", "gydw");//管养单位
+			attribute.put("4", "xzqh");//行政区划
+			attribute.put("5", "jhztz");//计划总投资
+			attribute.put("6", "xdcgs");//计划下达车购税
+			attribute.put("7", "xdrys");//计划下达燃油税
+			attribute.put("8", "xddfzc");//计划下达地方自筹
+			attribute.put("9", "xdttc");//计划下达厅统筹
+			attribute.put("10", "jyzj");//结余资金
+			
+			List<Object> excelData = new ArrayList<Object>();
+			String titleName = xmjbxx.getJsxz()+"结余资金模版";
+			String fileName = xmjbxx.getJsxz()+"结余资金模版";
+			xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+			xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+			xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
+			xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+			xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+			xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
+			xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
+			xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+			xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
+			xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
+			List<XmZjdw> ql = zjdwServer.queryzjdwmbjyzj(xmjbxx);
+			excelData.addAll(ql);
+			ExcelEntity excel = new ExcelEntity(titleName, title, attribute,excelData);
+			ExcelExportUtil.excelWritelock(excel, fileName, getresponse());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public void importZjdw() {
-//		System.out.println("进入方法");
-		
-//		System.out.println(xmZjdw.getSbthcd());
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		HttpServletResponse response = getresponse();
 		try{
@@ -470,6 +540,90 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		
 		
 	}
+	
+	//批量导入结余资金
+	public void importZjdwjyzj() {
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		HttpServletResponse response = getresponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是系统导出的excel模版文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader.readExcelContent(0,18,fs,Object.class);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			//System.out.println(dataMapArray[0]);
+			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			
+			if(data.size()>=1) {
+				if(data.get(0).get("0").equals("项目编码")&&data.get(0).get("10").equals("结余资金"))
+				data.remove(0);
+				else {
+					response.getWriter().print(fileuploadFileName+"数据有误");
+					return;
+				}
+			}else {
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			//查询是否已存在
+			String xmbm="";
+			for (Map map : data) {
+				xmbm+=",'"+map.get("0")+"'";
+			}
+			
+			
+			xmbm=xmbm.substring(1);
+			List<XmZjdw> list = zjdwServer.queryZjjyByXmbm(xmbm);
+			
+			List<Map<String,String>> l1=new ArrayList<Map<String,String>>();
+			List<Map<String,String>> l2=new ArrayList<Map<String,String>>();
+			for (Map m : data) {
+				m.put("XMBM", m.get("0"));
+				m.put("JYZJ", m.get("10"));
+				if(list.size()>0)
+				for (XmZjdw x : list) {
+					if(x.getXmbm().equals(m.get("0"))) {
+						l2.add(m);
+					}else {
+						l1.add(m);
+					}
+				}
+				else
+					l1.add(m);
+			}
+			if(l1.size()>0)
+				zjdwServer.importZjdwjyzjtj(l1);
+			if(l2.size()>0)
+				zjdwServer.importZjdwjyzjxg(l2);
+			//将数据插入到数据库
+			//boolean b=zjdwServer.importZjdwjyzj(data);
+			//if(b)
+			
+			
+			
+			
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			//else 
+			//	response.getWriter().print(fileuploadFileName+"导入失败");
+		}catch(Exception e){
+			try {
+				response.getWriter().print(fileuploadFileName+"有重复数据导入失败");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	//批量上报县级
 	public void plsbdwxj() {

@@ -18,6 +18,7 @@
 		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
@@ -52,6 +53,7 @@
 		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
@@ -88,6 +90,7 @@
 		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
@@ -377,6 +380,7 @@
 		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
 		<if test="jsxz !='' and jsxz != null">${jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
 		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
 		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>

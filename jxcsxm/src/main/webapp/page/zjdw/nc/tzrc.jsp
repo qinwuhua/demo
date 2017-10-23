@@ -35,6 +35,7 @@
 			loadBmbm3('ssbzt','上报状态');
 			loadBmbm3('xsbzt','上报状态');
 			loadBmbm3('sfqbdw','是否全部到位');
+			loadBmbm3('knw','库内外');
 			if($.cookie('unit2').length==11){
 				$("td[name='xian']").show();
 				$("td[name='shi']").hide();
@@ -102,8 +103,6 @@
 			}
 			
 			var jsxz="通自然村";
-			
-			
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
@@ -114,7 +113,7 @@
 			var sfqbdw=$("#sfqbdw").combobox("getValues").join(",");
 			if(sfqbdw.substr(0,1)==',')
 				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':getValuesById("knw"),
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbdw':sfqbdw
 			};
@@ -194,7 +193,7 @@
 			var sfqbdw=$("#sfqbdw").combobox("getValues").join(",");
 			if(sfqbdw.substr(0,1)==',')
 				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':getValuesById("knw"),
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbdw':sfqbdw
 			};
@@ -237,7 +236,7 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':getValuesById("knw"),
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2')
 			};
@@ -252,7 +251,43 @@
 		}
 		
 		
-		
+		function dcmbjyzj(){
+			loadjzt();
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+			
+			var jsxz="通自然村";
+			
+			
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':getValuesById("knw"),
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2')
+			};
+			postDownLoadFile({
+	            url:'/jxcsxm/zjdw/dcmbjyzj.do',
+	            data:params,
+	            method:'post'
+	          });
+				
+			setTimeout('disLoadjzt()',4000);
+		}
 		
 		
 		
@@ -261,27 +296,20 @@
 		
 		
 		function drsj(){
-			var url="";
-			url="/jxcsxm/zjdw/importZjdw.do?gydwdm="+$.cookie("unit");
-			
-			var weatherDlg = new J.dialog( {
-				id : 'ids',
-				title : '请选择EXCEL文档！',
-				page : '/jxcsxm/js/uploader/upload.jsp?url='+url+'&flag='+'tzrczjdw',
-				width : 450,
-				height : 400,
-				top : 0,
-				rang : true,
-				resize : false,
-				cover : true
-			});
-			
-			weatherDlg.ShowDialog();
-			
-			//return false;
+			var url="/jxcsxm/zjdw/importZjdw.do?gydwdm="+$.cookie("unit");
+			var flag='tzrczjdw';
+			importSj(url,flag);
 		} 
 		 
 		 
+		function drsjjyzj(){
+			var url="/jxcsxm/zjdw/importZjdwjyzj.do?gydwdm="+$.cookie("unit");
+			var flag='tzrczjdw';
+			importSj(url,flag);
+		}
+		
+		
+		
 		 //批量删除数据
 		 function plscsj(){
 			 var xzqhdm=$("#xzqh").combotree("getValues");
@@ -336,7 +364,7 @@ text-decoration:none;
         						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:140px;" /></td>
         						
-								</tr>
+							</tr>
         					<tr height="28">
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
@@ -349,6 +377,8 @@ text-decoration:none;
 								<td name='xian'><select name="xsbzt" id="xsbzt" style="width:80px;" ></select></td>
         						<td align="right">是否全部到位：</td>
 								<td><select name="sfqbdw" id="sfqbdw" style="width:144px;" ></select></td>
+        						<td align="right">库内外：</td>
+								<td><select id="knw" style="width:144px;"></select></td>
         						
         					</tr>
         					<tr height="28">
@@ -359,6 +389,8 @@ text-decoration:none;
 									<a name='xian' id='mybuttion4' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:drsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">导入数据</a>
 									<a name='xian' id='mybuttion5' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbdwxj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion5')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion5')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
 									<a name='shi' id='mybuttion6' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbdwsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion6')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion6')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
+									<a name='shi' id='mybuttion8' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:dcmbjyzj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">导出模版(结余资金)</a>
+									<a name='shi' id='mybuttion9' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:drsjjyzj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">导入数据(结余资金)</a>
 <!-- 									<a name='xian' id='mybuttion7' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plscsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">批量删除</a> -->
 								</td>
                             </tr>
