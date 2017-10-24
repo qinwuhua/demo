@@ -1464,10 +1464,8 @@ public class XtglController extends BaseActionSupport{
 			session.setAttribute("nf", nf);
 			session.setAttribute("yf", yf);
 			
-			
-			
-			//ResponseUtils.write(getresponse(), ""+true);
-			JsonUtils.write(null, getresponse().getWriter());
+			ResponseUtils.write(getresponse(), ""+true);
+			//JsonUtils.write(true, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

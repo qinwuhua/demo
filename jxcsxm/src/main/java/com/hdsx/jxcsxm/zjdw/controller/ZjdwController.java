@@ -149,9 +149,6 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		if("0".equals(xmZjdw.getSffy())){
 			xmZjdw.setPage(1);
 			xmZjdw.setRows(500);
-		}else{
-			xmZjdw.setPage(page);
-			xmZjdw.setRows(rows);
 		}
 		List<XmZjdw> list=zjdwServer.queryzjdwlist(xmZjdw);
 		int count=zjdwServer.queryzjdwlistCount(xmZjdw);

@@ -2,6 +2,7 @@ package com.hdsx.jxcsxm.tjbb.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 	private Excel_list elist=new Excel_list();
 	private File fileupload;
 	private String fileuploadFileName;
+	
 	@Override
 	public Excel_list getModel() {
 		return elist;
@@ -172,6 +174,8 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "xm.jsxz||xm.gcfl"));
 			elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
 			elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
+			elist.setJhnf(MyUtil.getQueryTJ(elist.getJhnf(), "xd.xdnf"));
+			
 			if ("1".equals(elist.getFlag())) {
 				ExcelData eldata=new ExcelData();//创建一个类
 				eldata.setTitleName("计划执行情况表");//设置第一行
@@ -186,11 +190,13 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				    list=tjbbServer.getZdyBbzd(elist);
 				    
 				    String col=(String) session.getAttribute("colValue");
-				    String datalist=(String) session.getAttribute("sql");
+				    /*String datalist=(String) mylist;
+				    System.out.println(datalist);
 				    JSONArray ja = JSONArray.fromObject(datalist);  
 				    @SuppressWarnings("unchecked")
 					List<Excel_list> list1 = (List<Excel_list>) JSONArray.toList(ja,
-							new Excel_list(), new JsonConfig());
+							new Excel_list(), new JsonConfig());*/
+				    List<Excel_list> list1 = (List<Excel_list>) session.getAttribute("zxqkblist");
 		    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
 					
 			      int rowxh=0,col1=0,col2=0;
@@ -256,6 +262,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				
 			} else {
 				List<Excel_list> l = tjbbServer.getJhzxqkb(elist);
+				getRequest().getSession().setAttribute("zxqkblist", l);
 				JsonUtils.write(l, getresponse().getWriter());
 			}
 		} catch (Exception e) {
@@ -367,8 +374,8 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "xm.jsxz||xm.gcfl"));
 				elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
 				elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
-				System.out.println(elist.getGydw()+"++++++++++=");
 				List<Excel_list> l = tjbbServer.getTzhzb(elist);
+				
 				JsonUtils.write(l, getresponse().getWriter());
 			}
 		} catch (Exception e) {

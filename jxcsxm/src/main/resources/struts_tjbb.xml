@@ -14,7 +14,5 @@
 	<action name="getTjbb" class="tjbbController" method="getTjbb"></action>
 	
 	
-	
-	
  </package>
 </struts>

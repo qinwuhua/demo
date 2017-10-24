@@ -115,13 +115,12 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 	}
 	
 	public void queryzjbflist(){
+		//System.out.println(page+"    "+xmZjbf.getPage());
 		if("0".equals(xmZjbf.getSffy())){
 			xmZjbf.setPage(1);
 			xmZjbf.setRows(500);
-		}else{
-			xmZjbf.setPage(page);
-			xmZjbf.setRows(rows);
 		}
+		
 		List<XmZjbf> list=zjbfServer.queryzjbflist(xmZjbf);
 		int count=zjbfServer.queryzjbflistCount(xmZjbf);
 		EasyUIPage<XmZjbf> e=new EasyUIPage<XmZjbf>();

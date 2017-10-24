@@ -1,6 +1,7 @@
 package com.hdsx.jxcsxm.tjbb.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * excel的内容实体，从第一列到第n列的数据分别为v_0到v_n
@@ -44,8 +45,6 @@ public class Excel_list implements Serializable {
 	private String pxfs;
 	private int xmsl=0;
 	private String yf;
-	
-	
 	public String getYf() {
 		return yf;
 	}

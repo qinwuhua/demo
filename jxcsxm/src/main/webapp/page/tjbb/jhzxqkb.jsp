@@ -36,7 +36,7 @@
 	<script type="text/javascript">
 	$(function(){
 		loadDist1("xzqh",$.cookie("dist"));
-		loadBmbm('jhnf','项目年份',new Date().getFullYear());
+		loadBmbm3('jhnf','项目年份',new Date().getFullYear());
 		loadBmbm3('xmlx','报表项目类型');
 		loadjhxdwh("jhxdwh",'gs_all');
 	});
@@ -83,7 +83,7 @@
 		
 		$.ajax({
 			url:"/jxcsxm/tjbb/getJhzxqkb.do",
-			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val()+"&gydw="+gydw,
+			data:'flag=0&jhnf='+getValuesById("jhnf")+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val()+"&gydw="+gydw,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -110,14 +110,13 @@
 			return;
 		}
 		
-		var json_data = JSON.stringify(datalist); 
 		
-		var data="flag=1&ssbb=jhzxqkb"+"&sbthcd="+$.cookie("unit2").length;
-		loadjzt();
-		 $.post('/jxcsxm/xtgl/exportBb_set.do',{nameValue:str1,colValue:str2,sql:json_data},function(){
-			window.location.href='/jxcsxm/tjbb/getJhzxqkb.do?'+data;
-		 }); 
-		 setTimeout('disLoadjzt()',4000);
+		  var data="flag=1&ssbb=jhzxqkb"+"&sbthcd="+$.cookie("unit2").length;
+			loadjzt();
+			 $.post('/jxcsxm/xtgl/exportBb_set.do',{nameValue:str1,colValue:str2},function(){
+				window.location.href='/jxcsxm/tjbb/getJhzxqkb.do?'+data;
+			 }); 
+			 setTimeout('disLoadjzt()',4000);
 		
 		
 	}
