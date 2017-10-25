@@ -236,7 +236,7 @@
              <div id='zjxd'>
 	            <tr>
 	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #FFEFD5; width: 15%; padding-left: 10px;height: 30px;">
-		              	资金下达信息————计划下达资金共【<span id="jhxdzj_xd" style="color: Red; font-weight: bold;">0</span>】万元,车购税【<span id="jhxdzj_cgs" style="color: Red; font-weight: bold;">0</span>】万元,省投资【<span id="jhxdzj_stz" style="color: Red; font-weight: bold;">0</span>】万元。
+		              	资金下达信息————计划下达补助资金共【<span id="jhxdzj_xd" style="color: Red; font-weight: bold;">0</span>】万元,车购税【<span id="jhxdzj_cgs" style="color: Red; font-weight: bold;">0</span>】万元,省投资【<span id="jhxdzj_stz" style="color: Red; font-weight: bold;">0</span>】万元。
 		           </td>
 	            </tr>   
 				

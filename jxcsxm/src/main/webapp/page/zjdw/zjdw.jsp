@@ -36,14 +36,14 @@
 				$("a[name='shi']").show();
 				$("a[name='xian']").hide();
 				$("a[name='sheng']").hide();
-				if($.cookie('unit2').substr(0,1)=='2')
-				$("#mybuttion51").hide();
-				
 				if(parent.anqxstr.indexOf("上报")!=-1){
 					$("a[name='shi']").show();
 				}else{
 					$("a[name='shi']").hide();
 				}
+				
+				if($.cookie('unit2').substr(0,1)=='2')
+					$("#mybuttion51").hide();
 			}
 			if($.cookie('unit2').length==7){
 				$("a[name='sheng']").show();
@@ -1233,7 +1233,7 @@
             <tr>
                 <td height="30" align="left" style="font-size: 12px;">
 	                    项目【<span id="xmmc" style="color: Red; font-weight: bold;">xxx</span>】<br/>
-	                    计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
+	                    计划下达补助资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
 	                    其中，车购税【<span id="jhxdcgs" style="color: Red; font-weight: bold;">0</span>】万元，
 	                    燃油税【<span id="jhxdrys" style="color: Red; font-weight: bold;">0</span>】万元，
 	                    厅统筹【<span id="jhxdttc" style="color: Red; font-weight: bold;">0</span>】万元，
