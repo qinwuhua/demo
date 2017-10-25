@@ -69,6 +69,8 @@ public interface ZjdwServer {
 	
 	boolean importZjdwjyzjxg(List<Map<String, String>> l);
 
+	List<XmZjdw> queryzjdwtbsj(Xmjbxx xmjbxx);
+
 	
 
 }

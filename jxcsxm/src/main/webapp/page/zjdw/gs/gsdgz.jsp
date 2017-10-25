@@ -109,7 +109,7 @@
 			var sfqbdw=$("#sfqbdw").combobox("getValues").join(",");
 			if(sfqbdw.substr(0,1)==',')
 				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':'国省道改造','xmjbxx.knw':'',
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbdw':sfqbdw
 			};
@@ -187,7 +187,7 @@
 			var sfqbdw=$("#sfqbdw").combobox("getValues").join(",");
 			if(sfqbdw.substr(0,1)==',')
 				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':'国省道改造','xmjbxx.knw':'',
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbdw':sfqbdw
 			};
@@ -232,7 +232,7 @@
 			var sfqbdw=$("#sfqbdw").combobox("getValues").join(",");
 			if(sfqbdw.substr(0,1)==',')
 				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':'国省道改造','xmjbxx.knw':'',
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbdw':sfqbdw
 			};
@@ -323,8 +323,8 @@ text-decoration:none;
             	<td style="padding-left: 10px; font-size:12px;">
             		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
            		        计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                        到位资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                        其中，已审核到位资金共【<span id="yshdwzj" style="color: Red; font-weight: bold;">0</span>】万元。
+		                        到位补助资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
+		                        其中，已审核到位补助资金共【<span id="yshdwzj" style="color: Red; font-weight: bold;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>

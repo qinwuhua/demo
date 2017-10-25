@@ -325,9 +325,10 @@
 				}
 				
 				var jsxz="通自然村";
-				
+				YMLib.Var.params={'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.gydw':'1'
+				};
 			 if(confirm("按填报时间进行删除操作,删除后不可恢复,确认吗？")){
-				 
+				 openWindow("编辑","/jxcsxm/page/zjdw/gs/zjdw_del.jsp",300,250);
 			 }
 		 }
 	</script>
@@ -391,7 +392,7 @@ text-decoration:none;
 									<a name='shi' id='mybuttion6' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbdwsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion6')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion6')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
 									<a name='shi' id='mybuttion8' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:dcmbjyzj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">导出模版(结余资金)</a>
 									<a name='shi' id='mybuttion9' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:drsjjyzj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion3')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion3')"  class="button button-tiny button-rounded button-raised button-primary">导入数据(结余资金)</a>
-<!-- 									<a name='xian' id='mybuttion7' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plscsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">批量删除</a> -->
+<!-- 									<a id='mybuttion7' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plscsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">批量删除</a> -->
 								</td>
                             </tr>
         					</table>
@@ -404,8 +405,8 @@ text-decoration:none;
             	<td style="padding-left: 10px; font-size:12px;">
             		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
            		        计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                        到位资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                        其中，已审核到位资金共【<span id="yshdwzj" style="color: Red; font-weight: bold;">0</span>】万元。
+		                        到位补助资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
+		                        其中，已审核到位补助资金共【<span id="yshdwzj" style="color: Red; font-weight: bold;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>

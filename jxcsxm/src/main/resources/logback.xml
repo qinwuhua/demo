@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- For assistance related to logback-translator or configuration -->
-<!-- files in general, please contact the logback user mailing list -->
-<!-- at http://www.qos.ch/mailman/listinfo/logback-user -->
-<!-- -->
-<!-- For professional support please see -->
-<!-- http://www.qos.ch/shop/products/professionalSupport -->
-<!-- -->
-<!--原配置-->
-<!--<?xml version="1.0" encoding="UTF-8" ?>
-<configuration scan="true" scanPeriod="60 seconds" debug="true">
+	<!--
+		For assistance related to logback-translator or configuration
+	-->
+	<!--
+		files in general, please contact the logback user mailing list
+	-->
+	<!--
+		at http://www.qos.ch/mailman/listinfo/logback-user
+	-->
+	<!--
+	-->
+	<!--
+		For professional support please see
+	-->
+	<!--
+		http://www.qos.ch/shop/products/professionalSupport
+	-->
+	<!--
+	-->
+<configuration>
 	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c-%M:%L] [%p] - %m%n
 			</pattern>
 		</encoder>
 	</appender>
-	&lt;!&ndash;<appender name="R" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<!-- <appender name="R"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+			See also
+			http://logback.qos.ch/manual/appenders.html#RollingFileAppender
+		
 		<File>C:/lnGisApp/tomcat-7.0.22/mylogs/logger.log</File>
 		<encoder>
 			<pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c-%M:%L] [%p] - %m%n
@@ -29,62 +44,30 @@
 			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
 			<MaxFileSize>10MB</MaxFileSize>
 		</triggeringPolicy>
-	</appender>
-&ndash;&gt;
-	&lt;!&ndash; 按照每天生成日志文件 &ndash;&gt;
+	</appender> -->
+	
+	
+	<!-- 按照每天生成日志文件 -->
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			&lt;!&ndash;日志文件输出的文件名&ndash;&gt;
-			<FileNamePattern>D:/log/jxyhgc/%d{yyyyMMdd}.log</FileNamePattern>
-			&lt;!&ndash;日志文件保留天数&ndash;&gt;
+			<!--日志文件输出的文件名-->
+			<FileNamePattern>C:/mylogs/jxcsxm/%d{yyyyMMdd}.log</FileNamePattern>
+			<!--日志文件保留天数-->
 			<MaxHistory>60</MaxHistory>
 		</rollingPolicy>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			&lt;!&ndash;格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符&ndash;&gt;
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
 			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
 		</encoder>
-		&lt;!&ndash;日志文件最大的大小&ndash;&gt;
+		<!--日志文件最大的大小-->
 		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-			<MaxFileSize>10MB</MaxFileSize>
-		</triggeringPolicy>
-	</appender>
-	<root level="DEBUG">
-		<appender-ref ref="stdout" />
-		&lt;!&ndash;<appender-ref ref="R" />&ndash;&gt;
-		<appender-ref ref="FILE" />
-	</root>
-</configuration>-->
-
-
-<configuration>
-	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
-		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c-%M:%L] [%p] - %m%n
-			</pattern>
-		</encoder>
-	</appender>
-	<appender name="R"
-			  class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<!-- See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
-		<File>C:\\log\\jxcsxm.log%i</File>
-		<append>false</append>
-		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c-%M:%L] [%p] - %m%n
-			</pattern>
-		</encoder>
-		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<minIndex>1</minIndex>
-			<maxIndex>8</maxIndex>
-			<FileNamePattern>C:\\log\\jxcsxm.log%i</FileNamePattern>
-		</rollingPolicy>
-		<triggeringPolicy
-				class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
 			<MaxFileSize>100MB</MaxFileSize>
 		</triggeringPolicy>
 	</appender>
-	<root level="DEBUG">
+	
+	<root level="INFO">
 		<appender-ref ref="stdout" />
-		<appender-ref ref="R" />
+<!-- 		<appender-ref ref="R" /> -->
+	<appender-ref ref="FILE" />
 	</root>
 </configuration>
-

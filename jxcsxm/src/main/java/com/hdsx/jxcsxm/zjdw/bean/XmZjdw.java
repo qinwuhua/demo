@@ -4,7 +4,9 @@ import java.util.Date;
 
 public class XmZjdw{
     private String id;
-
+    
+    private String xdttcs;
+    
     private String xmbm;
 
     private double ztz;
@@ -95,7 +97,11 @@ public class XmZjdw{
     private String zddzjl;
     private String jyzj;
     
-    public String getJyzj() {
+    public String getXdttcs() {
+		return xdttcs;
+	}
+
+	public String getJyzj() {
 		return jyzj;
 	}
 

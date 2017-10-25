@@ -752,8 +752,8 @@
 	            <tr>
 	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #FFEFD5; width: 15%; padding-left: 10px;height: 30px;">
 		              	资金到位信息————计划下达资金共【<span id="jhxdzj_dw" style="color: Red; font-weight: bold;">0</span>】万元，
-		                    到位资金共【<span id="dwzj_dw" style="color: Red; font-weight: bold;">0</span>】万元，
-		                    其中，已审核到位资金共【<span id="yshdwzj_dw" style="color: Red; font-weight: bold;">0</span>】万元。
+		                    到位补助资金共【<span id="dwzj_dw" style="color: Red; font-weight: bold;">0</span>】万元，
+		                    其中，已审核到位补助资金共【<span id="yshdwzj_dw" style="color: Red; font-weight: bold;">0</span>】万元。
 		           </td>
 	            </tr>   
 				

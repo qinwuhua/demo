@@ -179,6 +179,11 @@ public class ZjdwServerImpl extends BaseOperate  implements ZjdwServer{
 		return updateBatch("importZjdwjyzjxg", l)==l.size();
 	}
 
+	@Override
+	public List<XmZjdw> queryzjdwtbsj(Xmjbxx xmjbxx) {
+		return queryList("queryzjdwtbsj",xmjbxx);
+	}
+
 	
 	
 }

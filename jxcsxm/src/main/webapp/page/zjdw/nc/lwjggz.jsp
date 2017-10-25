@@ -326,8 +326,8 @@ text-decoration:none;
             	<td style="padding-left: 10px; font-size:12px;">
             		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
            		        计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                        到位资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                        其中，已审核到位资金共【<span id="yshdwzj" style="color: Red; font-weight: bold;">0</span>】万元。
+		                        到位补助资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
+		                        其中，已审核到位补助资金共【<span id="yshdwzj" style="color: Red; font-weight: bold;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>
