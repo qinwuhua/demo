@@ -103,8 +103,8 @@
 		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
-		<if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
 		) where 1=1
+		<if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
 		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
@@ -428,5 +428,46 @@
     where 1=1 and ssbzt='未上报' and sbthcd='9' ${xmbm} 
 	</update>
 	
-	
+	<update id="qbshdw" parameterType="xmjbxx">
+		
+		UPDATE XM_ZJBF SET xsbzt='已上报',ssbzt='已上报',shzt='已审核',shsj=sysdate
+		WHERE XMBM IN 
+		(
+		  select xmbm
+		  from(
+		  select t.*,xd.jhxdwh,decode(bf.bfbz,null,'否',dw.dwbz,'是','否') sfqbbf,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(xdbz,0) jhxdzj  from xmjbxx t
+	      left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(rys,0))+sum(nvl(yhdk,0))+sum(nvl(stz,0)) xdbz, 
+		  sum(nvl(ztz,0)) jhxdzj,sum(nvl(btzzj,0)) jhxdcgs,sum(nvl(stz,0)) jhxdstz,decode(sum(nvl(stz,0)),0,sum(nvl(ttc,0)),sum(nvl(stz,0))) jhxdttc,sum(nvl(dk,0)) jhxdtdk,sum(nvl(rys,0)) jhxdrys,sum(nvl(dfzc,0)) jhxddfzc from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd
+	      on t.xmbm=xd.xmid 
+	      left join(
+	      select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+	      (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr,
+	      sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) bfbz,sum(ztz-dfzc) bfzj,sum(decode(shzt,'已审核',ztz-dfzc,0)) yshbfzj 
+	      from xm_zjbf where to_number(sbthcd)&lt;=${sbthcd} group by xmbm
+	      ) bf on t.xmbm=bf.xmids
+	      left join 
+	      (select xmbm xmidss,sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) dwbz,sum(ztz-dfzc) dwzj
+	      from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmidss
+	      where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">and jsxz =#{jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		) where 1=1
+		<if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+		)
+		and xsbzt='已上报' and ssbzt='已上报' and shzt='未审核'
+		
+	</update>
 </mapper>

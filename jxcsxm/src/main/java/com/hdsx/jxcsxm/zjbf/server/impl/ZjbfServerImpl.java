@@ -140,5 +140,10 @@ public class ZjbfServerImpl extends BaseOperate  implements ZjbfServer{
 	public boolean plsbbfsj(XmZjbf xmZjbf) {
 		return update("plsbbfsj", xmZjbf)>0;
 	}
+
+	@Override
+	public boolean qbshbf(Xmjbxx xmjbxx) {
+		return update("qbshbf",xmjbxx)>0;
+	}
 	
 }

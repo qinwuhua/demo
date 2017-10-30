@@ -184,6 +184,11 @@ public class ZjdwServerImpl extends BaseOperate  implements ZjdwServer{
 		return queryList("queryzjdwtbsj",xmjbxx);
 	}
 
+	@Override
+	public boolean qbshdw(Xmjbxx xmZjdw) {
+		return update("qbshdw",xmZjdw)>0;
+	}
+
 	
 	
 }

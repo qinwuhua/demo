@@ -71,6 +71,8 @@ public interface ZjdwServer {
 
 	List<XmZjdw> queryzjdwtbsj(Xmjbxx xmjbxx);
 
+	boolean qbshdw(Xmjbxx xmjbxx);
+
 	
 
 }

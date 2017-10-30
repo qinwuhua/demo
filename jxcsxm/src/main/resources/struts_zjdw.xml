@@ -26,6 +26,7 @@
 	<action name="plsbdwsj" class="zjdwController" method="plsbdwsj"></action>
 	<action name="queryZjxddwByGydwdm" class="zjdwController" method="queryZjxddwByGydwdm"></action>
 	<action name="queryzjdwtbsj" class="zjdwController" method="queryzjdwtbsj"></action>
+	<action name="qbshdw" class="zjdwController" method="qbshdw"></action>
 	
 	
 	

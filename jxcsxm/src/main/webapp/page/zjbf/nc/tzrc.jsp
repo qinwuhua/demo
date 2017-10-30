@@ -266,6 +266,59 @@
 			var flag='tzrczjbf';
 			importSj(url,flag);
 		} 
+		
+		
+		function qbshdw(){
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+			
+			var jsxz="通自然村";
+			
+			
+			var xmnf=$("#xmnf").combobox("getValues").join(",");
+			if(xmnf.substr(0,1)==',')
+				xmnf=xmnf.substr(1,xmnf.length);
+			
+			var jhxdwh=$("#jhxdwh").combobox("getText");
+			if(jhxdwh.substr(0,1)==',')
+				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
+
+			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
+			if(sfqbbf.substr(0,1)==',')
+				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':getValuesById("knw"),
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbbf':sfqbbf
+			};
+				
+				$.ajax({
+					type:'post',
+					url:'/jxcsxm/zjbf/qbshbf.do',
+					data:params,
+					dataType:'json',
+					success:function(msg){
+						if(msg){
+							alert("审核成功");
+							$("#grid").datagrid('reload');
+							loadTj();
+						}
+						else{
+							alert("审核失败");
+						}
+					}
+				});
+				
+		 }
+		
 	</script>
 	<style type="text/css">
 TD {
@@ -325,6 +378,7 @@ text-decoration:none;
 									<a name='xian' id='mybuttion4' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:drsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion4')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion4')"  class="button button-tiny button-rounded button-raised button-primary">导入数据</a>
 									<a name='xian' id='mybuttion5' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbbfxj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion5')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion5')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
 									<a name='shi' id='mybuttion6' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbbfsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion6')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion6')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
+									<a name='sheng' id='mybuttion10' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:qbshdw()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion10')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion10')"  class="button button-tiny button-rounded button-raised button-primary">全部审核</a>
 									
 								</td>
                             </tr>

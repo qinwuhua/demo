@@ -56,6 +56,8 @@ public interface ZjbfServer {
 
 	List<XmZjbf> queryZjdwbfByGydwdm(XmZjbf xmZjbf);
 
+	boolean qbshbf(Xmjbxx xmjbxx);
+
 	
 
 }
