@@ -25,7 +25,7 @@
 		
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
-			//loadBmbm3('gcfl','养护大中修工程分类');
+			loadBmbm3('gcfl','农村公路建设工程分类');
 			loadjhxdwh("jhxdwh",'nc_gljs');
 			loadBmbm3('shzt','审核状态');
 			loadBmbm3('ssbzt','上报状态');
@@ -105,7 +105,7 @@
 			if(sfqbdw.substr(0,1)==',')
 				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gcfl':getValuesById("gcfl"),
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbdw':sfqbdw
 			};
 	
@@ -185,7 +185,7 @@
 			if(sfqbdw.substr(0,1)==',')
 				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gcfl':getValuesById("gcfl"),
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbdw':sfqbdw
 			};
 			$.ajax({
@@ -231,7 +231,7 @@
 			if(sfqbdw.substr(0,1)==',')
 				sfqbdw=sfqbdw.substr(1,sfqbdw.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gcfl':getValuesById("gcfl"),
 					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbdw':sfqbdw
 			};
 			postDownLoadFile({
@@ -293,6 +293,8 @@ text-decoration:none;
 								<td name='xian'><select name="xsbzt" id="xsbzt" style="width:80px;" ></select></td>
         						<td align="right">是否全部到位：</td>
 								<td><select name="sfqbdw" id="sfqbdw" style="width:144px;" ></select></td>
+        						<td align="right">建设性质：</td>
+								<td><select name="gcfl" id="gcfl" style="width:144px;" ></select></td>
         						
         					</tr>
         					<tr height="28">

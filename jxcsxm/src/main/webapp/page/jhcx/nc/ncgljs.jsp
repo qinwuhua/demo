@@ -22,7 +22,7 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
-			//loadBmbm3('gcfl','养护大中修工程分类');
+			loadBmbm3('gcfl','农村公路建设工程分类');
 			loadjhxdwh("jhxdwh",'nc_gljs');
 			
 			//YMLib.Var.jdbs=2;
@@ -55,7 +55,7 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
+			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'','xmjbxx.gcfl':getValuesById("gcfl"),
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gydwdm':$.cookie('unit2')
 			};
 	
@@ -114,7 +114,7 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
+			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'','xmjbxx.gcfl':getValuesById("gcfl"),
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gydwdm':$.cookie('unit2')
 			};
 			$.ajax({
@@ -159,7 +159,7 @@ text-decoration:none;
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:165px;"></select></td>
 								<td align="right">项目年份：</td>
-        						<td><select id="xmnf" style="width: 80px;"></select></td>
+        						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">项目编码：</td>
         						<td><input name="xmbm" type="text" id="xmbm" style="width:140px;" /></td>
         						<td align="right">项目名称：</td>
@@ -171,6 +171,9 @@ text-decoration:none;
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
 <!--         						<td align="right">建设性质：</td> -->
 <!-- 								<td><select name="gcfl" id="gcfl" style="width:80px;" ></select></td> -->
+        						<td align="right">建设性质：</td>
+								<td><select name="gcfl" id="gcfl" style="width:100px;" ></select></td>
+        						
         					</tr>
         					<tr height="28">
                             	<td colspan="8">
