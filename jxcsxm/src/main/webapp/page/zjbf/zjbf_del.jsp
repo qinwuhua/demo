@@ -51,7 +51,7 @@ function delzjdwqb(){
 		
 		$.ajax({
 			type:'post',
-			url:'/jxcsxm/zjdw/delzjbfqb.do',
+			url:'/jxcsxm/zjbf/delzjbfqb.do',
 			data:parent.YMLib.Var.data+"&xmjbxx.tbsj="+tbsj,
 			dataType:'json',
 			success:function(msg){
