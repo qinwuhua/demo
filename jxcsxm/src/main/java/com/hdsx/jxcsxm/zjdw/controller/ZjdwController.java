@@ -639,7 +639,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 	public void queryzjdwtbsj(){
 		try {
 			xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
-			
+			xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
 			JsonUtils.write(zjdwServer.queryzjdwtbsj(xmjbxx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -664,5 +664,48 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		
 	}
 	
+	//全部删除的方法
+	public void delzjdwqb() {
+		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
+		xmjbxx.setTbsj(MyUtil.getQueryTJ(xmjbxx.getTbsj(), "tbsj"));
+		ResponseUtils.write(getresponse(), ""+zjdwServer.delzjdwqb(xmjbxx));
+	}
+	
+	
+	//自然村全部退回
+	public void qbthsj() {
+		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+		xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
+		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
+		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+		xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
+		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
+		xmjbxx.setSfqbdw(MyUtil.getQueryTJ(xmjbxx.getSfqbdw(), "sfqbdw"));
+		xmjbxx.setZgx(MyUtil.getQueryTJ(xmjbxx.getZgx(), "gydwdm"));
+		xmjbxx.setZgx1(MyUtil.getQueryTJNO(xmjbxx.getZgx(), "gydwdm"));
+		
+		ResponseUtils.write(getresponse(), ""+zjdwServer.qbthsj(xmjbxx));
+		
+	}
+	//自然村全部退回县级
+	public void qbthxj() {
+		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+		xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
+		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
+		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+		xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
+		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
+		xmjbxx.setSfqbdw(MyUtil.getQueryTJ(xmjbxx.getSfqbdw(), "sfqbdw"));
+		
+		ResponseUtils.write(getresponse(), ""+zjdwServer.qbthxj(xmjbxx));
+		
+	}
 	
 }

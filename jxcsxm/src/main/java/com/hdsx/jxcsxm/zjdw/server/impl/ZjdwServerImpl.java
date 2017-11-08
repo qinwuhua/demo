@@ -189,6 +189,22 @@ public class ZjdwServerImpl extends BaseOperate  implements ZjdwServer{
 		return update("qbshdw",xmZjdw)>0;
 	}
 
+	@Override
+	public boolean delzjdwqb(Xmjbxx xmjbxx) {
+		return delete("delzjdwqb",xmjbxx)>0;
+	}
+
+	@Override
+	public boolean qbthsj(Xmjbxx xmjbxx) {
+		
+		return delete("qbthsj",xmjbxx)>0 | delete("qbthsjzgx",xmjbxx)>0;
+	}
+
+	@Override
+	public boolean qbthxj(Xmjbxx xmjbxx) {
+		return delete("qbthxj",xmjbxx)>0;
+	}
+
 	
 	
 }

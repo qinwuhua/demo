@@ -58,6 +58,12 @@ public interface ZjbfServer {
 
 	boolean qbshbf(Xmjbxx xmjbxx);
 
-	
+	List<XmZjbf> queryzjbftbsj(Xmjbxx xmjbxx);
+
+	boolean delzjbfqb(Xmjbxx xmjbxx);
+
+	boolean qbthsj(Xmjbxx xmjbxx);
+
+	boolean qbthxj(Xmjbxx xmjbxx);
 
 }

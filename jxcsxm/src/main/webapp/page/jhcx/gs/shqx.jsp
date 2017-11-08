@@ -72,8 +72,8 @@
 			}
 			var zj;
 			if($.cookie("unit")=="36")
-			zj={'xmjbxx.gydwdm':"21101360000",'xmjbxx.xdnf':$("#nf").combo('getValue'),'jhxdwh':$("#jhxdwh").combo('getValue')};
-			else zj={'xmjbxx.gydwdm':$.cookie('unit'),'xmjbxx.xdnf':$("#nf").combo('getValue'),'jhxdwh':$("#jhxdwh").combo('getValue')};
+			zj={'xmjbxx.gydwdm':"21101360000",'xmjbxx.xdnf':$("#nf").combo('getValue'),'xmjbxx.jhxdwh':$("#jhxdwh").combo('getValue')};
+			else zj={'xmjbxx.gydwdm':$.cookie('unit'),'xmjbxx.xdnf':$("#nf").combo('getValue'),'xmjbxx.jhxdwh':$("#jhxdwh").combo('getValue')};
 			$.ajax({
 				type:'post',
 				async:false,

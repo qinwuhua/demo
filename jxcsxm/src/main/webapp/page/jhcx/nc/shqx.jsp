@@ -5,8 +5,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>水毁抢修</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css" />
@@ -18,28 +16,27 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<style type="text/css">
-		.table{border: 1px solid #FFE7BA;}
-		.table tr{border: 1px solid #FFE7BA;}
-		.table tr td{border: 1px solid #FFE7BA;}
+		.table{border: 1px solid #CBE0FF;}
+		.table tr{border: 1px solid #CBE0FF;}
+		.table tr td{border: 1px solid #CBE0FF;}
 		.table tr td input{width: 50px;}
 	</style>
 	<style type="text/css">
-		.table1{border: 1px solid #FFE7BA;}
-		.table1 tr{border: 1px solid #FFE7BA;}
-		.table1 tr td{border: 1px solid #FFE7BA;}
+		.table1{border: 1px solid #CBE0FF;}
+		.table1 tr{border: 1px solid #CBE0FF;}
+		.table1 tr td{border: 1px solid #CBE0FF;}
 	</style>
 	<script type="text/javascript">
 		$(function(){
 			$("#nf").combobox({onSelect:function(record){
-// 				loadZj($.cookie("unit"));
-				loadWhBmbmSh('jhxdwh',$("#nf").combobox('getValue')+"11101360000");
+				loadZj($.cookie("unit"));
 			}})
 			
-			loadBmbm('nf','项目年份',new Date().getFullYear());
-			loadWhBmbmSh('jhxdwh',$("#nf").combobox('getValue')+"11101360000");
+			loadBmbm('nf','全部项目年份',new Date().getFullYear());
+			
 			var gydw=$.cookie("unit");
 			if(gydw=="36"){
-				loadChildGydw("11101360000");
+				loadChildGydw("21101360000");
 				//loadChildGydw("11101360000");
 			}else{
 				loadChildGydw(gydw);
@@ -50,33 +47,32 @@
 			$.ajax({
 				type:'post',
 				async:false,
-				url:'/jxcsxm/zjdw/queryChildGydw.do',
+				url:'/jxzhpt/qqgl/queryChildGydw.do',
 				data:'gydw='+gydw,
 				dataType:'json',
 				success:function(data){
 					$.each(data,function(index,item){
-						$('#zjdw_table_tbody').append('<tr name="'+$.cookie("unit")+'" id="'+item.id+'"><td align="center">'+item.name+'</td><td align="center"><input type="number" readonly="readonly"  width="60" /></td><td  align="center"><input type="number" readonly="readonly" width="60" /></td><td  align="center"><input type="number" readonly="readonly" width="60" /></td><td  align="center"><input type="number" readonly="readonly" width="60" /><input type="hidden" value="'+item.parent+'"/></td></tr>');
+						$('#zjdw_table_tbody').append('<tr name="'+$.cookie("unit")+'" id="'+item.id+'"><td align="center">'+item.name+'</td><td align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /><input type="hidden" value="'+item.parent+'"/></td></tr>');
 					});
 				}
 			});
 			
 			//loadZj($.cookie("unit"));
 		}
-		
+		function getsf(){
+			loadZj($.cookie("unit"));
+		}
 		
 		function loadZj(gydwdm){
-			if($("#jhxdwh").combo('getValue')==""||$("#jhxdwh").combo('getValue')==""){
-				alert("请选择计划下达文号");
-				return;
-			}
+			if($('#jhxdwh').val()==""){alert("请填写计划下达文号");return;}
 			var zj;
 			if($.cookie("unit")=="36")
-			zj={'xmjbxx.gydwdm':"11101360000",'xmjbxx.xdnf':$("#nf").combo('getValue'),'jhxdwh':$("#jhxdwh").combo('getValue')};
-			else zj={'xmjbxx.gydwdm':$.cookie('unit'),'xmjbxx.xdnf':$("#nf").combo('getValue'),'jhxdwh':$("#jhxdwh").combo('getValue')};
+			zj={'gydwdm':"21101360000",'xdnf':$("#nf").combo('getValue'),jhxdwh:$('#jhxdwh').val()};
+			else zj={'gydwdm':gydwdm,'xdnf':$("#nf").combo('getValue'),jhxdwh:$('#jhxdwh').val()};
 			$.ajax({
 				type:'post',
 				async:false,
-				url:'/jxcsxm/jhcx/queryZjByGydwdm.do',
+				url:'/jxzhpt/qqgl/queryZjByGydwdm.do',
 				data:zj,
 				dataType:'json',
 				success:function(data){
@@ -89,7 +85,6 @@
 							$(input[3]).val(item.dfzc);
 							$(input[4]).val(item.parent);
 							$("#jhxdwh").val(item.jhxdwh);
-							//alert(item.xdnf);
 							$("#nf").combobox('setValue',item.xdnf.substr(0,4));
 							
 							//$("#bd").combobox('setValue',item.bd);
@@ -183,9 +178,6 @@
 	</script>
 </head>
 <body>
-	<div id="righttop">
-		<div id="p_top">计划查询>&nbsp;农村公路>&nbsp;水毁抢修</div>
-	</div>
 	<div style="text-align: left;font-size: 12px;margin: 0px;width:99%;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			
@@ -198,13 +190,8 @@
 								<td width="100">
 								<input type="text" class='easyui-combobox' id='nf' style="width: 65px;">
 								<td width="100">计划下达文号</td>
-								<td width="100">
-<!-- 								<input readonly="readonly" type='text' id='jhxdwh'style="width: 145px;"> -->
-								<input type='text' id='jhxdwh'style="width: 145px;">
-								</td>
-								<td width="100">
-									<input value=" 查询  " onclick="loadZj()" style="text-align: center;" type="button"/>
-								</td>
+								<td width="100"><input type='text' id='jhxdwh'style="width: 145px;"></td>
+								<td width="100"><input type="button" onclick='getsf()' value="查询"></td>
 							</tr>
 						</table>
 						<table id="zjdw_table" width="800" class="table" cellpadding="0" cellspacing="0">
@@ -218,7 +205,13 @@
 							</tr>
 							<tbody id="zjdw_table_tbody"></tbody>
 						</table>
-						
+						<table width="600">
+							<tr align="center">
+								<td>
+									<input value=" 保  存  " onclick="save()" style="text-align: center;" type="button"/>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</td>
         	</tr>

@@ -73,6 +73,10 @@ public interface ZjdwServer {
 
 	boolean qbshdw(Xmjbxx xmjbxx);
 
-	
+	boolean delzjdwqb(Xmjbxx xmjbxx);
+
+	boolean qbthsj(Xmjbxx xmjbxx);
+
+	boolean qbthxj(Xmjbxx xmjbxx);
 
 }

@@ -40,6 +40,25 @@ public class MyUtil implements Serializable{
 		}
 		return result;
 	}
+	/**
+	 * 查询条件都不是
+	 * @param bh 要处理的参数
+	 * @param name 要加条件的数据库字段
+	 * @return 拼好的条件
+	 */
+	public static String getQueryTJNO(String bh,String name){
+		String result="";
+		if(bh!=null&&!"".equals(bh)){
+			
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				result+=" and "+name+" not like '%"+s[i]+"%'";
+			}
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
+	}
 	
 	/**
 	 * 

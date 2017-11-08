@@ -145,5 +145,25 @@ public class ZjbfServerImpl extends BaseOperate  implements ZjbfServer{
 	public boolean qbshbf(Xmjbxx xmjbxx) {
 		return update("qbshbf",xmjbxx)>0;
 	}
+
+	@Override
+	public List<XmZjbf> queryzjbftbsj(Xmjbxx xmjbxx) {
+		return queryList("queryzjbftbsj", xmjbxx);
+	}
 	
+	@Override
+	public boolean delzjbfqb(Xmjbxx xmjbxx) {
+		return delete("delzjbfqb",xmjbxx)>0;
+	}
+	
+	@Override
+	public boolean qbthsj(Xmjbxx xmjbxx) {
+		
+		return delete("qbthsj",xmjbxx)>0 | delete("qbthsjzgx",xmjbxx)>0;
+	}
+
+	@Override
+	public boolean qbthxj(Xmjbxx xmjbxx) {
+		return delete("qbthxj",xmjbxx)>0;
+	}
 }

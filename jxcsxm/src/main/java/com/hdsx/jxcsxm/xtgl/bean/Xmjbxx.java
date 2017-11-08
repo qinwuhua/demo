@@ -91,7 +91,23 @@ public class Xmjbxx implements Serializable {
     private String sfqbbf;
     private String zddzjl;
     private String knw;
-	    
+	  
+    private String zgx;
+    private String zgx1;
+    
+    
+	public String getZgx1() {
+		return zgx1;
+	}
+	public void setZgx1(String zgx1) {
+		this.zgx1 = zgx1;
+	}
+	public String getZgx() {
+		return zgx;
+	}
+	public void setZgx(String zgx) {
+		this.zgx = zgx;
+	}
 	public String getKnw() {
 			return knw;
 		}

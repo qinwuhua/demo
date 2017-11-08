@@ -27,6 +27,9 @@
 	<action name="queryZjxddwByGydwdm" class="zjdwController" method="queryZjxddwByGydwdm"></action>
 	<action name="queryzjdwtbsj" class="zjdwController" method="queryzjdwtbsj"></action>
 	<action name="qbshdw" class="zjdwController" method="qbshdw"></action>
+	<action name="delzjdwqb" class="zjdwController" method="delzjdwqb"></action>
+	<action name="qbthsj" class="zjdwController" method="qbthsj"></action>
+	<action name="qbthxj" class="zjdwController" method="qbthxj"></action>
 	
 	
 	

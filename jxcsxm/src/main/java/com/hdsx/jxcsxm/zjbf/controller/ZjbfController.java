@@ -479,11 +479,66 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
 		xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
 		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
-		xmjbxx.setSfqbdw(MyUtil.getQueryTJ(xmjbxx.getSfqbdw(), "sfqbdw"));
+		xmjbxx.setSfqbbf(MyUtil.getQueryTJ(xmjbxx.getSfqbbf(), "sfqbbf"));
 		
 		ResponseUtils.write(getresponse(), ""+zjbfServer.qbshbf(xmjbxx));
 		
 	}
+	
+	
+	public void queryzjbftbsj(){
+		try {
+			xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+			xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
+			JsonUtils.write(zjbfServer.queryzjbftbsj(xmjbxx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//全部删除的方法
+	public void delzjbfqb() {
+		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
+		xmjbxx.setTbsj(MyUtil.getQueryTJ(xmjbxx.getTbsj(), "tbsj"));
+		ResponseUtils.write(getresponse(), ""+zjbfServer.delzjbfqb(xmjbxx));
+	}
+	
+	//自然村全部退回
+		public void qbthsj() {
+			xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+			xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+			xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+			xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+			xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
+			xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
+			xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+			xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
+			xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
+			xmjbxx.setSfqbbf(MyUtil.getQueryTJ(xmjbxx.getSfqbbf(), "sfqbbf"));
+			xmjbxx.setZgx(MyUtil.getQueryTJ(xmjbxx.getZgx(), "gydwdm"));
+			xmjbxx.setZgx1(MyUtil.getQueryTJNO(xmjbxx.getZgx(), "gydwdm"));
+			
+			ResponseUtils.write(getresponse(), ""+zjbfServer.qbthsj(xmjbxx));
+			
+		}
+		//自然村全部退回县级
+		public void qbthxj() {
+			xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+			xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+			xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+			xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+			xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
+			xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
+			xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+			xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
+			xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
+			xmjbxx.setSfqbbf(MyUtil.getQueryTJ(xmjbxx.getSfqbbf(), "sfqbbf"));
+			
+			ResponseUtils.write(getresponse(), ""+zjbfServer.qbthxj(xmjbxx));
+			
+		}
 	
 	
 }
