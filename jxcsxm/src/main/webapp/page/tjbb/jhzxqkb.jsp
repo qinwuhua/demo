@@ -36,6 +36,7 @@
 	<script type="text/javascript">
 	$(function(){
 		loadDist1("xzqh",$.cookie("dist"));
+		loadUnit1("gydw",$.cookie("unit"));
 		loadBmbm3('jhnf','项目年份',new Date().getFullYear());
 		loadBmbm3('xmlx','报表项目类型');
 		loadjhxdwh("jhxdwh",'gs_all');
@@ -71,6 +72,18 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		
+		var gydwdm=$("#gydw").combotree("getValues");
+		if(gydwdm.length==0){
+			gydwstr= $.cookie("unit2");
+			
+		}else if(gydwdm.length==1){
+			if(gydwdm[0].substr(gydwdm[0].length-2,gydwdm[0].length)=="00") gydwdm[0]=gydwdm[0].substr(0,gydwdm[0].length-2);
+			if(gydwdm[0].substr(gydwdm[0].length-2,gydwdm[0].length)=="00") gydwdm[0]=gydwdm[0].substr(0,gydwdm[0].length-2);
+			gydwstr=gydwdm[0] ;
+		}else{
+			gydwstr= gydwdm.join(',');
+		}
+		
 		var jhxdwh=$("#jhxdwh").combobox("getText");
 		if(jhxdwh.substr(0,1)==',')
 			jhxdwh=jhxdwh.substr(1,jhxdwh.length);
@@ -79,11 +92,11 @@
 		if(xmlx.substr(0,1)==',')
 			xmlx=xmlx.substr(1,xmlx.length);
 		
-		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
+		//var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
 		
 		$.ajax({
 			url:"/jxcsxm/tjbb/getJhzxqkb.do",
-			data:'flag=0&jhnf='+getValuesById("jhnf")+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val()+"&gydw="+gydw,
+			data:'flag=0&jhnf='+getValuesById("jhnf")+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val()+"&gydw="+gydwstr,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -153,14 +166,11 @@ text-decoration:none;
 								<tr height="28">
 									<td align="right">行政区划：</td>
 	        						<td><select id="xzqh" style="width:160px;"></select></td>
+									
 									<td align="right">计划年份：</td>
-        							<td><select id="jhnf" style="width: 80px;"></select></td>
+        							<td><select id="jhnf" style="width: 100px;"></select></td>
 									<td align="right">计划文号：</td>
         							<td><select id="jhxdwh" style="width: 120px;"></select></td>
-									<td align="right">项目名称：</td>
-        							<td><input type="text" id="xmmc" style="width: 120px;"></td>
-									<td align="right">项目类型：</td>
-        							<td><select id="xmlx" style="width: 100px;"></select></td>
 									<td align="right">排序方式：</td>
         							<td>
 	        							<span class="radioSpan">
@@ -173,10 +183,19 @@ text-decoration:none;
 								</tr>
         					
         					<tr height="28">
-                            	<td colspan="8">
-                            		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryBb()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
-                            		<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:exportBb()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">导出报表</a>
-								</td>
+        					<td align="right">管养单位：</td>
+       						<td><select id="gydw" style="width:160px;"></select></td>
+							<td align="right">项目类型：</td>
+      						<td><select id="xmlx" style="width: 100px;"></select></td>
+							<td align="right">项目名称：</td>
+     							<td><input type="text" id="xmmc" style="width: 118px;"></td>
+       						</tr>
+        					
+        					<tr height="28">
+                           	<td colspan="8">
+                           		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryBb()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
+                           		<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:exportBb()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">导出报表</a>
+							</td>
                             </tr>
 							</table>
         				</div>
@@ -185,9 +204,9 @@ text-decoration:none;
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div id="gddiv" style="width:100%;height: 450px;" >
+                	<div id="gddiv" style="width:100%;height: 430px;" >
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-140)+'px;');
+                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-160)+'px;');
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">

@@ -50,14 +50,12 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 			l1.add(l2.get(i));
 			int k=1;
 			for (int j = 0; j < l3.size(); j++) {
-				if(l2.get(i).getXzqhdm().equals(l3.get(j).getXzqhdm())){
-					if(l3.get(j).getXmsl()>1){
-						
-						
+				if(l2.get(i).getGydwdm().equals(l3.get(j).getGydwdm())){
+					if(l3.get(j).getXmsl()>0){
 						List<Excel_list> l=new ArrayList<Excel_list>();
 						
 						if("wh".equals(elist.getPxfs())){
-							elist.setXzqh(l3.get(j).getXzqhdm());
+							elist.setXzqh(l3.get(j).getGydwdm());
 							elist.setV_1(l3.get(j).getV_1());
 							
 							l3.get(j).setV_3("");
@@ -69,7 +67,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 						}
 							
 						if("xm".equals(elist.getPxfs())){
-							elist.setXzqh(l3.get(j).getXzqhdm());
+							elist.setXzqh(l3.get(j).getGydwdm());
 							elist.setXmbm(l3.get(j).getXmbm());
 							
 							l3.get(j).setV_2("");

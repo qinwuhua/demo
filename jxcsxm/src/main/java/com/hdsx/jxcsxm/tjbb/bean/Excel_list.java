@@ -45,6 +45,15 @@ public class Excel_list implements Serializable {
 	private String pxfs;
 	private int xmsl=0;
 	private String yf;
+	private String gydwdm;
+	
+	
+	public String getGydwdm() {
+		return gydwdm;
+	}
+	public void setGydwdm(String gydwdm) {
+		this.gydwdm = gydwdm;
+	}
 	public String getYf() {
 		return yf;
 	}
