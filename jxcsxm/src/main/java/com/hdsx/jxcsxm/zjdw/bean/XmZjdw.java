@@ -96,8 +96,17 @@ public class XmZjdw{
     private String jhxddfzc;
     private String zddzjl;
     private String jyzj;
+    private String dk;
     
-    public String getXdttcs() {
+    public String getDk() {
+		return dk;
+	}
+
+	public void setDk(String dk) {
+		this.dk = dk;
+	}
+
+	public String getXdttcs() {
 		return xdttcs;
 	}
 

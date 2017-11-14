@@ -10,7 +10,7 @@
 		order by id
 	</select>
 	<select id="selSqlStrByLxid_sheng" parameterType="param" resultType="param">
-		select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where shzt='未审核'
+		select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz@jh where shzt='未审核'
 		     <if test="sourceid != null and  sourceid != ''">
 				and sbthcd=7 and <![CDATA[sbthcd>=length(#{sourceid})]]>
 			</if>
@@ -32,7 +32,7 @@ union all
 				and   tbbmbm  like #{sourceid}||'%' 
 				and  xzqhdm like rtrim(#{xzqh},0)||'%'
  union all
-          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t  where sck_shzt='未审核' 
+          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz@jh t join xmk_wqgz@jh on xmkid=xmk_wqgz@jh.id) t  where sck_shzt='未审核' 
           <if test="sourceid != null and  sourceid != ''">
 				and sck_sbthcd=7 and <![CDATA[sck_sbthcd>=length(#{sourceid})]]>
 		  </if> 
@@ -55,7 +55,7 @@ union all
 
       union all
 		select count(*) id,'0101030101' name,'01010301' parent ,'项目计划库' bz
-		from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
+		from plan_wqgz@jh jh left join sck_wqgz@jh sc on (jh.sckid=sc.sckid) left join xmk_wqgz@jh lx on (sc.xmkid=lx.id)  
 		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0' 
 		<!-- and gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
@@ -92,7 +92,7 @@ union all
 		select count(*) id,'0101030108' name,'01010301' parent,'项目计划库' bz from plan_hsly where xzqhdm like #{xzqh} 
      	union all
 		select count(*) id,'0101040201' name,'01010402' parent ,'月报进度' bz
-    from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
+    from plan_wqgz@jh jh left join sck_wqgz@jh sc on (jh.sckid=sc.sckid) left join xmk_wqgz@jh lx on (sc.xmkid=lx.id)  
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwbm like #{sourceid}||'%'
        union all
@@ -130,7 +130,7 @@ union all
    	and sjsh='未审核' and kgzt='1' and jgzt='0' 
 	</select>
 	<select id="selSqlStrByLxid_shi" parameterType="param" resultType="param">
-		     select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where 
+		     select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz@jh where 
 		         decode(sbthcd,length(#{sourceid}),'未上报',sbzt) ='未上报'
 		        <if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sbthcd<=length(#{sourceid})]]>
@@ -155,7 +155,7 @@ union all
 				and  tbbmbm  like #{sourceid}||'%' 
 				and  xzqhdm like rtrim(#{xzqh},0)||'%'
  union all
-          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t  where 
+          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz@jh t join xmk_wqgz@jh on xmkid=xmk_wqgz@jh.id) t  where 
           		decode(sck_sbthcd,length(#{sourceid}),'未上报',sck_sbzt) ='未上报'
           	<if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sck_sbthcd<=length(#{sourceid})]]>
@@ -181,7 +181,7 @@ union all
 
       union all
 		select count(*) id,'0101030101' name,'01010301' parent ,'项目计划库' bz
-		from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
+		from plan_wqgz@jh jh left join sck_wqgz@jh sc on (jh.sckid=sc.sckid) left join xmk_wqgz@jh lx on (sc.xmkid=lx.id)  
 		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='0' and jh.spzt='0' and  
     	gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
 		   union all
@@ -219,7 +219,7 @@ union all
 		
      	union all
 		select count(*) id,'0101040201' name,'01010402' parent ,'月报进度' bz
-    from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
+    from plan_wqgz@jh jh left join sck_wqgz@jh sc on (jh.sckid=sc.sckid) left join xmk_wqgz@jh lx on (sc.xmkid=lx.id)  
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwbm like #{sourceid}||'%'
        union all
@@ -257,7 +257,7 @@ union all
     and  sjzt='未上报' and kgzt='1' and jgzt='0' 
 	</select>
 	<select id="selSqlStrByLxid_xian" parameterType="param" resultType="param">
-		select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where 
+		select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz@jh where 
 					decode(sbthcd,length(#{sourceid}),'未上报',sbzt) ='未上报'
 		       <if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sbthcd<=length(#{sourceid})]]>
@@ -282,7 +282,7 @@ union all
 			tbbmbm  like #{sourceid}||'%' 
 			and  xzqhdm like rtrim(#{xzqh},0)||'%'
  union all
-          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t  where
+          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz@jh t join xmk_wqgz@jh on xmkid=xmk_wqgz@jh.id) t  where
           		decode(sck_sbthcd,length(#{sourceid}),'未上报',sck_sbzt) ='未上报' 
           <if test="sourceid != null and  sourceid != ''">
 				and <![CDATA[sck_sbthcd<=length(#{sourceid})]]>
@@ -307,7 +307,7 @@ union all
 			and  xzqhdm like rtrim(#{xzqh},0)||'%'
       union all
 		select count(*) id,'0101030101' name,'01010301' parent ,'项目计划库' bz
-		from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
+		from plan_wqgz@jh jh left join sck_wqgz@jh sc on (jh.sckid=sc.sckid) left join xmk_wqgz@jh lx on (sc.xmkid=lx.id)  
 		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
     	gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
 		   union all
@@ -345,7 +345,7 @@ union all
 		
      	union all
 		select count(*) id,'0101040201' name,'01010402' parent ,'月报进度' bz
-    from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
+    from plan_wqgz@jh jh left join sck_wqgz@jh sc on (jh.sckid=sc.sckid) left join xmk_wqgz@jh lx on (sc.xmkid=lx.id)  
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwbm like #{sourceid}||'%' 
        union all
@@ -384,7 +384,7 @@ union all
 	</select>
 	<select id="selectExistQlProgramList" parameterType="param" resultType="param">
 		select jh.id,lx.qlmc as rolename,lx.qlzxzh as source,lx.gydw as name,jh.sbnf as desr
-		from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
+		from plan_wqgz@jh jh left join sck_wqgz@jh sc on (jh.sckid=sc.sckid) left join xmk_wqgz@jh lx on (sc.xmkid=lx.id)  
 		where lx.qlbh = #{sourceid}
 	</select>
 	<select id="selectExistQlProgramListCount" parameterType="param" resultType="pb">
@@ -392,45 +392,45 @@ union all
 	</select>
 	<select id="selectExistLxProgramList" parameterType="pb" resultType="pb">
 		select distinct p.* from (
-		 select c.xmmc,c.xmbm,'路面改造' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_lmgz j left join cbsj_lmgz c on j.xmbm=c.xmbm 
+		 select c.xmmc,c.xmbm,'路面改造' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_lmgz@jh j left join cbsj_lmgz@jh c on j.xmbm=c.xmbm 
 	    where c.xmbm in(
-	    select xmid from lxsh_lx l left join zgb_zxlwzhtx_lxsh zg on l.id=zg.id
+	    select xmid from lxsh_lx@jh l left join zgb_zxlwzhtx_lxsh@jh zg on l.id=zg.id
 	    where zg.zxlwlxbm like '%'||#{roadcode}||'%' and to_number(zg.zxlwzdzh)>${roadstart} and ${roadends}>to_number(zg.zxlwqdzh)
 	    and xmid like '%'||#{xzqh}||'%'
 	    )
-	    and c.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)
+	    and c.xmbm in (select xmid from plan_zjxd@jh where jhxdwh is not null)
 	    union all
-	    select c.xmmc,c.xmbm,'改建' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_sjgz j left join cbsj_sjgz c on j.xmbm=c.xmbm 
+	    select c.xmmc,c.xmbm,'改建' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_sjgz@jh j left join cbsj_sjgz@jh c on j.xmbm=c.xmbm 
 	    where c.xmbm in(
-	    select xmid from lxsh_lx l left join zgb_zxlwzhtx_lxsh zg on l.id=zg.id
+	    select xmid from lxsh_lx@jh l left join zgb_zxlwzhtx_lxsh@jh zg on l.id=zg.id
 	    where zg.zxlwlxbm like '%'||#{roadcode}||'%' and to_number(zg.zxlwzdzh)>${roadstart} and ${roadends}>to_number(zg.zxlwqdzh)
 	    and xmid like '%'||#{xzqh}||'%'
 	    )
-	    and c.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)
+	    and c.xmbm in (select xmid from plan_zjxd@jh where jhxdwh is not null)
 	    union all   
-	    select c.xmmc,c.xmbm,'新建' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_xj j left join cbsj_xj c on j.xmbm=c.xmbm 
+	    select c.xmmc,c.xmbm,'新建' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_xj@jh j left join cbsj_xj@jh c on j.xmbm=c.xmbm 
 	    where c.xmbm in(
-	    select xmid from lxsh_lx l left join zgb_zxlwzhtx_lxsh zg on l.id=zg.id
+	    select xmid from lxsh_lx@jh l left join zgb_zxlwzhtx_lxsh@jh zg on l.id=zg.id
 	    where zg.zxlwlxbm like '%'||#{roadcode}||'%' and to_number(zg.zxlwzdzh)>${roadstart} and ${roadends}>to_number(zg.zxlwqdzh)
 	    and xmid like '%'||#{xzqh}||'%'
 	    )
-	    and c.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)
+	    and c.xmbm in (select xmid from plan_zjxd@jh where jhxdwh is not null)
 	     union all   
-	    select c.xmmc,c.xmbm,'养护大中修' xmlx,c.gydw,c.xzqh,c.tz pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_yhdzx j left join cbsj_yhdzx c on j.xmbm=c.xmbm 
+	    select c.xmmc,c.xmbm,'养护大中修' xmlx,c.gydw,c.xzqh,c.tz pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_yhdzx@jh j left join cbsj_yhdzx@jh c on j.xmbm=c.xmbm 
 	    where c.xmbm in(
-	    select xmid from lxsh_lx l left join zgb_zxlwzhtx_lxsh zg on l.id=zg.id
+	    select xmid from lxsh_lx@jh l left join zgb_zxlwzhtx_lxsh@jh zg on l.id=zg.id
 	    where zg.zxlwlxbm like '%'||#{roadcode}||'%' and to_number(zg.zxlwzdzh)>${roadstart} and ${roadends}>to_number(zg.zxlwqdzh)
 	    and xmid like '%'||#{xzqh}||'%'
 	    )
-	    and c.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)
+	    and c.xmbm in (select xmid from plan_zjxd@jh where jhxdwh is not null)
 	    union all   
-	    select c.xmmc,c.xmbm,'灾毁恢复' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_sh j left join cbsj_sh c on j.xmbm=c.xmbm 
+	    select c.xmmc,c.xmbm,'灾毁恢复' xmlx,c.gydw,c.xzqh,j.pfztz,substr(j.xmbm,0,4) xmnf    from jhsh_sh@jh j left join cbsj_sh@jh c on j.xmbm=c.xmbm 
 	    where c.xmbm in(
-	    select xmid from lxsh_lx l left join zgb_zxlwzhtx_lxsh zg on l.id=zg.id
+	    select xmid from lxsh_lx@jh l left join zgb_zxlwzhtx_lxsh@jh zg on l.id=zg.id
 	    where zg.zxlwlxbm like '%'||#{roadcode}||'%' and to_number(zg.zxlwzdzh)>${roadstart} and ${roadends}>to_number(zg.zxlwqdzh)
 	    and xmid like '%'||#{xzqh}||'%'
 	    )
-	    and c.xmbm in (select xmid from plan_zjxd where jhxdwh is not null)
+	    and c.xmbm in (select xmid from plan_zjxd@jh where jhxdwh is not null)
     
 		)p
 	</select>

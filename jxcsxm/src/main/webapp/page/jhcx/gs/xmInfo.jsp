@@ -52,7 +52,7 @@
 		{field:'gz',title:'国债(万元)',width:75,align:'center'},
 		{field:'sz',title:'省债(万元)',width:75,align:'center'},
 		{field:'zq',title:'债券(万元)',width:75,align:'center'},
-		{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+		{field:'dk',title:'厅贷款(万元)',width:75,align:'center'},
 		{field:'jl',title:'奖励(万元)',width:75,align:'center'},
 		{field:'qt',title:'其他(万元)',width:75,align:'center'},
 		{field:'dfzc',title:'地方自筹(万元)',width:75,align:'center'},
@@ -66,7 +66,7 @@
 //				{field:'bd',title:'标段',width:50,align:'center'},
 			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
 			{field:'rys',title:'燃油税(万元)',width:75,align:'center'},
-			{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+			{field:'dk',title:'厅贷款(万元)',width:75,align:'center'},
 			{field:'qt',title:'其他(万元)',width:75,align:'center'}
 		]]
 		
@@ -81,7 +81,7 @@
 			{field:'gz',title:'国债(万元)',width:75,align:'center'},
 			{field:'sz',title:'省债(万元)',width:75,align:'center'},
 			{field:'zq',title:'债券(万元)',width:75,align:'center'},
-			{field:'tdk',title:'厅贷款(万元)',width:75,align:'center'},
+			{field:'dk',title:'厅贷款(万元)',width:75,align:'center'},
 			{field:'jl',title:'奖励(万元)',width:75,align:'center'},
 			{field:'qt',title:'其他(万元)',width:75,align:'center'}
 		]]

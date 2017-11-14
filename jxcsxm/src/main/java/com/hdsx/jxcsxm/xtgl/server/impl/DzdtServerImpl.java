@@ -12,7 +12,7 @@ import com.hdsx.jxcsxm.xtgl.server.DzdtServer;
 @Service
 public class DzdtServerImpl extends BaseOperate  implements DzdtServer{
 	public DzdtServerImpl() {
-		super("xtgl", "jdbc","jdbc_jh");
+		super("xtgl", "jdbc");
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class DzdtServerImpl extends BaseOperate  implements DzdtServer{
 
 	@Override
 	public List<ProgBean> selectExistLxProgramList(ProgBean param) {
-		return queryListForJdbc("selectExistLxProgramList", param,"jdbc_jh");
+		return queryList("selectExistLxProgramList", param);
 	}
 
 	@Override
