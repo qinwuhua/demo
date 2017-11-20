@@ -428,7 +428,7 @@
     where 1=1 and ssbzt='未上报' and sbthcd='9' ${xmbm} 
 	</update>
 	
-	<update id="qbshdw" parameterType="xmjbxx">
+	<update id="qbshbf" parameterType="xmjbxx">
 		
 		UPDATE XM_ZJBF SET xsbzt='已上报',ssbzt='已上报',shzt='已审核',shsj=sysdate
 		WHERE XMBM IN 

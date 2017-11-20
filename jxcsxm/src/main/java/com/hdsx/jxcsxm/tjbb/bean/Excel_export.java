@@ -6,12 +6,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
@@ -31,39 +31,40 @@ public class Excel_export {
 	public static void excel_export(ExcelData el,HttpServletResponse response) throws Exception{
 		try{
 		response.setContentType("octets/stream");
-		response.addHeader("Content-Disposition", "attachment;filename="+ new String(el.getFileName().trim().getBytes("gb2312"), "ISO-8859-1")+ ".xls");
+		response.addHeader("Content-Disposition", "attachment;filename="+ new String(el.getFileName().trim().getBytes("gb2312"), "ISO-8859-1")+ ".xlsx");
 		OutputStream out = response.getOutputStream();
-		HSSFWorkbook wb = new HSSFWorkbook();  
-		HSSFSheet sheet = wb.createSheet(el.getSheetName());
-		HSSFRow row = sheet.createRow((int) 0); 
-		HSSFCellStyle style = wb.createCellStyle();
-		HSSFCellStyle style1 = wb.createCellStyle();
-		HSSFCellStyle style2 = wb.createCellStyle();
-		style.setBorderTop(HSSFCellStyle.BORDER_THIN);
-	    style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-	    style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-	    style.setBorderRight(HSSFCellStyle.BORDER_THIN);
-	    style1.setBorderTop(HSSFCellStyle.BORDER_THIN);
-	    style1.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-	    style1.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-	    style1.setBorderRight(HSSFCellStyle.BORDER_THIN);
-	    style2.setBorderTop(HSSFCellStyle.BORDER_THIN);
-	    style2.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-	    style2.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-	    style2.setBorderRight(HSSFCellStyle.BORDER_THIN);
-		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-		style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-		style1.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-		style1.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+		
+		XSSFWorkbook wb = new XSSFWorkbook();  
+		XSSFSheet sheet = wb.createSheet(el.getSheetName());
+		XSSFRow row = sheet.createRow((int) 0); 
+		XSSFCellStyle style = wb.createCellStyle();
+		XSSFCellStyle style1 = wb.createCellStyle();
+		XSSFCellStyle style2 = wb.createCellStyle();
+		style.setBorderTop(XSSFCellStyle.BORDER_THIN);
+	    style.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+	    style.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+	    style.setBorderRight(XSSFCellStyle.BORDER_THIN);
+	    style1.setBorderTop(XSSFCellStyle.BORDER_THIN);
+	    style1.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+	    style1.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+	    style1.setBorderRight(XSSFCellStyle.BORDER_THIN);
+	    style2.setBorderTop(XSSFCellStyle.BORDER_THIN);
+	    style2.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+	    style2.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+	    style2.setBorderRight(XSSFCellStyle.BORDER_THIN);
+		style.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+		style.setVerticalAlignment(XSSFCellStyle.VERTICAL_CENTER);
+		style1.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+		style1.setVerticalAlignment(XSSFCellStyle.VERTICAL_CENTER);
 		style1.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
 		style1.setFillPattern(CellStyle.SOLID_FOREGROUND);
-		style2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-		style2.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-		HSSFCell cell = row.createCell((short) 0);
-		cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+		style2.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+		style2.setVerticalAlignment(XSSFCellStyle.VERTICAL_CENTER);
+		XSSFCell cell = row.createCell((short) 0);
+		cell.setCellType(XSSFCell.CELL_TYPE_STRING);
 		row.setHeightInPoints(30f);
-		HSSFFont font= wb.createFont();
-		HSSFFont font1= wb.createFont();
+		XSSFFont font= wb.createFont();
+		XSSFFont font1= wb.createFont();
 		font.setFontName("楷体");
         font.setFontHeightInPoints((short) 18);// 设置字体大小
 		font1.setFontName("宋体");
@@ -130,7 +131,7 @@ public class Excel_export {
          
             for (int j = 0; j <= maxy; j++) {
             	cell = row.createCell((short) j);
-            	cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+            	cell.setCellType(XSSFCell.CELL_TYPE_STRING);
             	if(j==0){
             		cell.setCellValue(trqk1.getV_0());  
                     cell.setCellStyle(style);
@@ -544,39 +545,39 @@ public class Excel_export {
 	public static void excel_exportGlzcqkb(ExcelData el,HttpServletResponse response) throws Exception{
 		try{
 		response.setContentType("octets/stream");
-		response.addHeader("Content-Disposition", "attachment;filename="+ new String(el.getFileName().trim().getBytes("gb2312"), "ISO-8859-1")+ ".xls");
+		response.addHeader("Content-Disposition", "attachment;filename="+ new String(el.getFileName().trim().getBytes("gb2312"), "ISO-8859-1")+ ".xlsx");
 		OutputStream out = response.getOutputStream();
-		HSSFWorkbook wb = new HSSFWorkbook();  
-		HSSFSheet sheet = wb.createSheet(el.getSheetName());
-		HSSFRow row = sheet.createRow((int) 0); 
-		HSSFCellStyle style = wb.createCellStyle();
-		HSSFCellStyle style1 = wb.createCellStyle();
-		HSSFCellStyle style2 = wb.createCellStyle();
-		style.setBorderTop(HSSFCellStyle.BORDER_THIN);
-	    style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-	    style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-	    style.setBorderRight(HSSFCellStyle.BORDER_THIN);
-	    style1.setBorderTop(HSSFCellStyle.BORDER_THIN);
-	    style1.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-	    style1.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-	    style1.setBorderRight(HSSFCellStyle.BORDER_THIN);
-	    style2.setBorderTop(HSSFCellStyle.BORDER_THIN);
-	    style2.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-	    style2.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-	    style2.setBorderRight(HSSFCellStyle.BORDER_THIN);
-		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-		style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-		style1.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-		style1.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+		XSSFWorkbook wb = new XSSFWorkbook();  
+		XSSFSheet sheet = wb.createSheet(el.getSheetName());
+		XSSFRow row = sheet.createRow((int) 0); 
+		XSSFCellStyle style = wb.createCellStyle();
+		XSSFCellStyle style1 = wb.createCellStyle();
+		XSSFCellStyle style2 = wb.createCellStyle();
+		style.setBorderTop(XSSFCellStyle.BORDER_THIN);
+	    style.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+	    style.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+	    style.setBorderRight(XSSFCellStyle.BORDER_THIN);
+	    style1.setBorderTop(XSSFCellStyle.BORDER_THIN);
+	    style1.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+	    style1.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+	    style1.setBorderRight(XSSFCellStyle.BORDER_THIN);
+	    style2.setBorderTop(XSSFCellStyle.BORDER_THIN);
+	    style2.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+	    style2.setBorderLeft(XSSFCellStyle.BORDER_THIN);
+	    style2.setBorderRight(XSSFCellStyle.BORDER_THIN);
+		style.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+		style.setVerticalAlignment(XSSFCellStyle.VERTICAL_CENTER);
+		style1.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+		style1.setVerticalAlignment(XSSFCellStyle.VERTICAL_CENTER);
 		style1.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
 		style1.setFillPattern(CellStyle.SOLID_FOREGROUND);
-		style2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-		style2.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-		HSSFCell cell = row.createCell((short) 0);
-		cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+		style2.setAlignment(XSSFCellStyle.ALIGN_CENTER);
+		style2.setVerticalAlignment(XSSFCellStyle.VERTICAL_CENTER);
+		XSSFCell cell = row.createCell((short) 0);
+		cell.setCellType(XSSFCell.CELL_TYPE_STRING);
 		row.setHeightInPoints(30f);
-		HSSFFont font= wb.createFont();
-		HSSFFont font1= wb.createFont();
+		XSSFFont font= wb.createFont();
+		XSSFFont font1= wb.createFont();
 		font.setFontName("楷体");
         font.setFontHeightInPoints((short) 18);// 设置字体大小
 		font1.setFontName("宋体");
@@ -666,7 +667,7 @@ public class Excel_export {
             
             for (int j = 0; j <= maxy; j++) {
             	cell = row.createCell((short) j);
-            	cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+            	cell.setCellType(XSSFCell.CELL_TYPE_STRING);
             	if(j==0){
             		cell.setCellValue(trqk1.getV_0());  
                     cell.setCellStyle(style);

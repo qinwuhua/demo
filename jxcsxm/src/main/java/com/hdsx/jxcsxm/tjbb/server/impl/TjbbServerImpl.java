@@ -39,13 +39,51 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		List<Excel_list> l1=new ArrayList<Excel_list>();
 		List<Excel_list> l2=new ArrayList<Excel_list>();
 		List<Excel_list> l3=new ArrayList<Excel_list>();
+		List<Excel_list> l4=new ArrayList<Excel_list>();
 		l2=queryList("getJhzxqkbHj", elist);
-		if("wh".equals(elist.getPxfs()))
+		if("wh".equals(elist.getPxfs())) {
 			l3=queryList("getJhzxqkbWhHj", elist);
-		else if("xm".equals(elist.getPxfs()))
+			l4=queryList("getJhzxqkbWh", elist);
+		}
+			
+		else if("xm".equals(elist.getPxfs())) {
 			l3=queryList("getJhzxqkbXmHj", elist);
-		else
-		l3=queryList("getJhzxqkb", elist);
+			queryList("getJhzxqkbXm", elist);
+		}
+		else {
+			l3=queryList("getJhzxqkb", elist);
+			
+			l4=null;
+		}
+	
+		int l3no=0;int l4no=0;
+		for (int i = 0; i < l2.size(); i++) {
+			l1.add(l2.get(i));
+			int flag1=l2.get(i).getXmsl();
+			int flag11=0;int k=1;
+			while (flag1>flag11) {
+				if(l3.size()==l3no)
+					break;
+				
+				l1.add(l3.get(l3no));
+				for (int j = l4no; j < l4no+l3.get(l3no).getXmsl(); j++) {
+					if(j>=l4.size()) break;
+					l4.get(j).setV_0(k+"");k++;
+				}
+				if(l4no>=l4.size()) break;
+				if(l4no+l3.get(l3no).getXmsl()>l4.size()) {
+					l1.addAll(l4.subList(l4no, l4.size()-1));
+				}else {
+					l1.addAll(l4.subList(l4no, l4no+l3.get(l3no).getXmsl()));
+				}
+				
+				flag11+=l3.get(l3no).getXmsl();l4no+=l3.get(l3no).getXmsl();l3no++;
+				
+			}
+		}
+		
+		/*
+		
 		for (int i = 0; i < l2.size(); i++) {
 			l1.add(l2.get(i));
 			int k=1;
@@ -94,7 +132,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 			}
 		}
 		
-		
+		*/
 		return l1;
 	}
 

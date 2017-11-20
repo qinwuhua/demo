@@ -90,7 +90,7 @@ public class MyUtil implements Serializable{
 					
 				}else {
 					
-					if(("00".equals(s[i].substring(s[i].length()-2,s[i].length()))||s[i].length()<11)) {
+					if(("00".equals(s[i].substring(s[i].length()-2,s[i].length()))||s[i].length()<11 && s[i].length()>4)) {
 						if("00".equals(s[i].substring(s[i].length()-2,s[i].length()))) {
 							s[i]=s[i].substring(0, s[i].length()-2);
 						}
