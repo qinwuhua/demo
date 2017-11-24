@@ -1475,7 +1475,8 @@ function loadWhBmbm(id, name,str) {
 		valueField : 'bmid',
 		textField : 'name',
 		panelHeight:'auto',
-		multiple:false
+		editable:false,
+	    multiple:false
 	});
 	$('#' + id).combobox('setValue',str);
 }

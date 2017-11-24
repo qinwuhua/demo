@@ -165,7 +165,7 @@ text-decoration:none;
 								<tr height="28">
 									<td align="right">行政区划：</td>
 	        						<td><select id="xzqh" style="width:165px;"></select></td>
-									<td align="right">计划年份：</td>
+									<td align="right">截至年份：</td>
         							<td><select id="jhnf" style="width: 80px;"></select></td>
 									<td align="right">计划文号：</td>
         							<td><select id="jhxdwh" style="width: 130px;"></select></td>
