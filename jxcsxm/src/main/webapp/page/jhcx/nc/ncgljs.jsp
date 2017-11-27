@@ -20,6 +20,7 @@
 
 	<script type="text/javascript">
 		$(function(){
+			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
 			loadBmbm3('gcfl','农村公路建设工程分类');
@@ -43,7 +44,18 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
-			
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
 			var jsxz="农村公路建设";
 			
 			
@@ -56,7 +68,7 @@
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
 			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'','xmjbxx.gcfl':getValuesById("gcfl"),
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gydwdm':$.cookie('unit2')
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gydwdm':gydwstr
 			};
 	
 			loadTj();
@@ -102,7 +114,18 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
-			
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
 			var jsxz="农村公路建设";
 			
 			
@@ -115,7 +138,7 @@
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
 			var params={'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'','xmjbxx.gcfl':getValuesById("gcfl"),
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gydwdm':$.cookie('unit2')
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.gydwdm':gydwstr
 			};
 			$.ajax({
 				type:'post',
@@ -158,6 +181,8 @@ text-decoration:none;
 							<tr height="28">
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:165px;"></select></td>
+        						<td align="right">管养单位：</td>
+        						<td><select id="gydw" style="width:165px;"></select></td>
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">项目编码：</td>
