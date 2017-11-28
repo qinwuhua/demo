@@ -47,7 +47,15 @@ public class Excel_list implements Serializable {
 	private String yf;
 	private String gydwdm;
 	
+	private String sfhb;
 	
+	
+	public String getSfhb() {
+		return sfhb;
+	}
+	public void setSfhb(String sfhb) {
+		this.sfhb = sfhb;
+	}
 	public String getGydwdm() {
 		return gydwdm;
 	}
