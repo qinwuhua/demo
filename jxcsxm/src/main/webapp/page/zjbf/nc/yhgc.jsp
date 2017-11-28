@@ -21,6 +21,7 @@
 	<script type="text/javascript">
 		var anqxstr="";
 		$(function(){
+			loadUnit1("gydw",$.cookie("unit"));
 			anqxstr=getxqxbyid(getUrlParame("id"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
@@ -87,7 +88,18 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
-			
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
 			var jsxz="养护工程";
 			
 			
@@ -103,7 +115,7 @@
 				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbbf':sfqbbf
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':gydwstr,'xmjbxx.sfqbbf':sfqbbf
 			};
 	
 			loadTj();
@@ -166,7 +178,18 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
-			
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
 			var jsxz="养护工程";
 			
 			
@@ -183,7 +206,7 @@
 				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':$.cookie('unit2'),'xmjbxx.sfqbbf':sfqbbf
+					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.gydwdm':gydwstr,'xmjbxx.sfqbbf':sfqbbf
 			};
 			$.ajax({
 				type:'post',
@@ -226,6 +249,8 @@ text-decoration:none;
 							<tr height="28">
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:165px;"></select></td>
+        						<td align="right">管养单位：</td>
+        						<td><select id="gydw" style="width:165px;"></select></td>
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 80px;"></select></td>
 								<td align="right">项目编码：</td>
