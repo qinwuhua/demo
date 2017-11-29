@@ -16,6 +16,7 @@
 	 <typeAlias type="com.hdsx.jxcsxm.xtgl.bean.Xmjbxx" alias="xmjbxx"/>
 	 <typeAlias type="com.hdsx.jxcsxm.zjdw.bean.XmZjdw" alias="xmzjdw"/>
 	 <typeAlias type="com.hdsx.jxcsxm.zjbf.bean.XmZjbf" alias="xmzjbf"/>
+	 <typeAlias type="com.hdsx.jxcsxm.zjtj.bean.XmZjtj" alias="xmzjtj"/>
      <typeAlias type="com.hdsx.jxcsxm.tjbb.bean.Excel_list" alias="elist"/>
      <typeAlias type="com.hdsx.jxcsxm.zcgl.bean.Zcgl" alias="zcgl"/>
      <typeAlias type="com.hdsx.jxcsxm.utile.MyFile" alias="myfile"/>
@@ -76,5 +77,6 @@
 	 <mapper resource="com/hdsx/jxcsxm/zjbf/config/zjbf.xml"/>
 	 <mapper resource="com/hdsx/jxcsxm/tjbb/config/tjbb.xml"/>
 	 <mapper resource="com/hdsx/jxcsxm/zcgl/config/zcgl.xml"/>
+	 <mapper resource="com/hdsx/jxcsxm/zjtj/config/zjtj.xml"/>
   </mappers>
 </configuration>

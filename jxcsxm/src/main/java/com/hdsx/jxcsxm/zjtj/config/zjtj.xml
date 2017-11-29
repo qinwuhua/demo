@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxcsxm.zjtj">
+	<select id="queryXmlist" parameterType="xmjbxx" resultType="xmjbxx">
+		select * from(select rownum num ,t1.*  from (select t.*,xd.jhxdwh,decode(bf.bfbz,null,'否',dw.dwbz,'是','否') sfqbbf,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+	    left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd
+	    on t.xmbm=xd.xmid 
+	    left join(
+	      select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+	    (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+	    (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+	    (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr,
+	    sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) bfbz 
+	    from xm_zjtj where to_number(sbthcd)&lt;=${sbthcd} group by xmbm
+	      ) bf on t.xmbm=bf.xmids
+	    left join 
+	    (select xmbm xmidss,sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) dwbz 
+	    from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmidss
+	    where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">and jsxz =#{jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		
+		) t1 where 1=1
+		<if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+		and rownum &lt;=(#{page} * #{rows}) 
+		order by decode(xsbzt,null,0,xsbzt) desc,decode(ssbzt,null,0,ssbzt) desc,decode(shzt,null,0,shzt) desc,xmnf
+	
+		)t2
+		where t2.num>(#{page}-1)*#{rows}
+		
+	</select>
+	<select id="queryXmlistCount" parameterType="xmjbxx" resultType="int">
+		select count(*) from (select t.*,xd.jhxdwh,decode(bf.bfbz,null,'否',dw.dwbz,'是','否') sfqbbf,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+	    left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd
+	    on t.xmbm=xd.xmid 
+	    left join(
+	      select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+	    (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+	    (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+	    (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr,
+	    sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) bfbz 
+	    from xm_zjtj where to_number(sbthcd)&lt;=${sbthcd} group by xmbm
+	      ) bf on t.xmbm=bf.xmids
+	    left join 
+	    (select xmbm xmidss,sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) dwbz 
+	    from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmidss
+	    where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">and jsxz =#{jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		
+		) where 1=1
+		<if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+	
+	</select>
+	
+	<select id="getbfTjAll" parameterType="xmjbxx" resultType="xmzjtj">
+		  select count(*) xmsl,round(sum(nvl(dwzj,0)),2) dwzj,sum(nvl(bfzj,0)) bfzj,sum(nvl(yshbfzj,0)) yshbfzj,sum(nvl(jhxdzj,0)) jhxdzj from(
+		  select t.*,xd.jhxdwh,decode(bf.bfbz,null,'否',dw.dwbz,'是','否') sfqbbf,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(xdbz,0) jhxdzj  from xmjbxx t
+	      left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(rys,0))+sum(nvl(yhdk,0))+sum(nvl(stz,0)) xdbz, 
+		  sum(nvl(ztz,0)) jhxdzj,sum(nvl(btzzj,0)) jhxdcgs,sum(nvl(stz,0)) jhxdstz,decode(sum(nvl(stz,0)),0,sum(nvl(ttc,0)),sum(nvl(stz,0))) jhxdttc,sum(nvl(dk,0)) jhxdtdk,sum(nvl(rys,0)) jhxdrys,sum(nvl(dfzc,0)) jhxddfzc from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd
+	      on t.xmbm=xd.xmid 
+	      left join(
+	      select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+	      (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr,
+	      sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) bfbz,sum(ztz-dfzc) bfzj,sum(decode(shzt,'已审核',ztz-dfzc,0)) yshbfzj 
+	      from xm_zjtj where to_number(sbthcd)&lt;=${sbthcd} group by xmbm
+	      ) bf on t.xmbm=bf.xmids
+	      left join 
+	      (select xmbm xmidss,sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) dwbz,sum(ztz-dfzc) dwzj
+	      from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmidss
+	      where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">and jsxz =#{jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		) where 1=1
+		<if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+	</select>
+	
+	<select id="queryzjtjlist" parameterType="xmzjtj" resultType="xmzjtj">
+		select * from(select rownum num ,t.*  from xm_zjtj t
+		where 1=1 and xmbm=#{xmbm} and to_number(sbthcd)&lt;=to_number(#{sbthcd})
+		and rownum &lt;=(#{page} * #{rows}) 
+		order by xsbzt,ssbzt,shzt,bfyf
+		)t2
+		where t2.num>(#{page}-1)*#{rows}
+		
+	</select>
+	<select id="queryzjtjlistCount" parameterType="xmzjtj" resultType="int">
+		select count(*) from xm_zjtj t
+		where 1=1 and xmbm=#{xmbm} and to_number(sbthcd)&lt;=to_number(#{sbthcd})
+	</select>
+	
+	<select id="queryBfByid" parameterType="xmzjtj" resultType="xmzjtj">
+		select * from xm_zjtj t where id=#{id}
+	</select>
+	<select id="getbfTj" parameterType="xmzjtj" resultType="xmzjtj">
+		select distinct xmmc,nvl(dwzj,0) dwzj,nvl(dwcgs,0) dwcgs,nvl(dwrys,0) dwrys,nvl(dwtdk,0) dwtdk,nvl(dwdfzc,0) dwdfzc,nvl(dwttc,0) dwttc,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(jhxdzj,0) jhxdzj from xmjbxx xm left join 
+		(select xmbm,sum(ztz) dwzj,sum(cgs) dwcgs,sum(rys) dwrys,sum(ztz)-sum(cgs)-sum(rys)-sum(tdk)-sum(dfzc) dwttc,sum(tdk) dwtdk,sum(dfzc) dwdfzc from xm_zjdw where to_number(sbthcd)&lt;=to_number(#{sbthcd}) group by xmbm) dw on xm.xmbm=dw.xmbm left join
+		(select xmbm,sum(ztz-dfzc) bfzj,sum(decode(shzt,'已审核',ztz-dfzc,0)) yshbfzj from xm_zjtj where to_number(sbthcd)&lt;=to_number(#{sbthcd}) group by xmbm) bf on xm.xmbm=bf.xmbm left join
+		(select xmid xmbm,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(rys,0))+sum(nvl(yhdk,0))+sum(nvl(stz,0)) jhxdzj from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd on xm.xmbm=xd.xmbm 
+		where xm.xmbm=#{xmbm}
+	</select>
+	<insert id="insertZjtj" parameterType="xmzjtj">
+		insert into xm_zjtj
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="xmbm != null and xmbm != ''" >xmbm,</if>
+	       <if test="ztz != null and ztz != ''" >ztz,</if>
+	      <if test="cgs != null and cgs != ''" >cgs,</if>
+	      <if test="gz != null and gz != ''" >gz,</if>
+	      <if test="sz != null and sz != ''" >sz,</if>
+	      <if test="zq != null and zq != ''" >zq,</if>
+	      <if test="tdk != null and tdk != ''" >tdk,</if>
+	      <if test="jl != null and jl != ''" >jl,</if>
+	      <if test="qt != null and qt != ''" >qt,</if>
+	      <if test="rys != null and rys != ''" >rys,</if>
+	      <if test="dfzc != null and dfzc != ''" >dfzc,</if>
+	      <if test="yhdk != null and yhdk != ''" >yhdk,</if>
+	      <if test="stz != null and stz != ''" >stz,</if>
+	      <if test="jhxdwh != null and jhxdwh != ''" >jhxdwh,</if>
+	      <if test="bd != null and bd != ''" >bd,</if>
+	      <if test="sbthcd != null and sbthcd != ''" >sbthcd,</if>
+	      <if test="xsbzt != null and xsbzt != ''" >xsbzt,</if>
+	      <if test="ssbzt != null and ssbzt != ''" >ssbzt,</if>
+	      <if test="bfyf != null and bfyf != ''" >bfyf,</if>
+	      <if test="ttc != null and ttc != ''" >ttc,</if>
+	      <if test="tbr != null and tbr != ''" >tbr,</if>
+	      <if test="tbsj != null and tbsj != ''" >tbsj,</if>
+	      <if test="bz != null and bz != ''" >bz,</if>
+	      <if test="zddzjl != null and zddzjl != ''" >zddzjl,</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
+	      <if test="ztz != null and ztz != ''" >#{ztz},</if>
+	      <if test="cgs != null and cgs != ''" >#{cgs},</if>
+	      <if test="gz != null and gz != ''" >#{gz},</if>
+	      <if test="sz != null and sz != ''" >#{sz},</if>
+	      <if test="zq != null and zq != ''" >#{zq},</if>
+	      <if test="tdk != null and tdk != ''" >#{tdk},</if>
+	      <if test="jl != null and jl != ''" >#{jl},</if>
+	      <if test="qt != null and qt != ''" >#{qt},</if>
+	      <if test="rys != null and rys != ''" >#{rys},</if>
+	      <if test="dfzc != null and dfzc != ''" >#{dfzc},</if>
+	      <if test="yhdk != null and yhdk != ''" >#{yhdk},</if>
+	      <if test="stz != null and stz != ''" >#{stz},</if>
+	      <if test="jhxdwh != null and jhxdwh != ''" >#{jhxdwh},</if>
+	      <if test="bd != null and bd != ''" >#{bd},</if>
+	      <if test="sbthcd != null and sbthcd != ''" >#{sbthcd},</if>
+	      <if test="xsbzt != null and xsbzt != ''" >#{xsbzt},</if>
+	      <if test="ssbzt != null and ssbzt != ''" >#{ssbzt},</if>
+	      <if test="bfyf != null and bfyf != ''" >#{bfyf},</if>
+	      <if test="ttc != null and ttc != ''" >#{ttc},</if>
+	      <if test="tbr != null and tbr != ''" >#{tbr},</if>
+	      <if test="tbsj != null and tbsj != ''" >#{tbsj},</if>
+	      <if test="bz != null and bz != ''" >#{bz},</if>
+	      <if test="zddzjl != null and zddzjl != ''" >#{zddzjl},</if>
+	      
+	    </trim>
+	</insert>
+	<update id="updateZjtj" parameterType="xmzjtj">
+	 update xm_zjtj
+    <set>
+      <if test="xmbm != null" >xmbm = #{xmbm},</if>
+      <if test="ztz != null" >ztz = #{ztz},</if>
+      <if test="cgs != null" >cgs = #{cgs},</if>
+      <if test="gz != null" >gz = #{gz},</if>
+      <if test="sz != null" >sz = #{sz},</if>
+      <if test="zq != null" >zq = #{zq},</if>
+      <if test="tdk != null" >tdk = #{tdk},</if>
+      <if test="jl != null" >jl = #{jl},</if>
+      <if test="qt != null" >qt = #{qt},</if>
+      <if test="rys != null" >rys = #{rys},</if>
+      <if test="dfzc != null" >dfzc = #{dfzc},</if>
+      <if test="yhdk != null" >yhdk = #{yhdk},</if>
+      <if test="stz != null" >stz = #{stz},</if>
+      <if test="jhxdwh != null" >jhxdwh = #{jhxdwh},</if>
+      <if test="bd != null" >bd = #{bd},</if>
+      <if test="sbthcd != null" >sbthcd = #{sbthcd},</if>
+      <if test="thyy != null" >thyy = #{thyy},</if>
+      <if test="xsbzt != null" >xsbzt = #{xsbzt},xsbsj=sysdate,</if>
+      <if test="ssbzt != null" >ssbzt = #{ssbzt},ssbsj=sysdate,</if>
+      <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
+      <if test="sfth != null" >sfth = #{sfth},</if>
+      <if test="bfyf != null" >bfyf = #{bfyf},</if>
+      <if test="ttc != null" >ttc = #{ttc},</if>
+      <if test="tbr != null and tbr != ''" >tbr = #{tbr},</if>
+      <if test="tbsj != null and tbsj != ''" >tbsj = #{tbsj},</if>
+      <if test="bz != null and bz != ''" >bz = #{bz},</if>
+      <if test="zddzjl != null and zddzjl != ''" >zddzjl = #{zddzjl},</if>
+    </set>
+    where 1=1 and ${id}
+	</update>
+	<update id="updateZjtjType" parameterType="xmzjtj">
+	 update xm_zjtj
+    <set>
+      <if test="sbthcd != null" >sbthcd = #{sbthcd},</if>
+      <if test="thyy != null" >thyy = #{thyy},</if>
+      <if test="xsbzt != null" >xsbzt = #{xsbzt},xsbsj=sysdate,</if>
+      <if test="ssbzt != null" >ssbzt = #{ssbzt},ssbsj=sysdate,</if>
+      <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
+      <if test="sfth != null" >sfth = #{sfth},</if>
+    </set>
+    where 1=1 and ${id}
+	</update>
+	<update id="plshbf" parameterType="xmzjtj">
+	 update xm_zjtj
+    <set>
+      <if test="sbthcd != null" >sbthcd = #{sbthcd},</if>
+      <if test="thyy != null" >thyy = #{thyy},</if>
+      <if test="xsbzt != null" >xsbzt = #{xsbzt},xsbsj=sysdate,</if>
+      <if test="ssbzt != null" >ssbzt = #{ssbzt},ssbsj=sysdate,</if>
+      <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
+      <if test="sfth != null" >sfth = #{sfth},</if>
+    </set>
+    where 1=1 and ${xmbm}
+	</update>
+	<select id="delbf" parameterType="xmzjtj">
+		delete from xm_zjtj where 1=1 and ${id}
+	</select>
+	
+	<select id="queryXmlistshqx" parameterType="xmzjtj" resultType="xmzjtj">
+		select * from(select rownum num ,t.*,(select name from xtgl_department where id=t.gydwdm) gydw  from xm_zjtj t
+		where 1=1 and gydwdm is not null 
+		<if test="gydw !='' and gydw != null">${gydw}</if>
+		<if test="bfyf !='' and bfyf != null">and bfyf like '%'||#{bfyf}||'%'</if>
+		and rownum &lt;=(#{page} * #{rows}) 
+		order by nf,gydwdm
+		
+		)t2
+		where t2.num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryXmlistshqxCount" parameterType="xmzjtj" resultType="int">
+		select count(*) from xm_zjtj t
+		where 1=1 and gydwdm is not null 
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="bfyf !='' and bfyf != null">and bfyf like '%'||#{bfyf}||'%'</if>
+		
+	</select>
+	
+	<select id="queryShqxByOne" parameterType="xmZjtj" resultType="xmZjtj">
+		select * from xm_zjtj where 1=1 and gydwdm=#{gydwdm} and bfyf=#{bfyf} and jhxdwh=#{jhxdwh}
+	</select>
+	<insert id="insertShqx" parameterType="xmzjtj">
+		insert into xm_zjtj
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	    	xsbzt,ssbzt,shzt,
+	    	<if test="ztz != null and ztz != ''" >ztz,</if>
+	    	<if test="cgs != null and cgs != ''" >cgs,</if>
+	    	<if test="rys != null and rys != ''" >rys,</if>
+	    	<if test="ttc != null and ttc != ''" >ttc,</if>
+	    	<if test="dfzc != null and dfzc != ''" >dfzc,</if>
+	    	<if test="bd != null and bd != ''" >bd,</if>
+	    	<if test="bfyf != null and bfyf != ''" >bfyf,</if>
+	    	<if test="jhxdwh != null and jhxdwh != ''" >jhxdwh,</if>
+	    	<if test="parent != null and parent != ''" >parent,</if>
+	    	<if test="gydwdm != null and gydwdm != ''" >gydwdm,</if>
+	    	<if test="xmbm != null and xmbm != ''" >xmbm,</if>
+	    	<if test="bz != null and bz != ''" >bz,</if>
+	    	<if test="nf != null and nf != ''" >nf,</if>
+	    	<if test="tbr != null and tbr != ''" >tbr,</if>
+	    	<if test="tbsj != null and tbsj != ''" >tbsj,</if>
+	  	</trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	    	'已上报','已上报','已审核',
+	    	<if test="ztz != null and ztz != ''" >#{ztz},</if>
+	    	<if test="cgs != null and cgs != ''" >#{cgs},</if>
+	    	<if test="rys != null and rys != ''" >#{rys},</if>
+	    	<if test="ttc != null and ttc != ''" >#{ttc},</if>
+	    	<if test="dfzc != null and dfzc != ''" >#{dfzc},</if>
+	    	<if test="bd != null and bd != ''" >#{bd},</if>
+	    	<if test="bfyf != null and bfyf != ''" >#{bfyf},</if>
+	    	<if test="jhxdwh != null and jhxdwh != ''" >#{jhxdwh},</if>
+	    	<if test="parent != null and parent != ''" >#{parent},</if>
+	    	<if test="gydwdm != null and gydwdm != ''" >#{gydwdm},</if>
+	    	<if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
+	    	<if test="bz != null and bz != ''" >#{bz},</if>
+	    	<if test="nf != null and nf != ''" >#{nf},</if>
+	    	<if test="tbr != null and tbr != ''" >#{tbr},</if>
+	    	<if test="tbsj != null and tbsj != ''" >#{tbsj},</if>
+		</trim>
+	</insert>
+	<update id="updateShqx" parameterType="xmzjtj">
+	 update xm_zjtj
+   	 <set>
+      <if test="ztz != null" >ztz = #{ztz},</if>
+      <if test="cgs != null" >cgs = #{cgs},</if>
+      <if test="rys != null" >rys = #{rys},</if>
+      <if test="ttc != null" >ttc = #{ttc},</if>
+      <if test="dfzc != null" >dfzc = #{dfzc},</if>
+      <if test="bd != null" >bd = #{bd},</if>
+      <if test="bfyf != null" >bfyf = #{bfyf},</if>
+      <if test="jhxdwh != null" >jhxdwh = #{jhxdwh},</if>
+      <if test="parent != null" >parent = #{parent},</if>
+      <if test="gydwdm != null" >gydwdm = #{gydwdm},</if>
+      <if test="xmbm != null" >xmbm = #{xmbm},</if>
+      <if test="bz != null" >bz = #{bz},</if>
+      <if test="nf != null and nf != ''" >nf=#{nf},</if>
+	  <if test="tbr != null and tbr != ''" >tbr=#{tbr},</if>
+	  <if test="tbsj != null and tbsj != ''" >tbsj=#{tbsj},</if>
+	 </set>
+      where 1=1 and gydwdm=#{gydwdm} and bfyf=#{bfyf} and nf=#{nf} and jhxdwh=#{jhxdwh}
+	</update>
+	
+	<select id="queryZjByGydwdm" parameterType="xmzjtj" resultType="xmzjtj">
+		select * from xm_zjtj z where bfyf=#{bfyf} and z.parent=#{gydwdm}  and nf=#{nf}  and jhxdwh=#{jhxdwh} order by gydwdm
+	</select>
+	
+	<select id="queryZjByGydwdmJtj" parameterType="xmzjtj" resultType="xmzjtj">
+		select * from xm_zjtj z where bfyf=#{bfyf}  and nf=#{nf}  and jhxdwh=#{jhxdwh} and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') order by gydwdm
+	</select>
+	
+	<select id="queryZjdwbfByGydwdm" parameterType="xmzjtj" resultType="xmzjtj">
+		 select 
+		  t1.xmbm,decode(t2.gydwdm,null,t1.gydwdm,t2.gydwdm) gydwdm,nvl(t1.cgs,0)-nvl(t2.cgs,0) cgs,nvl(t1.rys,0)-nvl(t2.rys,0) rys,nvl(t1.ttc,0)-nvl(t2.ttc,0) ttc,nvl(t1.dfzc,0)-nvl(t2.dfzc,0) dfzc
+		  from  (
+		  select xmbm,gydwdm,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ttc,0)) ttc,sum(nvl(dfzc,0)) dfzc from xm_zjdw z where 1=1 and (z.parent=#{gydwdm}) and nf=#{nf} and jhxdwh=#{jhxdwh} group by xmbm,gydwdm order by gydwdm 
+			) t1 left join
+		  (
+		  select xmbm,gydwdm,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ttc,0)) ttc,sum(nvl(dfzc,0)) dfzc from xm_zjtj z where 1=1 and (z.parent=#{gydwdm}) and nf=#{nf} and jhxdwh=#{jhxdwh} group by xmbm,gydwdm order by gydwdm 
+			) t2
+		  on t1.xmbm=t2.xmbm order by gydwdm
+	</select>
+	<select id="queryZjdwbfByGydwdmJtj" parameterType="xmzjtj" resultType="xmzjtj">
+		 select 
+		  t1.xmbm,decode(t2.gydwdm,null,t1.gydwdm,t2.gydwdm) gydwdm,nvl(t1.cgs,0)-nvl(t2.cgs,0) cgs,nvl(t1.rys,0)-nvl(t2.rys,0) rys,nvl(t1.ttc,0)-nvl(t2.ttc,0) ttc,nvl(t1.dfzc,0)-nvl(t2.dfzc,0) dfzc
+		  from  (
+		  select xmbm,gydwdm,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ttc,0)) ttc,sum(nvl(dfzc,0)) dfzc from xm_zjdw z where 1=1 and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') and nf=#{nf} and jhxdwh=#{jhxdwh} group by xmbm,gydwdm order by gydwdm 
+			) t1 left join
+		  (
+		  select xmbm,gydwdm,sum(nvl(cgs,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ttc,0)) ttc,sum(nvl(dfzc,0)) dfzc from xm_zjtj z where 1=1 and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') and nf=#{nf} and jhxdwh=#{jhxdwh} group by xmbm,gydwdm order by gydwdm 
+			) t2
+		  on t1.xmbm=t2.xmbm order by gydwdm
+	</select>
+	<select id="queryzjtjmb" parameterType="xmjbxx" resultType="xmzjtj">
+		select xmbm,xmnf,xmmc,gydw,xzqh,ztz jhztz,dwcgs dwcgs,dwrys dwrys,dwdfzc dwdfzc,dwttc dwttc,jhxdwh,'没有标段' bd,
+    	'0' cgs,'0' rys,'0' dfzc,'0' ttc,to_char(sysdate,'yyyy-mm') bfyf,gydw tbr,to_char(sysdate,'yyyy-mm-dd') tbsj,'' bz 
+    	 from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+	    left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd
+	    on t.xmbm=xd.xmid 
+	    left join(
+	      select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+	    (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+	    (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+	    (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
+	    from xm_zjtj  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmids
+	    left join
+	      (select distinct xm.xmbm xmbms1,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(jhxdzj,0) jhxdzj,nvl(dwcgs,0) dwcgs,nvl(dwrys,0) dwrys,nvl(dwttc,0) dwttc,nvl(dwdfzc,0) dwdfzc from xmjbxx xm left join 
+	      (select xmbm,sum(nvl(ztz,0)) dwzj,sum(nvl(cgs,0)) dwcgs,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) dwttc,sum(nvl(rys,0)) dwrys,sum(nvl(dfzc,0)) dwdfzc from xm_zjdw  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on xm.xmbm=dw.xmbm left join
+			  (select xmbm,sum(ztz) bfzj,sum(decode(shzt,'已审核',ztz,0)) yshbfzj from xm_zjtj  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) bf on xm.xmbm=bf.xmbm left join
+			  (select xmid xmbm,sum(nvl(ztz,0)) jhxdzj from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> and f_str_or_num(ztz)!=1 group by xmid) xd on xm.xmbm=xd.xmbm 
+	    ) zj on t.xmbm=zj.xmbms1
+	    where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">and jsxz =#{jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		) where 1=1
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+	</select>
+	<insert id="importZjtj" parameterType="hashMap">
+		insert into xm_zjtj (id,jhxdwh,ztz,cgs,rys,ttc,dfzc,bfyf,xmbm,tbr,tbsj,sbthcd,bd,bz,xsbzt)
+		values(sys_guid(),#{10},#{12}+#{13}+#{14}+#{15},#{12},#{13},#{15},#{14},#{16},#{0},#{17},#{18},#{SBTHCD},#{11},#{19},decode(#{SBTHCD},9,'已上报','未上报')) 
+	</insert>
+	
+	<update id="plsbbfxj" parameterType="xmzjtj">
+	update xm_zjtj
+    <set>
+      <if test="sbthcd != null" >sbthcd = #{sbthcd},</if>
+      <if test="thyy != null" >thyy = #{thyy},</if>
+      <if test="xsbzt != null" >xsbzt = #{xsbzt},xsbsj=sysdate,</if>
+      <if test="ssbzt != null" >ssbzt = #{ssbzt},ssbsj=sysdate,</if>
+      <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
+      <if test="sfth != null" >sfth = #{sfth},</if>
+    </set>
+    where 1=1 and xsbzt='未上报' and sbthcd='11' ${xmbm} 
+	</update>
+	<update id="plsbbfsj" parameterType="xmzjtj">
+	update xm_zjtj
+    <set>
+      <if test="sbthcd != null" >sbthcd = #{sbthcd},</if>
+      <if test="thyy != null" >thyy = #{thyy},</if>
+      <if test="xsbzt != null" >xsbzt = #{xsbzt},xsbsj=sysdate,</if>
+      <if test="ssbzt != null" >ssbzt = #{ssbzt},ssbsj=sysdate,</if>
+      <if test="shzt != null" >shzt = #{shzt},shsj=sysdate,</if>
+      <if test="sfth != null" >sfth = #{sfth},</if>
+    </set>
+    where 1=1 and ssbzt='未上报' and sbthcd='9' ${xmbm} 
+	</update>
+	
+	<update id="qbshbf" parameterType="xmjbxx">
+		
+		UPDATE XM_ZJBF SET xsbzt='已上报',ssbzt='已上报',shzt='已审核',shsj=sysdate
+		WHERE XMBM IN 
+		(
+		  select xmbm
+		  from(
+		  select t.*,xd.jhxdwh,decode(bf.bfbz,null,'否',dw.dwbz,'是','否') sfqbbf,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(xdbz,0) jhxdzj  from xmjbxx t
+	      left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(rys,0))+sum(nvl(yhdk,0))+sum(nvl(stz,0)) xdbz, 
+		  sum(nvl(ztz,0)) jhxdzj,sum(nvl(btzzj,0)) jhxdcgs,sum(nvl(stz,0)) jhxdstz,decode(sum(nvl(stz,0)),0,sum(nvl(ttc,0)),sum(nvl(stz,0))) jhxdttc,sum(nvl(dk,0)) jhxdtdk,sum(nvl(rys,0)) jhxdrys,sum(nvl(dfzc,0)) jhxddfzc from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd
+	      on t.xmbm=xd.xmid 
+	      left join(
+	      select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+	      (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr,
+	      sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) bfbz,sum(ztz-dfzc) bfzj,sum(decode(shzt,'已审核',ztz-dfzc,0)) yshbfzj 
+	      from xm_zjtj where to_number(sbthcd)&lt;=${sbthcd} group by xmbm
+	      ) bf on t.xmbm=bf.xmids
+	      left join 
+	      (select xmbm xmidss,sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) dwbz,sum(ztz-dfzc) dwzj
+	      from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmidss
+	      where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">and jsxz =#{jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		) where 1=1
+		<if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+		)
+		and xsbzt='已上报' and ssbzt='已上报' and shzt='未审核'
+		
+	</update>
+	
+	<select id="queryzjtjtbsj" parameterType="xmjbxx" resultType="xmzjtj">
+		select distinct tbsj from xm_zjtj where xmbm in(
+			select xmbm from xmjbxx where 1=1 ${xzqh} and gydwdm like #{gydwdm}||'%'  ${jsxz}
+		) and xsbzt='未上报'
+	</select>
+	<delete id="delzjtjqb" parameterType="xmjbxx">
+		delete from xm_zjtj where xmbm in(
+			select xmbm from xmjbxx where 1=1 ${xzqh} and gydwdm like #{gydwdm}||'%'  ${jsxz}
+		) and xsbzt='未上报' ${tbsj} 
+	</delete>
+	
+	
+	<update id="qbthsj" parameterType="xmjbxx">
+		
+		UPDATE XM_ZJBF SET xsbzt='已上报',ssbzt='未上报',shzt='未审核',sbthcd='9',shsj=sysdate
+		WHERE XMBM IN 
+		(
+		  select xmbm
+		  from(
+		  select t.*,xd.jhxdwh,decode(bf.bfbz,null,'否',dw.dwbz,'是','否') sfqbbf,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(xdbz,0) jhxdzj  from xmjbxx t
+	      left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(rys,0))+sum(nvl(yhdk,0))+sum(nvl(stz,0)) xdbz, 
+		  sum(nvl(ztz,0)) jhxdzj,sum(nvl(btzzj,0)) jhxdcgs,sum(nvl(stz,0)) jhxdstz,decode(sum(nvl(stz,0)),0,sum(nvl(ttc,0)),sum(nvl(stz,0))) jhxdttc,sum(nvl(dk,0)) jhxdtdk,sum(nvl(rys,0)) jhxdrys,sum(nvl(dfzc,0)) jhxddfzc from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd
+	      on t.xmbm=xd.xmid 
+	      left join(
+	      select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+	      (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr,
+	      sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) bfbz,sum(ztz-dfzc) bfzj,sum(decode(shzt,'已审核',ztz-dfzc,0)) yshbfzj 
+	      from xm_zjtj where to_number(sbthcd)&lt;=${sbthcd} group by xmbm
+	      ) bf on t.xmbm=bf.xmids
+	      left join 
+	      (select xmbm xmidss,sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) dwbz,sum(ztz-dfzc) dwzj
+	      from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmidss
+	      where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">and jsxz =#{jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		<if test="zgx1 !='' and zgx1 != null">${zgx1}</if>
+		) where 1=1
+		<if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+		)
+		and xsbzt='已上报' and ssbzt='已上报' and shzt='未审核'
+		
+	</update>
+	
+	<update id="qbthsjzgx" parameterType="xmjbxx">
+		
+		UPDATE XM_ZJBF SET xsbzt='未上报',ssbzt='未上报',shzt='未审核',sbthcd='11',shsj=sysdate
+		WHERE XMBM IN 
+		(
+		  select xmbm
+		  from(
+		  select t.*,xd.jhxdwh,decode(bf.bfbz,null,'否',dw.dwbz,'是','否') sfqbbf,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(xdbz,0) jhxdzj  from xmjbxx t
+	      left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(rys,0))+sum(nvl(yhdk,0))+sum(nvl(stz,0)) xdbz, 
+		  sum(nvl(ztz,0)) jhxdzj,sum(nvl(btzzj,0)) jhxdcgs,sum(nvl(stz,0)) jhxdstz,decode(sum(nvl(stz,0)),0,sum(nvl(ttc,0)),sum(nvl(stz,0))) jhxdttc,sum(nvl(dk,0)) jhxdtdk,sum(nvl(rys,0)) jhxdrys,sum(nvl(dfzc,0)) jhxddfzc from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd
+	      on t.xmbm=xd.xmid 
+	      left join(
+	      select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+	      (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr,
+	      sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) bfbz,sum(ztz-dfzc) bfzj,sum(decode(shzt,'已审核',ztz-dfzc,0)) yshbfzj 
+	      from xm_zjtj where to_number(sbthcd)&lt;=${sbthcd} group by xmbm
+	      ) bf on t.xmbm=bf.xmids
+	      left join 
+	      (select xmbm xmidss,sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) dwbz,sum(ztz-dfzc) dwzj
+	      from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmidss
+	      where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">and jsxz =#{jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		<if test="zgx !='' and zgx != null">${zgx1}</if>
+		) where 1=1
+		<if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+		)
+		and xsbzt='已上报' and shzt='未审核'
+		
+	</update>
+	
+	<update id="qbthxj" parameterType="xmjbxx">
+		
+		UPDATE XM_ZJBF SET xsbzt='未上报',ssbzt='未上报',shzt='未审核',sbthcd='11',shsj=sysdate
+		WHERE XMBM IN 
+		(
+		  select xmbm
+		  from(
+		  select t.*,xd.jhxdwh,decode(bf.bfbz,null,'否',dw.dwbz,'是','否') sfqbbf,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(xdbz,0) jhxdzj  from xmjbxx t
+	      left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(rys,0))+sum(nvl(yhdk,0))+sum(nvl(stz,0)) xdbz, 
+		  sum(nvl(ztz,0)) jhxdzj,sum(nvl(btzzj,0)) jhxdcgs,sum(nvl(stz,0)) jhxdstz,decode(sum(nvl(stz,0)),0,sum(nvl(ttc,0)),sum(nvl(stz,0))) jhxdttc,sum(nvl(dk,0)) jhxdtdk,sum(nvl(rys,0)) jhxdrys,sum(nvl(dfzc,0)) jhxddfzc from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd
+	      on t.xmbm=xd.xmid 
+	      left join(
+	      select xmbm xmids,sum(decode(xsbzt,'未上报',1,0)) xsbzt,sum(decode(ssbzt,'未上报',1,0)) ssbzt,sum(decode(shzt,'未审核',1,0)) shzt,
+	      (case when replace(WMSYS.WM_CONCAT(xsbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) xsbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(ssbzt),',',',') like '%未上报%' then '未上报' else '已上报' end) ssbztstr,
+	      (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr,
+	      sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) bfbz,sum(ztz-dfzc) bfzj,sum(decode(shzt,'已审核',ztz-dfzc,0)) yshbfzj 
+	      from xm_zjtj where to_number(sbthcd)&lt;=${sbthcd} group by xmbm
+	      ) bf on t.xmbm=bf.xmids
+	      left join 
+	      (select xmbm xmidss,sum(decode(${sbthcd},7,decode(shzt,'已审核',ztz-dfzc,0),ztz-dfzc)) dwbz,sum(ztz-dfzc) dwzj
+	      from xm_zjdw where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmidss
+	      where 1=1 
+		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
+		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
+		<if test="xmnf !='' and xmnf != null">${xmnf}</if>
+		<if test="jsxz !='' and jsxz != null">and jsxz =#{jsxz}</if>
+		<if test="knw !='' and knw != null">${knw}</if>
+		<if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if>
+		<if test="gcfl !='' and gcfl != null">${gcfl}</if>
+		<if test="xmbm !='' and xmbm != null">and xmbm like '%'||#{xmbm}||'%'</if>
+		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
+		) where 1=1
+		<if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
+		<if test="shzt !='' and shzt != null">${shzt}</if>
+		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
+		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
+		)
+		and xsbzt='已上报' and ssbzt='未上报' and shzt='未审核'
+		
+	</update>
+	
+</mapper>

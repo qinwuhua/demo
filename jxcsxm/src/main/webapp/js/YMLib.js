@@ -1375,7 +1375,7 @@ function loadDist2(id, dwbm) {
 function loadUnit(id, dwbm) {
 	$('#' + id).combotree({
 		checkbox : false,
-		url : '/jxcsxm/xtgl/selAllBm.do?yhdw=' + dwbm,
+		url : '/jxcsxm/xtgl/selAllUnit1.do?yhdw=36' ,
 		onBeforeExpand : function(node, param) {
 			$('#' + id).combotree("tree").tree('options').url = "/jxcsxm/xtgl/selAllBm2.do?yhdw="
 					+ node.id;

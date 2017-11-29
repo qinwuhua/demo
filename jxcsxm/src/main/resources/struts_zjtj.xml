@@ -1,0 +1,33 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+<package name="zjtj" extends="struts-default" namespace="/zjtj">
+	<action name="queryXmlist" class="zjtjController" method="queryXmlist"></action>
+	<action name="insertZjtj" class="zjtjController" method="insertZjtj"></action>
+	<action name="queryzjtjlist" class="zjtjController" method="queryzjtjlist"></action>
+	<action name="queryBfByid" class="zjtjController" method="queryBfByid"></action>
+	<action name="getbfTj" class="zjtjController" method="getbfTj"></action>
+	<action name="updateZjtj" class="zjtjController" method="updateZjtj"></action>
+	<action name="updateZjtjType" class="zjtjController" method="updateZjtjType"></action>
+	<action name="delbf" class="zjtjController" method="delbf"></action>
+	<action name="queryXmlistshqx" class="zjtjController" method="queryXmlistshqx"></action>
+	<action name="insertOrUpdateShqx" class="zjtjController" method="insertOrUpdateShqx"></action>
+	<action name="queryZjByGydwdm" class="zjtjController" method="queryZjByGydwdm"></action>
+	<action name="getbfTjAll" class="zjtjController" method="getbfTjAll"></action>
+	<action name="plshbf" class="zjtjController" method="plshbf"></action>
+	<action name="dcmb" class="zjtjController" method="dcmb"></action>
+	<action name="importZjtj" class="zjtjController" method="importZjtj"></action>
+	<action name="plsbbfxj" class="zjtjController" method="plsbbfxj"></action>
+	<action name="plsbbfsj" class="zjtjController" method="plsbbfsj"></action>
+	<action name="queryZjdwbfByGydwdm" class="zjtjController" method="queryZjdwbfByGydwdm"></action>
+	<action name="qbshbf" class="zjtjController" method="qbshbf"></action>
+	<action name="queryzjtjtbsj" class="zjtjController" method="queryzjtjtbsj"></action>
+	<action name="delzjdwqb" class="zjtjController" method="delzjdwqb"></action>
+	<action name="qbthsj" class="zjtjController" method="qbthsj"></action>
+	<action name="qbthxj" class="zjtjController" method="qbthxj"></action>
+	
+	
+	
+ </package>
+</struts>

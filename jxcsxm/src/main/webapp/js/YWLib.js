@@ -138,7 +138,14 @@ function openZjbf(xmbm,gydwdm,xmlx){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.xmlx=xmlx;
 	YMLib.Var.gydwdm=gydwdm;
-	openWindow("资金拨付详情","/jxcsxm/page/zjbf/zjbf.jsp",1000,450);
+	openWindow("资金拨付详情","/jxcsxm/page/zjbf/zjbf.jsp",1050,450);
+}
+//打开资金调剂页面
+function openZjtj(xmbm,gydwdm,xmlx){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.xmlx=xmlx;
+	YMLib.Var.gydwdm=gydwdm;
+	openWindow("资金调剂详情","/jxcsxm/page/zjtj/zjtj.jsp",1050,450);
 }
 
 //打开查看项目详情页面
@@ -152,6 +159,8 @@ function openXmInfo(xmbm,xmlx,xmjd){
 	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfodw.jsp",1000,420);
 	if(xmjd=='zjbf')
 	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfobf.jsp",1000,420);
+	if(xmjd=='zjtj')
+	openWindow("项目详情","/jxcsxm/page/jhcx/gs/xmInfotj.jsp",1000,420);
 }
 //打开查看项目详情页面
 function openXmInfoDt(xmbm,xmlx,xmjd){

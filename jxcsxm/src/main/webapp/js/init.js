@@ -23,13 +23,13 @@ $(function(){
 	
 	menuQx();
 	
-	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").click(function(e){
-		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").removeClass('now');
+	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7,#Menu_8").click(function(e){
+		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7,#Menu_8").removeClass('now');
 		$("#"+ this.id).addClass('now');
 	});
     
     $("#Menu_1").click(function () {
-        $("#c2,#c3,#c4,#c5,#c6,#7").hide();
+        $("#c2,#c3,#c4,#c5,#c6,#c7,#c8").hide();
         $("#c1").show();
         if (c1){
             $("#c1f").attr("src", "page/dzdt/dzdt.jsp");
@@ -37,7 +37,7 @@ $(function(){
     });
 
     $("#Menu_2").click(function () {
-        $("#c1,#c3,#c4,#c5,#c6,#7").hide();
+        $("#c1,#c3,#c4,#c5,#c6,#c7,#c8").hide();
         $("#c2").show();
         if (c2) {
             $("#c2f").attr("src", "page/jhcx/Menu.jsp");
@@ -45,7 +45,7 @@ $(function(){
     });
     
     $("#Menu_3").click(function () {
-        $("#c1,#c2,#c4,#c5,#c6,#7").hide();
+        $("#c1,#c2,#c4,#c5,#c6,#c7,#c8").hide();
         $("#c3").show();
         if (c3) {
             $("#c3f").attr("src", "page/zjdw/Menu.jsp");
@@ -53,7 +53,7 @@ $(function(){
     });
 
     $("#Menu_4").click(function () {
-        $("#c1,#c2,#c3,#c5,#c6,#7").hide();
+        $("#c1,#c2,#c3,#c5,#c6,#c7,#c8").hide();
         $("#c4").show();
         if (c4) {
             $("#c4f").attr("src", "page/zjbf/Menu.jsp");
@@ -61,7 +61,7 @@ $(function(){
     });
     
     $("#Menu_5").click(function () {
-        $("#c1,#c2,#c3,#c4,#c6,#7").hide();
+        $("#c1,#c2,#c3,#c4,#c6,#c7,#c8").hide();
         $("#c5").show();
         if (c5) {
             $("#c5f").attr("src", "page/zcgl/Menu.jsp");
@@ -69,7 +69,7 @@ $(function(){
     });
     
     $("#Menu_6").click(function () {
-        $("#c1,#c2,#c3,#c4,#c5,#7").hide();
+        $("#c1,#c2,#c3,#c4,#c5,#c7,#c8").hide();
         $("#c6").show();
         if (c6) {
             $("#c6f").attr("src", "page/tjbb/Menu.jsp");
@@ -78,14 +78,24 @@ $(function(){
     
     $("#Menu_7").click(function () {
     	
-        $("#c1,#c2,#c3,#c4,#c5,#c6").hide();
+        $("#c1,#c2,#c3,#c4,#c5,#c6,#c8").hide();
         $("#c7").show();
         if (c7) {
             $("#c7f").attr("src", "page/xtgl/Menu.jsp");
         }
 
     });
+    
+    $("#Menu_8").click(function () {
+    	
+        $("#c1,#c2,#c3,#c4,#c5,#c6,#c7").hide();
+        $("#c8").show();
+        if (c8) {
+            $("#c8f").attr("src", "page/zjtj/Menu.jsp");
+        }
 
+    });
+    
     $(".header_content").css({"width":"100%"});
 
 });
@@ -110,6 +120,7 @@ function menuQx(){
 				case "5": url="page/zcgl/Menu.jsp";break;
 				case "6": url="page/tjbb/Menu.jsp";break;
 				case "7": url="page/xtgl/Menu.jsp";break;
+				case "8": url="page/zjtj/Menu.jsp";break;
 				}
 				$("#Menu_"+qx[i].substr(qx[i].length-1)).addClass('now');
 				$("#c1f").attr("src", url);

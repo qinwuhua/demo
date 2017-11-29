@@ -342,7 +342,7 @@
 	  select distinct x.id ,x.name text,parent ,'open' state from XTGL_XZQH x where  id like '%'||${value}||'%' order by to_number(id)
 	</select>
 	<select id="selAllUnit1" parameterType="String" resultType="treenode">
-	  select distinct x.id ,x.name text,parent ,'open' state from XTGL_DEPARTMENT x where  (id like '%'||${value}||'%' or id like '%'||substr(#{value},0,4)||'_'||substr(#{value},6)||'%') and x.id not in ('21101360001','21101360002','21101360003','21101360004','21101360005','21101360006','21101360007','21101360008') and id not like '2%' order by decode(substr(id,0,1),'2',decode(id,'21101360000',1,decode(substr(id,8,2),'00',3,2)),'1',4,decode(id,'36',0,5)),to_number(parent),to_number(id) 
+	  select distinct x.id ,x.name text,parent ,'open' state from XTGL_DEPARTMENT x where  (id like '%'||${value}||'%' or id like '%'||substr(#{value},0,4)||'_'||substr(#{value},6)||'%') and x.id not in ('21101360001','21101360002','21101360003','21101360004','21101360005','21101360006','21101360007','21101360008') order by decode(substr(id,0,1),'2',decode(id,'21101360000',1,decode(substr(id,8,2),'00',3,2)),'1',4,decode(id,'36',0,5)),to_number(parent),to_number(id) 
 	</select>
 	
 	<select id="getxqxbyid" resultType="param" parameterType="param">

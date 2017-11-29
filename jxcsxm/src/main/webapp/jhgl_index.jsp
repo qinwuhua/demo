@@ -113,6 +113,7 @@ function clearscSession(){
 					<li id="menu_010102" style="display:none;"><a id="Menu_2" href="javascript:void(0)">计划查询</a></li>
 					<li id="menu_010103" style="display:none;"><a id="Menu_3" href="javascript:void(0)">资金到位</a></li>
 					<li id="menu_010104" style="display:none;"><a id="Menu_4" href="javascript:void(0)">资金拨付</a></li>
+					<li id="menu_010108" style="display:none;"><a id="Menu_8" href="javascript:void(0)">资金调剂</a></li>
 					<li id="menu_010105" style="display:none;"><a id="Menu_5" href="javascript:void(0)">资产管理</a></li>
 					<li id="menu_010106" style="display:none;"><a id="Menu_6" href="javascript:void(0)">统计报表</a></li>
 					<li id="menu_010107" style="display:none;"><a id="Menu_7" href="javascript:void(0)">系统管理</a></li>
@@ -133,6 +134,9 @@ function clearscSession(){
 		</div>
 		<div id="c3" style="width:100%;height:100%;display:none">
 			<iframe id="c3f" name="c3f"src="" frameborder='0' height='100%' width='100%'></iframe>
+		</div>
+		<div id="c8" style="width:100%;height:100%;display:none">
+			<iframe id="c8f" name="c8f"src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
 		<div id="c4" style="width:100%;height:100%;display:none">
 			<iframe id="c4f" name="c4f" src="" frameborder='0' height='100%' width='100%'></iframe>
