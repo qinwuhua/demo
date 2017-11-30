@@ -134,7 +134,7 @@ text-decoration:none;
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-					<div id="righttop" style="width:4020px;">
+					<div id="righttop" style="width:2020px;">
 						<div id="p_top">当前位置>&nbsp;统计报表>&nbsp;公路建设资金使用情况汇总表（按项目类别统计）</div>
 					</div>
         	</tr>

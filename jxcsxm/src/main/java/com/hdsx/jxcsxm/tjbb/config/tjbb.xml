@@ -639,7 +639,7 @@
 		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
 		    (nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(xm.gydwdm,0,1),'1',xm.gydwdm,substr(xm.gydwdm,0,9)||'00') gydwdm
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,0,9)||'00') gydwdm
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(btzzj) yqbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) yqsb,sum(dfzc+yhdk) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
@@ -690,7 +690,7 @@
     nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
     nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
     (nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(xm.gydwdm,0,1),'1',xm.gydwdm,substr(xm.gydwdm,0,9)||'00') gydwdm
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,0,9)||'00') gydwdm
     from xmjbxx x,(
     select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(btzzj) yqbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) yqsb,sum(dfzc+yhdk) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
     ) yqjh,(
