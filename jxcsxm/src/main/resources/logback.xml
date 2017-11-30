@@ -65,7 +65,7 @@
 		</triggeringPolicy>
 	</appender>
 	
-	<root level="debug">
+	<root level="DEBUG">
 		<appender-ref ref="stdout" />
 <!-- 		<appender-ref ref="R" /> -->
 	<appender-ref ref="FILE" />

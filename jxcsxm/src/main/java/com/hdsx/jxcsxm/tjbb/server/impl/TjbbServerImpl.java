@@ -406,5 +406,49 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 			return null;
 	}
 
-	
+	@Override
+	public List<Excel_list> getZjsymxb(Excel_list elist) {
+		return queryList("getZjsymxb",elist);
+	}
+
+	@Override
+	public List<Excel_list> getZjsydwhzb(Excel_list elist) {
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		List<Excel_list> l1=queryList("getZjsydwhzbhz",elist);
+		List<Excel_list> l2=queryList("getZjsydwhzb",elist);
+		int l1no=0;int l2no=0;
+		for (int i = 0; i < l1.size(); i++) {
+			l.add(l1.get(i));
+			int t=1;
+			for (int j = l2no; j < l2no+l1.get(i).getXmsl(); j++) {
+				l2.get(j).setV_0(t+"");t++;
+			}
+			System.out.println(l2no+"   "+(l2no+l1.get(i).getXmsl()));
+			l.addAll(l2.subList(l2no, l2no+l1.get(i).getXmsl()));
+			l2no+=l1.get(i).getXmsl();
+		}
+		
+		return l;
+	}
+
+	@Override
+	public List<Excel_list> getZjsyxmhzb(Excel_list elist) {
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		List<Excel_list> l1=queryList("getZjsyxmhzbhz",elist);
+		List<Excel_list> l2=queryList("getZjsyxmhzb",elist);
+		int l1no=0;int l2no=0;
+		for (int i = 0; i < l1.size(); i++) {
+			l.add(l1.get(i));
+			int t=1;
+			for (int j = l2no; j < l2no+l1.get(i).getXmsl(); j++) {
+				l2.get(j).setV_0(t+"");t++;
+			}
+			System.out.println(l2no+"   "+(l2no+l1.get(i).getXmsl()));
+			l.addAll(l2.subList(l2no, l2no+l1.get(i).getXmsl()));
+			l2no+=l1.get(i).getXmsl();
+		}
+		
+		return l;
+	}
+
 }

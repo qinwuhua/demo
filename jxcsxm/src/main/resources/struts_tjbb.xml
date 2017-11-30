@@ -12,6 +12,9 @@
 	<action name="getGlzcqkb" class="tjbbController" method="getGlzcqkb"></action>
 	<action name="importTjbb" class="tjbbController" method="importTjbb"></action>
 	<action name="getTjbb" class="tjbbController" method="getTjbb"></action>
+	<action name="getZjsymxb" class="tjbbController" method="getZjsymxb"></action>
+	<action name="getZjsydwhzb" class="tjbbController" method="getZjsydwhzb"></action>
+	<action name="getZjsyxmhzb" class="tjbbController" method="getZjsyxmhzb"></action>
 	
 	
  </package>
