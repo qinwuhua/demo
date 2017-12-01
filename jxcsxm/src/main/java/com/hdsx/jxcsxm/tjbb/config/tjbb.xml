@@ -589,9 +589,9 @@
 		(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_30,
 		nvl(tj.bb,0) v_31,nvl(tj.sb,0) v_32,nvl(tj.df,0) v_33,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_34,'' v_35
 		from xmjbxx x,(
-		select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(btzzj) yqbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) yqsb,sum(dfzc+yhdk) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
+		select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		) yqjh,(
-		select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(btzzj) dnbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) dnsb,sum(dfzc+yhdk) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
+		select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		) dnjh ,(
 		select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
 		group by xmbm
@@ -641,9 +641,9 @@
 		    (nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,0,9)||'00') gydwdm
 		    from xmjbxx x,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(btzzj) yqbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) yqsb,sum(dfzc+yhdk) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
+		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(btzzj) dnbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) dnsb,sum(dfzc+yhdk) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
+		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		    ) dnjh ,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
 		    group by xmbm
@@ -692,9 +692,9 @@
     (nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
     nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,0,9)||'00') gydwdm
     from xmjbxx x,(
-    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(btzzj) yqbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) yqsb,sum(dfzc+yhdk) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
+    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
     ) yqjh,(
-    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(btzzj) dnbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) dnsb,sum(dfzc+yhdk) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
+    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
     ) dnjh ,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
     group by xmbm
@@ -745,9 +745,9 @@
 		    (nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
 		    from xmjbxx x,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(btzzj) yqbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) yqsb,sum(dfzc+yhdk) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
+		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(btzzj) dnbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) dnsb,sum(dfzc+yhdk) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
+		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		    ) dnjh ,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
 		    group by xmbm
@@ -797,9 +797,9 @@
     (nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
     nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
     from xmjbxx x,(
-    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(btzzj) yqbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) yqsb,sum(dfzc+yhdk) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
+    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
     ) yqjh,(
-    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(btzzj) dnbb,sum(stz+gz+sz+stc+dk+zq+jl+rys+ttc+zddzjl) dnsb,sum(dfzc+yhdk) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
+    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
     ) dnjh ,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
     group by xmbm
