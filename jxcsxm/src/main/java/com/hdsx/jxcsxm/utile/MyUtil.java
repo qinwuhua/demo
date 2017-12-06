@@ -21,6 +21,30 @@ public class MyUtil implements Serializable{
 	 * 
 	 * @param bh 要处理的参数
 	 * @param name 要加条件的数据库字段
+	 * @return 拼好项目类型的条件
+	 */
+	public static String getQueryxmlxTJ(String bh,String name,String name2){
+		String result="";
+		if(bh!=null&&!"".equals(bh)){
+			
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				if(i==0)
+					result+=" and ("+name+" like '"+s[i]+"' or "+name2+" like '"+s[i]+"'";
+				else
+					result+=" or "+name+" like '"+s[i]+"' or "+name2+" like '"+s[i]+"'";
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @param bh 要处理的参数
+	 * @param name 要加条件的数据库字段
 	 * @return 拼好的条件
 	 */
 	public static String getQueryTJ(String bh,String name){

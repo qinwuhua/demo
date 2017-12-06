@@ -32,7 +32,8 @@
 	$(function(){
 		loadUnit1("gydw",$.cookie("unit"));
 		loadBmbm('nf','项目年份',new Date().getFullYear());
-		loadBmbm3('xmlx','报表项目类型');
+		loadBmbm3('xmnf','项目年份',new Date().getFullYear());
+ 		loadBmbm3('xmlx','报表项目类型');
 		$("#sn").html($("#nf").combo('getValue')-1);
 		$("#ssn").html($("#nf").combo('getValue')-2);
 		
@@ -61,7 +62,8 @@
 		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
 		$.ajax({
 			url:"/jxcsxm/tjbb/getZjsyxmhzb.do",
-			data:'flag=0&nf='+nf+"&gydw="+xzqhstr+"&gydw="+gydw+"&xmlx="+getValuesById("xmlx"),
+			data:'flag=0&nf='+nf+"&gydw="+xzqhstr+"&gydw="+gydw+"&xmlx="+getValuesById("xmlx")
+			+"&xmnf="+getValuesById("xmnf"),
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -110,7 +112,7 @@
 		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
 		var data="flag=1&nf="+nf+"&gydw="+gydw;
 		loadjzt();
-		 $.post('/jxcsxm/xtgl/exportBb_set.do',{sql:datalist,gydw:xzqhstr},function(){
+		 $.post('/jxcsxm/xtgl/exportBb_set.do',{gydw:xzqhstr},function(){
 			window.location.href='/jxcsxm/tjbb/getZjsyxmhzb.do?'+data;
 		 }); 
 		 setTimeout('disLoadjzt()',4000);
@@ -152,7 +154,8 @@ text-decoration:none;
 	        						<td><select id="gydw" style="width:165px;"></select></td>
 	        						<td align="right">项目类型：</td>
         							<td><select id="xmlx" style="width: 130px;"></select></td>
-        							
+        							<td align="right">项目年份：</td>
+        							<td><select id="xmnf" style="width: 80px;"></select></td>
 									<td align="right">报表年份：</td>
         							<td><select id="nf" style="width: 80px;"></select></td>
 									

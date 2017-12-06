@@ -49,7 +49,14 @@ public class Excel_list implements Serializable {
 	
 	private String sfhb;
 	
+	private String xmnf;
 	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
 	public String getSfhb() {
 		return sfhb;
 	}

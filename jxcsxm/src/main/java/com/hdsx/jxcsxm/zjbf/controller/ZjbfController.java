@@ -499,10 +499,15 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 	
 	//全部删除的方法
 	public void delzjbfqb() {
-		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
-		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
-		xmjbxx.setTbsj(MyUtil.getQueryTJ(xmjbxx.getTbsj(), "tbsj"));
-		ResponseUtils.write(getresponse(), ""+zjbfServer.delzjbfqb(xmjbxx));
+		try {
+			xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+			xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz"));
+			xmjbxx.setTbsj(MyUtil.getQueryTJ(xmjbxx.getTbsj(), "tbsj"));
+			ResponseUtils.write(getresponse(),
+					"" + zjbfServer.delzjbfqb(xmjbxx));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//自然村全部退回

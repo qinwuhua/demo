@@ -594,33 +594,36 @@
 		select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		) dnjh ,(
 		select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		group by xmbm
+		group by xmbm,substr(dwyf, 1, 4)
 		)q2dw,(
 		select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		group by xmbm
+		group by xmbm,substr(dwyf, 1, 4)
 		)q1dw,(
 		select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) 
-		group by xmbm
+		group by xmbm,substr(dwyf, 1, 4)
 		)dndw,(
 		select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		group by xmbm
+		group by xmbm,substr(bfyf, 1, 4)
 		)q2bf,(
 		select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		group by xmbm
+		group by xmbm,substr(bfyf, 1, 4)
 		)q1bf,(
 		select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) 
-		group by xmbm
+		group by xmbm,substr(bfyf, 1, 4)
 		)dnbf,(
 		select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjtj 
-		group by xmbm
+		group by xmbm,substr(bfyf, 1, 4)
 		)tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
 		 and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
 		<if test="gydw != null">
 		${gydw}
 		</if> 
-		<if test="xmlx != null">
-		${xmlx}
-		</if> 
+		<if test="xmnf != null">
+	    ${xmnf}
+	    </if> 
+	    <if test="xmlx != null">
+	    ${xmlx}
+	    </if>
 		
 	</select>
 	
@@ -646,33 +649,36 @@
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		    ) dnjh ,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm
+		    group by xmbm,substr(dwyf, 1, 4)
 		    )q2dw,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm
+		    group by xmbm,substr(dwyf, 1, 4)
 		    )q1dw,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) 
-		    group by xmbm
+		    group by xmbm,substr(dwyf, 1, 4)
 		    )dndw,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm
+		    group by xmbm,substr(bfyf, 1, 4)
 		    )q2bf,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm
+		    group by xmbm,substr(bfyf, 1, 4)
 		    )q1bf,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) 
-		    group by xmbm
+		    group by xmbm,substr(bfyf, 1, 4)
 		    )dnbf,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjtj 
-		    group by xmbm
+		    group by xmbm,substr(bfyf, 1, 4)
 		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
 		     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
 		    <if test="gydw != null">
 		    ${gydw}
 		    </if> 
+		    <if test="xmnf != null">
+		    ${xmnf}
+		    </if> 
 		    <if test="xmlx != null">
 		    ${xmlx}
-		    </if> 
+		    </if>
 		    )
 		    group by gydwdm
 		    
@@ -697,33 +703,36 @@
     select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
     ) dnjh ,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-    group by xmbm
+    group by xmbm,substr(dwyf, 1, 4)
     )q2dw,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-    group by xmbm
+    group by xmbm,substr(dwyf, 1, 4)
     )q1dw,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) 
-    group by xmbm
+    group by xmbm,substr(dwyf, 1, 4)
     )dndw,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-    group by xmbm
+    group by xmbm,substr(bfyf, 1, 4)
     )q2bf,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-    group by xmbm
+    group by xmbm,substr(bfyf, 1, 4)
     )q1bf,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) 
-    group by xmbm
+    group by xmbm,substr(bfyf, 1, 4)
     )dnbf,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjtj 
-    group by xmbm
+    group by xmbm,substr(bfyf, 1, 4)
     )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
      and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
     <if test="gydw != null">
     ${gydw}
     </if> 
+    <if test="xmnf != null">
+    ${xmnf}
+    </if> 
     <if test="xmlx != null">
     ${xmlx}
-    </if> 
+    </if>
     order by gydwdm
     
 	</select>
@@ -750,33 +759,36 @@
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		    ) dnjh ,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm
+		    group by xmbm,substr(dwyf, 1, 4)
 		    )q2dw,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm
+		    group by xmbm,substr(dwyf, 1, 4)
 		    )q1dw,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) 
-		    group by xmbm
+		    group by xmbm,substr(dwyf, 1, 4)
 		    )dndw,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm
+		    group by xmbm,substr(bfyf, 1, 4)
 		    )q2bf,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm
+		    group by xmbm,substr(bfyf, 1, 4)
 		    )q1bf,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) 
-		    group by xmbm
+		    group by xmbm,substr(bfyf, 1, 4)
 		    )dnbf,(
 		    select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjtj 
-		    group by xmbm
+		    group by xmbm,substr(bfyf, 1, 4)
 		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
 		     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
 		    <if test="gydw != null">
 		    ${gydw}
 		    </if> 
-		    <if test="xmlx != null">
-		    ${xmlx}
+		    <if test="xmnf != null">
+		    ${xmnf}
 		    </if> 
+		   	<if test="xmlx != null">
+		    ${xmlx}
+		    </if>
 		    )
 		    group by xmlx
 		    
@@ -802,33 +814,36 @@
     select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
     ) dnjh ,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-    group by xmbm
+    group by xmbm,substr(dwyf, 1, 4)
     )q2dw,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-    group by xmbm
+    group by xmbm,substr(dwyf, 1, 4)
     )q1dw,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) 
-    group by xmbm
+    group by xmbm,substr(dwyf, 1, 4)
     )dndw,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-    group by xmbm
+    group by xmbm,substr(bfyf, 1, 4)
     )q2bf,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-    group by xmbm
+    group by xmbm,substr(bfyf, 1, 4)
     )q1bf,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) 
-    group by xmbm
+    group by xmbm,substr(bfyf, 1, 4)
     )dnbf,(
     select xmbm,sum(cgs) bb,sum(gz+sz+zq+tdk+jl+qt+rys+stz+ttc+zddzjl) sb,sum(dfzc+yhdk) df from xm_zjtj 
-    group by xmbm
+    group by xmbm,substr(bfyf, 1, 4)
     )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
      and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
     <if test="gydw != null">
     ${gydw}
     </if> 
+    <if test="xmnf != null">
+    ${xmnf}
+    </if> 
     <if test="xmlx != null">
     ${xmlx}
-    </if> 
+    </if>
     order by xmlx
     
 	</select>

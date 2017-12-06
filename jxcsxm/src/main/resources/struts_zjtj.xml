@@ -23,7 +23,7 @@
 	<action name="queryZjdwbfByGydwdm" class="zjtjController" method="queryZjdwbfByGydwdm"></action>
 	<action name="qbshbf" class="zjtjController" method="qbshbf"></action>
 	<action name="queryzjtjtbsj" class="zjtjController" method="queryzjtjtbsj"></action>
-	<action name="delzjdwqb" class="zjtjController" method="delzjdwqb"></action>
+	<action name="delzjtjqb" class="zjtjController" method="delzjtjqb"></action>
 	<action name="qbthsj" class="zjtjController" method="qbthsj"></action>
 	<action name="qbthxj" class="zjtjController" method="qbthxj"></action>
 	

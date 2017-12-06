@@ -171,7 +171,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 	public void getJhzxqkb(){
 		try {
 			
-			elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "xm.jsxz||xm.gcfl"));
+			elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "xm.jsxz","xm.gcfl"));
 			elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
 			elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
 			elist.setJhnf(MyUtil.getQueryTJ(elist.getJhnf(), "xd.xdnf"));
@@ -289,7 +289,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				    
 				    String col=(String) session.getAttribute("colValue");
 				    
-				    elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "xm.jsxz||xm.gcfl"));
+				    elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "xm.jsxz","xm.gcfl"));
 				    
 					elist.setJhxdwh(MyUtil.getQueryTJ((String)session.getAttribute("sql"), "xd.jhxdwh"));
 					elist.setXzqhdm(MyUtil.getQueryTJ((String)session.getAttribute("xzqhbb"), "xm.xzqhdm"));
@@ -371,7 +371,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				Excel_export.excel_export(eldata,response);	
 				
 			} else {
-				elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "xm.jsxz||xm.gcfl"));
+				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "xm.jsxz","xm.gcfl"));
 				elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
 				elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
 				List<Excel_list> l = tjbbServer.getTzhzb(elist);
@@ -754,7 +754,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				
 				et.add(new Excel_tilte("部补",3,4,13,13));
 				et.add(new Excel_tilte("省补",3,4,14,14));
-				et.add(new Excel_tilte("地方",3,4,15,015));
+				et.add(new Excel_tilte("地方",3,4,15,15));
 				et.add(new Excel_tilte("合计",3,4,16,16));
 				et.add(new Excel_tilte("其中",3,3,17,18));
 				
@@ -783,11 +783,15 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				
 				eldata.setEl(l);//将实体list放入类中
 				eldata.setEt(et);//将表头内容设置到类里面
+				
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-				Excel_export.excel_exportGlzcqkb(eldata,response);	
+				
+				Excel_export.excel_export(eldata,response);	
 			}else{
 				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
-				elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "jsxz||gcfl"));
+				
+				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xmnf"));
+				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
 				List<Excel_list> l = tjbbServer.getZjsymxb(elist);
 				getRequest().getSession().setAttribute("zjsymxb", l);
 				JsonUtils.write(l, getresponse().getWriter());
@@ -853,7 +857,8 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				Excel_export.excel_exportGlzcqkb(eldata,response);	
 			}else{
 				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
-				elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "jsxz||gcfl"));
+				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xmnf"));
+				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
 				List<Excel_list> l = tjbbServer.getZjsydwhzb(elist);
 				getRequest().getSession().setAttribute("zjsydwhzb", l);
 				JsonUtils.write(l, getresponse().getWriter());
@@ -878,9 +883,9 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				List<Excel_list> l = (List<Excel_list>) session.getAttribute("zjsyxmhzb");
 				
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("公路建设资金使用情况汇总表（按单位统计）");//设置第一行
+				eldata.setTitleName("公路建设资金使用情况汇总表（按项目统计）");//设置第一行
 				eldata.setSheetName("sheet1");//设置sheeet名
-				eldata.setFileName("公路建设资金使用情况汇总表（按单位统计）");//设置文件名
+				eldata.setFileName("公路建设资金使用情况汇总表（按项目统计）");//设置文件名
 				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("投资计划",1,1,0,6));
@@ -917,7 +922,8 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				Excel_export.excel_exportGlzcqkb(eldata,response);	
 			}else{
 				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
-				elist.setXmlx(MyUtil.getQueryTJ(elist.getXmlx(), "jsxz||gcfl"));
+				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xmnf"));
+				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
 				List<Excel_list> l = tjbbServer.getZjsyxmhzb(elist);
 				getRequest().getSession().setAttribute("zjsyxmhzb", l);
 				JsonUtils.write(l, getresponse().getWriter());
