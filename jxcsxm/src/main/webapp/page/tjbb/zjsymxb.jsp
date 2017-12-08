@@ -32,6 +32,9 @@
 	$(function(){
 		loadUnit1("gydw",$.cookie("unit"));
 		loadBmbm('nf','项目年份',new Date().getFullYear());
+		var yf=new Date().getMonth()+1;
+		var day=new Date().getDate();
+		if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
 		loadBmbm3('xmnf','项目年份',new Date().getFullYear());
  		loadBmbm3('xmlx','报表项目类型');
 		$("#sn").html($("#nf").combo('getValue')-1);
@@ -64,7 +67,7 @@
 		$("#ssn").html($("#nf").combo('getValue')-2);
 		$.ajax({
 			url:"/jxcsxm/tjbb/getZjsymxb.do",
-			data:'flag=0&nf='+nf+"&gydw="+xzqhstr
+			data:'flag=0&nf='+nf+"&gydw="+xzqhstr+"&yf="+$("#yf").combobox('getValue')
 			+"&xmlx="+getValuesById("xmlx")
 			+"&xmnf="+getValuesById("xmnf"),
 			type:"post",
@@ -173,7 +176,8 @@ text-decoration:none;
         							<td><select id="xmnf" style="width: 80px;"></select></td>
 									<td align="right">报表年份：</td>
         							<td><select id="nf" style="width: 80px;"></select></td>
-									
+									<td align="right">报表月份：</td>
+        							<td><select id="yf" style="width: 80px;"></select></td>
 								</tr>
         					
         					<tr height="28">

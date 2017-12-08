@@ -854,7 +854,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				eldata.setEl(l);//将实体list放入类中
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-				Excel_export.excel_exportGlzcqkb(eldata,response);	
+				Excel_export.excel_export(eldata,response);	
 			}else{
 				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
 				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xmnf"));
@@ -919,7 +919,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				eldata.setEl(l);//将实体list放入类中
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-				Excel_export.excel_exportGlzcqkb(eldata,response);	
+				Excel_export.excel_export(eldata,response);	
 			}else{
 				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
 				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xmnf"));
