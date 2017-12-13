@@ -77,7 +77,11 @@
 					datalist=JSON.stringify(msg);
 					
 					for ( var i = 0; i < msg.length; i++) {
-						var tr="<tr height='28'>";
+						var tr="";
+						if(msg[i].sfhj=='是')
+						tr="<tr height='28' style='background: #FFF5EE;font-weight: 800;'>";
+						else
+						tr="<tr height='28'>";
 						tr+="<td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"
 						+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
 						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"
@@ -87,6 +91,10 @@
 						+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"
 						+"<td>"+msg[i].v_14+"</td>";
 						tr+="</tr>";
+						tbody.append(tr);
+					}
+					if(msg.length==1000){
+						var tr="<tr height='28'><td colspan='15'>数据太多，请导出表格查看...</td></tr>";
 						tbody.append(tr);
 					}
 				}

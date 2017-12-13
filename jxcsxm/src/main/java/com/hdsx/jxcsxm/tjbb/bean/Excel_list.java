@@ -51,7 +51,15 @@ public class Excel_list implements Serializable {
 	
 	private String xmnf;
 	private String hjlx;
+	private String sfhj;
 	
+	
+	public String getSfhj() {
+		return sfhj;
+	}
+	public void setSfhj(String sfhj) {
+		this.sfhj = sfhj;
+	}
 	public String getHjlx() {
 		return hjlx;
 	}

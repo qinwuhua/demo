@@ -408,7 +408,12 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 
 	@Override
 	public List<Excel_list> getZjsymxb(Excel_list elist) {
-		return queryList("getZjsymxb",elist);
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		List<Excel_list> l1=new ArrayList<Excel_list>();
+		l=queryList("getZjsymxbzj",elist);
+		l1=queryList("getZjsymxb",elist);
+		l.addAll(l1);
+		return l;
 	}
 
 	@Override
@@ -418,9 +423,11 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		List<Excel_list> l1=null;
 		List<Excel_list> l2=null;
 		if("按地市".equals(elist.getHjlx())){
+			l=queryList("getZjsydwhzbhjds",elist);
 			l1=queryList("getZjsydwhzbhzds",elist);
 			l2=queryList("getZjsydwhzbds",elist);
 		}else{
+			l=queryList("getZjsydwhzbhj",elist);
 			l1=queryList("getZjsydwhzbhz",elist);
 			l2=queryList("getZjsydwhzb",elist);
 		}
@@ -442,9 +449,10 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 	@Override
 	public List<Excel_list> getZjsyxmhzb(Excel_list elist) {
 		List<Excel_list> l=new ArrayList<Excel_list>();
+		l=queryList("getZjsyxmhzbhj",elist);
 		List<Excel_list> l1=queryList("getZjsyxmhzbhz",elist);
 		List<Excel_list> l2=queryList("getZjsyxmhzb",elist);
-		int l1no=0;int l2no=0;
+		int l2no=0;
 		for (int i = 0; i < l1.size(); i++) {
 			l.add(l1.get(i));
 			int t=1;

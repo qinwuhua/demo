@@ -80,7 +80,11 @@
 					datalist=JSON.stringify(msg);
 					
 					for ( var i = 0; i < msg.length; i++) {
-						var tr="<tr height='28'>";
+						var tr="";
+						if(msg[i].sfhj=='是')
+						tr="<tr height='28' style='background: #FFF5EE;font-weight: 800;'>";
+						else
+						tr="<tr height='28'>";
 						tr+="<td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"
 						+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
 						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"
@@ -102,6 +106,11 @@
 						tr+="</tr>";
 						tbody.append(tr);
 					}
+					if(msg.length==1000){
+						var tr="<tr height='28'><td colspan='36'>数据太多，请导出表格查看...</td></tr>";
+						tbody.append(tr);
+					}
+					
 				}
 			}
 		});
@@ -167,7 +176,7 @@ text-decoration:none;
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					
-								<tr height="28">
+								<tr height="28" >
 									<td align="right">管养单位：</td>
 	        						<td><select id="gydw" style="width:165px;"></select></td>
 	        						<td align="right">项目类型：</td>

@@ -794,6 +794,9 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
 				List<Excel_list> l = tjbbServer.getZjsymxb(elist);
 				getRequest().getSession().setAttribute("zjsymxb", l);
+				if(l.size()>1000)
+				JsonUtils.write(l.subList(0, 1000), getresponse().getWriter());
+				else
 				JsonUtils.write(l, getresponse().getWriter());
 			}
 			
@@ -861,7 +864,10 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
 				List<Excel_list> l = tjbbServer.getZjsydwhzb(elist);
 				getRequest().getSession().setAttribute("zjsydwhzb", l);
-				JsonUtils.write(l, getresponse().getWriter());
+				if(l.size()>1000)
+					JsonUtils.write(l.subList(0, 1000), getresponse().getWriter());
+					else
+					JsonUtils.write(l, getresponse().getWriter());
 			}
 			
 		} catch (Exception e) {
@@ -926,7 +932,10 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
 				List<Excel_list> l = tjbbServer.getZjsyxmhzb(elist);
 				getRequest().getSession().setAttribute("zjsyxmhzb", l);
-				JsonUtils.write(l, getresponse().getWriter());
+				if(l.size()>1000)
+					JsonUtils.write(l.subList(0, 1000), getresponse().getWriter());
+					else
+					JsonUtils.write(l, getresponse().getWriter());
 			}
 			
 		} catch (Exception e) {
