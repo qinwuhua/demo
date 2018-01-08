@@ -698,10 +698,143 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 	 */
 	public void getTjbb() {
 		try {
-			elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydw"));
-			elist.setYf(MyUtil.getQueryTJ(elist.getYf(), "yf"));
-			List<Excel_list> list = tjbbServer.getTjbb(elist);
-			JsonUtils.write(list, getresponse().getWriter());
+			if("0".equals(elist.getFlag())){
+				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydw"));
+				elist.setYf(MyUtil.getQueryTJ(elist.getYf(), "yf"));
+				List<Excel_list> list = tjbbServer.getTjbb(elist);
+				if("bzsrzcb".equals(elist.getXmlx()))
+				getRequest().getSession().setAttribute("bzsrzcb", list);
+				else if("bycbb".equals(elist.getXmlx()))
+					getRequest().getSession().setAttribute("bycbb", list);
+				else if("zjbdb".equals(elist.getXmlx()))
+					getRequest().getSession().setAttribute("zjbdb", list);
+				else if("srzcb".equals(elist.getXmlx()))
+					getRequest().getSession().setAttribute("srzcb", list);
+				else if("zxqkb".equals(elist.getXmlx()))
+					getRequest().getSession().setAttribute("zxqkb", list);
+				else if("zcfzb".equals(elist.getXmlx()))
+					getRequest().getSession().setAttribute("zcfzb", list);
+				JsonUtils.write(list, getresponse().getWriter());
+			}else{
+				if("bzsrzcb".equals(elist.getXmlx())){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+//					System.out.println(elist.getNf());
+					List<Excel_list> l = (List<Excel_list>) session.getAttribute("bzsrzcb");
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("财政补助收入支出表");//设置第一行
+					eldata.setSheetName("sheet1");//设置sheeet名
+					eldata.setFileName("财政补助收入支出表");//设置文件名
+					
+					List<Excel_tilte> ett=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					ett.add(new Excel_tilte("",1,1,0,0));
+					ett.add(new Excel_tilte("",1,1,1,1));
+					ett.add(new Excel_tilte("           会事业03表",1,1,2,2));
+					ett.add(new Excel_tilte("编制单位:          ",2,2,0,0));
+					ett.add(new Excel_tilte(elist.getNf()+"年度",2,2,1,1));
+					ett.add(new Excel_tilte("              单位：元",2,2,2,2));
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("项目",3,3,0,0));
+					et.add(new Excel_tilte("本年数",3,3,1,1));
+					et.add(new Excel_tilte("上年数",3,3,2,2));
+					eldata.setEl(l);//将实体list放入类中
+					eldata.setEtt(ett);//将表头内容设置到类里面
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_exportyybb(eldata,response);	
+				}
+				else if("bycbb".equals(elist.getXmlx())){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+//					System.out.println(elist.getNf());
+					List<Excel_list> l = (List<Excel_list>) session.getAttribute("bycbb");
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("公路小修保养成本表");//设置第一行
+					eldata.setSheetName("sheet1");//设置sheeet名
+					eldata.setFileName("公路小修保养成本表");//设置文件名
+					
+					List<Excel_tilte> ett=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					ett.add(new Excel_tilte(" ",1,1,0,8));
+					ett.add(new Excel_tilte("单位：元 ",1,1,9,9));
+					ett.add(new Excel_tilte("",1,1,10,10));
+					ett.add(new Excel_tilte("           会事业03表",1,1,11,11));
+					
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("项目",2,3,0,0));
+					et.add(new Excel_tilte("合 计",2,3,1,1));
+					et.add(new Excel_tilte("国 道",2,2,2,6));
+					et.add(new Excel_tilte("省 道",2,2,7,11));
+					et.add(new Excel_tilte("里程",3,3,2,2));
+					et.add(new Excel_tilte("小计",3,3,3,3));
+					et.add(new Excel_tilte("砼路面",3,3,4,4));
+					et.add(new Excel_tilte("沥青路面",3,3,5,5));
+					et.add(new Excel_tilte("其他路面",3,3,6,6));
+					et.add(new Excel_tilte("里程",3,3,7,7));
+					et.add(new Excel_tilte("小计",3,3,8,8));
+					et.add(new Excel_tilte("砼路面",3,3,9,9));
+					et.add(new Excel_tilte("沥青路面",3,3,10,10));
+					et.add(new Excel_tilte("其他路面",3,3,11,11));
+					et.add(new Excel_tilte("行次",4,4,0,0));
+					et.add(new Excel_tilte("1",4,4,1,1));
+					et.add(new Excel_tilte("2",4,4,2,2));
+					et.add(new Excel_tilte("3",4,4,3,3));
+					et.add(new Excel_tilte("4",4,4,4,4));
+					et.add(new Excel_tilte("5",4,4,5,5));
+					et.add(new Excel_tilte("6",4,4,6,6));
+					et.add(new Excel_tilte("7",4,4,7,7));
+					et.add(new Excel_tilte("8",4,4,8,8));
+					et.add(new Excel_tilte("9",4,4,9,9));
+					et.add(new Excel_tilte("10",4,4,10,10));
+					et.add(new Excel_tilte("11",4,4,11,11));
+					
+					eldata.setEl(l);//将实体list放入类中
+					eldata.setEtt(ett);//将表头内容设置到类里面
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_exportyybb(eldata,response);	
+				}
+				else if("zjbdb".equals(elist.getXmlx())){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+//					System.out.println(elist.getNf());
+					List<Excel_list> l = (List<Excel_list>) session.getAttribute("zjbdb");
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("固定资产增减变动表");//设置第一行
+					eldata.setSheetName("sheet1");//设置sheeet名
+					eldata.setFileName("固定资产增减变动表");//设置文件名
+					
+					List<Excel_tilte> ett=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					ett.add(new Excel_tilte("",1,1,0,0));
+					ett.add(new Excel_tilte("",1,1,1,1));
+					ett.add(new Excel_tilte("",1,1,2,2));
+					ett.add(new Excel_tilte("           养护事业06表",1,1,3,3));
+					ett.add(new Excel_tilte("编制单位:          ",2,2,0,0));
+					ett.add(new Excel_tilte("              年 月 日",2,2,1,1));
+					ett.add(new Excel_tilte("",1,1,2,2));
+					ett.add(new Excel_tilte("              金额单位:元",2,2,3,3));
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("项目",3,3,0,0));
+					et.add(new Excel_tilte("金额",3,3,1,1));
+					et.add(new Excel_tilte("项目",3,3,2,2));
+					et.add(new Excel_tilte("金额",3,3,3,3));
+					eldata.setEl(l);//将实体list放入类中
+					eldata.setEtt(ett);//将表头内容设置到类里面
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_exportyybb(eldata,response);	
+				}
+				else if("srzcb".equals(elist.getXmlx())){
+					
+				}
+				else if("zxqkb".equals(elist.getXmlx())){
+					
+				}
+				else if("zcfzb".equals(elist.getXmlx())){
+					
+				}
+				
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
