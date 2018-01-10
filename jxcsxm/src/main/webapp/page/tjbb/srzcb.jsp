@@ -107,10 +107,10 @@
 		
 		var nf=$("#nf").combobox('getValue');
 		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
-		var data="flag=1&nf="+nf+"&gydw="+gydw;
+		var data='flag=1&nf='+nf+"&gydw="+xzqhstr+"&yf="+yf+"&xmlx="+"srzcb";
 		loadjzt();
 		 $.post('/jxcsxm/xtgl/exportBb_set.do',{sql:datalist,gydw:xzqhstr},function(){
-			window.location.href='/jxcsxm/tjbb/getGlzcqkb11111.do?'+data;
+			window.location.href='/jxcsxm/tjbb/getTjbb.do?'+data;
 		 }); 
 		 setTimeout('disLoadjzt()',4000);
 		
@@ -153,7 +153,7 @@ text-decoration:none;
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 					<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;统计报表>&nbsp;养路支出预算执行情况表</div>
+						<div id="p_top">当前位置>&nbsp;统计报表>&nbsp;收入支出表</div>
 					</div>
         	</tr>
         	<tr>
@@ -195,7 +195,7 @@ text-decoration:none;
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<div style="font-size:large;font-weight: bolder;" align="center">养路支出预算执行情况表</div>
+							<div style="font-size:large;font-weight: bolder;" align="center">收入支出表</div>
 							<div align="right">
 									会事业02表
 							</div>

@@ -824,13 +824,91 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 					Excel_export.excel_exportyybb(eldata,response);	
 				}
 				else if("srzcb".equals(elist.getXmlx())){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+//					System.out.println(elist.getNf());
+					List<Excel_list> l = (List<Excel_list>) session.getAttribute("srzcb");
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("收入支出表");//设置第一行
+					eldata.setSheetName("sheet1");//设置sheeet名
+					eldata.setFileName("收入支出表");//设置文件名
 					
+					List<Excel_tilte> ett=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					ett.add(new Excel_tilte("",1,1,0,0));
+					ett.add(new Excel_tilte("",1,1,1,1));
+					ett.add(new Excel_tilte("           会事业02表",1,1,2,2));
+					ett.add(new Excel_tilte("编制单位:          ",2,2,0,0));
+					ett.add(new Excel_tilte("              年 月 日",2,2,1,1));
+					ett.add(new Excel_tilte("              金额单位:元",2,2,2,2));
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("项目",3,3,0,0));
+					et.add(new Excel_tilte("本月数",3,3,1,1));
+					et.add(new Excel_tilte("本年累计数",3,3,2,2));
+					eldata.setEl(l);//将实体list放入类中
+					eldata.setEtt(ett);//将表头内容设置到类里面
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_exportyybb(eldata,response);	
 				}
 				else if("zxqkb".equals(elist.getXmlx())){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+//					System.out.println(elist.getNf());
+					List<Excel_list> l = (List<Excel_list>) session.getAttribute("zxqkb");
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("养路支出预算执行情况表");//设置第一行
+					eldata.setSheetName("sheet1");//设置sheeet名
+					eldata.setFileName("养路支出预算执行情况表");//设置文件名
 					
+					List<Excel_tilte> ett=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					ett.add(new Excel_tilte("编制单位:          ",1,1,0,0));
+					ett.add(new Excel_tilte("              养护事业04表",1,1,8,8));
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("项目",2,3,0,0));
+					et.add(new Excel_tilte("行次",2,3,1,1));
+					et.add(new Excel_tilte("上年结转",2,3,2,2));
+					et.add(new Excel_tilte("本年预算数",2,2,3,6));
+					et.add(new Excel_tilte("本年实际支出",2,3,7,7));
+					et.add(new Excel_tilte("本年结转",2,3,8,8));
+					et.add(new Excel_tilte("养路补助",3,3,3,3));
+					et.add(new Excel_tilte("车购税补助",3,3,4,4));
+					et.add(new Excel_tilte("其他来源",3,3,5,5));
+					et.add(new Excel_tilte("合计",3,3,6,6));
+					
+					eldata.setEl(l);//将实体list放入类中
+					eldata.setEtt(ett);//将表头内容设置到类里面
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_exportyybb(eldata,response);	
 				}
 				else if("zcfzb".equals(elist.getXmlx())){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+//					System.out.println(elist.getNf());
+					List<Excel_list> l = (List<Excel_list>) session.getAttribute("zcfzb");
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("资产负债表");//设置第一行
+					eldata.setSheetName("sheet1");//设置sheeet名
+					eldata.setFileName("资产负债表");//设置文件名
 					
+					List<Excel_tilte> ett=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					ett.add(new Excel_tilte("              会事业01表",1,1,5,5));
+					ett.add(new Excel_tilte("编制单位:          ",2,2,0,0));
+					ett.add(new Excel_tilte("              年    月",2,2,3,3));
+					ett.add(new Excel_tilte("              单位：元",2,2,5,5));
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("资产",3,3,0,0));
+					et.add(new Excel_tilte("期末余额",3,3,1,1));
+					et.add(new Excel_tilte("年初余额",3,3,2,2));
+					et.add(new Excel_tilte("负债和净资产",3,3,3,3));
+					et.add(new Excel_tilte("期末余额",3,3,4,4));
+					et.add(new Excel_tilte("年初余额",3,3,5,5));
+					
+					eldata.setEl(l);//将实体list放入类中
+					eldata.setEtt(ett);//将表头内容设置到类里面
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_exportyybb(eldata,response);	
 				}
 				
 			}

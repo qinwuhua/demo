@@ -110,10 +110,10 @@
 		
 		var nf=$("#nf").combobox('getValue');
 		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
-		var data="flag=1&nf="+nf+"&gydw="+gydw;
+		var data='flag=1&nf='+nf+"&gydw="+xzqhstr+"&yf="+yf+"&xmlx="+"zcfzb";
 		loadjzt();
 		 $.post('/jxcsxm/xtgl/exportBb_set.do',{sql:datalist,gydw:xzqhstr},function(){
-			window.location.href='/jxcsxm/tjbb/getGlzcqkb11111.do?'+data;
+			window.location.href='/jxcsxm/tjbb/getTjbb.do?'+data;
 		 }); 
 		 setTimeout('disLoadjzt()',4000);
 		
