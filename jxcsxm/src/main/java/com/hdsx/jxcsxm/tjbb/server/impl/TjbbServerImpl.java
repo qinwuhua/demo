@@ -40,6 +40,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		List<Excel_list> l2=new ArrayList<Excel_list>();
 		List<Excel_list> l3=new ArrayList<Excel_list>();
 		List<Excel_list> l4=new ArrayList<Excel_list>();
+		l1=queryList("getJhzxqkbzHj", elist);
 		l2=queryList("getJhzxqkbHj", elist);
 		if("wh".equals(elist.getPxfs())) {
 			l3=queryList("getJhzxqkbWhHj", elist);

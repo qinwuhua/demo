@@ -130,6 +130,34 @@
 		
 	</select>
 	
+	<select id="getJhzxqkbzHj" parameterType="elist" resultType="elist">
+	  select count(distinct xm.xmbm) xmsl,'36' gydwdm,'合计' v_1,
+      nvl(sum(xm.ztz),0) v_4,nvl(sum(wc.wcl),0) v_5,nvl(sum(fun_char(wc.wctz,3)),0) v_6,
+      nvl(to_char(decode(nvl(sum(xm.ztz),0),null,'0','0','0',round(nvl(sum(fun_char(wc.wctz,3)),0)/nvl(sum(xm.ztz),0)*100,2))),'0')||'%' v_7,
+      nvl(sum(xd.ztz),0) v_8,nvl(sum(xd.cgs),0) v_9,nvl(sum(xd.rys),0) v_10,
+      nvl(sum(xd.ttc),0) v_11,nvl(sum(xd.dfzc),0) v_12,nvl(sum(dw.ztz),0) v_13,
+      nvl(sum(dw.cgs),0) v_14,nvl(sum(dw.rys),0) v_15,nvl(sum(dw.ttc),0) v_16,
+      nvl(sum(dw.dfzc),0) v_17,nvl(sum(bf.ztz),0) v_18,nvl(sum(bf.cgs),0) v_19,
+      nvl(sum(bf.rys),0) v_20,nvl(sum(bf.ttc),0) v_21,nvl(sum(bf.dfzc),0) v_22,
+      decode(nvl(sum(dw.ztz),0),null,null,to_char(decode(nvl(sum(xd.ztz),0),null,0,0,0,round(nvl(sum(dw.ztz),0)/nvl(sum(xd.ztz),0)*100,2)),'fm9999999990.00')||'%') v_23,
+      decode(nvl(sum(bf.ztz),0),null,null,to_char(decode(nvl(sum(dw.ztz),0),null,0,0,0,round(nvl(sum(bf.ztz),0)/nvl(sum(dw.ztz),0)*100,2)),'fm9999999990.00')||'%') v_24
+      from
+      (select xmid,jhxdwh,xdnf,sum(nvl(ztz,0)) ztz,
+      sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
+      from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
+      xmjbxx xm,xm_xmwc wc,
+      (select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
+      (select xmbm,jhxdwh,sum(ztz) ztz,sum(cgs) cgs,sum(rys) rys,decode(sum(nvl(ttc,0)),0, sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)),sum(nvl(ttc,0))) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
+      where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
+      and xm.gydwdm!='11101360000'
+      <if test="xzqhdm != null">${xzqhdm}</if>
+      <if test="jhnf != null">${jhnf}</if>
+      <if test="gydwdm != null">${gydwdm}</if>
+      <if test="jhxdwh != null">${jhxdwh}</if>
+      <if test="xmlx != null">${xmlx}</if>
+      <if test="xmmc != null">and xm.xmmc like '%'||#{xmmc}||'%'</if>
+	</select>
+	
 	
 	<select id="getJhzxqkbHj" parameterType="elist" resultType="elist">
 	  select count(distinct xm.xmbm) xmsl,decode(substr(xm.gydwdm,0,1),'1',xm.gydwdm,substr(xm.gydwdm,0,9)||'00') gydwdm,min(gydw)||'合计' v_1,
