@@ -158,7 +158,7 @@ public class Excel_export {
 		            row = sheet.createRow((int) i + maxx+1);  
 		            Excel_list trqk1 = (Excel_list) el2.get(i);  
 		            // 第四步，创建单元格，并设置值  
-		            System.out.println(trqk1.getSfhj());
+		            //System.out.println(trqk1.getSfhj());
 		            if("是".equals(trqk1.getSfhj())){
 		            	temp=style3;
 		            }
@@ -761,7 +761,7 @@ public class Excel_export {
 		            row = sheet.createRow((int) i + maxx+1);  
 		            Excel_list trqk1 = (Excel_list) el2.get(i);  
 		            // 第四步，创建单元格，并设置值  
-		            System.out.println(trqk1.getSfhj());
+		           // System.out.println(trqk1.getSfhj());
 		            if("是".equals(trqk1.getSfhj())){
 		            	temp=style3;
 		            }
