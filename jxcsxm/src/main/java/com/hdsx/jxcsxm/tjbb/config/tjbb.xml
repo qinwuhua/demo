@@ -726,7 +726,7 @@
 		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
 		    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,0,9)||'00') gydwdm
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
@@ -782,7 +782,7 @@
 		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
 		    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,0,9)||'00') gydwdm
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
@@ -836,7 +836,7 @@
     nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
     nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
     (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-	nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,0,9)||'00') gydwdm
+	nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
     from xmjbxx x,(
     select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
     ) yqjh,(
@@ -897,7 +897,7 @@
 		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
 		    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,0,9)||'00',substr(x.gydwdm,0,9)||'00') gydwdm
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
@@ -953,7 +953,7 @@
 		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
 		    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,0,9)||'00',substr(x.gydwdm,0,9)||'00') gydwdm
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
@@ -1007,7 +1007,7 @@
     nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
     nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
     (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,0,9)||'00',substr(x.gydwdm,0,9)||'00') gydwdm
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
     from xmjbxx x,(
     select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
     ) yqjh,(
