@@ -96,7 +96,7 @@
 		
 		$.ajax({
 			url:"/jxcsxm/tjbb/getJhzxqkb.do",
-			data:'flag=0&jhnf='+getValuesById("jhnf")+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val()+"&gydw="+gydwstr,
+			data:'flag=0&jhnf='+getValuesById("jhnf")+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val()+"&gydw="+gydwstr+"&bbsj="+$("#bbsj").datebox("getValue"),
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -189,6 +189,8 @@ text-decoration:none;
       						<td><select id="xmlx" style="width: 100px;"></select></td>
 							<td align="right">项目名称：</td>
      							<td><input type="text" id="xmmc" style="width: 118px;"></td>
+     						<td align="right">报表时间：</td>	
+     							<td><input type="text"  class='easyui-datebox'  id="bbsj" style="width: 118px;"></td>
        						</tr>
         					
         					<tr height="28">

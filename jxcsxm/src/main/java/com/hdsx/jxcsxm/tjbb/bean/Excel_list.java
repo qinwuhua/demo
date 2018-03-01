@@ -52,8 +52,14 @@ public class Excel_list implements Serializable {
 	private String xmnf;
 	private String hjlx;
 	private String sfhj;
+	public String bbsj;
 	
-	
+	public String getBbsj() {
+		return bbsj;
+	}
+	public void setBbsj(String bbsj) {
+		this.bbsj = bbsj;
+	}
 	public String getSfhj() {
 		return sfhj;
 	}
