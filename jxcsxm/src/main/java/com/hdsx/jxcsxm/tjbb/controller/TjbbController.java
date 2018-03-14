@@ -987,8 +987,8 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("地方",3,4,33,33));
 				et.add(new Excel_tilte("合计",3,4,34,34));
 				
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,17,17));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,18,18));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,17,17));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,18,18));
 				
 
 				
@@ -1060,8 +1060,8 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("其中",3,3,8,9));
 				
 				
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,8,8));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,9,9));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,8,8));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,9,9));
 				
 
 				
@@ -1128,8 +1128,8 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("其中",3,3,8,9));
 				
 				
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,8,8));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,9,9));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,8,8));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,9,9));
 				
 
 				

@@ -606,43 +606,33 @@
 		nvl(yqjh.yqbb,0) v_4,nvl(yqjh.yqsb,0) v_5,nvl(yqjh.yqdf,0) v_6,nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_7,nvl(dnjh.dnbb,0) v_8,nvl(dnjh.dnsb,0) v_9,nvl(dnjh.dndf,0) v_10,
 		nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_11,
 		nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_12,
-		nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0) v_13,nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0) v_14,
-		nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_15,
-		nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_16,
-		nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0) v_17,
-		nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_18,
+		jy.snbb v_13,jy.snsb v_14,jy.sndf v_15,
+		jy.snztz v_16,jy.ssnztz v_17,jy.snztz v_18,
 		nvl(dndw.bb,0) v_19,nvl(dndw.sb,0) v_20,nvl(dndw.df,0) v_21,nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_22,
 		nvl(dnbf.bb,0) v_23,nvl(dnbf.sb,0) v_24,nvl(dnbf.df,0) v_25,nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_26,
-		nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(dndw.bb,0)-nvl(dnbf.bb,0) v_27,nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(dndw.sb,0)-nvl(dnbf.sb,0) v_28,nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0)+nvl(dndw.df,0)-nvl(dnbf.df,0) v_29,
-		nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0)+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_30,
+		jy.dnbb v_27,jy.dnsb v_28,jy.dndf v_29,jy.dnztz v_30,
 		nvl(tj.bb,0) v_31,nvl(tj.sb,0) v_32,nvl(tj.df,0) v_33,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_34,'' v_35
 		from xmjbxx x,(
 		select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		) yqjh,(
 		select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		) dnjh ,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		group by xmbm,substr(dwyf, 1, 4)
-		)q2dw,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		group by xmbm,substr(dwyf, 1, 4)
-		)q1dw,(
 		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		group by xmbm,substr(dwyf, 1, 4)
 		)dndw,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		group by xmbm,substr(bfyf, 1, 4)
-		)q2bf,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		group by xmbm,substr(bfyf, 1, 4)
-		)q1bf,(
 		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf})  and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		group by xmbm,substr(bfyf, 1, 4)
-		)dnbf,(
+		)dnbf,
+		(select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+        fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+        fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+		from xmjbxx) jy,(
 		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		group by xmbm,substr(bfyf, 1, 4)
-		)tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-		 and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		)tj 
+		
+		where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		 and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+) and x.xmbm=jy.xmbm(+)
 		<if test="gydw != null">
 		${gydw}
 		</if> 
@@ -660,43 +650,31 @@
 		sum(nvl(yqjh.yqbb,0)) v_4,sum(nvl(yqjh.yqsb,0)) v_5,sum(nvl(yqjh.yqdf,0)) v_6,sum(nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)) v_7,sum(nvl(dnjh.dnbb,0)) v_8,sum(nvl(dnjh.dnsb,0)) v_9,sum(nvl(dnjh.dndf,0)) v_10,
 		sum(nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0)) v_11,
 		sum(nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0)) v_12,
-		sum(nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)) v_13,sum(nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)) v_14,
-		sum(nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0)) v_15,
-		sum(nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0)) v_16,
-		sum(nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)) v_17,
-		sum(nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0)) v_18,
+		sum(jy.snbb) v_13,sum(jy.snsb) v_14,sum(jy.sndf) v_15,
+		sum(jy.snztz) v_16,sum(jy.ssnztz) v_17,sum(jy.snztz) v_18,
 		sum(nvl(dndw.bb,0)) v_19,sum(nvl(dndw.sb,0)) v_20,sum(nvl(dndw.df,0)) v_21,sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)) v_22,
 		sum(nvl(dnbf.bb,0)) v_23,sum(nvl(dnbf.sb,0)) v_24,sum(nvl(dnbf.df,0)) v_25,sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_26,
-		sum(nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(dndw.bb,0)-nvl(dnbf.bb,0)) v_27,sum(nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(dndw.sb,0)-nvl(dnbf.sb,0)) v_28,sum(nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0)+nvl(dndw.df,0)-nvl(dnbf.df,0)) v_29,
-		sum(nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0)+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))) v_30,
+		sum(jy.dnbb) v_27,sum(jy.dnsb) v_28,sum(jy.dndf) v_29,sum(jy.dnztz) v_30,
 		sum(nvl(tj.bb,0)) v_31,sum(nvl(tj.sb,0)) v_32,sum(nvl(tj.df,0)) v_33,sum(nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0)) v_34,'' v_35
 		from xmjbxx x,(
 		select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		) yqjh,(
 		select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		) dnjh ,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		group by xmbm,substr(dwyf, 1, 4)
-		)q2dw,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		group by xmbm,substr(dwyf, 1, 4)
-		)q1dw,(
 		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		group by xmbm,substr(dwyf, 1, 4)
 		)dndw,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		group by xmbm,substr(bfyf, 1, 4)
-		)q2bf,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		group by xmbm,substr(bfyf, 1, 4)
-		)q1bf,(
 		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf})  and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		group by xmbm,substr(bfyf, 1, 4)
-		)dnbf,(
+		)dnbf,
+		(select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+        fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+        fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+		from xmjbxx) jy,(
 		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		group by xmbm,substr(bfyf, 1, 4)
-		)tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-		 and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		)tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		 and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+) and x.xmbm=jy.xmbm(+)
 		<if test="gydw != null">
 		${gydw}
 		</if> 
@@ -720,40 +698,30 @@
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_7,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0) v_8,
-		    nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_9,
+			jy.snztz v_7,jy.ssnztz v_8,jy.snztz v_9,
 		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
+		    jy.dnztz v_12,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q2dw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q1dw,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(dwyf, 1, 4)
 		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q2bf,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q1bf,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,(
+		    )dnbf,
+		    (select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+            fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+        	fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+			from xmjbxx) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-		     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
 		    <if test="gydw != null">
 		    ${gydw}
 		    </if> 
@@ -776,40 +744,30 @@
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_7,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0) v_8,
-		    nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_9,
+		    jy.snztz v_7,jy.ssnztz v_8,jy.snztz v_9,
 		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
+		    jy.dnztz v_12,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q2dw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q1dw,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(dwyf, 1, 4)
 		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q2bf,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q1bf,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,(
+		    )dnbf,
+		    (select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+        	fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+        	fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+			from xmjbxx) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-		     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
 		    <if test="gydw != null">
 		    ${gydw}
 		    </if> 
@@ -830,40 +788,30 @@
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
     nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_7,
-    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0) v_8,
-    nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_9,
+    jy.snztz v_7,jy.ssnztz v_8,jy.snztz v_9,
     nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
     nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-	nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+    jy.dnztz v_12,
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
     from xmjbxx x,(
     select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
     ) yqjh,(
     select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-    ) dnjh ,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-    group by xmbm,substr(dwyf, 1, 4)
-    )q2dw,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-    group by xmbm,substr(dwyf, 1, 4)
-    )q1dw,(
+    ) dnjh,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(dwyf, 1, 4)
     )dndw,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-    group by xmbm,substr(bfyf, 1, 4)
-    )q2bf,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-    group by xmbm,substr(bfyf, 1, 4)
-    )q1bf,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(bfyf, 1, 4)
-    )dnbf,(
+    )dnbf,
+    (select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+   	fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+   	fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+	from xmjbxx) jy,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(bfyf, 1, 4)
-    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
     <if test="gydw != null">
     ${gydw}
     </if> 
@@ -891,40 +839,30 @@
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_7,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0) v_8,
-		    nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_9,
+		    jy.snztz v_7,jy.ssnztz v_8,jy.snztz v_9,
 		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
+		    jy.dnztz v_12,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q2dw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q1dw,(
+		     select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
+   			 ) dnjh,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(dwyf, 1, 4)
 		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q2bf,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q1bf,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,(
+		    )dnbf,
+		    (select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+        	fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+        	fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+			from xmjbxx) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-		     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
 		    <if test="gydw != null">
 		    ${gydw}
 		    </if> 
@@ -947,40 +885,28 @@
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_7,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0) v_8,
-		    nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+		    jy.snztz v_7,jy.ssnztz v_8,jy.snztz v_9,nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		   jy.dnztz v_12,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q2dw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q1dw,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(dwyf, 1, 4)
 		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q2bf,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q1bf,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,(
+		    )dnbf,
+		    (select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+        	fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+        	fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+			from xmjbxx) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-		     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
 		    <if test="gydw != null">
 		    ${gydw}
 		    </if> 
@@ -1001,40 +927,28 @@
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
     nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_7,
-    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0) v_8,
-    nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_9,
-    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+    jy.snztz v_7,jy.ssnztz v_8,jy.snztz v_9,nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
     nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+    jy.dnztz v_12,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
     from xmjbxx x,(
     select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
     ) yqjh,(
     select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
     ) dnjh ,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-    group by xmbm,substr(dwyf, 1, 4)
-    )q2dw,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-    group by xmbm,substr(dwyf, 1, 4)
-    )q1dw,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(dwyf, 1, 4)
     )dndw,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-    group by xmbm,substr(bfyf, 1, 4)
-    )q2bf,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-    group by xmbm,substr(bfyf, 1, 4)
-    )q1bf,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(bfyf, 1, 4)
-    )dnbf,(
+    )dnbf,
+    (select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+   	fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+   	fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+	from xmjbxx) jy,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(bfyf, 1, 4)
-    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
     <if test="gydw != null">
     ${gydw}
     </if> 
@@ -1064,40 +978,28 @@
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_7,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0) v_8,
-		    nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+		    jy.snztz v_7,jy.ssnztz v_8,jy.snztz v_9,nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+		    jy.dnztz v_12,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q2dw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q1dw,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(dwyf, 1, 4)
 		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q2bf,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q1bf,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,(
+		    )dnbf,
+		    (select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+        	fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+        	fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+			from xmjbxx) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-		     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
 		    <if test="gydw != null">
 		    ${gydw}
 		    </if> 
@@ -1120,40 +1022,28 @@
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_7,
-		    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0) v_8,
-		    nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+		    jy.snztz v_7,jy.ssnztz v_8,jy.snztz v_9,nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
 		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+		    jy.dnztz v_12,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
 		    from xmjbxx x,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
 		    ) yqjh,(
 		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
 		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q2dw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )q1dw,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(dwyf, 1, 4)
 		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q2bf,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )q1bf,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,(
+		    )dnbf,
+		    (select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+        	fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+        	fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+			from xmjbxx) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
-		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-		     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
 		    <if test="gydw != null">
 		    ${gydw}
 		    </if> 
@@ -1175,40 +1065,28 @@
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
     nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_7,
-    nvl(q2dw.bb,0)-nvl(q2bf.bb,0)+nvl(q2dw.sb,0)-nvl(q2bf.sb,0)+nvl(q2dw.df,0)-nvl(q2bf.df,0) v_8,
-    nvl(q1dw.bb,0)-nvl(q1bf.bb,0)+nvl(q1dw.sb,0)-nvl(q1bf.sb,0)+nvl(q1dw.df,0)-nvl(q1bf.df,0) v_9,
-    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+    jy.snztz v_7,jy.ssnztz v_8,jy.snztz v_9, nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
     nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-    (nvl(q2dw.bb,0)+nvl(q2dw.sb,0)+nvl(q2dw.df,0))-(nvl(q2bf.bb,0)+nvl(q2bf.sb,0)+nvl(q2bf.df,0))+(nvl(q1dw.bb,0)+nvl(q1dw.sb,0)+nvl(q1dw.df,0))-(nvl(q1bf.bb,0)+nvl(q1bf.sb,0)+nvl(q1bf.df,0))+(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12,
-    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+    jy.dnztz v_12,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_13,'' v_14,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
     from xmjbxx x,(
     select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
     ) yqjh,(
     select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
     ) dnjh ,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-2) 
-    group by xmbm,substr(dwyf, 1, 4)
-    )q2dw,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}-1) 
-    group by xmbm,substr(dwyf, 1, 4)
-    )q1dw,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(dwyf, 1, 4)
     )dndw,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-2) 
-    group by xmbm,substr(bfyf, 1, 4)
-    )q2bf,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}-1) 
-    group by xmbm,substr(bfyf, 1, 4)
-    )q1bf,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(bfyf, 1, 4)
-    )dnbf,(
+    )dnbf,
+    (select xmbm,fun_xmjy(xmbm,${nf}-2) ssnztz,fun_xmjybb(xmbm,${nf}-2) ssnbb,fun_xmjysb(xmbm,${nf}-2) ssnsb,fun_xmjydf(xmbm,${nf}-2) ssndf,
+   	fun_xmjy(xmbm,${nf}-1) snztz,fun_xmjybb(xmbm,${nf}-1) snbb,fun_xmjysb(xmbm,${nf}-1) snsb,fun_xmjydf(xmbm,${nf}-1) sndf,
+   	fun_xmjy(xmbm,${nf}) dnztz,fun_xmjybb(xmbm,${nf}) dnbb,fun_xmjysb(xmbm,${nf}) dnsb,fun_xmjydf(xmbm,${nf}) dndf
+	from xmjbxx) jy,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(bfyf, 1, 4)
-    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=q2dw.xmbm(+)  and x.xmbm=q1dw.xmbm(+) and x.xmbm=dndw.xmbm(+) and x.xmbm=q2bf.xmbm(+)
-     and x.xmbm=q1bf.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
     <if test="gydw != null">
     ${gydw}
     </if> 
