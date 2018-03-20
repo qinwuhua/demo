@@ -348,4 +348,7 @@
 	<select id="getxqxbyid" resultType="param" parameterType="param">
 		select replace(WMSYS.WM_CONCAT(to_char(name)),',',',') name from XTGL_RESOURCE_CS where id in(select sourceid from XTGL_ROLE_RESOURCE_CS where roleid=#{name} and sourceid like #{id}||'%' and sourceid != #{id} ) 
 	</select>
+	<select id="selectlxbyxmid" parameterType="lxsh" resultType="lxsh">
+		select * from lxsh_lx@jh where xmid=#{xmbm} and jdbs='0' and sffirst='1'
+	</select>
 </mapper>

@@ -123,9 +123,10 @@
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
-							{field:'cz',title:'操作',width:120,align:'center',
+							{field:'cz',title:'操作',width:150,align:'center',
 								formatter: function(value,row,index){
-									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','zjbf'"+')" >项目详情</a>&nbsp;';
+									var result='<a href=javascript:locationXm("'+row.xmbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+									'<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','zjbf'"+')" >项目详情</a>&nbsp;';
 									result+='<a style="color:#3399CC;" href="javascript:openZjbf('+"'"+row.xmbm+"','"+row.gydwdm+"','gs_gsdgz'"+')" >拨付详情</a>';	
 									return result;
 								}

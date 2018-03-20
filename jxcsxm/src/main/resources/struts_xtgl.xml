@@ -91,6 +91,7 @@
 	<action name="selectXmsx" class="xtglController" method="selectXmsx"></action>
 	<action name="getbmbmbyid" class="xtglController" method="getbmbmbyid"></action>
 	<action name="getxqxbyid" class="xtglController" method="getxqxbyid"></action>
+	<action name="selectlxbyxmid" class="xtglController" method="selectlxbyxmid"></action>
 	
 	
 	

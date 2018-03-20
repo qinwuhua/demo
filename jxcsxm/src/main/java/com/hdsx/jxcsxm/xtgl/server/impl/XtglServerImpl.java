@@ -8,6 +8,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxcsxm.xtgl.bean.Lxsh;
 import com.hdsx.jxcsxm.xtgl.bean.Master;
 import com.hdsx.jxcsxm.xtgl.bean.Param;
 import com.hdsx.jxcsxm.xtgl.bean.Plan_flwbzbz;
@@ -530,6 +531,12 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	@Override
 	public Param getxqxbyid(Param param) {
 		return queryOne("getxqxbyid", param);
+	}
+
+	@Override
+	public List<Lxsh> selectlxbyxmid(Lxsh lxsh) {
+		// TODO 自动生成的方法存根
+		return queryList("selectlxbyxmid", lxsh);
 	}
 	
 }

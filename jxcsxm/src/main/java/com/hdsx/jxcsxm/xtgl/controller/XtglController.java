@@ -28,10 +28,12 @@ import com.hdsx.jxcsxm.utile.JsonUtils;
 import com.hdsx.jxcsxm.xtgl.server.XtglServer;
 import com.hdsx.jxcsxm.xtgl.bean.Unit;
 import com.hdsx.jxcsxm.utile.ResponseUtils;
+import com.hdsx.jxcsxm.xtgl.bean.Lxsh;
 import com.hdsx.jxcsxm.xtgl.bean.Master;
 import com.hdsx.jxcsxm.xtgl.bean.Param;
 import com.hdsx.jxcsxm.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxcsxm.xtgl.bean.TreeNode;
+import com.hdsx.jxcsxm.xtgl.bean.Xmjbxx;
 import com.hdsx.webutil.struts.BaseActionSupport;
 /**
  * 系统管理Controller层
@@ -50,6 +52,7 @@ public class XtglController extends BaseActionSupport{
 	//单位实体
 	private Unit unit;
 	private Param param;
+	private Lxsh lxsh = new Lxsh();
 	private Plan_flwbzbz flwbzbz;
 	//用户实体
 	private Master master;
@@ -141,6 +144,14 @@ public class XtglController extends BaseActionSupport{
 	public void setYf(String yf) {
 		this.yf = yf;
 	}
+	
+	public Lxsh getLxsh() {
+		return lxsh;
+	}
+	public void setLxsh(Lxsh lxsh) {
+		this.lxsh = lxsh;
+	}
+	
 	/**
 	 * 重置密碼
 	 */
@@ -1057,6 +1068,15 @@ public class XtglController extends BaseActionSupport{
 	public void selJsUsedById(){
 		System.out.println(param.getRoleid());
 		List<Param> l=xtglServer.selJsUsedById(param);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void selectlxbyxmid(){
+		List<Lxsh> l=xtglServer.selectlxbyxmid(lxsh);
 		try {
 			JsonUtils.write(l, getresponse().getWriter());
 		} catch (Exception e1) {
