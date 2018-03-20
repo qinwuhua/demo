@@ -174,7 +174,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "xm.jsxz","xm.gcfl"));
 			elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
 			elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
-			elist.setJhnf(MyUtil.getQueryTJ(elist.getJhnf(), "xd.xdnf"));
+			elist.setJhnf(MyUtil.getQueryTJ(elist.getJhnf(), "xm.xmnf"));
 			elist.setGydwdm(MyUtil.getQueryTJDW(elist.getGydw(), "xm.gydwdm"));
 			if ("1".equals(elist.getFlag())) {
 				ExcelData eldata=new ExcelData();//创建一个类
