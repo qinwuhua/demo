@@ -435,6 +435,7 @@ list-style-type:none;
         			            layerName: 'resultLayer',
         			            selectable: true
         			          });
+    			        	console.log(feat.getGeometry().getCoordinates());
     			        	map.map.getView().setCenter(feat.getGeometry().getCoordinates());
     			        	map.highLightFeature('',feat,'');
     			        }

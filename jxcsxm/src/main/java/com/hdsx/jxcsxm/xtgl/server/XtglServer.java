@@ -3,6 +3,7 @@ package com.hdsx.jxcsxm.xtgl.server;
 import java.util.HashMap;
 import java.util.List;
 
+import com.hdsx.jxcsxm.xtgl.bean.Lxsh;
 import com.hdsx.jxcsxm.xtgl.bean.Master;
 import com.hdsx.jxcsxm.xtgl.bean.Param;
 import com.hdsx.jxcsxm.xtgl.bean.TreeNode;
@@ -162,6 +163,8 @@ public interface XtglServer {
 	boolean updateName(HashMap hm);
 
 	Param getxqxbyid(Param param);
+
+	List<Lxsh> selectlxbyxmid(Lxsh Lxsh);
 
 	
 }

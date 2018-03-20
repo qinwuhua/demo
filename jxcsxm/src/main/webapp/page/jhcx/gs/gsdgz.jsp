@@ -78,7 +78,8 @@
 			    columns:[[
 							{field:'cz',title:'操作',width:130,align:'center',
 								formatter: function(value,row,index){
-									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','jhcx'"+')" >项目详情</a>'
+									var result='<a href=javascript:locationXm("'+row.xmbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+									'<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','jhcx'"+')" >项目详情</a>'
 										return result;
 								}
 							},
