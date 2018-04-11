@@ -38,8 +38,8 @@
 		loadBmbm3('xmnf','项目年份',new Date().getFullYear());
  		loadBmbm3('xmlx','报表项目类型');
  		loadBmbm('hjlx','资金报表合计类型','按地市');
-		$("#sn").html($("#nf").combo('getValue')-1);
-		$("#ssn").html($("#nf").combo('getValue')-2);
+		$(".sn").html($("#nf").combo('getValue')-1);
+		$(".ssn").html($("#nf").combo('getValue')-2);
 		
 		//showBb();
 	});
@@ -90,7 +90,7 @@
 						+"<td>"+msg[i].v_8+"</td>"+"<td>"+msg[i].v_9+"</td>"
 						+"<td>"+msg[i].v_10+"</td>"+"<td>"+msg[i].v_11+"</td>"
 						+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"
-						+"<td>"+msg[i].v_14+"</td>";
+						+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"+"<td>"+msg[i].v_16+"</td>";
 						tr+="</tr>";
 						tbody.append(tr);
 					}
@@ -166,7 +166,7 @@ text-decoration:none;
 	        						<td><select id="gydw" style="width:165px;"></select></td>
 	        						<td align="right">项目类型：</td>
         							<td><select id="xmlx" style="width: 130px;"></select></td>
-        							<td align="right">项目年份：</td>
+        							<td align="right">计划年份：</td>
         							<td><select id="xmnf" style="width: 80px;"></select></td>
 									<td align="right">报表年份：</td>
         							<td><select id="nf" style="width: 80px;"></select></td>
@@ -200,7 +200,7 @@ text-decoration:none;
 								<tbody id='biaotou'>
 									<tr>
 									<td colspan="7">投资计划</td>
-									<td colspan="8">资金</td>
+									<td colspan="10">资金</td>
 									</tr>
 									<tr>
 									<td rowspan="3">序号</td>
@@ -213,7 +213,7 @@ text-decoration:none;
 									<td colspan="3">结转</td>
 									<td rowspan="3">本年拨入</td>
 									<td rowspan="3">本年拨出</td>
-									<td rowspan="3">当年结存</td>
+									<td colspan="3">当年结存</td>
 									<td rowspan="3">调剂</td>
 									<td rowspan="3">备注</td>
 									</tr>
@@ -222,11 +222,15 @@ text-decoration:none;
 									<td rowspan="2">总数</td>
 									
 									<td colspan="2">其中</td>
+									<td rowspan="2">总数</td>
 									
+									<td colspan="2">其中</td>
 									</tr>
 									<tr>
-									<td><span id='ssn'></span></td>
-									<td><span id='sn'></span></td>
+									<td><span class='ssn'></span></td>
+									<td><span class='sn'></span></td>
+									<td><span class='ssn'></span></td>
+									<td><span class='sn'></span></td>
 									</tr>
 									
 								</tbody>

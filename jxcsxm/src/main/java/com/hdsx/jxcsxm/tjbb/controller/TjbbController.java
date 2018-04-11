@@ -936,7 +936,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("投资计划",1,1,0,12));
-				et.add(new Excel_tilte("资金",1,1,13,35));
+				et.add(new Excel_tilte("资金",1,1,13,37));
 				
 				
 				et.add(new Excel_tilte("序号",2,4,0,0));
@@ -949,9 +949,9 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("结转",2,2,13,18));
 				et.add(new Excel_tilte("本年拨入",2,2,19,22));
 				et.add(new Excel_tilte("本年拨出",2,2,23,26));
-				et.add(new Excel_tilte("当年结存",2,2,27,30));
-				et.add(new Excel_tilte("调剂",2,2,31,34));
-				et.add(new Excel_tilte("备注",2,4,35,35));
+				et.add(new Excel_tilte("当年结存",2,2,27,32));
+				et.add(new Excel_tilte("调剂",2,2,33,36));
+				et.add(new Excel_tilte("备注",2,4,37,37));
 				
 				et.add(new Excel_tilte("部补",3,4,4,4));
 				et.add(new Excel_tilte("省补",3,4,5,5));
@@ -982,14 +982,16 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("省补",3,4,28,28));
 				et.add(new Excel_tilte("地方",3,4,29,29));
 				et.add(new Excel_tilte("合计",3,4,30,30));
-				et.add(new Excel_tilte("部补",3,4,31,31));
-				et.add(new Excel_tilte("省补",3,4,32,32));
-				et.add(new Excel_tilte("地方",3,4,33,33));
-				et.add(new Excel_tilte("合计",3,4,34,34));
+				et.add(new Excel_tilte("其中",3,3,31,32));
+				et.add(new Excel_tilte("部补",3,4,33,33));
+				et.add(new Excel_tilte("省补",3,4,34,34));
+				et.add(new Excel_tilte("地方",3,4,35,35));
+				et.add(new Excel_tilte("合计",3,4,36,36));
 				
 				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,17,17));
 				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,18,18));
-				
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,31,31));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,32,32));
 
 				
 				eldata.setEl(l);//将实体list放入类中
@@ -1038,7 +1040,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("投资计划",1,1,0,6));
-				et.add(new Excel_tilte("资金",1,1,7,14));
+				et.add(new Excel_tilte("资金",1,1,7,16));
 				
 				
 				et.add(new Excel_tilte("序号",2,4,0,0));
@@ -1051,18 +1053,20 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("结转",2,2,7,9));
 				et.add(new Excel_tilte("本年拨入",2,4,10,10));
 				et.add(new Excel_tilte("本年拨出",2,4,11,11));
-				et.add(new Excel_tilte("当年结存",2,4,12,12));
-				et.add(new Excel_tilte("调剂",2,4,13,13));
-				et.add(new Excel_tilte("备注",2,4,14,14));
+				et.add(new Excel_tilte("当年结存",2,2,12,14));
+				et.add(new Excel_tilte("调剂",2,4,15,15));
+				et.add(new Excel_tilte("备注",2,4,16,16));
 				
 				
 				et.add(new Excel_tilte("总数",3,4,7,7));
 				et.add(new Excel_tilte("其中",3,3,8,9));
-				
+				et.add(new Excel_tilte("总数",3,4,12,12));
+				et.add(new Excel_tilte("其中",3,3,13,14));
 				
 				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,8,8));
 				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,9,9));
-				
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,13,13));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,14,14));
 
 				
 				eldata.setEl(l);//将实体list放入类中
@@ -1072,6 +1076,8 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			}else{
 				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
 				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xmnf"));
+				elist.setJhnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
+				
 				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
 				List<Excel_list> l = tjbbServer.getZjsydwhzb(elist);
 				getRequest().getSession().setAttribute("zjsydwhzb", l);
@@ -1106,7 +1112,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("投资计划",1,1,0,6));
-				et.add(new Excel_tilte("资金",1,1,7,14));
+				et.add(new Excel_tilte("资金",1,1,7,16));
 				
 				
 				et.add(new Excel_tilte("序号",2,4,0,0));
@@ -1119,18 +1125,20 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("结转",2,2,7,9));
 				et.add(new Excel_tilte("本年拨入",2,4,10,10));
 				et.add(new Excel_tilte("本年拨出",2,4,11,11));
-				et.add(new Excel_tilte("当年结存",2,4,12,12));
-				et.add(new Excel_tilte("调剂",2,4,13,13));
-				et.add(new Excel_tilte("备注",2,4,14,14));
+				et.add(new Excel_tilte("当年结存",2,2,12,14));
+				et.add(new Excel_tilte("调剂",2,4,15,15));
+				et.add(new Excel_tilte("备注",2,4,16,16));
 				
 				
 				et.add(new Excel_tilte("总数",3,4,7,7));
 				et.add(new Excel_tilte("其中",3,3,8,9));
-				
+				et.add(new Excel_tilte("总数",3,4,12,12));
+				et.add(new Excel_tilte("其中",3,3,13,14));
 				
 				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,8,8));
 				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,9,9));
-				
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",4,4,13,13));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",4,4,14,14));
 
 				
 				eldata.setEl(l);//将实体list放入类中

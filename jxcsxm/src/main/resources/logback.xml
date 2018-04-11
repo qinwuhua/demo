@@ -64,8 +64,8 @@
 			<MaxFileSize>100MB</MaxFileSize>
 		</triggeringPolicy>
 	</appender>
-	
-	<root level="ERROR">
+	<root level="DEBUG">
+<!-- 	<root level="ERROR"> -->
 		<appender-ref ref="stdout" />
 <!-- 		<appender-ref ref="R" /> -->
 	<appender-ref ref="FILE" />

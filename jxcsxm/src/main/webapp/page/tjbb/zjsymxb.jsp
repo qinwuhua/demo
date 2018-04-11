@@ -37,8 +37,8 @@
 		if(yf<10)loadBmbm('yf','月份',"0"+yf);else loadBmbm('yf','月份',yf);
 		loadBmbm3('xmnf','项目年份',new Date().getFullYear());
  		loadBmbm3('xmlx','报表项目类型');
-		$("#sn").html($("#nf").combo('getValue')-1);
-		$("#ssn").html($("#nf").combo('getValue')-2);
+		$(".sn").html($("#nf").combo('getValue')-1);
+		$(".ssn").html($("#nf").combo('getValue')-2);
 		
 		//showBb();
 	});
@@ -102,7 +102,8 @@
 						+"<td>"+msg[i].v_28+"</td>"+"<td>"+msg[i].v_29+"</td>"
 						+"<td>"+msg[i].v_30+"</td>"+"<td>"+msg[i].v_31+"</td>"
 						+"<td>"+msg[i].v_32+"</td>"+"<td>"+msg[i].v_33+"</td>"
-						+"<td>"+msg[i].v_34+"</td>"+"<td>"+msg[i].v_35+"</td>";
+						+"<td>"+msg[i].v_34+"</td>"+"<td>"+msg[i].v_35+"</td>"
+						+"<td>"+msg[i].v_36+"</td>"+"<td>"+msg[i].v_37+"</td>";
 						tr+="</tr>";
 						tbody.append(tr);
 					}
@@ -213,7 +214,7 @@ text-decoration:none;
 								<tbody id='biaotou'>
 									<tr>
 									<td colspan="13">投资计划</td>
-									<td colspan="23">资金</td>
+									<td colspan="25">资金</td>
 									</tr>
 									<tr>
 									<td rowspan="3">序号</td>
@@ -226,7 +227,7 @@ text-decoration:none;
 									<td colspan="6">结转</td>
 									<td colspan="4">本年拨入</td>
 									<td colspan="4">本年拨出</td>
-									<td colspan="4">当年结存</td>
+									<td colspan="6">当年结存</td>
 									<td colspan="4">调剂</td>
 									<td rowspan="3">备注</td>
 									</tr>
@@ -258,14 +259,17 @@ text-decoration:none;
 									<td rowspan="2">省补</td>
 									<td rowspan="2">地方</td>
 									<td rowspan="2">合计</td>
+									<td colspan="2">其中</td>
 									<td rowspan="2">部补</td>
 									<td rowspan="2">省补</td>
 									<td rowspan="2">地方</td>
 									<td rowspan="2">合计</td>
 									</tr>
 									<tr>
-									<td><span id='ssn'></span></td>
-									<td><span id='sn'></span></td>
+									<td><span class='ssn'></span></td>
+									<td><span class='sn'></span></td>
+									<td><span class='ssn'></span></td>
+									<td><span class='sn'></span></td>
 									</tr>
 									
 								</tbody>
