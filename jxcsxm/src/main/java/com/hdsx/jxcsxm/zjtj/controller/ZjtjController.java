@@ -67,7 +67,7 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
 		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
-		xmjbxx.setSfqbbf(MyUtil.getQueryTJ(xmjbxx.getSfqbbf(), "sfqbbf"));
+		xmjbxx.setSfkytj(MyUtil.getQueryTJ(xmjbxx.getSfkytj(), "fun_sfkytj(t.xmbm)"));
 		if(xmZjtj.getPage()>0){
 			xmjbxx.setPage(xmZjtj.getPage());
 			xmjbxx.setRows(xmZjtj.getRows());
@@ -90,7 +90,7 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 	}
 	
 	//统计
-	public void getbfTjAll(){
+	public void gettjTjAll(){
 		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
 		xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
 		
@@ -101,9 +101,9 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
 		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
-		xmjbxx.setSfqbbf(MyUtil.getQueryTJ(xmjbxx.getSfqbbf(), "sfqbbf"));
+		xmjbxx.setSfkytj(MyUtil.getQueryTJ(xmjbxx.getSfkytj(), "fun_sfkytj(t.xmbm)"));
 		try {
-			JsonUtils.write(zjtjServer.getbfTjAll(xmjbxx), getresponse().getWriter());
+			JsonUtils.write(zjtjServer.gettjTjAll(xmjbxx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -141,9 +141,9 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 		}
 	}
 	//到位资金统计
-	public void getbfTj(){
+	public void gettjTj(){
 		try {
-			JsonUtils.write(zjtjServer.getbfTj(xmZjtj), getresponse().getWriter());
+			JsonUtils.write(zjtjServer.gettjTj(xmZjtj), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

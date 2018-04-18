@@ -22,7 +22,7 @@ public interface ZjtjServer {
 
 	XmZjtj queryBfByid(XmZjtj xmZjtj);
 
-	XmZjtj getbfTj(XmZjtj xmZjtj);
+	XmZjtj gettjTj(XmZjtj xmZjtj);
 
 	boolean updateZjtj(XmZjtj xmZjtj);
 
@@ -42,7 +42,7 @@ public interface ZjtjServer {
 
 	List<XmZjtj> queryZjByGydwdm(XmZjtj xmZjtj);
 
-	XmZjtj getbfTjAll(Xmjbxx xmjbxx);
+	XmZjtj gettjTjAll(Xmjbxx xmjbxx);
 
 	boolean plshbf(XmZjtj xmZjtj);
 

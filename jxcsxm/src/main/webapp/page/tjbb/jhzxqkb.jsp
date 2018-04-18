@@ -40,6 +40,12 @@
 		loadBmbm3('jhnf','项目年份',new Date().getFullYear());
 		loadBmbm3('xmlx','报表项目类型');
 		loadjhxdwh("jhxdwh",'gs_all');
+		var nf=new Date().getFullYear()
+		var yf=new Date().getMonth()+1 < 10 ? '0'+(new Date().getMonth()+1):new Date().getMonth()+1;
+		var day=new Date().getDate() < 10 ? '0'+new Date().getDate():new Date().getDate();
+		
+		$("#bbsj").datebox("setValue",nf+"-"+yf+"-"+day);
+		
 	});
 		
 	function queryBb(){

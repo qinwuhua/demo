@@ -129,7 +129,7 @@
 	</select>
 	<select id="getbfTj" parameterType="xmzjbf" resultType="xmzjbf">
 		select distinct xmmc,nvl(dwzj,0) dwzj,nvl(dwcgs,0) dwcgs,nvl(dwrys,0) dwrys,nvl(dwtdk,0) dwtdk,nvl(dwdfzc,0) dwdfzc,nvl(dwttc,0) dwttc,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(jhxdzj,0) jhxdzj from xmjbxx xm left join 
-		(select xmbm,sum(ztz) dwzj,sum(cgs) dwcgs,sum(rys) dwrys,sum(ztz)-sum(cgs)-sum(rys)-sum(tdk)-sum(dfzc) dwttc,sum(tdk) dwtdk,sum(dfzc) dwdfzc from xm_zjdw where to_number(sbthcd)&lt;=to_number(#{sbthcd}) group by xmbm) dw on xm.xmbm=dw.xmbm left join
+		(select xmbm,sum(ztz) dwzj,sum(cgs) dwcgs,sum(rys) dwrys,sum(nvl(gz, 0) + nvl(sz, 0) + nvl(zq, 0) + nvl(tdk, 0) + nvl(jl, 0) + nvl(qt, 0) + nvl(rys, 0) + nvl(stz, 0) + nvl(ttc, 0) + nvl(zddzjl, 0)) dwttc,sum(tdk) dwtdk,sum(dfzc) dwdfzc from xm_zjdw where to_number(sbthcd)&lt;=to_number(#{sbthcd}) group by xmbm) dw on xm.xmbm=dw.xmbm left join
 		(select xmbm,sum(ztz-dfzc) bfzj,sum(decode(shzt,'已审核',ztz-dfzc,0)) yshbfzj from xm_zjbf where to_number(sbthcd)&lt;=to_number(#{sbthcd}) group by xmbm) bf on xm.xmbm=bf.xmbm left join
 		(select xmid xmbm,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(rys,0))+sum(nvl(yhdk,0))+sum(nvl(stz,0)) jhxdzj from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd on xm.xmbm=xd.xmbm 
 		where xm.xmbm=#{xmbm}

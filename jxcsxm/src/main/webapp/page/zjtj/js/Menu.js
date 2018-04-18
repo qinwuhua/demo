@@ -5,7 +5,7 @@ $(function() {
     	if(qx[i]=='01010801'){
 			$('#aa').accordion('add', {
 				id:"left_menu1",
-				title: '普通国省道',
+				title: '项目资金调剂',
 				selected: j==1?true:false,
 				iconCls:'icon-none'
 			});
@@ -16,7 +16,7 @@ $(function() {
     	if(qx[i]=='01010802'){
 			$('#aa').accordion('add', {
 				id:"left_menu2",
-				title: '农村公路',
+				title: '资金拨付（调剂类）',
 				selected: j==1?true:false,
 				iconCls:'icon-none'
 			});
@@ -24,6 +24,19 @@ $(function() {
 			createMenunew('01010802');
 			j++;
 		}
+    	if(qx[i]=='01010803'){
+			$('#aa').accordion('add', {
+				id:"left_menu3",
+				title: '关联计划',
+				selected: j==1?true:false,
+				iconCls:'icon-none'
+			});
+			$("#left_menu3").append('<ul id="tree01010803"></ul>');
+			createMenunew('01010803');
+			j++;
+		}
+    	
+    	
     }
 	
 	menuQx();

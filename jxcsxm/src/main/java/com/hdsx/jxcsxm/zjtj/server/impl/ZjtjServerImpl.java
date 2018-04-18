@@ -51,8 +51,8 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 	}
 
 	@Override
-	public XmZjtj getbfTj(XmZjtj xmZjtj) {
-		return queryOne("getbfTj", xmZjtj);
+	public XmZjtj gettjTj(XmZjtj xmZjtj) {
+		return queryOne("gettjTj", xmZjtj);
 	}
 
 	@Override
@@ -112,8 +112,8 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 	}
 	
 	@Override
-	public XmZjtj getbfTjAll(Xmjbxx xmjbxx) {
-		return queryOne("getbfTjAll", xmjbxx);
+	public XmZjtj gettjTjAll(Xmjbxx xmjbxx) {
+		return queryOne("gettjTjAll", xmjbxx);
 	}
 
 	@Override

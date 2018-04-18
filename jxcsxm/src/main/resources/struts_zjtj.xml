@@ -7,14 +7,14 @@
 	<action name="insertZjtj" class="zjtjController" method="insertZjtj"></action>
 	<action name="queryzjtjlist" class="zjtjController" method="queryzjtjlist"></action>
 	<action name="queryBfByid" class="zjtjController" method="queryBfByid"></action>
-	<action name="getbfTj" class="zjtjController" method="getbfTj"></action>
+	<action name="gettjTj" class="zjtjController" method="gettjTj"></action>
 	<action name="updateZjtj" class="zjtjController" method="updateZjtj"></action>
 	<action name="updateZjtjType" class="zjtjController" method="updateZjtjType"></action>
 	<action name="delbf" class="zjtjController" method="delbf"></action>
 	<action name="queryXmlistshqx" class="zjtjController" method="queryXmlistshqx"></action>
 	<action name="insertOrUpdateShqx" class="zjtjController" method="insertOrUpdateShqx"></action>
 	<action name="queryZjByGydwdm" class="zjtjController" method="queryZjByGydwdm"></action>
-	<action name="getbfTjAll" class="zjtjController" method="getbfTjAll"></action>
+	<action name="gettjTjAll" class="zjtjController" method="gettjTjAll"></action>
 	<action name="plshbf" class="zjtjController" method="plshbf"></action>
 	<action name="dcmb" class="zjtjController" method="dcmb"></action>
 	<action name="importZjtj" class="zjtjController" method="importZjtj"></action>

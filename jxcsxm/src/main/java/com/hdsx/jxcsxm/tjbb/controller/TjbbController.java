@@ -174,6 +174,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "xm.jsxz","xm.gcfl"));
 			elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
 			elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
+			elist.setXmnf(MyUtil.getQueryTJ(elist.getJhnf(), "xdnf"));
 			elist.setJhnf(MyUtil.getQueryTJ(elist.getJhnf(), "xm.xmnf"));
 			elist.setGydwdm(MyUtil.getQueryTJDW(elist.getGydw(), "xm.gydwdm"));
 			if ("1".equals(elist.getFlag())) {
@@ -263,6 +264,9 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			} else {
 				List<Excel_list> l = tjbbServer.getJhzxqkb(elist);
 				getRequest().getSession().setAttribute("zxqkblist", l);
+				if(l.size()>1000)
+				JsonUtils.write(l.subList(0, 1000), getresponse().getWriter());
+				else
 				JsonUtils.write(l, getresponse().getWriter());
 			}
 		} catch (Exception e) {
@@ -295,7 +299,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 					elist.setXzqhdm(MyUtil.getQueryTJ((String)session.getAttribute("xzqhbb"), "xm.xzqhdm"));
 					
 				    
-				    List<Excel_list> list1 = tjbbServer.getTzhzb(elist);
+				    List<Excel_list> list1 = (List<Excel_list>) getRequest().getSession().getAttribute("tzhzb");
 				   
 		    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
 					
@@ -375,7 +379,10 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
 				elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
 				List<Excel_list> l = tjbbServer.getTzhzb(elist);
-				
+				getRequest().getSession().setAttribute("tzhzb", l);
+				if(l.size()>1000)
+				JsonUtils.write(l.subList(0, 1000), getresponse().getWriter());
+				else
 				JsonUtils.write(l, getresponse().getWriter());
 			}
 		} catch (Exception e) {

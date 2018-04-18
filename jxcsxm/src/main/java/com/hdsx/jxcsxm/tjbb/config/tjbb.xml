@@ -54,13 +54,11 @@
 			decode(bf.ztz,null,null,to_char(decode(dw.ztz,null,0,0,0,round(bf.ztz/dw.ztz*100,2)),'fm9999999990.00')||'%') v_24,
 			decode(substr(xm.gydwdm,0,1),'1',xm.gydwdm,substr(xm.gydwdm,0,9)||'00') gydwdm,substr(xm.xzqhdm,0,4)||'00' xzqhdm
 			from
-			(select xmid,jhxdwh,xdnf,sum(nvl(ztz,0)) ztz,
-			sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
-			from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
+			(select * from jhzxqkb_xd where 1=1 <if test="xmnf != null">${xmnf}</if>) xd,
 			xmjbxx xm,xm_xmwc wc,
-			(select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjdw <if test="bbsj != null and bbsj != ''">where to_date(dwyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) dw,
-			(select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjbf <if test="bbsj != null and bbsj != ''">where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) bf
-			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
+			( select * from jhzxqkb_dw where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) dw,
+			( select * from jhzxqkb_bf where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) bf
+			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) 
 			and xm.gydwdm!='11101360000'
 			<if test="jhnf != null">${jhnf}</if>
 			<if test="gydwdm != null">${gydwdm}</if>
@@ -83,13 +81,11 @@
 			decode(bf.ztz,null,null,to_char(decode(dw.ztz,null,0,0,0,round(bf.ztz/dw.ztz*100,2)),'fm9999999990.00')||'%') v_24,
 			xm.gydwdm,substr(xm.xzqhdm,0,4)||'00' xzqhdm
 			from
-			(select xmid,jhxdwh,xdnf,sum(nvl(ztz,0)) ztz,
-			sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
-			from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
+			(select * from jhzxqkb_xd where 1=1 <if test="xmnf != null">${xmnf}</if>) xd,
 			xmjbxx xm,xm_xmwc wc,
-			(select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjdw <if test="bbsj != null and bbsj != ''">where to_date(dwyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) dw,
-			(select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjbf <if test="bbsj != null and bbsj != ''">where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) bf
-			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
+			( select * from jhzxqkb_dw where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) dw,
+			( select * from jhzxqkb_bf where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) bf
+			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) 
 			and xm.gydwdm!='11101360000'
 			<if test="jhnf != null">${jhnf}</if>
 			<if test="gydwdm != null">${gydwdm}</if>
@@ -112,13 +108,11 @@
 			decode(bf.ztz,null,null,to_char(decode(dw.ztz,null,0,0,0,round(bf.ztz/dw.ztz*100,2)),'fm9999999990.00')||'%') v_24,
 			xm.gydwdm,substr(xm.xzqhdm,0,4)||'00' xzqhdm,xm.xmbm
 			from
-			(select xmid,jhxdwh,xdnf,sum(nvl(ztz,0)) ztz,
-			sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
-			from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
+			(select * from jhzxqkb_xd where 1=1 <if test="xmnf != null">${xmnf}</if>) xd,
 			xmjbxx xm,xm_xmwc wc,
-			(select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjdw <if test="bbsj != null and bbsj != ''">where to_date(dwyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) dw,
-			(select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjbf <if test="bbsj != null and bbsj != ''">where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) bf
-			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
+			( select * from jhzxqkb_dw where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) dw,
+			( select * from jhzxqkb_bf where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) bf
+			where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) 
 			and xm.gydwdm!='11101360000'
 			<if test="jhnf != null">${jhnf}</if>
 			<if test="gydwdm != null">${gydwdm}</if>
@@ -142,13 +136,11 @@
       decode(nvl(sum(dw.ztz),0),null,null,to_char(decode(nvl(sum(xd.ztz),0),null,0,0,0,round(nvl(sum(dw.ztz),0)/nvl(sum(xd.ztz),0)*100,2)),'fm9999999990.00')||'%') v_23,
       decode(nvl(sum(bf.ztz),0),null,null,to_char(decode(nvl(sum(dw.ztz),0),null,0,0,0,round(nvl(sum(bf.ztz),0)/nvl(sum(dw.ztz),0)*100,2)),'fm9999999990.00')||'%') v_24
       from
-      (select xmid,jhxdwh,xdnf,sum(nvl(ztz,0)) ztz,
-      sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
-      from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
-      xmjbxx xm,xm_xmwc wc,
-      (select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjdw  group by xmbm,jhxdwh) dw,
-      (select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjbf  group by xmbm,jhxdwh) bf
-      where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
+      (select * from jhzxqkb_xd where 1=1 <if test="xmnf != null">${xmnf}</if>) xd,
+	xmjbxx xm,xm_xmwc wc,
+	( select * from jhzxqkb_dw where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) dw,
+	( select * from jhzxqkb_bf where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) bf
+	where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) 
       and xm.gydwdm!='11101360000'
       <if test="xzqhdm != null">${xzqhdm}</if>
       <if test="jhnf != null">${jhnf}</if>
@@ -171,13 +163,11 @@
       decode(nvl(sum(dw.ztz),0),null,null,to_char(decode(nvl(sum(xd.ztz),0),null,0,0,0,round(nvl(sum(dw.ztz),0)/nvl(sum(xd.ztz),0)*100,2)),'fm9999999990.00')||'%') v_23,
       decode(nvl(sum(bf.ztz),0),null,null,to_char(decode(nvl(sum(dw.ztz),0),null,0,0,0,round(nvl(sum(bf.ztz),0)/nvl(sum(dw.ztz),0)*100,2)),'fm9999999990.00')||'%') v_24
       from
-      (select xmid,jhxdwh,xdnf,sum(nvl(ztz,0)) ztz,
-      sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
-      from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
-      xmjbxx xm,xm_xmwc wc,
-      (select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjdw <if test="bbsj != null and bbsj != ''">where to_date(dwyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) dw,
-      (select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjbf <if test="bbsj != null and bbsj != ''">where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) bf
-      where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
+      (select * from jhzxqkb_xd where 1=1 <if test="xmnf != null">${xmnf}</if>) xd,
+	xmjbxx xm,xm_xmwc wc,
+	( select * from jhzxqkb_dw where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) dw,
+	( select * from jhzxqkb_bf where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) bf
+	where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) 
       and xm.gydwdm!='11101360000'
       <if test="xzqhdm != null">${xzqhdm}</if>
       <if test="jhnf != null">${jhnf}</if>
@@ -200,13 +190,11 @@
       decode(nvl(sum(dw.ztz),0),null,null,to_char(decode(nvl(sum(xd.ztz),0),null,0,0,0,round(nvl(sum(dw.ztz),0)/nvl(sum(xd.ztz),0)*100,2)),'fm9999999990.00')||'%') v_23,
       decode(nvl(sum(bf.ztz),0),null,null,to_char(decode(nvl(sum(dw.ztz),0),null,0,0,0,round(nvl(sum(bf.ztz),0)/nvl(sum(dw.ztz),0)*100,2)),'fm9999999990.00')||'%') v_24
       from
-      (select xmid,jhxdwh,xdnf,sum(nvl(ztz,0)) ztz,
-      sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
-      from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
-      xmjbxx xm,xm_xmwc wc,
-      (select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjdw <if test="bbsj != null and bbsj != ''">where to_date(dwyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) dw,
-      (select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjbf <if test="bbsj != null and bbsj != ''">where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) bf
-      where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
+      (select * from jhzxqkb_xd where 1=1 <if test="xmnf != null">${xmnf}</if>) xd,
+	xmjbxx xm,xm_xmwc wc,
+	( select * from jhzxqkb_dw where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) dw,
+	( select * from jhzxqkb_bf where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) bf
+	where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) 
       and xm.gydwdm!='11101360000'
       <if test="xzqhdm != null">${xzqhdm}</if>
       <if test="jhnf != null">${jhnf}</if>
@@ -230,13 +218,11 @@
       decode(nvl(sum(bf.ztz),0),null,null,to_char(decode(nvl(sum(dw.ztz),0),null,0,0,0,round(nvl(sum(bf.ztz),0)/nvl(sum(dw.ztz),0)*100,2)),'fm9999999990.00')||'%') v_24
     
       from
-      (select xmid,jhxdwh,xdnf,sum(nvl(ztz,0)) ztz,
-      sum(nvl(btzzj,0)) cgs,sum(nvl(rys,0)) rys,sum(nvl(ztz,0))-sum(nvl(btzzj,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) ttc,sum(nvl(dfzc,0)) dfzc 
-      from xm_gsd_jhxd where jhxdwh is not null group by xmid,jhxdwh,xdnf) xd,
-      xmjbxx xm,xm_xmwc wc,
-      (select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjdw <if test="bbsj != null and bbsj != ''">where to_date(dwyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) dw,
-      (select xmbm,jhxdwh,sum(nvl(cgs,0)+nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)+nvl(dfzc,0)) ztz,sum(cgs) cgs,sum(rys) rys,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) ttc,sum(dfzc) dfzc from xm_zjbf <if test="bbsj != null and bbsj != ''">where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{bbsj},'yyyy-mm')</if>  group by xmbm,jhxdwh) bf
-      where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+) and xd.jhxdwh is not null and xd.jhxdwh!=' '
+      (select * from jhzxqkb_xd where 1=1 <if test="xmnf != null">${xmnf}</if>) xd,
+	xmjbxx xm,xm_xmwc wc,
+	( select * from jhzxqkb_dw where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) dw,
+	( select * from jhzxqkb_bf where ny=to_char(to_date(#{bbsj},'yyyy-mm'),'yyyy-mm') ) bf
+	where xd.xmid=xm.xmbm and xd.xmid=wc.xmbm(+) and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) 
       and xm.gydwdm!='11101360000'
       <if test="xzqhdm != null">${xzqhdm}</if>
       <if test="jhnf != null">${jhnf}</if>
@@ -262,7 +248,7 @@
 			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
 			<if test="xmmc != null">and xm.xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmlx != null">${xmlx}</if>
-		and xd.jhxdwh is not null and xd.jhxdwh!=' '
+		
 		order by xzqhdm,xd.xdnf,xd.jhxdwh)bb 
 	</select>
 	
@@ -289,7 +275,7 @@
 			<if test="jhxdwh != null">${jhxdwh}</if>
 			<if test="xmmc != null">and xm.xmmc like '%'||#{xmmc}||'%'</if>
 			<if test="xmlx != null">${xmlx}</if>
-		and xd.jhxdwh is not null and xd.jhxdwh!=' '
+		
 		order by xd.xdnf,xd.jhxdwh)bb
 		) group by xzqhdm order by xzqhdm
 		
@@ -614,17 +600,16 @@
 		jy.dssnjz v_31,jy.dsnjz v_32,
 		nvl(tj.bb,0) v_33,nvl(tj.sb,0) v_34,nvl(tj.df,0) v_35,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_36,'' v_37
 		from xmjbxx x,(
-		select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
+		select * from TJBB_YQJH where nf=#{nf}
 		) yqjh,(
-		select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
+		select * from TJBB_DNJH where nf=#{nf}
 		) dnjh ,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		group by xmbm,substr(dwyf, 1, 4)
-		)dndw,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf})  and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		group by xmbm,substr(bfyf, 1, 4)
-		)dnbf,
-		xmjy_lsb  jy,(
+		select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+		) dndw,(
+		select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+		) dnbf,(
+		select * from XMJY_LSB where nf=#{nf}
+		) jy,(
 		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		group by xmbm,substr(bfyf, 1, 4)
 		)tj 
@@ -659,17 +644,16 @@
 		sum(nvl(jy.dssnjz,0)) v_31,sum(nvl(jy.dsnjz,0)) v_32,
 		sum(nvl(tj.bb,0)) v_33,sum(nvl(tj.sb,0)) v_34,sum(nvl(tj.df,0)) v_35,sum(nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0)) v_36,'' v_37
 		from xmjbxx x,(
-		select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
+		select * from TJBB_YQJH where nf=#{nf}
 		) yqjh,(
-		select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
+		select * from TJBB_DNJH where nf=#{nf}
 		) dnjh ,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		group by xmbm,substr(dwyf, 1, 4)
-		)dndw,(
-		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf})  and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		group by xmbm,substr(bfyf, 1, 4)
-		)dnbf,
-		xmjy_lsb  jy,(
+		select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+		) dndw,(
+		select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+		) dnbf,(
+		select * from XMJY_LSB where nf=#{nf}
+		) jy,(
 		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		group by xmbm,substr(bfyf, 1, 4)
 		)tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
@@ -703,17 +687,16 @@
 		    jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))  v_12, jy.dssnjz v_13, jy.dsnjz v_14,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
-		    ) yqjh,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,
-		    xmjy_lsb  jy,(
+		    select * from TJBB_YQJH where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB where nf=#{nf}
+			) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
 		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
@@ -746,17 +729,16 @@
 		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
-		    ) yqjh,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,
-		    xmjy_lsb   jy,(
+		    select * from TJBB_YQJH where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB where nf=#{nf}
+			) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
 		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
@@ -787,17 +769,16 @@
      jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
     nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
     from xmjbxx x,(
-    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
-    ) yqjh,(
-    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-    ) dnjh,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-    group by xmbm,substr(dwyf, 1, 4)
-    )dndw,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-    group by xmbm,substr(bfyf, 1, 4)
-    )dnbf,
-    xmjy_lsb  jy,(
+    select * from TJBB_YQJH where nf=#{nf}
+	) yqjh,(
+	select * from TJBB_DNJH where nf=#{nf}
+	) dnjh ,(
+	select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+	) dndw,(
+	select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+	) dnbf,(
+	select * from XMJY_LSB where nf=#{nf}
+	) jy,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(bfyf, 1, 4)
     )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
@@ -835,17 +816,16 @@
 		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
-		    ) yqjh,(
-		     select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-   			 ) dnjh,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,
-		    xmjy_lsb   jy,(
+		    select * from TJBB_YQJH where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB where nf=#{nf}
+			) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
 		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
@@ -878,17 +858,16 @@
 		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx x,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
-		    ) yqjh,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,
-		    xmjy_lsb   jy,(
+		    select * from TJBB_YQJH where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB where nf=#{nf}
+			) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
 		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
@@ -919,17 +898,16 @@
      jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
     nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
     from xmjbxx x,(
-    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
-    ) yqjh,(
-    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-    ) dnjh ,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-    group by xmbm,substr(dwyf, 1, 4)
-    )dndw,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-    group by xmbm,substr(bfyf, 1, 4)
-    )dnbf,
-    xmjy_lsb   jy,(
+    select * from TJBB_YQJH where nf=#{nf}
+	) yqjh,(
+	select * from TJBB_DNJH where nf=#{nf}
+	) dnjh ,(
+	select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+	) dndw,(
+	select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+	) dnbf,(
+	select * from XMJY_LSB where nf=#{nf}
+	) jy,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(bfyf, 1, 4)
     )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
@@ -969,17 +947,16 @@
 		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
 		    from xmjbxx x,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
-		    ) yqjh,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,
-		    xmjy_lsb   jy,(
+		    select * from TJBB_YQJH where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB where nf=#{nf}
+			) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
 		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
@@ -1012,17 +989,16 @@
 		    jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
 		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
 		    from xmjbxx x,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
-		    ) yqjh,(
-		    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-		    ) dnjh ,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(dwyf, 1, 4)
-		    )dndw,(
-		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-		    group by xmbm,substr(bfyf, 1, 4)
-		    )dnbf,
-		    xmjy_lsb   jy,(
+		    select * from TJBB_YQJH where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB where nf=#{nf}
+			) jy,(
 		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
 		    group by xmbm,substr(bfyf, 1, 4)
 		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
@@ -1054,17 +1030,16 @@
      jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
     nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
     from xmjbxx x,(
-    select xmid,WMSYS.WM_CONCAT(jhxdwh) yqwh,sum(nvl(btzzj,0)) yqbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) yqsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) yqdf from xm_gsd_jhxd where xdnf &lt;${nf} group by xmid
-    ) yqjh,(
-    select xmid,WMSYS.WM_CONCAT(jhxdwh) dnwh,sum(nvl(btzzj,0)) dnbb,sum(nvl(stz,0)+nvl(gz,0)+nvl(sz,0)+nvl(stc,0)+nvl(dk,0)+nvl(zq,0)+nvl(jl,0)+nvl(rys,0)+nvl(ttc,0)+nvl(zddzjl,0)) dnsb,sum(nvl(dfzc,0)+nvl(yhdk,0)) dndf from xm_gsd_jhxd where xdnf =${nf} group by xmid
-    ) dnjh ,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjdw where substr(dwyf,1,4)=to_char(${nf}) and to_date(dwyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-    group by xmbm,substr(dwyf, 1, 4)
-    )dndw,(
-    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjbf where substr(bfyf,1,4)=to_char(${nf}) and to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
-    group by xmbm,substr(bfyf, 1, 4)
-    )dnbf,
-    xmjy_lsb  jy,(
+    select * from TJBB_YQJH where nf=#{nf}
+	) yqjh,(
+	select * from TJBB_DNJH where nf=#{nf}
+	) dnjh ,(
+	select * from TJBB_DNDW where ny=#{nf}||'-'||#{yf}
+	) dndw,(
+	select * from TJBB_DNBF where ny=#{nf}||'-'||#{yf}
+	) dnbf,(
+	select * from XMJY_LSB where nf=#{nf}
+	) jy,(
     select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
     group by xmbm,substr(bfyf, 1, 4)
     )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
@@ -1081,4 +1056,9 @@
     order by xmlx
     
 	</select>
+	<cache 
+	 eviction="FIFO"  
+	 flushInterval="10800000"  size="51200" 
+	 readOnly="true"  
+		/>
 </mapper>

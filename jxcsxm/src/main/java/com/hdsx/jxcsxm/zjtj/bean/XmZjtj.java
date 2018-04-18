@@ -89,9 +89,26 @@ public class XmZjtj{
     private String xzqh;
     private String jhztz;
     private String zddzjl;
+    private String tjzj;
+    private String syktjzj;
     
-    
-    public String getZddzjl() {
+    public String getSyktjzj() {
+		return syktjzj;
+	}
+
+	public void setSyktjzj(String syktjzj) {
+		this.syktjzj = syktjzj;
+	}
+
+	public String getTjzj() {
+		return tjzj;
+	}
+
+	public void setTjzj(String tjzj) {
+		this.tjzj = tjzj;
+	}
+
+	public String getZddzjl() {
 		return zddzjl;
 	}
 

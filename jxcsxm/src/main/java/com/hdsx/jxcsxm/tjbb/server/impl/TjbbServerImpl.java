@@ -53,7 +53,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 			
 		else if("xm".equals(elist.getPxfs())) {
 			l3=queryList("getJhzxqkbXmHj", elist);
-			queryList("getJhzxqkbXm", elist);
+			//queryList("getJhzxqkbXm", elist);
 		}
 		else {
 			l3=queryList("getJhzxqkb", elist);

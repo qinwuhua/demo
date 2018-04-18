@@ -1211,22 +1211,7 @@ var YMLib = {
 /*
  * 加载行政区划
  */
-function loadDist(id, dwbm) {
-	$('#' + id)
-			.combotree(
-					{
-						checkbox : true,
-						url : '/jxcsxm/xtgl/selAllXzqh.do?yhdw=' + dwbm,
-						onBeforeExpand : function(node, param) {
-							$('#' + id).combotree("tree").tree('options').url = "/jxcsxm/xtgl/selAllXzqh2.do?yhdw="
-									+ node.id;
-						},
-						onSelect : function(node) {
-							YMLib.Var.DistName = node.text
-						}
-					});
-	$('#' + id).combotree('setValue', dwbm);
-}
+
 function loadDist1(id, dwbm) {
 	$('#' + id).combotree(
 			{
@@ -1242,39 +1227,24 @@ function loadDist1(id, dwbm) {
 				}
 		});
 }
-//添加的行政区划
-function loadDistadd(id, dwbm) {
-	$('#' + id).combotree(
-			{
-				checkbox : true,
-				multiple:true,
-				async:false,
-				url : '/jxcsxm/xtgl/selAllXzqh1.do?yhdw=' + dwbm,
-				onLoadSuccess : function (node){
-					//$('#' + id).combotree('setValue', dwbm);
-				},
-				onCheck : function (node){
-					$('#' + id).tree('getChecked');
-				}
-		});
-}
-//添加的行政区划
-function loadDistedit(id, dwbm,dwbm2) {
-	$('#' + id).combotree(
-			{
-				checkbox : true,
-				multiple:true,
-				async:false,
-				url : '/jxcsxm/xtgl/selAllXzqh1.do?yhdw=' + dwbm,
-				onLoadSuccess : function (node){
-					$('#' + id).combotree('setValues', dwbm2.split(","));
-				},
-				onCheck : function (node){
-					$('#' + id).tree('getChecked');
-				}
-		});
-}
+function loadDist(id, dwbm,dwdm) {
 
+
+	$('#' + id).combotree(
+			{
+				checkbox : true,
+				multiple:true,
+				async:false,
+				url : '/jxcsxm/xtgl/selAllXzqh1.do?yhdw=' + dwbm,
+				onLoadSuccess : function (node){
+					if(dwdm!=null)
+					$('#' + id).combotree('setValues', dwdm.split(","));
+				},
+				onCheck : function (node){
+					$('#' + id).tree('getChecked');
+				}
+		});
+}
 
 function loadUnit1(id, dwbm) {
 
@@ -1286,35 +1256,6 @@ function loadUnit1(id, dwbm) {
 				url : '/jxcsxm/xtgl/selAllUnit1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					$('#' + id).combotree('setValue', dwbm);
-				}
-		});
-}
-
-//添加管养单位多选
-function loadUnitadd(id, dwbm) {
-
-	$('#' + id).combotree(
-			{
-				checkbox : true,
-				multiple:true,
-				async:false,
-				url : '/jxcsxm/xtgl/selAllUnit11.do?yhdw=' + dwbm,
-				onLoadSuccess : function (node){
-					//$('#' + id).combotree('setValue', dwbm);
-				}
-		});
-}
-
-//bianjioe
-function loadUnitedit(id, dwbm,dwbm2) {
-	$('#' + id).combotree(
-			{
-				checkbox : true,
-				multiple:true,
-				async:false,
-				url : '/jxcsxm/xtgl/selAllUnit11.do?yhdw=' + dwbm,
-				onLoadSuccess : function (node){
-					$('#' + id).combotree('setValues', dwbm2.split(","));
 				},
 				onCheck : function (node){
 					$('#' + id).tree('getChecked');
@@ -1323,21 +1264,12 @@ function loadUnitedit(id, dwbm,dwbm2) {
 }
 
 
-function loadUnits(id, dwbm,gydw) {
-	$('#' + id).combotree(
-			{
-				checkbox : false,
-				multiple:false,
-				async:false,
-				url : '/jxcsxm/xtgl/selAllUnit1.do?yhdw=' + dwbm,
-				onLoadSuccess : function (node){
-					$('#' + id).combotree('setValue', gydw);
-				}
-		});
-}
-function loadUnit10(id, dwbm) {
-	if(dwbm=='21101360000')
-		dwbm='36';
+/*
+ * 加载部门树
+ */
+function loadUnit(id, dwbm,dwdm) {
+
+
 	$('#' + id).combotree(
 			{
 				checkbox : true,
@@ -1345,47 +1277,18 @@ function loadUnit10(id, dwbm) {
 				async:false,
 				url : '/jxcsxm/xtgl/selAllUnit1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
-					$('#' + id).combotree('setValue', dwbm);
+					if(dwdm!=null)
+					$('#' + id).combotree('setValues', dwdm.split(","));
+				},
+				onCheck : function (node){
+					$('#' + id).tree('getChecked');
 				}
 		});
 }
-/*
- * 加载特殊地区
- */
-function loadDist2(id, dwbm) {
-	$('#' + id).combotree({
-		checkbox : false,
-		multiple : true,
-		panelHeight:200,
-		url : '/jxcsxm/xtgl/selAllXzqh.do?yhdw=' + dwbm,
-		onBeforeExpand : function(node, param) {
-			$('#' + id).combotree("tree").tree('options').url = "/jxcsxm/xtgl/selAllXzqh2.do?yhdw="
-					+ node.id;
-		},
-		onSelect : function(node) {
-			YMLib.Var.DistName = node.text
-		}
-	});
-	// $('#'+id).combotree('setValue',dwbm);
-}
 
-/*
- * 加载部门树
- */
-function loadUnit(id, dwbm) {
-	$('#' + id).combotree({
-		checkbox : false,
-		url : '/jxcsxm/xtgl/selAllUnit1.do?yhdw=36' ,
-		onBeforeExpand : function(node, param) {
-			$('#' + id).combotree("tree").tree('options').url = "/jxcsxm/xtgl/selAllBm2.do?yhdw="
-					+ node.id;
-		},
-		onSelect : function(node) {
-			YMLib.Var.DistName = node.text
-		}
-	});
-	$('#' + id).combotree('setValue', dwbm);
-}
+
+
+
 
 //获取编目编码
 function loadBmbm3(id, name,str) {
@@ -1464,7 +1367,8 @@ function loadBmbm(id, name,str) {
 		valueField : 'bmid',
 		textField : 'name',
 		panelHeight:'auto',
-		multiple:false
+		multiple:false,
+		editable:false
 	});
 	$('#' + id).combobox('setValue',str);
 }
