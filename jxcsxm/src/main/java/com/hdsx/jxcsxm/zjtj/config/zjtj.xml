@@ -28,6 +28,7 @@
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
 		<if test="sfkytj !='' and sfkytj  != null">${sfkytj}</if>
+		<if test="sfygtj !='' and sfygtj  != null">${sfygtj}</if>
 		) t1 where 1=1
 		
 		<if test="shzt !='' and shzt != null">${shzt}</if>
@@ -67,6 +68,7 @@
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
 		<if test="sfkytj !='' and sfkytj  != null">${sfkytj}</if>
+		<if test="sfygtj !='' and sfygtj  != null">${sfygtj}</if>
 		) where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
@@ -103,6 +105,7 @@
 		<if test="xmmc !='' and xmmc != null">and xmmc like '%'||#{xmmc}||'%'</if>
 		<if test="gydw !='' and gydw != null">and gydwdm like #{gydw}||'%'</if>
 		<if test="sfkytj !='' and sfkytj  != null">${sfkytj}</if>
+		<if test="sfygtj !='' and sfygtj  != null">${sfygtj}</if>
 		) where 1=1
 		<if test="shzt !='' and shzt != null">${shzt}</if>
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
@@ -110,21 +113,25 @@
 	</select>
 	
 	<select id="queryzjtjlist" parameterType="xmzjtj" resultType="xmzjtj">
-		select * from(select rownum num ,t.*  from xm_zjtj t
-		where 1=1 and xmbm=#{xmbm} and to_number(sbthcd)&lt;=to_number(#{sbthcd})
+		select * from(select rownum num ,t.*,t.gcfl xmlx,x.jhxdwh  from xmjbxx_tj t left join xm_zjdw x on t.xmbm=x.xmbm
+		where 1=1 and t.trxmbm=#{xmbm}
 		and rownum &lt;=(#{page} * #{rows}) 
-		order by xsbzt,ssbzt,shzt,bfyf
+		
 		)t2
 		where t2.num>(#{page}-1)*#{rows}
 		
 	</select>
 	<select id="queryzjtjlistCount" parameterType="xmzjtj" resultType="int">
-		select count(*) from xm_zjtj t
-		where 1=1 and xmbm=#{xmbm} and to_number(sbthcd)&lt;=to_number(#{sbthcd})
+		select count(*) from xmjbxx_tj t
+		where 1=1 and trxmbm=#{xmbm} 
 	</select>
 	
-	<select id="queryBfByid" parameterType="xmzjtj" resultType="xmzjtj">
-		select * from xm_zjtj t where id=#{id}
+	<select id="queryTjByid" parameterType="xmzjtj" resultType="xmzjtj">
+		select 
+		t.XMBM, t.XMMC, t.GYDW, t.XZQH, t.GYDWDM, t.XZQHDM, t.JSXZ, t.XMNF, t.GCFL,t.KNW, t.TRXMBM, t.SFPPJH, t.BZ,
+		t.gcfl xmlx,t.ztz zbz,
+		x.ZTZ, x.CGS, x.GZ, x.SZ, x.ZQ, x.TDK, x.JL, x.QT, x.RYS, x.DFZC, x.YHDK, x.JHXDWH, x.DWYF, x.STZ, x.TTC, x.TBR, x.TBSJ, x.ZDDZJL
+		from XMJBXX_TJ t left join xm_zjdw x on t.xmbm=x.xmbm and t.trxmbm=x.trxmbm where t.xmbm=#{xmbm} and t.trxmbm=#{trxmbm}
 	</select>
 	<select id="gettjTj" parameterType="xmzjtj" resultType="xmzjtj">
 		select distinct xmmc,nvl(dwzj,0)-nvl(dwdfzc,0) dwzj,nvl(bfzj,0)-nvl(bfdfzc,0) bfzj,nvl(tjzj,0) tjzj,nvl(jhxdzj,0) jhxdzj,nvl(dwzj,0)-nvl(dwdfzc,0)-(nvl(bfzj,0)-nvl(bfdfzc,0))-nvl(tjzj,0) syktjzj from xmjbxx xm left join 
@@ -135,8 +142,39 @@
 		where xm.xmbm=#{xmbm}
 
 	</select>
-	<insert id="insertZjtj" parameterType="xmzjtj">
-		insert into xm_zjtj
+	<insert id="insertZjtjXm" parameterType="xmzjtj">
+		insert into xmjbxx_tj
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="xmbm != null and xmbm != ''" >xmbm,</if>
+	      <if test="xmmc != null and xmmc != ''" >xmmc,</if>
+	      <if test="gydw != null and gydw != ''" >gydw,</if>
+	      <if test="xzqh != null and xzqh != ''" >xzqh,</if>
+	      <if test="gydwdm != null and gydwdm != ''" >gydwdm,</if>
+	      <if test="xzqhdm != null and xzqhdm != ''" >xzqhdm,</if>
+	      <if test="jsxz != null and jsxz != ''" >jsxz,</if>
+	      <if test="xmnf != null and xmnf != ''" >xmnf,</if>
+	      <if test="gcfl != null and gcfl != ''" >gcfl,</if>
+	      <if test="zbz != null and zbz != ''" >ztz,</if>
+	      <if test="trxmbm != null and trxmbm != ''" >trxmbm,</if>
+	      <if test="bz != null and bz != ''" >bz,</if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides="," >
+	      <if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
+	      <if test="xmmc != null and xmmc != ''" >#{xmmc},</if>
+	      <if test="gydw != null and gydw != ''" >#{gydw},</if>
+	      <if test="xzqh != null and xzqh != ''" >#{xzqh},</if>
+	      <if test="gydwdm != null and gydwdm != ''" >#{gydwdm},</if>
+	      <if test="xzqhdm != null and xzqhdm != ''" >#{xzqhdm},</if>
+	      <if test="jsxz != null and jsxz != ''" >#{jsxz},</if>
+	      <if test="xmnf != null and xmnf != ''" >#{xmnf},</if>
+	      <if test="gcfl != null and gcfl != ''" >#{gcfl},</if>
+	      <if test="zbz != null and zbz != ''" >#{zbz},</if>
+	      <if test="trxmbm != null and trxmbm != ''" >#{trxmbm},</if>
+	      <if test="bz != null and bz != ''" >#{bz},</if>
+	    </trim>
+	</insert>
+	<insert id="insertZjtjDw" parameterType="xmzjtj">
+		insert into xm_zjdw
 	    <trim prefix="(" suffix=")" suffixOverrides="," >
 	      <if test="xmbm != null and xmbm != ''" >xmbm,</if>
 	       <if test="ztz != null and ztz != ''" >ztz,</if>
@@ -156,12 +194,13 @@
 	      <if test="sbthcd != null and sbthcd != ''" >sbthcd,</if>
 	      <if test="xsbzt != null and xsbzt != ''" >xsbzt,</if>
 	      <if test="ssbzt != null and ssbzt != ''" >ssbzt,</if>
-	      <if test="bfyf != null and bfyf != ''" >bfyf,</if>
+	      <if test="shzt != null and shzt != ''" >shzt,</if>
+	      <if test="dwyf != null and dwyf != ''" >dwyf,</if>
 	      <if test="ttc != null and ttc != ''" >ttc,</if>
 	      <if test="tbr != null and tbr != ''" >tbr,</if>
 	      <if test="tbsj != null and tbsj != ''" >tbsj,</if>
-	      <if test="bz != null and bz != ''" >bz,</if>
 	      <if test="zddzjl != null and zddzjl != ''" >zddzjl,</if>
+	      <if test="trxmbm != null and trxmbm != ''" >trxmbm,</if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides="," >
 	      <if test="xmbm != null and xmbm != ''" >#{xmbm},</if>
@@ -182,15 +221,18 @@
 	      <if test="sbthcd != null and sbthcd != ''" >#{sbthcd},</if>
 	      <if test="xsbzt != null and xsbzt != ''" >#{xsbzt},</if>
 	      <if test="ssbzt != null and ssbzt != ''" >#{ssbzt},</if>
-	      <if test="bfyf != null and bfyf != ''" >#{bfyf},</if>
+	      <if test="shzt != null and shzt != ''" >#{shzt},</if>
+	      <if test="dwyf != null and dwyf != ''" >#{dwyf},</if>
 	      <if test="ttc != null and ttc != ''" >#{ttc},</if>
 	      <if test="tbr != null and tbr != ''" >#{tbr},</if>
 	      <if test="tbsj != null and tbsj != ''" >#{tbsj},</if>
-	      <if test="bz != null and bz != ''" >#{bz},</if>
 	      <if test="zddzjl != null and zddzjl != ''" >#{zddzjl},</if>
-	      
+	      <if test="trxmbm != null and trxmbm != ''" >#{trxmbm},</if>
 	    </trim>
 	</insert>
+	
+	<delete id="deleteZjtjXm" parameterType="xmzjtj">delete from xmjbxx_tj where xmbm=#{xmbm} and trxmbm=#{trxmbm}</delete>
+	<delete id="deleteZjtjDw" parameterType="xmzjtj">delete from xm_zjdw where xmbm=#{xmbm} and trxmbm=#{trxmbm}</delete>
 	<update id="updateZjtj" parameterType="xmzjtj">
 	 update xm_zjtj
     <set>

@@ -22,6 +22,7 @@ function loadjhxdwh(id,xmlx){
 			    valueField:'value',
 			    textField:'text',
 			    multiple:true,
+			    editable:false,
 			    formatter:function(row){
 					var opts = $(this).combobox('options');
 					return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];

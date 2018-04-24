@@ -96,7 +96,14 @@ public class Xmjbxx implements Serializable {
     private String zgx1;
     private String dk;
     private String sfkytj;
+    private String sfygtj;
     
+	public String getSfygtj() {
+		return sfygtj;
+	}
+	public void setSfygtj(String sfygtj) {
+		this.sfygtj = sfygtj;
+	}
 	public String getSfkytj() {
 		return sfkytj;
 	}

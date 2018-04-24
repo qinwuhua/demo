@@ -221,6 +221,49 @@ text-decoration:none;
 							<table id='bbtable' width="100%">
 								<caption align="top" style="font-size:large;font-weight: bolder;"> 计划执行情况表</caption>
 								<tbody id='biaotou'>
+									<tr>
+										<td style='width:80px;' rowspan='3'  colspan='1'>序号</td>
+										<td style='width:180px;' rowspan='3'  colspan='1'>计划文号</td>
+										<td style='width:180px;' rowspan='3'  colspan='1'>项目单位</td>
+										<td style='width:180px;' rowspan='3'  colspan='1'>项目名称</td>
+										<td rowspan='1'  colspan='4'>项目工程量完成情况</td>
+										<td rowspan='1'  colspan='23'>资金情况</td>
+									</tr>
+									<tr>
+									<td style='width:80px;' rowspan='2'  colspan='1'>总投资（万元）</td>
+									<td style='width:80px;' rowspan='2'  colspan='1'>完成量（公里/延米/）</td>
+									<td style='width:80px;' rowspan='2'  colspan='1'>完成投资（万元）</td>
+									<td style='width:80px;' rowspan='2'  colspan='1'>完成比例(%)</td>
+									<td rowspan='1'  colspan='5'>下达计划情况</td>
+									<td rowspan='1'  colspan='5'>资金到位情况</td>
+									<td rowspan='1'  colspan='5'>资金拨付情况</td>
+									<td rowspan='1'  colspan='5'>资金结余情况</td>
+									<td style='width:80px;' rowspan='2'  colspan='1'>资金到位比例</td>
+									<td style='width:80px;' rowspan='2'  colspan='1'>资金拨付比例</td>
+									<td style='width:80px;' rowspan='2'  colspan='1'>计划执行情况</td>
+									</tr>
+									<tr>
+									<td style='width:80px;' rowspan='1'  colspan='1'>小计</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>车购税</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>燃油税</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>厅统筹</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>地方自筹</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>小计</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>车购税</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>燃油税</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>厅统筹</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>地方自筹</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>小计</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>车购税</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>燃油税</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>厅统筹</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>地方自筹</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>小计</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>车购税</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>燃油税</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>厅统筹</td>
+									<td style='width:80px;' rowspan='1'  colspan='1'>地方自筹</td>
+									</tr>
 									
 								</tbody>
 								<tbody id="bblist"></tbody>

@@ -1308,6 +1308,7 @@ function loadBmbm3(id, name,str) {
 				textField : 'name',
 				panelHeight:'auto',
 				multiple:true,
+				editable:false,
 				formatter:function(row){
 					arr1[i]=row.id;
 					arr2[i]=row.bmid;
@@ -1366,7 +1367,7 @@ function loadBmbm(id, name,str) {
 				+ encodeURI(encodeURI(name)),
 		valueField : 'bmid',
 		textField : 'name',
-		panelHeight:'auto',
+		panelHeight:'200',
 		multiple:false,
 		editable:false
 	});

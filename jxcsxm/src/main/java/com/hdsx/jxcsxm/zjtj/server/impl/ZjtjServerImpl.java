@@ -4,6 +4,7 @@ package com.hdsx.jxcsxm.zjtj.server.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,15 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 
 	@Override
 	public boolean insertZjtj(XmZjtj xmZjtj) {
-		return insert("insertZjtj", xmZjtj)==1;
+		//生成guid
+		String xmbm = UUID.randomUUID().toString();
+		xmZjtj.setXmbm(xmbm);xmZjtj.setSbthcd("7");xmZjtj.setXsbzt("已上报");xmZjtj.setSsbzt("已上报");xmZjtj.setShzt("已审核");
+		//添加项目
+		int i=insert("insertZjtjXm", xmZjtj);
+		//添加资金到位数据
+		int j=insert("insertZjtjDw", xmZjtj);
+		//返回
+		return i==1&&j==1;
 	}
 
 	@Override
@@ -46,8 +55,8 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 	}
 
 	@Override
-	public XmZjtj queryBfByid(XmZjtj xmZjtj) {
-		return queryOne("queryBfByid", xmZjtj);
+	public XmZjtj queryTjByid(XmZjtj xmZjtj) {
+		return queryOne("queryTjByid", xmZjtj);
 	}
 
 	@Override
@@ -57,17 +66,31 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 
 	@Override
 	public boolean updateZjtj(XmZjtj xmZjtj) {
-		return update("updateZjtj", xmZjtj)>0;
+		delete("deleteZjtjXm", xmZjtj);
+		delete("deleteZjtjDw", xmZjtj);
+		//生成guid
+		String xmbm = UUID.randomUUID().toString();
+		xmZjtj.setXmbm(xmbm);xmZjtj.setSbthcd("7");xmZjtj.setXsbzt("已上报");xmZjtj.setSsbzt("已上报");xmZjtj.setShzt("已审核");
+		//添加项目
+		int i=insert("insertZjtjXm", xmZjtj);
+		//添加资金到位数据
+		int j=insert("insertZjtjDw", xmZjtj);
+		//返回
+		return i==1&&j==1;
 	}
 	
 	@Override
 	public boolean updateZjtjType(XmZjtj xmZjtj) {
-		return update("updateZjtjType", xmZjtj)>0;
+		int i=delete("deleteZjtjXm", xmZjtj);
+		int j=delete("deleteZjtjDw", xmZjtj);
+		return i==1&&j==1; 
 	}
 
 	@Override
-	public boolean delbf(XmZjtj xmZjtj) {
-		return update("delbf", xmZjtj)>0;
+	public boolean deltj(XmZjtj xmZjtj) {
+		int i=delete("deleteZjtjXm", xmZjtj);
+		int j=delete("deleteZjtjDw", xmZjtj);
+		return i==1&&j==1; 
 	}
 
 	@Override

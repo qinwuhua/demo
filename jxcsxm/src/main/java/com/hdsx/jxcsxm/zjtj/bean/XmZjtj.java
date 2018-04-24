@@ -91,8 +91,107 @@ public class XmZjtj{
     private String zddzjl;
     private String tjzj;
     private String syktjzj;
+    private String zbz;
+    private String xmlx;
+    private String xzqhdm;
+    private String trxmbm;
+    private String sfppjh;
+    private String knw;
+    private String jsxz;
+    private String gcfl;
+    private String dwyf;
+    private String sfbfzj;
+    private String sfygtj;
     
-    public String getSyktjzj() {
+    public String getSfygtj() {
+		return sfygtj;
+	}
+
+	public void setSfygtj(String sfygtj) {
+		this.sfygtj = sfygtj;
+	}
+
+	public String getSfbfzj() {
+		return sfbfzj;
+	}
+
+	public void setSfbfzj(String sfbfzj) {
+		this.sfbfzj = sfbfzj;
+	}
+
+	public String getDwyf() {
+		return dwyf;
+	}
+
+	public void setDwyf(String dwyf) {
+		this.dwyf = dwyf;
+	}
+
+	public String getZbz() {
+		return zbz;
+	}
+
+	public void setZbz(String zbz) {
+		this.zbz = zbz;
+	}
+
+	public String getXmlx() {
+		return xmlx;
+	}
+
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
+
+	public String getXzqhdm() {
+		return xzqhdm;
+	}
+
+	public void setXzqhdm(String xzqhdm) {
+		this.xzqhdm = xzqhdm;
+	}
+
+	public String getTrxmbm() {
+		return trxmbm;
+	}
+
+	public void setTrxmbm(String trxmbm) {
+		this.trxmbm = trxmbm;
+	}
+
+	public String getSfppjh() {
+		return sfppjh;
+	}
+
+	public void setSfppjh(String sfppjh) {
+		this.sfppjh = sfppjh;
+	}
+
+	public String getKnw() {
+		return knw;
+	}
+
+	public void setKnw(String knw) {
+		this.knw = knw;
+	}
+
+	public String getJsxz() {
+		return jsxz;
+	}
+
+	public void setJsxz(String jsxz) {
+		this.jsxz = jsxz;
+	}
+
+	public String getGcfl() {
+		return gcfl;
+	}
+
+	public void setGcfl(String gcfl) {
+		this.gcfl = gcfl;
+	}
+
+	public String getSyktjzj() {
 		return syktjzj;
 	}
 

@@ -51,88 +51,29 @@
 				return;
 			}
 			//parent.YMLib.UI.createWindow('mywin1',"添加","/jxcsxm/page/zjtj/xmzjtj/zjtj_tj.jsp",'mywin1',800,355);
-			openWindow("添加","/jxcsxm/page/zjtj/xmzjtj/zjtj_tj.jsp",800,355);	
+			openWindow("添加","/jxcsxm/page/zjtj/xmzjtj/zjtj_tj.jsp",800,365);	
 			
 		}
-		function openDwInfo(id){
-			YMLib.Var.id=id;
-			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-			openWindow("详情","/jxcsxm/page/zjtj/gs/gsdgzzjtj_info.jsp",600,385);
-			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-			openWindow("详情","/jxcsxm/page/zjtj/gs/yhdzxzjtj_info.jsp",600,275);
-			if(parent.YMLib.Var.xmlx=="gs_zhhf")
-			openWindow("详情","/jxcsxm/page/zjtj/gs/zhhfzjtj_info.jsp",600,345);
-			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-			openWindow("详情","/jxcsxm/page/zjtj/gs/lwjggzzjtj_info.jsp",600,275);
-			if(parent.YMLib.Var.xmlx=="nc_lwjggz")
-			openWindow("详情","/jxcsxm/page/zjtj/nc/lwjggzzjtj_info.jsp",600,275);
-			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=="nc_tzrc"||parent.YMLib.Var.xmlx=="nc_yhgc")
-			openWindow("详情","/jxcsxm/page/zjtj/nc/nczjtj_info.jsp",600,275);
-			if(parent.YMLib.Var.xmlx=="gs_sfl")
-				openWindow("详情","/jxcsxm/page/zjtj/gs/sflzjtj_info.jsp",600,275);	
-			if(parent.YMLib.Var.xmlx=="gs_fwq")
-				openWindow("详情","/jxcsxm/page/zjtj/gs/fwqzjtj_info.jsp",600,275);	
-			if(parent.YMLib.Var.xmlx=="gs_yhzx")
-				openWindow("详情","/jxcsxm/page/zjtj/gs/yhzxzjtj_info.jsp",600,295);	
-		
-		}
-		function editDw(id){
-			if(parent.anqxstr.indexOf("增删改")==-1){
-				alert("你不具备增删改的权限");
-				return;
-			}
+		function openTjInfo(xmbm){
+			YMLib.Var.xmbm=xmbm;
+			openWindow("详情","/jxcsxm/page/zjtj/xmzjtj/zjtj_info.jsp",800,365);
 			
-			YMLib.Var.id=id;
-			if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-			openWindow("编辑","/jxcsxm/page/zjtj/gs/gsdgzzjtj_bj.jsp",600,385);
-			if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-			openWindow("编辑","/jxcsxm/page/zjtj/gs/yhdzxzjtj_bj.jsp",600,275);
-			if(parent.YMLib.Var.xmlx=="gs_zhhf")
-			openWindow("编辑","/jxcsxm/page/zjtj/gs/zhhfzjtj_bj.jsp",600,345);
-			if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-			openWindow("编辑","/jxcsxm/page/zjtj/gs/lwjggzzjtj_bj.jsp",600,275);
-			if(parent.YMLib.Var.xmlx=="nc_lwjggz")
-			openWindow("编辑","/jxcsxm/page/zjtj/nc/lwjggzzjtj_bj.jsp",600,275);		
-			if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=="nc_tzrc"||parent.YMLib.Var.xmlx=="nc_yhgc")
-			openWindow("编辑","/jxcsxm/page/zjtj/nc/nczjtj_bj.jsp",600,275);		
-			if(parent.YMLib.Var.xmlx=="gs_sfl")
-				openWindow("编辑","/jxcsxm/page/zjtj/gs/sflzjtj_bj.jsp",600,275);	
-			if(parent.YMLib.Var.xmlx=="gs_fwq")
-				openWindow("编辑","/jxcsxm/page/zjtj/gs/fwqzjtj_bj.jsp",600,275);	
-			if(parent.YMLib.Var.xmlx=="gs_yhzx")
-				openWindow("编辑","/jxcsxm/page/zjtj/gs/yhzxzjtj_bj.jsp",600,295);	
 		}
-		function deldw(){
-			if(parent.anqxstr.indexOf("增删改")==-1){
-				alert("你不具备增删改的权限");
-				return;
-			}
-			
-			var rows=$('#grid').datagrid('getSelections');
-			if(rows.length==0) {
-				alert("请勾选记录！");
-				return;
-			}
-			var _id=rows[0].id;
-			for(var i=1;i<rows.length;i++){
-				_id+=","+rows[i].id;
-			}
-			for(var i=0;i<rows.length;i++){
-				if(rows[i].xsbzt!='未上报'&&rows[i].ssbzt!='未上报'){
-					alert('请勾选未上报的记录！');
-					return;
-				}
-			}
+		function editTj(xmbm){
+			YMLib.Var.xmbm=xmbm;
+			openWindow("编辑","/jxcsxm/page/zjtj/xmzjtj/zjtj_bj.jsp",800,365);
+		}
+		function delTj(xmbm){
 			if(confirm("您确认删除吗？"))
 			$.ajax({
 				type:'post',
-				url:'/jxcsxm/zjtj/delbf.do',
-				data:"id="+_id,
+				url:'/jxcsxm/zjtj/deltj.do',
+				data:"xmbm="+xmbm+"&trxmbm="+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(msg){
 					if(msg){
 						alert("删除成功");
-						getdwTj();
+						gettjTj();
 						$("#grid").datagrid('reload');
 						parent.$("#grid").datagrid('reload');
 						parent.loadTj();
@@ -143,157 +84,33 @@
 				}
 			});
 		}
-		function updateBfType(type,id){
-			var rows;var isMore=false;var _id="";
-			if(id==null){
-				isMore=true;
-				rows=$('#grid').datagrid('getSelections');
-				if(rows.length==0) {
-					alert("请勾选记录！");
-					return;
-				}
-				_id=rows[0].id;
-				for(var i=1;i<rows.length;i++){
-					_id+=","+rows[i].id;
-				}
-			}else
-			 _id=id;
-			var str="";
-			var data="";
-			if(type=='xsbzt'){
-				if(isMore)
-				for(var i=0;i<rows.length;i++){
-					if(rows[i].xsbzt!='未上报'){
-						alert('请勾选未上报的记录！');
-						return;
-					}
-				}
-				if($.cookie('zgx').indexOf(parent.YMLib.Var.gydwdm)!=-1)
-				data="xsbzt=已上报&ssbzt=已上报&sbthcd=7&sfth=否&thyy=&id="+_id;
-				else
-				data="xsbzt=已上报&sbthcd=9&sfth=否&thyy=&id="+_id;
-				str="上报";
-			}
-			if(type=='ssbzt'){
-				if(isMore)
-					for(var i=0;i<rows.length;i++){
-						if(rows[i].ssbzt!='未上报'){
-							alert('请勾选未上报的记录！');
-							return;
-						}
-				}
-				data="ssbzt=已上报&sbthcd=7&sfth=否&thyy=&id="+_id;
-				str="上报";
-			}
-			if(type=='shzt'){
-				if(isMore)
-					for(var i=0;i<rows.length;i++){
-						if(rows[i].shzt!='未审核'){
-							alert('请勾选未审核的记录！');
-							return;
-						}
-					}
-				data="shzt=已审核&sbthcd=7&sfth=否&thyy=&id="+_id;
-				str="审核";
-			}
-			if(type=='thwsh'){
-				if(isMore)
-					for(var i=0;i<rows.length;i++){
-						if(rows[i].shzt!='已审核'){
-							alert('请勾选已审核的记录！');
-							return;
-						}
-					}
-				
-				data="shzt=未审核&sbthcd=7&id="+_id;
-				str="退回未审核";
-			}
-			//alert(data);
-			if(confirm("您确认"+str+"吗？"))
-			//return;
-			$.ajax({
-				type:'post',
-				url:'/jxcsxm/zjtj/updateZjtjType.do',
-				data:data,
-				dataType:'json',
-				success:function(msg){
-					if(msg){
-						alert(str+"成功");
-						getdwTj();
-						$("#grid").datagrid('reload');
-						parent.$("#grid").datagrid('reload');
-						parent.loadTj();
-					}else{
-						alert(str+"失败");
-					}
-					
-				}
-			});
-		}
-		
-		function thXj(type,_id){
-			var id="";var isMore=false;
-			var rows;
-			if(_id==null){
-				isMore=true;
-				rows=$('#grid').datagrid('getSelections');
-				if(rows.length==0) {
-					alert("请勾选记录！");
-					return;
-				}
-				id=rows[0].id;
-				for(var i=1;i<rows.length;i++){
-					id+=","+rows[i].id;
-				}
-			}else
-			 id=_id;
-			if(type=='thsj'){
-				if(isMore)
-					for(var i=0;i<rows.length;i++){
-						if(rows[i].shzt!='未审核'){
-							alert('请勾选未审核的记录！');
-							return;
-						}
-					}
-				if($.cookie('zgx').indexOf(parent.YMLib.Var.gydwdm)!=-1)
-				YMLib.Var.data="ssbzt=未上报&xsbzt=未上报&sfth=是&sbthcd=11&id="+id;
-				else
-				YMLib.Var.data="ssbzt=未上报&sfth=是&sbthcd=9&id="+id;
-				openWindow("退回","/jxcsxm/page/zjtj/zjtj_th.jsp",400,150);
-			}
-			if(type=='thxj'){
-				if(isMore)
-					for(var i=0;i<rows.length;i++){
-						if(rows[i].ssbzt!='未上报'){
-							alert('请勾选未上报的记录！');
-							return;
-						}
-					}
-				YMLib.Var.data="xsbzt=未上报&sfth=是&sbthcd=11&id="+id;
-				openWindow("退回","/jxcsxm/page/zjtj/zjtj_th.jsp",400,150);
-			}
-			
-		}
 		
 		
 		function queryzjtjlist(){
 			var params={'xmbm':parent.YMLib.Var.xmbm,'sbthcd':$.cookie('unit2').length};
 			var col;
 			col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
-				{field:'cz',title:'操作',width:160,align:'center',
+				{field:'cz',title:'操作',width:120,align:'center',
 				formatter: function(value,row,index){
-					var result='<a style="color:#3399CC;" href="javascript:openTjInfo('+"'"+row.id+"'"+')" >详情</a>&nbsp;&nbsp;';
-					result+='<a style="color:#3399CC;" href="javascript:editTj('+"'"+row.id+"'"+')" >编辑</a>&nbsp;&nbsp;';
-					result+='<a style="color:#3399CC;" href="javascript:delTj('+"'"+row.id+"'"+')" >删除</a>&nbsp;&nbsp;';
-					return result; 
+					if(row.sfppjh=='是'||row.sfbfzj=='是'){
+						var result='<a style="color:#3399CC;" href="javascript:openTjInfo('+"'"+row.xmbm+"'"+')" >详情</a>&nbsp;&nbsp;';
+						result+='编辑&nbsp;&nbsp;';
+						result+='删除&nbsp;&nbsp;';
+						return result; 
+					}else{
+						var result='<a style="color:#3399CC;" href="javascript:openTjInfo('+"'"+row.xmbm+"'"+')" >详情</a>&nbsp;&nbsp;';
+						result+='<a style="color:#3399CC;" href="javascript:editTj('+"'"+row.xmbm+"'"+')" >编辑</a>&nbsp;&nbsp;';
+						result+='<a style="color:#3399CC;" href="javascript:delTj('+"'"+row.xmbm+"'"+')" >删除</a>&nbsp;&nbsp;';
+						return result; 
+					}
 				}
 			},
 			{field:'xmlx',title:'项目类型',width:70,align:'center'},
 			{field:'xmnf',title:'项目年份',width:70,align:'center'},
 			{field:'xmmc',title:'项目名称',width:200,align:'center'},
-			{field:'gydw',title:'管养单位',width:130,align:'center'},
+			{field:'gydw',title:'管养单位',width:170,align:'center'},
 			{field:'xzqh',title:'行政区划',width:130,align:'center'},
-			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
+			{field:'ztz',title:'总补助(万元)',width:80,align:'center'},
 			{field:'jhxdwh',title:'计划下达文号',width:120,align:'center'}
 		]]
 			$('#grid').datagrid({    
@@ -333,7 +150,6 @@
             <tr>
             <td>
             <a name='tianjia' id='mybuttion1' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:zjtjtj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">添加</a>
-			<a name='shanchu' id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:deldw()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">删除</a>
 			
             </td>
             </tr>

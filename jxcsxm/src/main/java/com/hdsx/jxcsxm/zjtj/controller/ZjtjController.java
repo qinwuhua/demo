@@ -68,6 +68,7 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
 		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		xmjbxx.setSfkytj(MyUtil.getQueryTJ(xmjbxx.getSfkytj(), "fun_sfkytj(t.xmbm)"));
+		xmjbxx.setSfygtj(MyUtil.getQueryTJ(xmjbxx.getSfygtj(), "fun_sfygtj(t.xmbm)"));
 		if(xmZjtj.getPage()>0){
 			xmjbxx.setPage(xmZjtj.getPage());
 			xmjbxx.setRows(xmZjtj.getRows());
@@ -102,6 +103,7 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
 		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		xmjbxx.setSfkytj(MyUtil.getQueryTJ(xmjbxx.getSfkytj(), "fun_sfkytj(t.xmbm)"));
+		xmjbxx.setSfygtj(MyUtil.getQueryTJ(xmjbxx.getSfygtj(), "fun_sfygtj(t.xmbm)"));
 		try {
 			JsonUtils.write(zjtjServer.gettjTjAll(xmjbxx), getresponse().getWriter());
 		} catch (Exception e) {
@@ -111,6 +113,14 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 	
 	
 	public void insertZjtj(){
+		if("改建".equals(xmZjtj.getXmlx())||"路面改造".equals(xmZjtj.getXmlx())||"新建".equals(xmZjtj.getXmlx())) {
+			xmZjtj.setJsxz("国省道改造");xmZjtj.setGcfl(xmZjtj.getXmlx());
+		}else if("危桥改造".equals(xmZjtj.getXmlx())||"安防工程".equals(xmZjtj.getXmlx())||"灾害防治".equals(xmZjtj.getXmlx())) {
+			xmZjtj.setJsxz("路网结构改造");xmZjtj.setGcfl(xmZjtj.getXmlx());
+		}else {
+			xmZjtj.setJsxz(xmZjtj.getXmlx());xmZjtj.setGcfl(xmZjtj.getXmlx());
+		}
+		
 		ResponseUtils.write(getresponse(), ""+zjtjServer.insertZjtj(xmZjtj));
 	}
 	
@@ -133,9 +143,9 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 		}
 	}
 	//根据资金到位id查询详细
-	public void queryBfByid(){
+	public void queryTjByid(){
 		try {
-			JsonUtils.write(zjtjServer.queryBfByid(xmZjtj), getresponse().getWriter());
+			JsonUtils.write(zjtjServer.queryTjByid(xmZjtj), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -150,7 +160,13 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 	}
 	//编辑到位资金
 	public void updateZjtj(){
-		xmZjtj.setId(MyUtil.getQueryTJ(xmZjtj.getId(), "id").replaceAll("and", ""));
+		if("改建".equals(xmZjtj.getXmlx())||"路面改造".equals(xmZjtj.getXmlx())||"新建".equals(xmZjtj.getXmlx())) {
+			xmZjtj.setJsxz("国省道改造");xmZjtj.setGcfl(xmZjtj.getXmlx());
+		}else if("危桥改造".equals(xmZjtj.getXmlx())||"安防工程".equals(xmZjtj.getXmlx())||"灾害防治".equals(xmZjtj.getXmlx())) {
+			xmZjtj.setJsxz("路网结构改造");xmZjtj.setGcfl(xmZjtj.getXmlx());
+		}else {
+			xmZjtj.setJsxz(xmZjtj.getXmlx());xmZjtj.setGcfl(xmZjtj.getXmlx());
+		}
 		ResponseUtils.write(getresponse(), ""+zjtjServer.updateZjtj(xmZjtj));
 	}
 	//编辑到位资金状态
@@ -159,9 +175,8 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 		ResponseUtils.write(getresponse(), ""+zjtjServer.updateZjtjType(xmZjtj));
 	}
 	//删除资金到位
-	public void delbf(){
-		xmZjtj.setId(MyUtil.getQueryTJ(xmZjtj.getId(), "id").replaceAll("and", ""));
-		ResponseUtils.write(getresponse(), ""+zjtjServer.delbf(xmZjtj));
+	public void deltj(){
+		ResponseUtils.write(getresponse(), ""+zjtjServer.deltj(xmZjtj));
 	}
 	
 	public void queryXmlistshqx(){

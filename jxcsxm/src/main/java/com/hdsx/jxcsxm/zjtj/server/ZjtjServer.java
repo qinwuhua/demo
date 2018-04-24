@@ -20,7 +20,7 @@ public interface ZjtjServer {
 
 	int queryzjtjlistCount(XmZjtj xmZjtj);
 
-	XmZjtj queryBfByid(XmZjtj xmZjtj);
+	XmZjtj queryTjByid(XmZjtj xmZjtj);
 
 	XmZjtj gettjTj(XmZjtj xmZjtj);
 
@@ -28,7 +28,7 @@ public interface ZjtjServer {
 
 	boolean updateZjtjType(XmZjtj xmZjtj);
 
-	boolean delbf(XmZjtj xmZjtj);
+	boolean deltj(XmZjtj xmZjtj);
 
 	List<XmZjtj> queryXmlistshqx(XmZjtj xmZjtj);
 

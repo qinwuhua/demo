@@ -24,54 +24,10 @@
 			anqxstr=getxqxbyid(getUrlParame("id"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
-			//loadBmbm3('gcfl','养护大中修工程分类');
 			loadjhxdwh("jhxdwh",'gs_yhzx');
-			loadBmbm3('shzt','审核状态');
-			loadBmbm3('ssbzt','上报状态');
-			loadBmbm3('xsbzt','上报状态');
-			loadBmbm3('sfqbbf','是否全部调剂');
-			if($.cookie('unit2').length==11){
-				$("td[name='xian']").show();
-				$("td[name='shi']").hide();
-				$("td[name='sheng']").hide();
-				$("a[name='sheng']").hide();
-				$("a[name='xian']").show();
-				$("a[name='shi']").hide();
-				if(anqxstr.indexOf("上报")!=-1){
-					$("a[name='xian']").show();
-				}else{
-					$("a[name='xian']").hide();
-				}
-			}
-			if($.cookie('unit2').length==9){
-				$("td[name='shi']").show();
-				$("td[name='xian']").hide();
-				$("td[name='sheng']").hide();
-				$("a[name='sheng']").hide();
-				$("a[name='xian']").hide();
-				$("a[name='shi']").show();
-				if(anqxstr.indexOf("上报")!=-1){
-					$("a[name='shi']").show();
-				}else{
-					$("a[name='shi']").hide();
-				}
-			}
-			if($.cookie('unit2').length==7){
-				$("a[name='sheng']").show();
-				$("td[name='sheng']").show();
-				$("td[name='xian']").hide();
-				$("td[name='shi']").hide();
-				$("a[name='xian']").hide();
-				$("a[name='shi']").hide();
-				if(anqxstr.indexOf("审核")!=-1){
-					$("a[name='sheng']").show();
-				}else{
-					$("a[name='sheng']").hide();
-				}
-			}
-			//YMLib.Var.jdbs=2;
+			loadBmbm3('sfkytj','是否全部调剂');
+			loadBmbm3('sfygtj','是否全部调剂');
 			queryXmlist();
-			
 			
 		});
 		function queryXmlist(){
@@ -98,14 +54,16 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
-			if(sfqbbf.substr(0,1)==',')
-				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
+			var sfkytj=$("#sfkytj").combobox("getValues").join(",");
+			if(sfkytj.substr(0,1)==',')
+				sfkytj=sfkytj.substr(1,sfkytj.length);
+			var sfygtj=$("#sfygtj").combobox("getValues").join(",");
+			if(sfygtj.substr(0,1)==',')
+				sfygtj=sfygtj.substr(1,sfygtj.length);
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbbf':sfqbbf
+					   'xmjbxx.shzt':'','xmjbxx.ssbzt':'','xmjbxx.xsbzt':'','xmjbxx.sfkytj':sfkytj,'xmjbxx.sfygtj':sfygtj
 			};
-	
 			loadTj();
 			
 			$('#grid').datagrid({    
@@ -132,23 +90,7 @@
 							{field:'gydw',title:'管养单位',width:180,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
 							{field:'jhxdwh',title:'计划下达文号',width:270,align:'center'}
-			    ]],
-			    rowStyler:function(index,row){
-			    	if($.cookie('unit2').length==11){
-					if (row.xsbzt>0 ){
-						return 'background-color:pink;color:black;font-weight:bold;';
-					}}
-			    	if($.cookie('unit2').length==9){
-						if (row.ssbzt>0 && row.xsbzt==0){
-						return 'background-color:pink;color:black;font-weight:bold;';
-					}}
-			    	if($.cookie('unit2').length==7){
-						if (row.shzt>0 && row.ssbzt==0){
-						return 'background-color:pink;color:black;font-weight:bold;';
-					}}
-			    	
-			    	
-				}
+			    ]]
 			}); 
 		}
 		
@@ -177,16 +119,19 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
 
-			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
-			if(sfqbbf.substr(0,1)==',')
-				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
+			var sfkytj=$("#sfkytj").combobox("getValues").join(",");
+			if(sfkytj.substr(0,1)==',')
+				sfkytj=sfkytj.substr(1,sfqbbf.length);
+			var sfygtj=$("#sfygtj").combobox("getValues").join(",");
+			if(sfygtj.substr(0,1)==',')
+				sfygtj=sfygtj.substr(1,sfygtj.length);
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbbf':sfqbbf
+					   'xmjbxx.shzt':'','xmjbxx.ssbzt':'','xmjbxx.xsbzt':'','xmjbxx.sfkytj':sfkytj,'xmjbxx.sfygtj':sfygtj
 			};
 			$.ajax({
 				type:'post',
-				url:'/jxcsxm/zjtj/getbfTjAll.do',
+				url:'/jxcsxm/zjtj/gettjTjAll.do',
 				data:params,
 				dataType:'json',
 				success:function(msg){
@@ -226,7 +171,7 @@ text-decoration:none;
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:165px;"></select></td>
 								<td align="right">项目年份：</td>
-        						<td><select id="xmnf" style="width: 80px;"></select></td>
+        						<td><select id="xmnf" style="width: 144px;"></select></td>
 								<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:140px;" /></td>
         						
@@ -234,23 +179,15 @@ text-decoration:none;
         					<tr height="28">
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
-								<!-- 县市上报状态 省审核状态-->
-								<td align="right" name='sheng'>审核状态：</td>
-								<td name='sheng'><select name="shzt" id="shzt" style="width:80px;" ></select></td>
-        						<td align="right" name='shi'>上报状态：</td>
-								<td name='shi'><select name="ssbzt" id="ssbzt" style="width:80px;" ></select></td>
-        						<td align="right" name='xian'>上报状态：</td>
-								<td name='xian'><select name="xsbzt" id="xsbzt" style="width:80px;" ></select></td>
-        						<td align="right">是否全部调剂：</td>
-								<td><select name="sfqbbf" id="sfqbbf" style="width:144px;" ></select></td>
+								<td align="right">是否可以调剂：</td>
+								<td><select name="sfkytj" id="sfkytj" style="width:144px;" ></select></td>
+        						<td align="right">是否有过调剂：</td>
+								<td><select name="sfygtj" id="sfygtj" style="width:144px;" ></select></td>
         						
         					</tr>
         					<tr height="28">
                             	<td colspan="8">
                             		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryXmlist()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
-									<a name='sheng' id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plshbf()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">批量审核</a>
-									<a name='shi' id='mybuttion6' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbbfsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion6')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion6')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
-									
 								</td>
                             </tr>
         					</table>
