@@ -24,13 +24,13 @@
 		getxmInfo();
 		queryzjxdlist();
 		queryzjdwlist();
-		queryzjtjlist();
+		queryzjbflist();
 		
 	});
 	function getbfTj(){
 		$.ajax({
 			type:'post',
-			url:'/jxcsxm/zjtj/getbfTj.do',
+			url:'/jxcsxm/zjbf/getbfTj.do',
 			data:'xmbm='+parent.YMLib.Var.xmbm+"&sbthcd="+$.cookie("unit2").length,
 			dataType:'json',
 			success:function(msg){
@@ -64,23 +64,23 @@
 	function openBfInfo(id){
 		YMLib.Var.id=id;
 		if(parent.YMLib.Var.xmlx=="gs_gsdgz")
-		openWindow("详情","/jxcsxm/page/zjtj/gs/gsdgzzjtj_info.jsp",600,390);
+		openWindow("详情","/jxcsxm/page/zjbf/gs/gsdgzzjbf_info.jsp",600,390);
 		if(parent.YMLib.Var.xmlx=="gs_yhdzx")
-		openWindow("详情","/jxcsxm/page/zjtj/gs/yhdzxzjtj_info.jsp",600,280);
+		openWindow("详情","/jxcsxm/page/zjbf/gs/yhdzxzjbf_info.jsp",600,280);
 		if(parent.YMLib.Var.xmlx=="gs_zhhf")
-		openWindow("详情","/jxcsxm/page/zjtj/gs/zhhfzjtj_info.jsp",600,350);
+		openWindow("详情","/jxcsxm/page/zjbf/gs/zhhfzjbf_info.jsp",600,350);
 		if(parent.YMLib.Var.xmlx=="gs_lwjggz")
-		openWindow("详情","/jxcsxm/page/zjtj/gs/lwjggzzjtj_info.jsp",600,280);
+		openWindow("详情","/jxcsxm/page/zjbf/gs/lwjggzzjbf_info.jsp",600,280);
 		if(parent.YMLib.Var.xmlx=="nc_lwjggz")
-		openWindow("详情","/jxcsxm/page/zjtj/nc/lwjggzzjtj_info.jsp",600,280);
+		openWindow("详情","/jxcsxm/page/zjbf/nc/lwjggzzjbf_info.jsp",600,280);
 		if(parent.YMLib.Var.xmlx=="nc_gljs"||parent.YMLib.Var.xmlx=="nc_tzrc"||parent.YMLib.Var.xmlx=="nc_yhgc")
-		openWindow("详情","/jxcsxm/page/zjtj/nc/nczjtj_info.jsp",600,280);
+		openWindow("详情","/jxcsxm/page/zjbf/nc/nczjbf_info.jsp",600,280);
 		if(parent.YMLib.Var.xmlx=="gs_sfl")
-			openWindow("详情","/jxcsxm/page/zjtj/gs/sflzjtj_info.jsp",600,275);	
+			openWindow("详情","/jxcsxm/page/zjbf/gs/sflzjbf_info.jsp",600,275);	
 		if(parent.YMLib.Var.xmlx=="gs_fwq")
-			openWindow("详情","/jxcsxm/page/zjtj/gs/fwqzjtj_info.jsp",600,275);	
+			openWindow("详情","/jxcsxm/page/zjbf/gs/fwqzjbf_info.jsp",600,275);	
 		if(parent.YMLib.Var.xmlx=="gs_yhzx")
-			openWindow("详情","/jxcsxm/page/zjtj/gs/yhzxzjtj_info.jsp",600,295);	
+			openWindow("详情","/jxcsxm/page/zjbf/gs/yhzxzjbf_info.jsp",600,295);	
 	
 	}
 	function openDwInfo(id){
@@ -105,7 +105,7 @@
 		openWindow("详情","/jxcsxm/page/zjdw/gs/fwqzjdw_info.jsp",600,250);
 	}
 	
-	function queryzjtjlist(){
+	function queryzjbflist(){
 		getbfTj();
 		var params={'xmbm':parent.YMLib.Var.xmbm,'sbthcd':$.cookie('unit2').length,'sffy':0};
 		var col;
@@ -127,7 +127,7 @@
 				}
 				return zt;
 		}},
-		{field:'bfyf',title:'调剂月份',width:75,align:'center'},
+		{field:'bfyf',title:'拨付月份',width:75,align:'center'},
 		{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 		{field:'bd',title:'标段',width:50,align:'center'},
 		{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
@@ -161,7 +161,7 @@
 					}
 					return zt;
 			}},
-			{field:'bfyf',title:'调剂月份',width:75,align:'center'},
+			{field:'bfyf',title:'拨付月份',width:75,align:'center'},
 			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 			{field:'bd',title:'标段',width:50,align:'center'},
 			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
@@ -190,7 +190,7 @@
 					}
 					return zt;
 			}},
-			{field:'bfyf',title:'调剂月份',width:75,align:'center'},
+			{field:'bfyf',title:'拨付月份',width:75,align:'center'},
 			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 			{field:'bd',title:'标段',width:50,align:'center'},
 			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
@@ -223,7 +223,7 @@
 					}
 					return zt;
 			}},
-			{field:'bfyf',title:'调剂月份',width:75,align:'center'},
+			{field:'bfyf',title:'拨付月份',width:75,align:'center'},
 			{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 			{field:'bd',title:'标段',width:50,align:'center'},
 			{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
@@ -251,7 +251,7 @@
 						}
 						return zt;
 				}},
-				{field:'bfyf',title:'调剂月份',width:75,align:'center'},
+				{field:'bfyf',title:'拨付月份',width:75,align:'center'},
 				{field:'jhxdwh',title:'计划下达文号',width:140,align:'center'},
 				{field:'bd',title:'标段',width:50,align:'center'},
 				{field:'ztz',title:'总投资(万元)',width:75,align:'center'},
@@ -270,7 +270,7 @@
 					return result; 
 				}
 			},
-			{field:'bfyf',title:'调剂月份',width:70,align:'center'},
+			{field:'bfyf',title:'拨付月份',width:70,align:'center'},
 			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
 			{field:'bd',title:'标段',width:50,align:'center'},
 			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
@@ -287,7 +287,7 @@
 					return result; 
 				}
 			},
-			{field:'bfyf',title:'调剂月份',width:70,align:'center'},
+			{field:'bfyf',title:'拨付月份',width:70,align:'center'},
 			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
 			{field:'bd',title:'标段',width:50,align:'center'},
 			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
@@ -305,7 +305,7 @@
 				}
 			},
 			
-			{field:'bfyf',title:'调剂月份',width:70,align:'center'},
+			{field:'bfyf',title:'拨付月份',width:70,align:'center'},
 			{field:'jhxdwh',title:'计划下达文号',width:150,align:'center'},
 			{field:'bd',title:'标段',width:50,align:'center'},
 			{field:'ztz',title:'总投资(万元)',width:80,align:'center'},
@@ -318,8 +318,8 @@
 		
 		
 		
-		$('#zjtjgrid').datagrid({    
-		    url:'/jxcsxm/zjtj/queryzjtjlist.do',
+		$('#zjbfgrid').datagrid({    
+		    url:'/jxcsxm/zjbf/queryzjbflist.do',
 		    striped:true,
 // 		    pagination:true,
 		    rownumbers:true,
@@ -822,19 +822,19 @@
 	            </tr>
             </div>
             
-            <div id='zjtj'>
+            <div id='zjbf'>
 	            <tr>
 	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #FFEFD5; width: 15%; padding-left: 10px;height: 30px;">
-		              	资金调剂信息————计划下达补助资金共【<span id="jhxdzj_bf" style="color: Red; font-weight: bold;">0</span>】万元，
+		              	资金拨付信息————计划下达补助资金共【<span id="jhxdzj_bf" style="color: Red; font-weight: bold;">0</span>】万元，
 		                    到位补助资金共【<span id="dwzj_bf" style="color: Red; font-weight: bold;">0</span>】万元，
-		                    调剂补助资金共【<span id="bfzj_bf" style="color: Red; font-weight: bold;">0</span>】万元，
-		                    其中，已审核调剂补助资金共【<span id="yshbfzj_bf" style="color: Red; font-weight: bold;">0</span>】万元。
+		                    拨付补助资金共【<span id="bfzj_bf" style="color: Red; font-weight: bold;">0</span>】万元，
+		                    其中，已审核拨付补助资金共【<span id="yshbfzj_bf" style="color: Red; font-weight: bold;">0</span>】万元。
 		           </td>
 	            </tr>   
 				
 	            <tr>
 	                <td colspan="4">                
-	                     <table id="zjtjgrid">           		
+	                     <table id="zjbfgrid">           		
 	                     </table>   
 	                </td>
 	            </tr>

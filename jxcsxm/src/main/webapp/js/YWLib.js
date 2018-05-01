@@ -184,6 +184,15 @@ function closeWindow(){
 	parent.$('#mywin').window('destroy');
 }
 
+//打开关联计划
+function openGljh(xmbm,trxmbm,xmlx){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.trxmbm=trxmbm;
+	YMLib.Var.xmlx=xmlx;
+	YMLib.UI.createWindow('mywin','关联计划','/jxcsxm/page/zjtj/gljh/gljh.jsp','mywin',1000,450);	
+}
+
+
 //创建表头tree
 function createBtTree(id,treeno,ssbb){
 

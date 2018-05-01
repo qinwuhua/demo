@@ -20,10 +20,11 @@
 <script type="text/javascript">
 
 $(function(){
+// 	$("#trxmbm").val(parent.parent.YMLib.Var.xmbm);
 	$.ajax({
 		type:'post',
-		url:'/jxcsxm/zjtj/queryBfByid.do',
-		data:'id='+parent.YMLib.Var.id,
+		url:'/jxcsxm/zjtj/queryTjByid.do',
+		data:'xmbm='+parent.YMLib.Var.xmbm+'&trxmbm='+parent.parent.YMLib.Var.xmbm,
 		dataType:'json',
 		success:function(msg){
 			$('#submit').form("load",msg);
@@ -31,8 +32,9 @@ $(function(){
 			$.each(inputArray,function(index,item){
 				$(item).attr("readonly","readonly");
 			});
+			
 		}
-	 });
+	});
 })
 
 
@@ -42,24 +44,49 @@ $(function(){
 <script type="text/javascript">
 
 </script>
-<form id="submit" action="/jxcsxm/zjtj/insertZjdw.do" method="post">
+<form id="submit"  method="post">
 <table class='table' style="width: 100%; background-color: #FFE7BA; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
-				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
-				<font color='red' size='1'>*</font>标段：</td>
-				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text" name='bd' id="bd" style="width: 120px" />
-					
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
+				<font color='red' size='1'>*</font>调剂项目类型：</td>
+				<td style="background-color: #ffffff; height: 20px;width:35%" align="left">
+					<input type="text" name='xmlx' id="xmlx" style="width: 120px" />
 					
 					</td>
-				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
 				<font color='red' size='1'>*</font>计划下达文号：</td>
-				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text" name='jhxdwh' id="jhxdwh" style="width: 120px" />
+				<td style="background-color: #ffffff; height: 20px;width:35%" align="left">
+					<input type="text"  id="jhxdwh"  name='jhxdwh' style="width: 120px" />
 					</td>
 				
 			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				项目名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="xmmc" id="xmmc"  style="width: 120px" /></td>
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				项目年份：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name='xmnf' id="xmnf" style="width: 120px" />
+					</td>
+				    
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				管养单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="gydw" id="gydw"  style="width: 120px" />
+					</td>
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				行政区划：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="xzqh" id="xzqh"  style="width: 120px" />
+					</td>
+				
+			</tr>
+			
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				车购税：</td>
@@ -106,9 +133,9 @@ $(function(){
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
-				地方自筹：</td>
+				燃油税：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元</td>
+					<input type="text" name="rys" id="rys" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				厅统筹：
 				</td>
@@ -118,14 +145,15 @@ $(function(){
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
-				调剂月份：
-				</td>
+				地方自筹：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-				 <input type="text" name='bfyf' id='bfyf' style="width: 120px;">
-				</td>
+					<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				到位月份：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
+				 <input type="text" id='dwyf'  name='dwyf' style="width: 120px;"/>
+				<br/><font color="red">调剂项目默认该笔资金已经全部到位</font>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -141,16 +169,14 @@ $(function(){
 				</td>
 				
 			</tr>
+			
+			
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				备注：</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea readonly="readonly" name="bz" id="bz" rows="2" style="width: 310px;"></textarea>
+					<textarea name="bz" id="bz" rows="2" style="width: 510px;"></textarea>
 				
-			</tr>
-			<tr style="height: 35px;">
-				<td colspan="4" style="background-color: #ffffff;"align="center">
-				<a id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:closeWindow()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">关闭</a>
 			</tr>
 		</table>
 	</form>

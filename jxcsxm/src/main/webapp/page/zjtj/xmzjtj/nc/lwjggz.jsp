@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>国省道改造</title>
+	<title>路网结构改造</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -22,53 +22,13 @@
 		var anqxstr="";
 		$(function(){
 			anqxstr=getxqxbyid(getUrlParame("id"));
+			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
-			loadBmbm3('jsxz','国省道改造建设性质');
-			loadjhxdwh("jhxdwh",'gs_gsdgz');
-			loadBmbm3('shzt','审核状态');
-			loadBmbm3('ssbzt','上报状态');
-			loadBmbm3('xsbzt','上报状态');
-			loadBmbm3('sfqbbf','是否全部拨付');
-			if($.cookie('unit2').length==11){
-				$("td[name='xian']").show();
-				$("td[name='shi']").hide();
-				$("td[name='sheng']").hide();
-				$("a[name='sheng']").hide();
-				$("a[name='xian']").show();
-				$("a[name='shi']").hide();
-				if(anqxstr.indexOf("上报")!=-1){
-					$("a[name='xian']").show();
-				}else{
-					$("a[name='xian']").hide();
-				}
-			}
-			if($.cookie('unit2').length==9){
-				$("td[name='shi']").show();
-				$("td[name='xian']").hide();
-				$("td[name='sheng']").hide();
-				$("a[name='sheng']").hide();
-				$("a[name='xian']").hide();
-				$("a[name='shi']").show();
-				if(anqxstr.indexOf("上报")!=-1){
-					$("a[name='shi']").show();
-				}else{
-					$("a[name='shi']").hide();
-				}
-			}
-			if($.cookie('unit2').length==7){
-				$("a[name='sheng']").show();
-				$("td[name='sheng']").show();
-				$("td[name='xian']").hide();
-				$("td[name='shi']").hide();
-				$("a[name='xian']").hide();
-				$("a[name='shi']").hide();
-				if(anqxstr.indexOf("审核")!=-1){
-					$("a[name='sheng']").show();
-				}else{
-					$("a[name='sheng']").hide();
-				}
-			}
+			loadBmbm3('gcfl','路网结构改造项目类型');
+			loadjhxdwh("jhxdwh",'nc_lwjggz');
+			loadBmbm3('sfkytj','是否全部调剂');
+			loadBmbm3('sfygtj','是否全部调剂');
 			//YMLib.Var.jdbs=2;
 			queryXmlist();
 			
@@ -79,7 +39,6 @@
 			var xzqhdm=$("#xzqh").combotree("getValues");
 			if(xzqhdm.length==0){
 				xzqhstr= $.cookie("dist2");
-				
 			}else if(xzqhdm.length==1){
 				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
 				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
@@ -87,13 +46,23 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
+			var jsxz="路网结构改造";
 			
-			var jsxz=$("#jsxz").combobox("getValues").join(",");
-			if(jsxz.substr(0,1)==',')
-				jsxz=jsxz.substr(1,jsxz.length);
-			if(jsxz=="")
-			jsxz="改建,路面改造,新建"
-				
+			var gcfl=$("#gcfl").combobox("getValues").join(",");
+			if(gcfl.substr(0,1)==',')
+				gcfl=gcfl.substr(1,gcfl.length);
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
@@ -101,18 +70,22 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
-			if(sfqbbf.substr(0,1)==',')
-				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':'国省道改造','xmjbxx.knw':'',
+			var sfkytj=$("#sfkytj").combobox("getValues").join(",");
+			if(sfkytj.substr(0,1)==',')
+				sfkytj=sfkytj.substr(1,sfkytj.length);
+			var sfygtj=$("#sfygtj").combobox("getValues").join(",");
+			if(sfygtj.substr(0,1)==',')
+				sfygtj=sfygtj.substr(1,sfygtj.length);
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'','xmjbxx.gydw':1,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbbf':sfqbbf
+					   'xmjbxx.gcfl':gcfl,
+					   'xmjbxx.shzt':'','xmjbxx.ssbzt':'','xmjbxx.xsbzt':'','xmjbxx.sfkytj':sfkytj,'xmjbxx.sfygtj':sfygtj,'xmjbxx.gydwdm':gydwstr
 			};
 	
 			loadTj();
 			
 			$('#grid').datagrid({    
-			    url:'/jxcsxm/zjbf/queryXmlist.do',
+			    url:'/jxcsxm/zjtj/queryXmlist.do',
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
@@ -123,43 +96,22 @@
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
-							{field:'cz',title:'操作',width:150,align:'center',
+							{field:'cz',title:'操作',width:120,align:'center',
 								formatter: function(value,row,index){
-									var result='<a href=javascript:locationXm("'+row.xmbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-									'<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','zjbf'"+')" >项目详情</a>&nbsp;';
-									result+='<a style="color:#3399CC;" href="javascript:openZjbf('+"'"+row.xmbm+"','"+row.gydwdm+"','gs_gsdgz'"+')" >拨付详情</a>';	
+									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_lwjggz','zjtj'"+')" >项目详情</a>&nbsp;';
+									result+='<a style="color:#3399CC;" href="javascript:openZjtj('+"'"+row.xmbm+"','"+row.gydwdm+"','nc_lwjggz'"+')" >调剂详情</a>';	
 									return result;
 								}
 							},
-							
 							{field:'xmnf',title:'项目年份',width:60,align:'center'},
-							{field:'xmbm',title:'项目编码',width:110,align:'center'},
 							{field:'xmmc',title:'项目名称',width:250,align:'center'},
 							{field:'gydw',title:'管养单位',width:180,align:'center'},
 							{field:'xzqh',title:'行政区划',width:100,align:'center'},
-							{field:'jhxdwh',title:'计划下达文号',width:280,align:'center'}
-			    ]],
-			    rowStyler:function(index,row){
-			    	if($.cookie('unit2').length==11){
-					if (row.xsbzt>0 ){
-						return 'background-color:pink;color:black;font-weight:bold;';
-					}}
-			    	if($.cookie('unit2').length==9){
-						if (row.ssbzt>0 && row.xsbzt==0){
-						return 'background-color:pink;color:black;font-weight:bold;';
-					}}
-			    	if($.cookie('unit2').length==7){
-						if (row.shzt>0 && row.ssbzt==0){
-						return 'background-color:pink;color:black;font-weight:bold;';
-					}}
-			    	
-			    	
-				}
+							{field:'jhxdwh',title:'计划下达文号',width:390,align:'center'}
+			    ]]
 			}); 
 		}
 		
-		
-	
 		
 		function loadTj(){
 			var xzqhdm=$("#xzqh").combotree("getValues");
@@ -173,13 +125,23 @@
 			}else{
 				xzqhstr= xzqhdm.join(',');
 			}
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
+			var jsxz="路网结构改造";
 			
-			var jsxz=$("#jsxz").combobox("getValues").join(",");
-			if(jsxz.substr(0,1)==',')
-				jsxz=jsxz.substr(1,jsxz.length);
-			if(jsxz=="")
-			jsxz="改建,路面改造,新建"
-				
+			var gcfl=$("#gcfl").combobox("getValues").join(",");
+			if(gcfl.substr(0,1)==',')
+				gcfl=gcfl.substr(1,gcfl.length);
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
@@ -187,16 +149,20 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
-			if(sfqbbf.substr(0,1)==',')
-				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
-			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':'国省道改造','xmjbxx.knw':'',
+			var sfkytj=$("#sfkytj").combobox("getValues").join(",");
+			if(sfkytj.substr(0,1)==',')
+				sfkytj=sfkytj.substr(1,sfqbbf.length);
+			var sfygtj=$("#sfygtj").combobox("getValues").join(",");
+			if(sfygtj.substr(0,1)==',')
+				sfygtj=sfygtj.substr(1,sfygtj.length);
+			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':'','xmjbxx.xzqh':xzqhstr,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'','xmjbxx.gydw':1,
 					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbbf':sfqbbf
+					   'xmjbxx.gcfl':gcfl,
+					   'xmjbxx.shzt':'','xmjbxx.ssbzt':'','xmjbxx.xsbzt':'','xmjbxx.sfkytj':sfkytj,'xmjbxx.sfygtj':sfygtj,'xmjbxx.gydwdm':gydwstr
 			};
 			$.ajax({
 				type:'post',
-				url:'/jxcsxm/zjbf/getbfTjAll.do',
+				url:'/jxcsxm/zjtj/gettjTjAll.do',
 				data:params,
 				dataType:'json',
 				success:function(msg){
@@ -221,7 +187,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金拨付>&nbsp;普通国省道>&nbsp;国省道改造</div>
+		<div id="p_top">资金调剂>&nbsp;项目资金调剂>&nbsp;农村公路>&nbsp;路网结构改造</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -235,10 +201,12 @@ text-decoration:none;
 							<tr height="28">
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:165px;"></select></td>
+        						<td align="right">管养单位：</td>
+        						<td><select id="gydw" style="width:165px;"></select></td>
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 80px;"></select></td>
-								<td align="right">项目编码：</td>
-        						<td><input name="xmbm" type="text" id="xmbm" style="width:140px;" /></td>
+<!-- 								<td align="right">项目编码：</td> -->
+<!--         						<td><input name="xmbm" type="text" id="xmbm" style="width:140px;" /></td> -->
         						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:140px;" /></td>
         						
@@ -247,25 +215,18 @@ text-decoration:none;
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
         						<!-- 县市上报状态 省审核状态-->
-								<td align="right" name='sheng'>审核状态：</td>
-								<td name='sheng'><select name="shzt" id="shzt" style="width:80px;" ></select></td>
-        						<td align="right" name='shi'>上报状态：</td>
-								<td name='shi'><select name="ssbzt" id="ssbzt" style="width:80px;" ></select></td>
-        						<td align="right" name='xian'>上报状态：</td>
-								<td name='xian'><select name="xsbzt" id="xsbzt" style="width:80px;" ></select></td>
+								
         						
-        						<td align="right">建设性质：</td>
-								<td><select name="jsxz" id="jsxz" style="width:144px;" ></select></td>
-								<td align="right">是否全部拨付：</td>
-								<td><select name="sfqbbf" id="sfqbbf" style="width:144px;" ></select></td>
-        						
+        						<td align="right">项目类型：</td>
+								<td><select name="gcfl" id="gcfl" style="width:144px;" ></select></td>
+								<td align="right">是否可以调剂：</td>
+								<td><select name="sfkytj" id="sfkytj" style="width:144px;" ></select></td>
+        						<td align="right">是否有过调剂：</td>
+								<td><select name="sfygtj" id="sfygtj" style="width:144px;" ></select></td>
         					</tr>
         					<tr height="28">
                             	<td colspan="8">
                             		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryXmlist()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
-									<a name='sheng' id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plshbf()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">批量审核</a>
-									<a name='shi' id='mybuttion6' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbbfsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion6')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion6')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
-									
 								</td>
                             </tr>
         					</table>
@@ -279,8 +240,8 @@ text-decoration:none;
             		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
            		        计划下达补助资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
 		                        到位补助资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
-                   	拨付补助资金共【<span id="bfzj" style="color: Red; font-weight: bold;">0</span>】万元，
-                   	其中，已审核拨付补助资金共【<span id="yshbfzj" style="color: Red; font-weight: bold;">0</span>】万元。
+                   	调剂补助资金共【<span id="bfzj" style="color: Red; font-weight: bold;">0</span>】万元，
+                   	其中，已审核调剂补助资金共【<span id="yshbfzj" style="color: Red; font-weight: bold;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>

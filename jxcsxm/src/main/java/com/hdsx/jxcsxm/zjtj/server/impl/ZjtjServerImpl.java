@@ -189,4 +189,32 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 	public boolean qbthxj(Xmjbxx xmjbxx) {
 		return delete("qbthxj",xmjbxx)>0;
 	}
+
+	@Override
+	public List<Xmjbxx> queryTjXmlist(Xmjbxx xmjbxx) {
+		return queryList("queryTjXmlist", xmjbxx);
+	}
+
+	@Override
+	public int queryTjXmlistCount(Xmjbxx xmjbxx) {
+		return queryOne("queryTjXmlistCount", xmjbxx);
+	}
+
+	@Override
+	public XmZjtj getTjTjAll(Xmjbxx xmjbxx) {
+		return queryOne("getTjTjAll", xmjbxx);
+	}
+
+	@Override
+	public boolean glxm(Xmjbxx xmjbxx) {
+		//修改xmjbxx_tj
+		int x=update("glxmjh", xmjbxx);
+		//修改 xm_zjdw
+		int y=update("glxmdw", xmjbxx);
+		//修改xm_zjbf
+		update("glxmbf", xmjbxx);
+		if(x>0&&y>0)
+			return true;
+		return false;
+	}
 }

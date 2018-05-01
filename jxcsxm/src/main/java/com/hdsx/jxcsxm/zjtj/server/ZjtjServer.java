@@ -66,4 +66,12 @@ public interface ZjtjServer {
 
 	boolean qbthxj(Xmjbxx xmjbxx);
 
+	List<Xmjbxx> queryTjXmlist(Xmjbxx xmjbxx);
+
+	int queryTjXmlistCount(Xmjbxx xmjbxx);
+
+	XmZjtj getTjTjAll(Xmjbxx xmjbxx);
+
+	boolean glxm(Xmjbxx xmjbxx);
+
 }

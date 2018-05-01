@@ -26,50 +26,9 @@
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
 			loadBmbm3('jsxz','国省道改造建设性质');
 			loadjhxdwh("jhxdwh",'gs_gsdgz');
-			loadBmbm3('shzt','审核状态');
-			loadBmbm3('ssbzt','上报状态');
-			loadBmbm3('xsbzt','上报状态');
-			loadBmbm3('sfqbbf','是否全部拨付');
-			if($.cookie('unit2').length==11){
-				$("td[name='xian']").show();
-				$("td[name='shi']").hide();
-				$("td[name='sheng']").hide();
-				$("a[name='sheng']").hide();
-				$("a[name='xian']").show();
-				$("a[name='shi']").hide();
-				if(anqxstr.indexOf("上报")!=-1){
-					$("a[name='xian']").show();
-				}else{
-					$("a[name='xian']").hide();
-				}
-			}
-			if($.cookie('unit2').length==9){
-				$("td[name='shi']").show();
-				$("td[name='xian']").hide();
-				$("td[name='sheng']").hide();
-				$("a[name='sheng']").hide();
-				$("a[name='xian']").hide();
-				$("a[name='shi']").show();
-				if(anqxstr.indexOf("上报")!=-1){
-					$("a[name='shi']").show();
-				}else{
-					$("a[name='shi']").hide();
-				}
-			}
-			if($.cookie('unit2').length==7){
-				$("a[name='sheng']").show();
-				$("td[name='sheng']").show();
-				$("td[name='xian']").hide();
-				$("td[name='shi']").hide();
-				$("a[name='xian']").hide();
-				$("a[name='shi']").hide();
-				if(anqxstr.indexOf("审核")!=-1){
-					$("a[name='sheng']").show();
-				}else{
-					$("a[name='sheng']").hide();
-				}
-			}
-			//YMLib.Var.jdbs=2;
+		
+			loadBmbm3('sfqbbf','是否全部调剂');
+			loadBmbm3('sfppjh','是否全部调剂');
 			queryXmlist();
 			
 			
@@ -101,18 +60,17 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
-			if(sfqbbf.substr(0,1)==',')
-				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
+			var sfppjh=$("#sfppjh").combobox("getValues").join(",");
+			if(sfppjh.substr(0,1)==',')
+				sfppjh=sfppjh.substr(1,sfppjh.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':'国省道改造','xmjbxx.knw':'',
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbbf':sfqbbf
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.sfppjh':sfppjh
 			};
 	
 			loadTj();
 			
 			$('#grid').datagrid({    
-			    url:'/jxcsxm/zjbf/queryXmlist.do',
+			    url:'/jxcsxm/zjtj/queryTjXmlist.do',
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
@@ -123,38 +81,23 @@
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
-							{field:'cz',title:'操作',width:150,align:'center',
+							{field:'cz',title:'操作',width:140,align:'center',
 								formatter: function(value,row,index){
-									var result='<a href=javascript:locationXm("'+row.xmbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-									'<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','zjbf'"+')" >项目详情</a>&nbsp;';
-									result+='<a style="color:#3399CC;" href="javascript:openZjbf('+"'"+row.xmbm+"','"+row.gydwdm+"','gs_gsdgz'"+')" >拨付详情</a>';	
-									return result;
+									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','zjtj'"+')" >项目详情</a>&nbsp;';
+										result+='<a style="color:#3399CC;" href="javascript:openGljh('+"'"+row.xmbm+"','"+row.trxmbm+"','gs_gsdgz'"+')" >关联计划</a>';	
+										return result;
+								
 								}
 							},
-							
-							{field:'xmnf',title:'项目年份',width:60,align:'center'},
-							{field:'xmbm',title:'项目编码',width:110,align:'center'},
-							{field:'xmmc',title:'项目名称',width:250,align:'center'},
-							{field:'gydw',title:'管养单位',width:180,align:'center'},
-							{field:'xzqh',title:'行政区划',width:100,align:'center'},
-							{field:'jhxdwh',title:'计划下达文号',width:280,align:'center'}
-			    ]],
-			    rowStyler:function(index,row){
-			    	if($.cookie('unit2').length==11){
-					if (row.xsbzt>0 ){
-						return 'background-color:pink;color:black;font-weight:bold;';
-					}}
-			    	if($.cookie('unit2').length==9){
-						if (row.ssbzt>0 && row.xsbzt==0){
-						return 'background-color:pink;color:black;font-weight:bold;';
-					}}
-			    	if($.cookie('unit2').length==7){
-						if (row.shzt>0 && row.ssbzt==0){
-						return 'background-color:pink;color:black;font-weight:bold;';
-					}}
-			    	
-			    	
-				}
+							{field:'sfppjh',title:'是否已关联计划',width:90,align:'center'},
+							{field:'xmlx',title:'项目类型',width:70,align:'center'},
+							{field:'xmnf',title:'项目年份',width:70,align:'center'},
+							{field:'xmmc',title:'项目名称',width:280,align:'center'},
+							{field:'gydw',title:'管养单位',width:250,align:'center'},
+							{field:'xzqh',title:'行政区划',width:150,align:'center'},
+							{field:'ztz',title:'总补助(万元)',width:80,align:'center'},
+							{field:'jhxdwh',title:'计划下达文号',width:180,align:'center'}
+			    ]]
 			}); 
 		}
 		
@@ -187,24 +130,23 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			var sfqbbf=$("#sfqbbf").combobox("getValues").join(",");
-			if(sfqbbf.substr(0,1)==',')
-				sfqbbf=sfqbbf.substr(1,sfqbbf.length);
+			
+			var sfppjh=$("#sfppjh").combobox("getValues").join(",");
+			if(sfppjh.substr(0,1)==',')
+				sfppjh=sfppjh.substr(1,sfppjh.length);
+			
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':'国省道改造','xmjbxx.knw':'',
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':getValuesById("shzt"),'xmjbxx.ssbzt':getValuesById("ssbzt"),'xmjbxx.xsbzt':getValuesById("xsbzt"),'xmjbxx.sfqbbf':sfqbbf
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.sfppjh':sfppjh
 			};
 			$.ajax({
 				type:'post',
-				url:'/jxcsxm/zjbf/getbfTjAll.do',
+				url:'/jxcsxm/zjtj/getTjTjAll.do',
 				data:params,
 				dataType:'json',
 				success:function(msg){
 					$("#xmsl").html(msg.xmsl);
-					$("#jhxdzj").html(msg.jhxdzj);
-					$("#dwzj").html(msg.dwzj);
-					$("#bfzj").html(msg.bfzj);
-					$("#yshbfzj").html(msg.yshbfzj);
+					$("#jhxdzj").html(msg.zbz);
+					
 				}
 			});
 		}
@@ -221,7 +163,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金拨付>&nbsp;普通国省道>&nbsp;国省道改造</div>
+		<div id="p_top">资金调剂>&nbsp;普通国省道>&nbsp;国省道改造</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -236,9 +178,7 @@ text-decoration:none;
 								<td align="right">行政区划：</td>
         						<td><select id="xzqh" style="width:165px;"></select></td>
 								<td align="right">项目年份：</td>
-        						<td><select id="xmnf" style="width: 80px;"></select></td>
-								<td align="right">项目编码：</td>
-        						<td><input name="xmbm" type="text" id="xmbm" style="width:140px;" /></td>
+        						<td><select id="xmnf" style="width: 144px;"></select></td>
         						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:140px;" /></td>
         						
@@ -247,25 +187,15 @@ text-decoration:none;
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
         						<!-- 县市上报状态 省审核状态-->
-								<td align="right" name='sheng'>审核状态：</td>
-								<td name='sheng'><select name="shzt" id="shzt" style="width:80px;" ></select></td>
-        						<td align="right" name='shi'>上报状态：</td>
-								<td name='shi'><select name="ssbzt" id="ssbzt" style="width:80px;" ></select></td>
-        						<td align="right" name='xian'>上报状态：</td>
-								<td name='xian'><select name="xsbzt" id="xsbzt" style="width:80px;" ></select></td>
-        						
         						<td align="right">建设性质：</td>
 								<td><select name="jsxz" id="jsxz" style="width:144px;" ></select></td>
-								<td align="right">是否全部拨付：</td>
-								<td><select name="sfqbbf" id="sfqbbf" style="width:144px;" ></select></td>
-        						
+							<td align="right">是否关联计划：</td>
+								<td><select name="sfppjh" id="sfppjh" style="width:144px;" ></select></td>
+							
         					</tr>
         					<tr height="28">
                             	<td colspan="8">
                             		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryXmlist()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
-									<a name='sheng' id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plshbf()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">批量审核</a>
-									<a name='shi' id='mybuttion6' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:plsbbfsj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion6')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion6')"  class="button button-tiny button-rounded button-raised button-primary">批量上报</a>
-									
 								</td>
                             </tr>
         					</table>
@@ -277,10 +207,7 @@ text-decoration:none;
         	<tr>
             	<td style="padding-left: 10px; font-size:12px;">
             		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
-           		        计划下达补助资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                        到位补助资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
-                   	拨付补助资金共【<span id="bfzj" style="color: Red; font-weight: bold;">0</span>】万元，
-                   	其中，已审核拨付补助资金共【<span id="yshbfzj" style="color: Red; font-weight: bold;">0</span>】万元。
+           		        补助资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>

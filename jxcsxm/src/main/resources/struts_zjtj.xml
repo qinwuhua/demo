@@ -26,6 +26,9 @@
 	<action name="delzjtjqb" class="zjtjController" method="delzjtjqb"></action>
 	<action name="qbthsj" class="zjtjController" method="qbthsj"></action>
 	<action name="qbthxj" class="zjtjController" method="qbthxj"></action>
+	<action name="queryTjXmlist" class="zjtjController" method="queryTjXmlist"></action>
+	<action name="getTjTjAll" class="zjtjController" method="getTjTjAll"></action>
+	<action name="glxm" class="zjtjController" method="glxm"></action>
 	
 	
 	

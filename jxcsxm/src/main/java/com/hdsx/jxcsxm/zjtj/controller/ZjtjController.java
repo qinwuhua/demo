@@ -555,5 +555,61 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 			
 		}
 	
-	
+		//方法
+		public void queryTjXmlist(){
+			
+			xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+			xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+			xmjbxx.setSfppjh(MyUtil.getQueryTJ(xmjbxx.getSfppjh(), "sfppjh"));
+			xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
+			xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+			xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+			xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "t.gydwdm"));
+			if(xmZjtj.getPage()>0){
+				xmjbxx.setPage(xmZjtj.getPage());
+				xmjbxx.setRows(xmZjtj.getRows());
+			}else{
+				xmjbxx.setPage(page);
+				xmjbxx.setRows(rows);
+			}
+			
+			List<Xmjbxx> list=zjtjServer.queryTjXmlist(xmjbxx);
+			int count=zjtjServer.queryTjXmlistCount(xmjbxx);
+			EasyUIPage<Xmjbxx> e=new EasyUIPage<Xmjbxx>();
+			e.setRows(list);
+			e.setTotal(count);
+			try {
+				JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			
+		}
+		
+		public void getTjTjAll() {
+			xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+			xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+			xmjbxx.setSfppjh(MyUtil.getQueryTJ(xmjbxx.getSfppjh(), "sfppjh"));
+			xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
+			xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+			xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+			xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "t.gydwdm"));
+			try {
+				JsonUtils.write(zjtjServer.getTjTjAll(xmjbxx), getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		//关联计划
+		public void glxm() {
+			try {
+				ResponseUtils.write(getresponse(), ""+zjtjServer.glxm(xmjbxx));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 }

@@ -97,7 +97,28 @@ public class Xmjbxx implements Serializable {
     private String dk;
     private String sfkytj;
     private String sfygtj;
+    private String sfppjh;
+    private String trxmbm;
+    private String jhxmbm;
     
+	public String getJhxmbm() {
+		return jhxmbm;
+	}
+	public void setJhxmbm(String jhxmbm) {
+		this.jhxmbm = jhxmbm;
+	}
+	public String getTrxmbm() {
+		return trxmbm;
+	}
+	public void setTrxmbm(String trxmbm) {
+		this.trxmbm = trxmbm;
+	}
+	public String getSfppjh() {
+		return sfppjh;
+	}
+	public void setSfppjh(String sfppjh) {
+		this.sfppjh = sfppjh;
+	}
 	public String getSfygtj() {
 		return sfygtj;
 	}

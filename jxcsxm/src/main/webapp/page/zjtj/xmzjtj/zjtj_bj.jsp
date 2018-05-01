@@ -30,35 +30,45 @@ $(function(){
 	
 	$.ajax({
 		type:'post',
-		url:'/jxcsxm/zjtj/queryBfByid.do',
-		data:'id='+parent.YMLib.Var.id,
+		url:'/jxcsxm/zjtj/queryTjByid.do',
+		data:'xmbm='+parent.YMLib.Var.xmbm+'&trxmbm='+parent.parent.YMLib.Var.xmbm,
 		dataType:'json',
 		success:function(msg){
 			$('#submit').form("load",msg);
-			yztz=msg.ztz;
+			loadBmbm('xmlx1','项目类型',msg.xmlx);
+			loadBmbm('nf','项目年份',msg.dwyf.substring(0,4));
+			loadBmbm('xmnf1','项目年份',msg.xmnf);
+			loadUnit('gydw1',$.cookie('unit'),msg.gydwdm);
+			loadDist('xzqh1',$.cookie('dist'),msg.xzqhdm);
+			loadBmbm('yf','月份',msg.dwyf.substring(5,7));
 			$("#tbsj1").datebox('setValue',msg.tbsj);
-			$('#bd1').combo('setText',msg.bd);
-			loadBmbm('nf','项目年份',msg.bfyf.substr(0,4));
-			loadBmbm('yf','月份',msg.bfyf.substr(msg.bfyf.length-2,msg.bfyf.length))
-			loadWhBmbm('jhxdwh1',parent.parent.YMLib.Var.xmbm,msg.jhxdwh);
-			$("#id").val(parent.YMLib.Var.id);
+			$("#jhxdwh1").val(msg.jhxdwh.substring(0,msg.jhxdwh.indexOf("[")));
+			$("#jhxdwh2").val(msg.jhxdwh.substring(msg.jhxdwh.indexOf("[")+1,msg.jhxdwh.indexOf("]")));
+			$("#jhxdwh3").val(msg.jhxdwh.substring(msg.jhxdwh.indexOf("]")+1,msg.jhxdwh.indexOf("号")));
+			$("#syktjzj").html(accAdd(parent.$("#syktjzj").html(),msg.zbz));
+			
 		}
 	});
 	
-	$("#xmbm").val(parent.parent.YMLib.Var.xmbm);
-	
+
 })
-var yztz=0;//用于计算是否超出计划下达
-function zjtjtj(){
-	if($('#bd1').combo("getText")==""){alert("请选择或输入标段");return;}
-	if($('#jhxdwh1').combo("getValue")==""){alert("请选择计划下达文号");return;}
+
+function zjdwtj(){
+	if($('#xmlx1').combo("getValue")==""){alert("请选择调剂的项目类型");return;}
+	if($('#jhxdwh1').val()==""||$('#jhxdwh2').val()==""||$('#jhxdwh3').val()==""){alert("请选择计划下达文号");return;}
+	if($('#gydw1').combo("getValues")==''){alert("请选择管养单位");return;}
+	if($('#xzqh1').combo("getValues")==''){alert("请选择行政区划");return;}
+	if($('#xmnf1').combo("getValue")==""){alert("请选择项目年份");return;}
 	if($('#nf').combo("getValue")==""){alert("请选择年份");return;}
 	if($('#yf').combo("getValue")==""){alert("请选择月份");return;}
-	$('#bfyf').val($('#nf').combo("getValue")+"-"+$('#yf').combo("getValue"));
-	$('#bd').val($('#bd1').combo("getText"));
+	$('#dwyf').val($('#nf').combo("getValue")+"-"+$('#yf').combo("getValue"));
 	$('#tbsj').val($('#tbsj1').datebox("getValue"));
-	$('#jhxdwh').val($('#jhxdwh1').combo("getValue"));
-	var result=true;var ztz=0;
+	$('#jhxdwh').val($('#jhxdwh1').val()+"["+$('#jhxdwh2').val()+"]"+$('#jhxdwh3').val()+"号"); 
+	$("#xmlx").val($('#xmlx1').combo("getValue"));$("#xmnf").val($('#xmnf1').combo("getValue"));
+	$("#gydw").val($('#gydw1').combo("getText"));$("#gydwdm").val($('#gydw1').combo("getValues"));
+	$("#xzqh").val($('#xzqh1').combo("getText"));$("#xzqhdm").val($('#xzqh1').combo("getValues"));
+	var result=true;var ztz=0;var zbz=0;
+	
 	result=validateInput("cgs","number",result);
 	if(result) ztz=accAdd(ztz,$("#cgs").val()==""?0:$("#cgs").val());
 	result=validateInput("gz","number",result);
@@ -77,11 +87,15 @@ function zjtjtj(){
 	if(result) ztz=accAdd(ztz,$("#dfzc").val()==""?0:$("#dfzc").val());
 	result=validateInput("ttc","number",result);
 	if(result) ztz=accAdd(ztz,$("#ttc").val()==""?0:$("#ttc").val());
+	result=validateInput("yhdk","number",result);
+	if(result) ztz=accAdd(ztz,$("#yhdk").val()==""?0:$("#yhdk").val());
+	result=validateInput("rys","number",result);
+	if(result) ztz=accAdd(ztz,$("#rys").val()==""?0:$("#rys").val());
 	$('#ztz').val(ztz);
-	if(parent.dwzj<accSub(accAdd(ztz,parent.bfzj),yztz)){
-		if(!confirm("到位资金大于计划下达资金，是否保存")){
-			return;
-		}
+	zbz=accSub(ztz,$("#dfzc").val()==""?0:$("#dfzc").val());
+	$('#zbz').val(zbz);
+	if(parseFloat(zbz)>parseFloat($("#syktjzj").html())){
+		alert("已经超出剩余可调剂资金"+$("#syktjzj").html());return;
 	}
 	if(result){
 		$('#submit').ajaxSubmit({
@@ -90,7 +104,7 @@ function zjtjtj(){
 				if(msg){
 					alert("保存成功！");
 					parent.$("#grid").datagrid('reload');
-					parent.getdwTj();
+					parent.gettjTj();
 					parent.parent.$("#grid").datagrid('reload');
 					parent.parent.loadTj();
 					closeWindow();
@@ -122,28 +136,64 @@ function zjtjtj(){
 <table class='table' style="width: 100%; background-color: #FFE7BA; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
-				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
-				<font color='red' size='1'>*</font>标段：</td>
-				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<select id="bd1" class='easyui-combobox' style="width: 124px">
-						<option value="没有标段" >没有标段</option>
-					</select>
-					<br><span style="color: red">若有标段，请删掉手动输入</span>
-					<input type="hidden" name='bd' id="bd" style="width: 120px" />
-					<input type="hidden" name='id' id="id" style="width: 120px" />
+				<td colspan="4" style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="center">
+				当前项目剩余可调剂补助资金<font color="red"><span id='syktjzj'></span></font>万元
+				
+				</td>
+				
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
+				<font color='red' size='1'>*</font>调剂项目类型：</td>
+				<td style="background-color: #ffffff; height: 20px;width:35%" align="left">
+					<input type="text"  id='xmlx1'    style="width: 181px" />
+					<input type="hidden" name='xmlx' id="xmlx" style="width: 120px" />
+					<input type="hidden" name='trxmbm' id="trxmbm" style="width: 120px" />
 					<input type="hidden" name='xmbm' id="xmbm" style="width: 120px" />
 					<input type="hidden" name='ztz' id="ztz" style="width: 120px" />
-					<input type="hidden" name='bfyf' id="bfyf" style="width: 120px" />
+					<input type="hidden" name='zbz' id="zbz" style="width: 120px" />
+					<input type="hidden" name='dwyf' id="dwyf" style="width: 120px" />
 					
 					</td>
-				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
 				<font color='red' size='1'>*</font>计划下达文号：</td>
-				<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
-					<input type="text"  id="jhxdwh1" style="width: 124px" />
-					<input type="hidden" name='jhxdwh' id="jhxdwh" style="width: 120px" />
+				<td style="background-color: #ffffff; height: 20px;width:35%" align="left">
+					<input type="text"  id="jhxdwh1" style="width: 80px" />[<input type="text"  id="jhxdwh2" style="width: 40px" />]<input type="text"  id="jhxdwh3" style="width: 30px" />号
+					<input type="hidden"  id="jhxdwh"  name='jhxdwh' style="width: 80px" />
 					</td>
 				
 			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				项目名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="xmmc" id="xmmc"  style="width: 178px" /></td>
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				项目年份：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="xmnf1" id="xmnf1"  style="width: 181px" />
+					<input type="hidden" name='xmnf' id="xmnf" style="width: 120px" />
+					</td>
+				    
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				管养单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="xzqh1" id="gydw1"  style="width: 251px" />
+					<input type="hidden" name="gydw" id="gydw"  style="width: 120px" />
+					<input type="hidden" name="gydwdm" id="gydwdm"  style="width: 120px" />
+					</td>
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				行政区划：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="xzqh1" id="xzqh1"  style="width: 251px" />
+					<input type="hidden" name="xzqh" id="xzqh"  style="width: 120px" />
+					<input type="hidden" name="xzqhdm" id="xzqhdm"  style="width: 120px" />
+					</td>
+				
+			</tr>
+			
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				车购税：</td>
@@ -183,20 +233,34 @@ function zjtjtj(){
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qt" id="qt" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
-				地方自筹：</td>
+				银行贷款：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元</td>
+					<input type="text" name="yhdk" id="yhdk" onchange="yzsz(this)" style="width: 120px" />万元</td>
+				
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
-				厅统筹：</td>
+				燃油税：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="ttc" id="ttc" onchange="yzsz(this)" style="width: 120px" />万元</td>
+					<input type="text" name="rys" id="rys" onchange="yzsz(this)" style="width: 120px" />万元</td>
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
-				调剂月份:
+				厅统筹：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+				 	<input type="text" name="ttc" id="ttc" onchange="yzsz(this)" style="width: 120px" />万元
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				地方自筹：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="dfzc" id="dfzc" onchange="yzsz(this)" style="width: 120px" />万元</td>
+				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
+				到位月份：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				 <input type="text" class='easyui-combobox' id='nf' style="width: 65px;">-<input type="text" class='easyui-combobox' id='yf' style="width: 53px;">
+				<br/><font color="red">调剂项目默认该笔资金已经全部到位</font>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -213,16 +277,18 @@ function zjtjtj(){
 				</td>
 				
 			</tr>
+			
+			
 			<tr style="height: 35px;">
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
 				备注：</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea name="bz" id="bz" rows="2" style="width: 310px;"></textarea>
+					<textarea name="bz" id="bz" rows="2" style="width: 510px;"></textarea>
 				
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="4" style="background-color: #ffffff;"align="center">
-				<a id='mybuttion1' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:zjtjtj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">保存</a>
+				<a id='mybuttion1' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:zjdwtj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">保存</a>
 				<a id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:closeWindow()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">取消</a>
 			
 			</tr>
