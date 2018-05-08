@@ -87,6 +87,15 @@ public class JhcxController extends BaseActionSupport{
 		}
 	}
 	
+	//查询项目基本信息
+		public void gettjxmInfo(){
+			try {
+				JsonUtils.write(jhcxServer.gettjxmInfo(xmjbxx), getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+	
 	//
 	public void queryZjByGydwdm(){
 		try {

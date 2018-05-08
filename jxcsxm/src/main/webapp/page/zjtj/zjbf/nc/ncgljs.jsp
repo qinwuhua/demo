@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>示范路</title>
+	<title>农村公路建设</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -24,10 +24,13 @@
 			anqxstr=getxqxbyid(getUrlParame("id"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm3('xmnf','项目年份',new Date().getFullYear());
-			loadjhxdwh("jhxdwh",'gs_sfl');
-			loadBmbm3('sfkytj','是否全部调剂');
-			loadBmbm3('sfygtj','是否全部调剂');
+			loadjhxdwh("jhxdwh",'gs_gsdgz');
+		
+			loadBmbm3('sfqbbf','是否全部调剂');
+			loadBmbm3('sfppjh','是否全部调剂');
 			queryXmlist();
+			
+			
 		});
 		function queryXmlist(){
 			
@@ -43,9 +46,9 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			
-			var jsxz="示范路";
 			
-			
+			jsxz="农村公路建设";
+				
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
@@ -53,20 +56,17 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-			var sfkytj=$("#sfkytj").combobox("getValues").join(",");
-			if(sfkytj.substr(0,1)==',')
-				sfkytj=sfkytj.substr(1,sfkytj.length);
-			var sfygtj=$("#sfygtj").combobox("getValues").join(",");
-			if(sfygtj.substr(0,1)==',')
-				sfygtj=sfygtj.substr(1,sfygtj.length);
+			var sfppjh=$("#sfppjh").combobox("getValues").join(",");
+			if(sfppjh.substr(0,1)==',')
+				sfppjh=sfppjh.substr(1,sfppjh.length);
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':'','xmjbxx.ssbzt':'','xmjbxx.xsbzt':'','xmjbxx.sfkytj':sfkytj,'xmjbxx.sfygtj':sfygtj
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.sfppjh':sfppjh,'xmjbxx.gydw':1
 			};
+	
 			loadTj();
 			
 			$('#grid').datagrid({    
-			    url:'/jxcsxm/zjtj/queryXmlist.do',
+			    url:'/jxcsxm/zjtj/queryTjXmlist.do',
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
@@ -77,22 +77,28 @@
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
-							{field:'cz',title:'操作',width:130,align:'center',
+							{field:'cz',title:'操作',width:140,align:'center',
 								formatter: function(value,row,index){
-									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_sfl','zjtj'"+')" >项目详情</a>&nbsp;';
-									result+='<a style="color:#3399CC;" href="javascript:openZjtj('+"'"+row.xmbm+"','"+row.gydwdm+"','gs_sfl'"+')" >调剂详情</a>';	
-									return result;
+									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','zjtj'"+')" >项目详情</a>&nbsp;';
+										result+='<a style="color:#3399CC;" href="javascript:openGljh('+"'"+row.xmbm+"','"+row.trxmbm+"','gs_gsdgz'"+')" >关联计划</a>';	
+										return result;
+								
 								}
 							},
-							{field:'xmnf',title:'项目年份',width:60,align:'center'},
-							{field:'xmmc',title:'项目名称',width:250,align:'center'},
-							{field:'gydw',title:'管养单位',width:180,align:'center'},
-							{field:'xzqh',title:'行政区划',width:100,align:'center'},
-							{field:'jhxdwh',title:'计划下达文号',width:270,align:'center'}
+							{field:'sfppjh',title:'是否已关联计划',width:90,align:'center'},
+							{field:'xmlx',title:'项目类型',width:70,align:'center'},
+							{field:'xmnf',title:'项目年份',width:70,align:'center'},
+							{field:'xmmc',title:'项目名称',width:280,align:'center'},
+							{field:'gydw',title:'管养单位',width:250,align:'center'},
+							{field:'xzqh',title:'行政区划',width:150,align:'center'},
+							{field:'ztz',title:'总补助(万元)',width:80,align:'center'},
+							{field:'jhxdwh',title:'计划下达文号',width:180,align:'center'}
 			    ]]
 			}); 
 		}
 		
+		
+	
 		
 		function loadTj(){
 			var xzqhdm=$("#xzqh").combotree("getValues");
@@ -107,9 +113,9 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			
-			var jsxz="示范路";
-			
-			
+		
+			jsxz="农村公路建设";
+				
 			var xmnf=$("#xmnf").combobox("getValues").join(",");
 			if(xmnf.substr(0,1)==',')
 				xmnf=xmnf.substr(1,xmnf.length);
@@ -117,28 +123,23 @@
 			var jhxdwh=$("#jhxdwh").combobox("getText");
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
-
-			var sfkytj=$("#sfkytj").combobox("getValues").join(",");
-			if(sfkytj.substr(0,1)==',')
-				sfkytj=sfkytj.substr(1,sfqbbf.length);
-			var sfygtj=$("#sfygtj").combobox("getValues").join(",");
-			if(sfygtj.substr(0,1)==',')
-				sfygtj=sfygtj.substr(1,sfygtj.length);
+			
+			var sfppjh=$("#sfppjh").combobox("getValues").join(",");
+			if(sfppjh.substr(0,1)==',')
+				sfppjh=sfppjh.substr(1,sfppjh.length);
+			
 			var params={'xmjbxx.sbthcd':$.cookie("unit2").length,'xmjbxx.xmbm':$("#xmbm").val(),'xmjbxx.xzqh':xzqhstr,'xmjbxx.gcfl':jsxz,'xmjbxx.jsxz':jsxz,'xmjbxx.knw':'',
-					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,
-					   'xmjbxx.shzt':'','xmjbxx.ssbzt':'','xmjbxx.xsbzt':'','xmjbxx.sfkytj':sfkytj,'xmjbxx.sfygtj':sfygtj
+					   'xmjbxx.xmnf':xmnf,'xmjbxx.xmmc':$("#xmmc").val(),'xmjbxx.jhxdwh':jhxdwh,'xmjbxx.sfppjh':sfppjh,'xmjbxx.gydw':1
 			};
 			$.ajax({
 				type:'post',
-				url:'/jxcsxm/zjtj/gettjTjAll.do',
+				url:'/jxcsxm/zjtj/getTjTjAll.do',
 				data:params,
 				dataType:'json',
 				success:function(msg){
 					$("#xmsl").html(msg.xmsl);
-					$("#jhxdzj").html(msg.jhxdzj);
-					$("#dwzj").html(msg.dwzj);
-					$("#bfzj").html(msg.bfzj);
-					$("#tjzj").html(msg.tjzj);
+					$("#jhxdzj").html(msg.zbz);
+					
 				}
 			});
 		}
@@ -155,7 +156,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">资金调剂>&nbsp;项目资金调剂>&nbsp;普通国省道>&nbsp;示范路</div>
+		<div id="p_top">资金调剂>&nbsp;关联计划>&nbsp;普通国省道>&nbsp;农村公路建设</div>
 	</div>
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -171,17 +172,18 @@ text-decoration:none;
         						<td><select id="xzqh" style="width:165px;"></select></td>
 								<td align="right">项目年份：</td>
         						<td><select id="xmnf" style="width: 144px;"></select></td>
-								<td align="right">项目名称：</td>
+        						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:140px;" /></td>
         						
 								</tr>
         					<tr height="28">
 								<td align="right">计划下达文号：</td>
         						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
-								<td align="right">是否可以调剂：</td>
-								<td><select name="sfkytj" id="sfkytj" style="width:144px;" ></select></td>
-        						<td align="right">是否有过调剂：</td>
-								<td><select name="sfygtj" id="sfygtj" style="width:144px;" ></select></td>
+        						<!-- 县市上报状态 省审核状态-->
+        						
+							<td align="right">是否关联计划：</td>
+								<td><select name="sfppjh" id="sfppjh" style="width:144px;" ></select></td>
+							
         					</tr>
         					<tr height="28">
                             	<td colspan="8">
@@ -197,11 +199,7 @@ text-decoration:none;
         	<tr>
             	<td style="padding-left: 10px; font-size:12px;">
             		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
-           		        计划下达补助资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                到位补助资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                拨付补助资金共【<span id="bfzj" style="color: Red; font-weight: bold;">0</span>】万元，
-                   	    调剂补助资金共【<span id="tjzj" style="color: Red; font-weight: bold;">0</span>】万元。
-                   	
+           		        补助资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>

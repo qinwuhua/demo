@@ -141,6 +141,15 @@ function openZjbf(xmbm,gydwdm,xmlx){
 	YMLib.Var.gydwdm=gydwdm;
 	openWindow("资金拨付详情","/jxcsxm/page/zjbf/zjbf.jsp",1050,450);
 }
+
+//打开调剂拨付
+function openTjBf(xmbm,trxmbm,xmlx){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.trxmbm=trxmbm;
+	YMLib.Var.xmlx=xmlx;
+	YMLib.UI.createWindow('mywin','关联计划','/jxcsxm/page/zjtj/zjbf/zjbf.jsp','mywin',1000,450);	
+}
+
 //打开资金调剂页面
 function openZjtj(xmbm,gydwdm,xmlx){
 	YMLib.Var.xmbm=xmbm;

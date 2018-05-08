@@ -45,6 +45,11 @@ public class JhcxServerImpl extends BaseOperate  implements JhcxServer{
 		else
 			return queryList("queryZjByGydwdm", xmjbxx);	
 	}
+
+	@Override
+	public Xmjbxx gettjxmInfo(Xmjbxx xmjbxx) {
+		return queryOne("gettjxmInfo", xmjbxx);
+	}
 	
 	
 	
