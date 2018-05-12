@@ -147,7 +147,7 @@ function openTjBf(xmbm,trxmbm,xmlx){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.trxmbm=trxmbm;
 	YMLib.Var.xmlx=xmlx;
-	YMLib.UI.createWindow('mywin','关联计划','/jxcsxm/page/zjtj/zjbf/zjbf.jsp','mywin',1000,450);	
+	YMLib.UI.createWindow('mywin','资金拨付','/jxcsxm/page/zjtj/zjbf/zjbf.jsp','mywin',1000,450);	
 }
 
 //打开资金调剂页面
