@@ -39,10 +39,8 @@ public class Excel_export {
 		
 		XSSFWorkbook wb = new XSSFWorkbook();  
 		XSSFSheet sheet = null;
-		int x=0,y=10000;
-			for(int k=0;k<el.getEl().size()/10000.0;k++){
-				if(x>el.getEl().size()) break;
-				sheet=wb.createSheet(el.getSheetName()+k);
+		
+				sheet=wb.createSheet(el.getSheetName());
 				
 				XSSFRow row = sheet.createRow((int) 0); 
 				XSSFCellStyle style = wb.createCellStyle();
@@ -143,17 +141,7 @@ public class Excel_export {
 				sheet.addMergedRegion(range);
 				setRegionStyle(style2,range,sheet);
 				
-				
-				
-				List<Excel_list> l= null;
-				if(y>el.getEl().size()){
-					l=el.getEl().subList(x, el.getEl().size());
-				}else{
-					l=el.getEl().subList(x, y);
-				}
-				x=y;
-				y=y+y;
-				List<Excel_list> el2 = l;
+				List<Excel_list> el2 = el.getEl();
 				
 				for (int i = 0; i < el2.size(); i++)  
 		        {  
@@ -184,9 +172,9 @@ public class Excel_export {
 					}
 		        }
 				
-			}	
-			
+		System.out.println("开始写文件");	
 		wb.write(out);
+		System.out.println("结束写文件");	
  		out.close();
 		}catch(Exception e){
 			e.printStackTrace();

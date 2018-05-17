@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -172,9 +173,10 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 		try {
 			
 			elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "xm.jsxz","xm.gcfl"));
-			elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
+			elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "jhxdwh"));
 			elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
-			elist.setXmnf(MyUtil.getQueryTJ(elist.getJhnf(), "xdnf"));
+//			elist.setXmnf(MyUtil.getQueryTJ(elist.getJhnf(), "xdnf"));
+			elist.setXmnf("");
 			elist.setJhnf(MyUtil.getQueryTJ(elist.getJhnf(), "xm.xmnf"));
 			elist.setGydwdm(MyUtil.getQueryTJDW(elist.getGydw(), "xm.gydwdm"));
 			if ("1".equals(elist.getFlag())) {
@@ -187,75 +189,57 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				List<Excel_list> list=new ArrayList<Excel_list>();
 		    	  	HttpServletRequest request = ServletActionContext.getRequest();
 					HttpSession session = request.getSession();
-					elist.setName((String) session.getAttribute("nameValue"));
-				    list=tjbbServer.getZdyBbzd(elist);
-				    
-				    String col=(String) session.getAttribute("colValue");
-				    /*String datalist=(String) mylist;
-				    System.out.println(datalist);
-				    JSONArray ja = JSONArray.fromObject(datalist);  
-				    @SuppressWarnings("unchecked")
-					List<Excel_list> list1 = (List<Excel_list>) JSONArray.toList(ja,
-							new Excel_list(), new JsonConfig());*/
-				    List<Excel_list> list1 = (List<Excel_list>) session.getAttribute("zxqkblist");
-		    	//以上代码就是为了获取SQL语句的查询结果，并且封装到了一个实体里面。以下的这一段代码是在拼接表头。
+					list=(List<Excel_list>) session.getAttribute("zxqkblist");
+					et.add(new Excel_tilte("填报单位：",1,1,0,0));
+					et.add(new Excel_tilte(elist.getGydw(),1,1,1,1));
+					et.add(new Excel_tilte("",1,1,2,14));
+					et.add(new Excel_tilte("数据统计截止时间：",1,1,15,15));
 					
-			      int rowxh=0,col1=0,col2=0;
-			      int colint=0;
-			      int a[][]=new int[4][85];
-			      int flag=0;
-			      for(int i=0;i<list.size();i++){
-			    	  if(rowxh!=Integer.parseInt(list.get(i).getRowxh())-1){
-			    		  rowxh=Integer.parseInt(list.get(i).getRowxh())-1;
-			    		  col1=colint;
-			    		  flag=0;
-			    	  }
-			    	  list.get(i).setRow1(Integer.parseInt(list.get(i).getRowxh())-1);
-			    	  list.get(i).setRow2(Integer.parseInt(list.get(i).getRowxh())-1+Integer.parseInt(list.get(i).getHight())-1);
-			    	 
-			    	 
-			    	  while(a[rowxh][col1]!=0){
-			    		 col1=col1+a[rowxh][col1];
-			    	  }
-			    	  
-			    	  if(Integer.parseInt(list.get(i).getHight())!=1){
-			    		  for(int j=1;j<Integer.parseInt(list.get(i).getHight());j++){
-			    			  a[rowxh+j][col1]=Integer.parseInt(list.get(i).getCo());
-			    		  }
-			    	  }else{
-			    		  if(flag==0){
-			    			  colint=col1;
-			    			  flag=1;
-			    		  }
-			    	  }
-			    	  
-			    	  list.get(i).setCol1(col1);
-			    	  col2=col1+Integer.parseInt(list.get(i).getCo())-1;
-			    	  list.get(i).setCol2(col2);
-			    	  col1=col1+Integer.parseInt(list.get(i).getCo());
-			      }
-			      
-			      for (Excel_list ex : list) {
-			    	  et.add(new Excel_tilte(ex.getName(),ex.getRow1()+1,ex.getRow2()+1,ex.getCol1(),ex.getCol2()));
-			      }
-			      
-			     
-			      String[] ls=col.split(",");
-			      List<Excel_list> elst=new ArrayList<Excel_list>();
-			     
-			      for (Excel_list els : list1) {
-			    	  Excel_list els1=new Excel_list(); 
-					for (int i = 0; i < ls.length; i++) {
-						
-						 Field field1 = null; Field field2 = null; 
-						 field1 = els1.getClass().getDeclaredField("v_"+i); 
-						 field2 = els.getClass().getDeclaredField(ls[i]); 
-					     field1.set((Object) els1, field2.get(els));  //set方法
-						
-					}
-			    	elst.add(els1);  
-				}
-			      eldata.setEl(elst);//将实体list放入类中
+					et.add(new Excel_tilte(elist.getBbsj(),1,1,16,16));
+					et.add(new Excel_tilte("",1,1,17,29));
+					et.add(new Excel_tilte("单位：万元",1,1,30,30));
+					
+					et.add(new Excel_tilte("序号",2,4,0,0));
+					et.add(new Excel_tilte("计划文号",2,4,1,1));
+					et.add(new Excel_tilte("项目单位",2,4,2,2));
+					et.add(new Excel_tilte("项目名称",2,4,3,3));
+					et.add(new Excel_tilte("项目工程量完成情况",2,2,4,7));
+					et.add(new Excel_tilte("资金情况",2,2,8,30));
+
+					et.add(new Excel_tilte("总投资（万元）",3,4,4,4));
+					et.add(new Excel_tilte("完成量（公里/延米/）",3,4,5,5));
+					et.add(new Excel_tilte("完成投资（万元）",3,4,6,6));
+					et.add(new Excel_tilte("完成比例(%)",3,4,7,7));
+					et.add(new Excel_tilte("下达计划情况",3,3,8,12));
+					et.add(new Excel_tilte("资金到位情况",3,3,13,17));
+					et.add(new Excel_tilte("资金拨付情况",3,3,18,22));
+					et.add(new Excel_tilte("资金结余情况",3,3,23,27));
+					et.add(new Excel_tilte("资金到位比例",3,4,28,28));
+					et.add(new Excel_tilte("资金拨付比例",3,4,29,29));
+					et.add(new Excel_tilte("计划执行情况",3,4,30,30));
+					
+					et.add(new Excel_tilte("小计",4,4,8,8));
+					et.add(new Excel_tilte("车购税",4,4,9,9));
+					et.add(new Excel_tilte("燃油税",4,4,10,10));
+					et.add(new Excel_tilte("厅统筹",4,4,11,11));
+					et.add(new Excel_tilte("地方自筹",4,4,12,12));
+					et.add(new Excel_tilte("小计",4,4,13,13));
+					et.add(new Excel_tilte("车购税",4,4,14,14));
+					et.add(new Excel_tilte("燃油税",4,4,15,15));
+					et.add(new Excel_tilte("厅统筹",4,4,16,16));
+					et.add(new Excel_tilte("地方自筹",4,4,17,17));
+					et.add(new Excel_tilte("小计",4,4,18,18));
+					et.add(new Excel_tilte("车购税",4,4,19,19));
+					et.add(new Excel_tilte("燃油税",4,4,20,20));
+					et.add(new Excel_tilte("厅统筹",4,4,21,21));
+					et.add(new Excel_tilte("地方自筹",4,4,22,22));
+					et.add(new Excel_tilte("小计",4,4,23,23));
+					et.add(new Excel_tilte("车购税",4,4,24,24));
+					et.add(new Excel_tilte("燃油税",4,4,25,25));
+					et.add(new Excel_tilte("厅统筹",4,4,26,26));
+					et.add(new Excel_tilte("地方自筹",4,4,27,27));
+					
+			      eldata.setEl(list);//将实体list放入类中
 				    
 				eldata.setEt(et);//将表头内容设置到类里面
 				HttpServletResponse response= getresponse();//获得一个HttpServletResponse

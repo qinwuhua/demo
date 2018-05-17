@@ -67,14 +67,8 @@
 <!--     <dispatcher>FORWARD</dispatcher> -->
 <!--     <dispatcher>REQUEST</dispatcher> -->
 <!--   </filter-mapping> -->
-  <servlet>
-    <servlet-name>flexDataSourceXml8</servlet-name>
-    <servlet-class>com.hdsx.jxcsxm.controller.AnyChartSslkAction</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>flexDataSourceXml8</servlet-name>
-    <url-pattern>/flexsslk</url-pattern>
-  </servlet-mapping>
+
+
   <servlet>
     <servlet-name>dwr-invoke</servlet-name>
     <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>

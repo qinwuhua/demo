@@ -57,13 +57,15 @@
 
 	}
 	var str1="";var str2="";var datalist;
-	function showBb(str){
+	function showBb(){
 		
 		var tbody = $("#bblist");
 				tbody.empty();
 
 		loadjzt();
-
+		
+		var str="v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13,v_14,v_15,v_16,v_17,v_18,v_19,v_20,v_21,v_22,v_23,v_24,v_25,v_26,v_27,v_28,v_29,v_30";
+		
 		var ss=str.split(",");
 		
 		var xzqhdm=$("#xzqh").combotree("getValues");
@@ -124,19 +126,12 @@
 	}
 	
 	function exportBb(){
-		if(str1==""||str2==""){
-			alert("请您先查询报表数据");
-			return;
-		}
-		
-		
-		  var data="flag=1&ssbb=jhzxqkb"+"&sbthcd="+$.cookie("unit2").length;
+		  var data="flag=1&ssbb=jhzxqkb"+"&sbthcd="+$.cookie("unit2").length+"&gydw="+$.cookie("truename")+"&bbsj="+$("#bbsj").datebox("getValue");
 			loadjzt();
 			 $.post('/jxcsxm/xtgl/exportBb_set.do',{nameValue:str1,colValue:str2},function(){
 				window.location.href='/jxcsxm/tjbb/getJhzxqkb.do?'+data;
 			 }); 
 			 setTimeout('disLoadjzt()',4000);
-		
 		
 	}
 	
@@ -201,7 +196,7 @@ text-decoration:none;
         					
         					<tr height="28">
                            	<td colspan="8">
-                           		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryBb()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
+                           		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:showBb()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
                            		<a id='mybuttion2' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:exportBb()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">导出报表</a>
 							</td>
                             </tr>
@@ -214,7 +209,7 @@ text-decoration:none;
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:100%;height: 430px;" >
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-160)+'px;');
+                			$("#gddiv").attr('style','width:4000px;height:'+($(window).height()-160)+'px;');
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">

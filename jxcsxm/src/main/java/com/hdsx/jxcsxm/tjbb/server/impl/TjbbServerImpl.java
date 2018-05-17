@@ -4,6 +4,7 @@ package com.hdsx.jxcsxm.tjbb.server.impl;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -35,110 +36,187 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 
 	@Override
 	public List<Excel_list> getJhzxqkb(Excel_list elist) {
-		
-		List<Excel_list> l1=new ArrayList<Excel_list>();
-		List<Excel_list> l2=new ArrayList<Excel_list>();
-		List<Excel_list> l3=new ArrayList<Excel_list>();
-		List<Excel_list> l4=new ArrayList<Excel_list>();
-		if(!"".equals(elist.getBbsj())){
-			elist.setBbsj(elist.getBbsj().substring(0,7));
+		//删除jhzxqkb数据
+		String sql1="delete from jhzxqkb";
+		String ny="";
+		if("".equals(elist.getBbsj())) {
+			ny=new Date().getYear()+"-"+new Date().getMonth();
+		}else {
+			ny=elist.getBbsj().substring(0, 7);
 		}
-		
-		l1=queryList("getJhzxqkbzHj", elist);
-		l2=queryList("getJhzxqkbHj", elist);
+		update("zxsql", sql1);
+		//添加jhzxqkb数据
+		String sql2="insert into jhzxqkb select xd.jhxdwh v_1,decode(substr(gydwdm,1,1),'1',xm.gydw,xm.sgydw) v_2,xm.xmmc v_3,xd.ztz v_8,xd.cgs v_9,xd.rys v_10,xd.ttc v_11,xd.dfzc v_12,decode(dw.jhxdwh,xd.jhxdwh,dw.ztz,0) v_13,decode(dw.jhxdwh,xd.jhxdwh,dw.cgs,0) v_14,decode(dw.jhxdwh,xd.jhxdwh,dw.rys,0) v_15,decode(dw.jhxdwh,xd.jhxdwh,dw.ttc,0) v_16,decode(dw.jhxdwh,xd.jhxdwh,dw.dfzc,0) v_17,decode(bf.jhxdwh,xd.jhxdwh,bf.ztz,0) v_18,decode(bf.jhxdwh,xd.jhxdwh,bf.cgs,0) v_19,decode(bf.jhxdwh,xd.jhxdwh,bf.rys,0) v_20,decode(bf.jhxdwh,xd.jhxdwh,bf.ttc,0) v_21,decode(bf.jhxdwh,xd.jhxdwh,bf.dfzc,0) v_22,xm.sgydw,xm.sgydwdm,xm.xmbm,xm.gydwdm "
+				+ "from (select * from jhzxqkb_xd where 1=1 "+elist.getXmnf()+" "+elist.getJhxdwh()+") xd "
+				+ "left join xmjbxx_bb xm on xd.xmid=xm.xmbm "
+				+ "left join (select * from jhzxqkb_dw where ny='"+ny+"') dw on xd.xmid=dw.xmbm and xd.jhxdwh=dw.jhxdwh "
+				+ "left join (select * from jhzxqkb_bf where ny='"+ny+"') bf on xd.xmid=bf.xmbm and xd.jhxdwh=bf.jhxdwh "
+				+ "where 1=1 "+elist.getXmlx()+" "+elist.getJhnf()+" "+elist.getGydwdm()+" "+elist.getXzqhdm()+" and xm.xmmc like '%"+elist.getXmmc()+"%'";
+		update("zxsql", sql2);
+		//
 		if("wh".equals(elist.getPxfs())) {
-			l3=queryList("getJhzxqkbWhHj", elist);
-			l4=queryList("getJhzxqkbWh", elist);
-		}
-			
-		else if("xm".equals(elist.getPxfs())) {
-			l3=queryList("getJhzxqkbXmHj", elist);
-			//queryList("getJhzxqkbXm", elist);
-		}
-		else {
-			l3=queryList("getJhzxqkb", elist);
-			
-			l4=null;
-		}
-	
-		int l3no=0;int l4no=0;
-		for (int i = 0; i < l2.size(); i++) {
-			l1.add(l2.get(i));
-			int flag1=l2.get(i).getXmsl();
-			int flag11=0;int k=1;
-			while (flag1>flag11) {
-				if(l3.size()==l3no)
-					break;
-				
-				l1.add(l3.get(l3no));
-				for (int j = l4no; j < l4no+l3.get(l3no).getXmsl(); j++) {
-					if(j>=l4.size()) break;
-					l4.get(j).setV_0(k+"");k++;
-				}
-				if(l4no>=l4.size()) break;
-				if(l4no+l3.get(l3no).getXmsl()>l4.size()) {
-					l1.addAll(l4.subList(l4no, l4.size()-1));
-				}else {
-					l1.addAll(l4.subList(l4no, l4no+l3.get(l3no).getXmsl()));
-				}
-				
-				flag11+=l3.get(l3no).getXmsl();l4no+=l3.get(l3no).getXmsl();l3no++;
-				
-			}
-		}
-		
-		/*
-		
-		for (int i = 0; i < l2.size(); i++) {
-			l1.add(l2.get(i));
-			int k=1;
-			for (int j = 0; j < l3.size(); j++) {
-				if(l2.get(i).getGydwdm().equals(l3.get(j).getGydwdm())){
-					if(l3.get(j).getXmsl()>0){
-						List<Excel_list> l=new ArrayList<Excel_list>();
-						
-						if("wh".equals(elist.getPxfs())){
-							elist.setXzqh(l3.get(j).getGydwdm());
-							elist.setV_1(l3.get(j).getV_1());
+			List<Excel_list> l1=new ArrayList<Excel_list>();
+			List<Excel_list> l2=new ArrayList<Excel_list>();
+			List<Excel_list> l3=new ArrayList<Excel_list>();
+			List<Excel_list> l4=new ArrayList<Excel_list>();
+			List<Excel_list> l5=new ArrayList<Excel_list>();
+			l1=queryList("cxjhzxqkbhjwh");
+			l2=queryList("cxjhzxqkbshjwh");
+			l3=queryList("cxjhzxqkbxhjwh");
+			l4=queryList("cxjhzxqkbwhhjwh");
+			l5=queryList("cxjhzxqkbwh");
+			int f3=0,f4=0,f5=0;
+			int no2=0,no3=0,no4=0;
+			for (Excel_list e2 : l2) {
+				l1.add(e2);
+				no2+=Integer.parseInt(e2.getV_2());
+				if("1".equals(e2.getGydwdm().substring(0, 1))) {
+					for (int i = f3; i < l3.size(); i++) {
+						l1.add(l3.get(i));f3++;
+						no3+=Integer.parseInt(l3.get(i).getV_2());
+						for (int j = f4; j < l4.size(); j++) {
+							if(Integer.parseInt(l4.get(j).getV_2())!=1)
+							l1.add(l4.get(j));f4++;
 							
-							l3.get(j).setV_3("");
-							l3.get(j).setV_2("");
-							l3.get(j).setV_1(l3.get(j).getV_1()+"合计");
-							l1.add(l3.get(j));
+							no4+=Integer.parseInt(l4.get(j).getV_2());
+							l1.addAll(l5.subList(f5, f5+Integer.parseInt(l4.get(j).getV_2())));
+							f5+=Integer.parseInt(l4.get(j).getV_2());
+							if(no4==no3) {
+								break;
+							}
 							
-							l=queryList("getJhzxqkbWh", elist);
 						}
-							
-						if("xm".equals(elist.getPxfs())){
-							elist.setXzqh(l3.get(j).getGydwdm());
-							elist.setXmbm(l3.get(j).getXmbm());
-							
-							l3.get(j).setV_2("");
-							l3.get(j).setV_1(l3.get(j).getV_3()+"合计");
-							l3.get(j).setV_3("");
-							l1.add(l3.get(j));
-							
-							l=queryList("getJhzxqkbXm", elist);
-						}
-//						System.out.println(l3.get(j).getXmsl()+"-----"+l.size());
-						
-						for (Excel_list e : l) {
-							e.setV_0(""+k);
-							l1.add(e);
-							k++;
+						if(no3==no2) {
+							no4=0;
+							no3=0;
+							no2=0;
+							break;
 						}
 						
-					}else{
-						l3.get(j).setV_0(""+k);
-						l1.add(l3.get(j));
-						k++;
 					}
+					
+				}else {
+					for (int j = f4; j < l4.size(); j++) {
+						if(Integer.parseInt(l4.get(j).getV_2())!=1)
+						l1.add(l4.get(j));f4++;
+						no4+=Integer.parseInt(l4.get(j).getV_2());
+						l1.addAll(l5.subList(f5, f5+Integer.parseInt(l4.get(j).getV_2())));
+						f5+=Integer.parseInt(l4.get(j).getV_2());
+						if(no4==no2) {
+							no4=0;
+							no3=0;
+							no2=0;
+							break;
+						}
+					}
+					
 				}
+				
 			}
+			int k=1;
+			for (Excel_list e1 : l1) {
+				e1.setV_0(k+"");k++;
+			}
+			return l1;
+		}
+		else if("xm".equals(elist.getPxfs())) {
+			String sql3="delete from jhzxqkb_xm";
+			String sql4="insert into jhzxqkb_xm "
+					+ "select t1.*,t1.v_8 v_4,t2.wcl v_5,t2.wctz v_6,decode(nvl(v_8,0),0,'0%',to_char(round((nvl(t2.wctz,0)/nvl(v_8,0))*100,2))||'%') v_7 from "
+					+ "(select ' ' v_0,min(v_3)||'合计' v_1,count(v_1) v_2,min(v_3) v_3,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30,xmbm,min(sgydwdm) sgydwdm,min(gydwdm) gydwdm,min(sgydw) sgydw,min(v_2) gydw from jhzxqkb group by xmbm ) t1,"
+					+ "(select xmbm,sum(nvl(wcl,0)) wcl,sum(nvl(wctz,0)) wctz from XM_XMWC group by xmbm) t2 where t1.xmbm=t2.xmbm(+)";
+			update("zxsql", sql3);
+			update("zxsql", sql4);
+			
+			List<Excel_list> l1=new ArrayList<Excel_list>();
+			List<Excel_list> l2=new ArrayList<Excel_list>();
+			List<Excel_list> l3=new ArrayList<Excel_list>();
+			List<Excel_list> l4=new ArrayList<Excel_list>();
+			List<Excel_list> l5=new ArrayList<Excel_list>();
+			l1=queryList("cxjhzxqkbhjxm");
+			l2=queryList("cxjhzxqkbshjxm");
+			l3=queryList("cxjhzxqkbxhjxm");
+			l4=queryList("cxjhzxqkbxmhjxm");
+			l5=queryList("cxjhzxqkbxm");
+			
+			int f3=0,f4=0,f5=0;
+			int no2=0,no3=0,no4=0;
+			
+			for (Excel_list e2 : l2) {
+				l1.add(e2);
+				no2+=Integer.parseInt(e2.getV_2());
+				if("1".equals(e2.getGydwdm().substring(0, 1))) {
+					for (int i = f3; i < l3.size(); i++) {
+						l1.add(l3.get(i));f3++;
+						no3+=Integer.parseInt(l3.get(i).getV_2());
+						for (int j = f4; j < l4.size(); j++) {
+							if(Integer.parseInt(l4.get(j).getV_2())!=1) {
+								l1.add(l4.get(j));
+							}
+							else {
+								l5.get(f5).setV_4(l4.get(j).getV_4());
+								l5.get(f5).setV_5(l4.get(j).getV_5());
+								l5.get(f5).setV_6(l4.get(j).getV_6());
+								l5.get(f5).setV_7(l4.get(j).getV_7());
+							}
+							f4++;
+							no4+=Integer.parseInt(l4.get(j).getV_2());
+							l1.addAll(l5.subList(f5, f5+Integer.parseInt(l4.get(j).getV_2())));
+							f5+=Integer.parseInt(l4.get(j).getV_2());
+							if(no4==no3) {
+								break;
+							}
+							
+						}
+						if(no3==no2) {
+							no4=0;
+							no3=0;
+							no2=0;
+							break;
+						}
+						
+					}
+					
+				}else {
+					for (int j = f4; j < l4.size(); j++) {
+						if(Integer.parseInt(l4.get(j).getV_2())!=1)
+							if(Integer.parseInt(l4.get(j).getV_2())!=1) {
+								l1.add(l4.get(j));
+							}
+							else {
+								l5.get(f5).setV_4(l4.get(j).getV_4());
+								l5.get(f5).setV_5(l4.get(j).getV_5());
+								l5.get(f5).setV_6(l4.get(j).getV_6());
+								l5.get(f5).setV_7(l4.get(j).getV_7());
+							}
+						f4++;
+						no4+=Integer.parseInt(l4.get(j).getV_2());
+						l1.addAll(l5.subList(f5, f5+Integer.parseInt(l4.get(j).getV_2())));
+						f5+=Integer.parseInt(l4.get(j).getV_2());
+						if(no4==no2) {
+							no4=0;
+							no3=0;
+							no2=0;
+							break;
+						}
+					}
+					
+					
+				}
+				
+				
+				
+			}
+			int k=1;
+			for (Excel_list e1 : l1) {
+				e1.setV_0(k+"");k++;
+			}
+			
+			return l1;
+		}else {
+			return null;
 		}
 		
-		*/
-		return l1;
 	}
 
 	@Override

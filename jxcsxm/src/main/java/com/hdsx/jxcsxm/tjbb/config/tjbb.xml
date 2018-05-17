@@ -1,6 +1,101 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxcsxm.tjbb">
+	<update id="zxsql" parameterType="string">
+		${value}	
+	</update>
+	<select id="cxjhzxqkbhjwh" resultType="elist">
+		select '' v_0,'合计' v_1,count(v_1) v_2,'' v_3,
+		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,
+		sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,
+		sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,
+		sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,
+		decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30
+		from jhzxqkb
+	</select>
+	<select id="cxjhzxqkbshjwh" resultType="elist">
+		select '' v_0,min(sgydw)||'合计' v_1,count(v_1) v_2,'' v_3,
+		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,
+		sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,
+		sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,
+		sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,
+		decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30,sgydwdm gydwdm
+		from jhzxqkb group by sgydwdm order by gydwdm
+	</select>
+	<select id="cxjhzxqkbxhjwh" resultType="elist">
+		select '' v_0,min(v_2)||'合计' v_1,count(v_1) v_2,'' v_3,
+		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,
+		sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,
+		sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,
+		sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,
+		decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30,gydwdm
+		from jhzxqkb where gydwdm like '1%' group by gydwdm order by gydwdm
+	</select>
+	<select id="cxjhzxqkbwhhjwh" resultType="elist">
+		select '' v_0,v_1||'合计' v_1,count(v_1) v_2,'' v_3,
+		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,
+		sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,
+		sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,
+		sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,
+		decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30,gydwdm
+		from jhzxqkb where gydwdm like '1%' group by gydwdm,v_1 
+		union all
+		select '' v_0,v_1||'合计' v_1,count(v_1) v_2,'' v_3,
+		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,
+		sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,
+		sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,
+		sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,
+		decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30,to_char(sgydwdm)
+		from jhzxqkb where sgydwdm like '2%' group by sgydwdm,v_1 
+		
+		order by gydwdm,v_1
+	</select>
+	<select id="cxjhzxqkbwh" resultType="elist">
+		select j.*,nvl(v_13,0)-nvl(v_18,0) v_23,nvl(v_14,0)-nvl(v_19,0) v_24,nvl(v_15,0)-nvl(v_20,0) v_25,nvl(v_16,0)-nvl(v_21,0) v_26,nvl(v_17,0)-nvl(v_22,0) v_27,decode(nvl(v_8,0),0,'0%',to_char(round((nvl(v_13,0)/nvl(v_8,0))*100,2))||'%') v_28,decode(nvl(v_13,0),0,'0%',to_char(round((nvl(v_18,0)/nvl(v_13,0))*100,2))||'%') v_29,decode(nvl(v_8,0),0,'0%',to_char(round((nvl(v_18,0)/nvl(v_8,0))*100,2))||'%') v_30 from jhzxqkb j
+		order by gydwdm,v_1
+	</select>
+	
+	
+	
+	<select id="cxjhzxqkbhjxm" resultType="elist">
+		select '' v_0,'合计' v_1,sum(v_2) v_2,'' v_3,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_6,0))/sum(nvl(v_8,0)))*100,2))||'%')  v_7,
+		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,
+		sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,
+		sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,
+		sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,
+		decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30
+		from jhzxqkb_xm
+	</select>
+	
+	<select id="cxjhzxqkbshjxm" resultType="elist">
+		select '' v_0,min(sgydw)||'合计' v_1,sum(v_2) v_2,'' v_3,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_6,0))/sum(nvl(v_8,0)))*100,2))||'%')  v_7,
+		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,
+		sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,
+		sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,
+		sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,
+		decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30,sgydwdm gydwdm
+		from jhzxqkb_xm group by sgydwdm order by gydwdm
+	</select>
+	<select id="cxjhzxqkbxhjxm" resultType="elist">
+		select '' v_0,min(gydw)||'合计' v_1,sum(v_2) v_2,'' v_3,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_6,0))/sum(nvl(v_8,0)))*100,2))||'%')  v_7,
+		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,
+		sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,
+		sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,
+		sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,
+		decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30,gydwdm
+		from jhzxqkb_xm group by gydwdm order by gydwdm
+	</select>
+	
+	<select id="cxjhzxqkbxmhjxm" resultType="elist">
+	select * from jhzxqkb_xm order by sgydwdm,gydwdm,xmbm
+	</select>
+	
+	<select id="cxjhzxqkbxm" resultType="elist">
+		select j.*,nvl(v_13,0)-nvl(v_18,0) v_23,nvl(v_14,0)-nvl(v_19,0) v_24,nvl(v_15,0)-nvl(v_20,0) v_25,nvl(v_16,0)-nvl(v_21,0) v_26,nvl(v_17,0)-nvl(v_22,0) v_27,decode(nvl(v_8,0),0,'0%',to_char(round((nvl(v_13,0)/nvl(v_8,0))*100,2))||'%') v_28,decode(nvl(v_13,0),0,'0%',to_char(round((nvl(v_18,0)/nvl(v_13,0))*100,2))||'%') v_29,decode(nvl(v_8,0),0,'0%',to_char(round((nvl(v_18,0)/nvl(v_8,0))*100,2))||'%') v_30 from jhzxqkb j
+		order by sgydwdm,gydwdm,xmbm
+	</select>
+	
+	
 	<select id="createBtTree" parameterType="elist" resultType="treenode">
 	select 
 	value id,text,state,(case when value not like '%v_%' then substr(id,0,length(id)-1)
