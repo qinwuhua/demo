@@ -31,6 +31,7 @@
 	<script type="text/javascript">
 	$(function(){
 		loadDist1("xzqh",$.cookie("dist"));
+		loadBmbm3('xmnf','项目年份',new Date().getFullYear());
 		loadBmbm('jhnf','项目年份',new Date().getFullYear());
 		loadBmbm3('xmlx','报表项目类型');
 		loadjhxdwh("jhxdwh",'gs_all');
@@ -76,7 +77,7 @@
 		
 		$.ajax({
 			url:"/jxcsxm/tjbb/getTzhzb.do",
-			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&gydw="+gydw,
+			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+'&xmnf='+$("#xmnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&gydw="+gydw,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -122,13 +123,16 @@
 		var xmlx=$("#xmlx").combobox("getValues").join(",");
 		if(xmlx.substr(0,1)==',')
 			xmlx=xmlx.substr(1,xmlx.length);
+		var n=new Date().getFullYear();
+		var y=new Date().getMonth()+1;
+		var r=new Date().getDate();
 		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
-		var data="flag=1&ssbb=tzhzb&jhnf="+$("#jhnf").combobox('getValue')+"&xmlx="+xmlx+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&gydw="+gydw;
+		var data="flag=1&ssbb=tzhzb&jhnf="+$("#jhnf").combobox('getValue')+"&xmlx="+xmlx+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&gydw="+$.cookie("truename")+"&bbsj="+n+"-"+y+"-"+r;
 		loadjzt();
 		 $.post('/jxcsxm/xtgl/exportBb_set.do',{nameValue:str1,colValue:str2,sql:jhxdwh,xzqh:xzqhstr},function(){
 			window.location.href='/jxcsxm/tjbb/getTzhzb.do?'+data;
 		 }); 
-		 setTimeout('disLoadjzt()',4000);
+		 setTimeout('disLoadjzt()',30000);
 		
 		
 	}
@@ -165,6 +169,8 @@ text-decoration:none;
 								<tr height="28">
 									<td align="right">行政区划：</td>
 	        						<td><select id="xzqh" style="width:165px;"></select></td>
+	        						<td align="right">项目年份：</td>
+        							<td><select id="xmnf" style="width: 80px;"></select></td>
 									<td align="right">截至年份：</td>
         							<td><select id="jhnf" style="width: 80px;"></select></td>
 									<td align="right">计划文号：</td>

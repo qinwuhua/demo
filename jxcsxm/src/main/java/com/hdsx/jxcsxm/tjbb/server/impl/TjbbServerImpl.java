@@ -67,7 +67,9 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 			l5=queryList("cxjhzxqkbwh");
 			int f3=0,f4=0,f5=0;
 			int no2=0,no3=0,no4=0;
+			l1.get(0).setSfhj("是");
 			for (Excel_list e2 : l2) {
+				e2.setSfhj("是");
 				l1.add(e2);
 				no2+=Integer.parseInt(e2.getV_2());
 				if("1".equals(e2.getGydwdm().substring(0, 1))) {
@@ -143,6 +145,7 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 			int no2=0,no3=0,no4=0;
 			
 			for (Excel_list e2 : l2) {
+				e2.setSfhj("是");
 				l1.add(e2);
 				no2+=Integer.parseInt(e2.getV_2());
 				if("1".equals(e2.getGydwdm().substring(0, 1))) {
@@ -508,22 +511,22 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		if("按地市".equals(elist.getHjlx())){
 			l=queryList("getZjsydwhzbhjds",elist);
 			l1=queryList("getZjsydwhzbhzds",elist);
-			l2=queryList("getZjsydwhzbds",elist);
+//			l2=queryList("getZjsydwhzbds",elist);
 		}else{
 			l=queryList("getZjsydwhzbhj",elist);
 			l1=queryList("getZjsydwhzbhz",elist);
-			l2=queryList("getZjsydwhzb",elist);
+//			l2=queryList("getZjsydwhzb",elist);
 		}
 		int l2no=0;
 		for (int i = 0; i < l1.size(); i++) {
 			l.add(l1.get(i));
-			int t=1;
+			/*int t=1;
 			for (int j = l2no; j < l2no+l1.get(i).getXmsl(); j++) {
 				l2.get(j).setV_0(t+"");t++;
 			}
 			System.out.println(l2no+"   "+(l2no+l1.get(i).getXmsl()));
 			l.addAll(l2.subList(l2no, l2no+l1.get(i).getXmsl()));
-			l2no+=l1.get(i).getXmsl();
+			l2no+=l1.get(i).getXmsl();*/
 		}
 		
 		return l;
@@ -534,17 +537,17 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		List<Excel_list> l=new ArrayList<Excel_list>();
 		l=queryList("getZjsyxmhzbhj",elist);
 		List<Excel_list> l1=queryList("getZjsyxmhzbhz",elist);
-		List<Excel_list> l2=queryList("getZjsyxmhzb",elist);
+//		List<Excel_list> l2=queryList("getZjsyxmhzb",elist);
 		int l2no=0;
 		for (int i = 0; i < l1.size(); i++) {
 			l.add(l1.get(i));
 			int t=1;
-			for (int j = l2no; j < l2no+l1.get(i).getXmsl(); j++) {
+			/*for (int j = l2no; j < l2no+l1.get(i).getXmsl(); j++) {
 				l2.get(j).setV_0(t+"");t++;
 			}
 			System.out.println(l2no+"   "+(l2no+l1.get(i).getXmsl()));
 			l.addAll(l2.subList(l2no, l2no+l1.get(i).getXmsl()));
-			l2no+=l1.get(i).getXmsl();
+			l2no+=l1.get(i).getXmsl();*/
 		}
 		
 		return l;

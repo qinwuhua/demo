@@ -136,15 +136,14 @@
 		
 		var nf=$("#nf").combobox('getValue');
 		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
-		var data="flag=1&nf="+nf
+		var data="flag=1&nf="+nf+"&bbsj="+$("#nf").combobox('getValue')+"-"+$("#yf").combobox('getValue')+"&gydw="+$.cookie("truename")
 		//+"&xmlx="+getValuesById("xmlx")
 		;
 		loadjzt();
 		 $.post('/jxcsxm/xtgl/exportBb_set.do',{gydw:xzqhstr},function(){
 			window.location.href='/jxcsxm/tjbb/getZjsymxb.do?'+data;
 		 }); 
-		 setTimeout('disLoadjzt()',4000);
-		
+		 setTimeout('disLoadjzt()',30000);
 		
 	}
 	

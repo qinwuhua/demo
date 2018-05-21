@@ -43,6 +43,14 @@
 		var nf=new Date().getFullYear()
 		var yf=new Date().getMonth()+1 < 10 ? '0'+(new Date().getMonth()+1):new Date().getMonth()+1;
 		var day=new Date().getDate() < 10 ? '0'+new Date().getDate():new Date().getDate();
+		if($.cookie('unit')=='36'){
+			 $("#sfxszrc2").attr("checked","checked");  
+			  $("#sfxszrc1").removeAttr("checked");  
+		}else{
+			 $("#sfxszrc1").attr("checked","checked");  
+			 $("#sfxszrc2").removeAttr("checked");  
+		}
+		
 		
 		$("#bbsj").datebox("setValue",nf+"-"+yf+"-"+day);
 		
@@ -104,7 +112,7 @@
 		
 		$.ajax({
 			url:"/jxcsxm/tjbb/getJhzxqkb.do",
-			data:'flag=0&jhnf='+getValuesById("jhnf")+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val()+"&gydw="+gydwstr+"&bbsj="+$("#bbsj").datebox("getValue"),
+			data:'flag=0&jhnf='+getValuesById("jhnf")+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&pxfs="+$("input[name='pxfs']:checked").val()+"&gydw="+gydwstr+"&bbsj="+$("#bbsj").datebox("getValue")+"&sfxszrc="+$("input[name='sfxszrc']:checked").val(),
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -131,7 +139,7 @@
 			 $.post('/jxcsxm/xtgl/exportBb_set.do',{nameValue:str1,colValue:str2},function(){
 				window.location.href='/jxcsxm/tjbb/getJhzxqkb.do?'+data;
 			 }); 
-			 setTimeout('disLoadjzt()',4000);
+			 setTimeout('disLoadjzt()',30000);
 		
 	}
 	
@@ -180,7 +188,13 @@ text-decoration:none;
 							            </span>
         							</td>
 									
-								
+									<td align="right">是否显示自然村：</td>
+        							<td>
+	        							<span class="radioSpan">
+	        								<input type="radio" name="sfxszrc" value="Y"  id='sfxszrc1'>是</input>
+							                <input type="radio" name="sfxszrc" value="N" id='sfxszrc2'>否</input>
+							            </span>
+        							</td>
 								</tr>
         					
         					<tr height="28">
@@ -209,7 +223,7 @@ text-decoration:none;
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:100%;height: 430px;" >
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:4000px;height:'+($(window).height()-160)+'px;');
+                			$("#gddiv").attr('style','width:4000px;height:'+($(window).height()-170)+'px;');
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
