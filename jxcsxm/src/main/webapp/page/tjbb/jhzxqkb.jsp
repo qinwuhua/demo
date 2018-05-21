@@ -122,7 +122,7 @@
 					for ( var i = 0; i < msg.length; i++) {
 						var tr="<tr height='28'>";
 						for ( var j = 0; j < ss.length; j++) {
-							tr+="<td>"+msg[i][ss[j]]+"</td>";
+							tr+="<td style='width:80px;'>"+msg[i][ss[j]]+"</td>";
 						}
 						tr+="</tr>";
 					
@@ -188,7 +188,7 @@ text-decoration:none;
 							            </span>
         							</td>
 									
-									<td align="right">是否显示自然村：</td>
+									<td align="right">是否显示自然村明细：</td>
         							<td>
 	        							<span class="radioSpan">
 	        								<input type="radio" name="sfxszrc" value="Y"  id='sfxszrc1'>是</input>
@@ -223,7 +223,7 @@ text-decoration:none;
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:100%;height: 430px;" >
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:4000px;height:'+($(window).height()-170)+'px;');
+                			$("#gddiv").attr('style','width:2000px;height:'+($(window).height()-170)+'px;');
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">

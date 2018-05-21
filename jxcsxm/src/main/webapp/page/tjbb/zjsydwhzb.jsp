@@ -40,7 +40,13 @@
  		loadBmbm('hjlx','资金报表合计类型','按地市');
 		$(".sn").html($("#nf").combo('getValue')-1);
 		$(".ssn").html($("#nf").combo('getValue')-2);
-		
+		if($.cookie('unit')=='36'){
+			 $("#sfxszrc2").attr("checked","checked");  
+			  $("#sfxszrc1").removeAttr("checked");  
+		}else{
+			 $("#sfxszrc1").attr("checked","checked");  
+			 $("#sfxszrc2").removeAttr("checked");  
+		}
 		//showBb();
 	});
 		
@@ -67,7 +73,7 @@
 		$.ajax({
 			url:"/jxcsxm/tjbb/getZjsydwhzb.do",
 			data:'flag=0&nf='+nf+"&gydw="+xzqhstr+"&gydw="+gydw+"&xmlx="+getValuesById("xmlx")+"&yf="+$("#yf").combobox('getValue')+"&hjlx="+$("#hjlx").combobox('getValue')
-			+"&xmnf="+getValuesById("xmnf"),
+			+"&xmnf="+getValuesById("xmnf")+"&sfxszrc="+$("input[name='sfxszrc']:checked").val(),
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -164,16 +170,26 @@ text-decoration:none;
 								<tr height="28">
 									<td align="right">管养单位：</td>
 	        						<td><select id="gydw" style="width:165px;"></select></td>
-	        						<td align="right">项目类型：</td>
-        							<td><select id="xmlx" style="width: 130px;"></select></td>
         							<td align="right">计划年份：</td>
         							<td><select id="xmnf" style="width: 80px;"></select></td>
+        							<td align="right">合计类型：</td>
+        							<td><select id="hjlx" style="width: 80px;"></select></td>
+        							<td align="right">是否显示自然村明细：</td>
+        							<td>
+	        							<span class="radioSpan">
+	        								<input type="radio" name="sfxszrc" value="Y"  id='sfxszrc1'>是</input>
+							                <input type="radio" name="sfxszrc" value="N" id='sfxszrc2'>否</input>
+							            </span>
+        							</td>
+       							</tr>
+        					    <tr height="28">
+        					   		 <td align="right">项目类型：</td>
+        							<td><select id="xmlx" style="width: 165px;"></select></td>
 									<td align="right">报表年份：</td>
         							<td><select id="nf" style="width: 80px;"></select></td>
 									<td align="right">报表月份：</td>
         							<td><select id="yf" style="width: 80px;"></select></td>
-        							<td align="right">合计类型：</td>
-        							<td><select id="hjlx" style="width: 80px;"></select></td>
+        							
 								</tr>
         					
         					<tr height="28">
@@ -191,7 +207,7 @@ text-decoration:none;
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:100%;height: 450px;" >
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:2000px;height:'+($(window).height()-145)+'px;');
+                			$("#gddiv").attr('style','width:2000px;height:'+($(window).height()-160)+'px;');
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">

@@ -46,12 +46,21 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		}
 		update("zxsql", sql1);
 		//添加jhzxqkb数据
-		String sql2="insert into jhzxqkb select xd.jhxdwh v_1,decode(substr(gydwdm,1,1),'1',xm.gydw,xm.sgydw) v_2,xm.xmmc v_3,xd.ztz v_8,xd.cgs v_9,xd.rys v_10,xd.ttc v_11,xd.dfzc v_12,decode(dw.jhxdwh,xd.jhxdwh,dw.ztz,0) v_13,decode(dw.jhxdwh,xd.jhxdwh,dw.cgs,0) v_14,decode(dw.jhxdwh,xd.jhxdwh,dw.rys,0) v_15,decode(dw.jhxdwh,xd.jhxdwh,dw.ttc,0) v_16,decode(dw.jhxdwh,xd.jhxdwh,dw.dfzc,0) v_17,decode(bf.jhxdwh,xd.jhxdwh,bf.ztz,0) v_18,decode(bf.jhxdwh,xd.jhxdwh,bf.cgs,0) v_19,decode(bf.jhxdwh,xd.jhxdwh,bf.rys,0) v_20,decode(bf.jhxdwh,xd.jhxdwh,bf.ttc,0) v_21,decode(bf.jhxdwh,xd.jhxdwh,bf.dfzc,0) v_22,xm.sgydw,xm.sgydwdm,xm.xmbm,xm.gydwdm "
+		String sql2="";
+		if("N".equals(elist.getSfxszrc()))
+				sql2="insert into jhzxqkb select xd.jhxdwh v_1,decode(substr(gydwdm,1,1),'1',xm.gydw,xm.sgydw) v_2,xm.xmmc v_3,xd.ztz v_8,xd.cgs v_9,xd.rys v_10,xd.ttc v_11,xd.dfzc v_12,decode(dw.jhxdwh,xd.jhxdwh,dw.ztz,0) v_13,decode(dw.jhxdwh,xd.jhxdwh,dw.cgs,0) v_14,decode(dw.jhxdwh,xd.jhxdwh,dw.rys,0) v_15,decode(dw.jhxdwh,xd.jhxdwh,dw.ttc,0) v_16,decode(dw.jhxdwh,xd.jhxdwh,dw.dfzc,0) v_17,decode(bf.jhxdwh,xd.jhxdwh,bf.ztz,0) v_18,decode(bf.jhxdwh,xd.jhxdwh,bf.cgs,0) v_19,decode(bf.jhxdwh,xd.jhxdwh,bf.rys,0) v_20,decode(bf.jhxdwh,xd.jhxdwh,bf.ttc,0) v_21,decode(bf.jhxdwh,xd.jhxdwh,bf.dfzc,0) v_22,xm.sgydw,xm.sgydwdm,xm.xmbm,xm.gydwdm "
 				+ "from (select * from jhzxqkb_xd where 1=1 "+elist.getXmnf()+" "+elist.getJhxdwh()+") xd "
 				+ "left join xmjbxx_bb xm on xd.xmid=xm.xmbm "
 				+ "left join (select * from jhzxqkb_dw where ny='"+ny+"') dw on xd.xmid=dw.xmbm and xd.jhxdwh=dw.jhxdwh "
 				+ "left join (select * from jhzxqkb_bf where ny='"+ny+"') bf on xd.xmid=bf.xmbm and xd.jhxdwh=bf.jhxdwh "
 				+ "where 1=1 "+elist.getXmlx()+" "+elist.getJhnf()+" "+elist.getGydwdm()+" "+elist.getXzqhdm()+" and xm.xmmc like '%"+elist.getXmmc()+"%'";
+		else
+			sql2="insert into jhzxqkb select xd.jhxdwh v_1,decode(substr(gydwdm,1,1),'1',xm.gydw,xm.sgydw) v_2,xm.xmmc v_3,xd.ztz v_8,xd.cgs v_9,xd.rys v_10,xd.ttc v_11,xd.dfzc v_12,decode(dw.jhxdwh,xd.jhxdwh,dw.ztz,0) v_13,decode(dw.jhxdwh,xd.jhxdwh,dw.cgs,0) v_14,decode(dw.jhxdwh,xd.jhxdwh,dw.rys,0) v_15,decode(dw.jhxdwh,xd.jhxdwh,dw.ttc,0) v_16,decode(dw.jhxdwh,xd.jhxdwh,dw.dfzc,0) v_17,decode(bf.jhxdwh,xd.jhxdwh,bf.ztz,0) v_18,decode(bf.jhxdwh,xd.jhxdwh,bf.cgs,0) v_19,decode(bf.jhxdwh,xd.jhxdwh,bf.rys,0) v_20,decode(bf.jhxdwh,xd.jhxdwh,bf.ttc,0) v_21,decode(bf.jhxdwh,xd.jhxdwh,bf.dfzc,0) v_22,xm.sgydw,xm.sgydwdm,xm.xmbm,xm.gydwdm "
+					+ "from (select * from jhzxqkb_xd_zrc where 1=1 "+elist.getXmnf()+" "+elist.getJhxdwh()+") xd "
+					+ "left join xmjbxx_bb_zrc xm on xd.xmid=xm.xmbm "
+					+ "left join (select * from jhzxqkb_dw_zrc where ny='"+ny+"') dw on xd.xmid=dw.xmbm and xd.jhxdwh=dw.jhxdwh "
+					+ "left join (select * from jhzxqkb_bf_zrc where ny='"+ny+"') bf on xd.xmid=bf.xmbm and xd.jhxdwh=bf.jhxdwh "
+					+ "where 1=1 "+elist.getXmlx()+" "+elist.getJhnf()+" "+elist.getGydwdm()+" "+elist.getXzqhdm()+" and xm.xmmc like '%"+elist.getXmmc()+"%'";
 		update("zxsql", sql2);
 		//
 		if("wh".equals(elist.getPxfs())) {
@@ -123,10 +132,19 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		}
 		else if("xm".equals(elist.getPxfs())) {
 			String sql3="delete from jhzxqkb_xm";
-			String sql4="insert into jhzxqkb_xm "
+			
+			String sql4="";
+			if("N".equals(elist.getSfxszrc()))
+					sql4="insert into jhzxqkb_xm "
 					+ "select t1.*,t1.v_8 v_4,t2.wcl v_5,t2.wctz v_6,decode(nvl(v_8,0),0,'0%',to_char(round((nvl(t2.wctz,0)/nvl(v_8,0))*100,2))||'%') v_7 from "
 					+ "(select ' ' v_0,min(v_3)||'合计' v_1,count(v_1) v_2,min(v_3) v_3,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30,xmbm,min(sgydwdm) sgydwdm,min(gydwdm) gydwdm,min(sgydw) sgydw,min(v_2) gydw from jhzxqkb group by xmbm ) t1,"
-					+ "(select xmbm,sum(nvl(wcl,0)) wcl,sum(nvl(wctz,0)) wctz from XM_XMWC group by xmbm) t2 where t1.xmbm=t2.xmbm(+)";
+					+ "(select xmbm,sum(nvl(wcl,0)) wcl,sum(nvl(wctz,0)) wctz from XMWC_BB group by xmbm) t2 where t1.xmbm=t2.xmbm(+)";
+			else
+				sql4="insert into jhzxqkb_xm "
+						+ "select t1.*,t1.v_8 v_4,t2.wcl v_5,t2.wctz v_6,decode(nvl(v_8,0),0,'0%',to_char(round((nvl(t2.wctz,0)/nvl(v_8,0))*100,2))||'%') v_7 from "
+						+ "(select ' ' v_0,min(v_3)||'合计' v_1,count(v_1) v_2,min(v_3) v_3,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,sum(nvl(v_13,0))-sum(nvl(v_18,0)) v_23,sum(nvl(v_14,0))-sum(nvl(v_19,0)) v_24,sum(nvl(v_15,0))-sum(nvl(v_20,0)) v_25,sum(nvl(v_16,0))-sum(nvl(v_21,0)) v_26,sum(nvl(v_17,0))-sum(nvl(v_22,0)) v_27,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_13,0))/sum(nvl(v_8,0)))*100,2))||'%') v_28,decode(sum(nvl(v_13,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_13,0)))*100,2))||'%') v_29,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_18,0))/sum(nvl(v_8,0)))*100,2))||'%') v_30,xmbm,min(sgydwdm) sgydwdm,min(gydwdm) gydwdm,min(sgydw) sgydw,min(v_2) gydw from jhzxqkb group by xmbm ) t1,"
+						+ "(select xmbm,sum(nvl(wcl,0)) wcl,sum(nvl(wctz,0)) wctz from XM_XMWC group by xmbm) t2 where t1.xmbm=t2.xmbm(+)";
+				
 			update("zxsql", sql3);
 			update("zxsql", sql4);
 			
@@ -227,8 +245,14 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		List<Excel_list> l1=new ArrayList<Excel_list>();
 		List<Excel_list> l2=new ArrayList<Excel_list>();
 		List<Excel_list> l3=new ArrayList<Excel_list>();
-		l2=queryList("getTzhzbHj", elist);
-		l3=queryList("getTzhzb", elist);
+		if("N".equals(elist.getSfxszrc())) {
+			l2=queryList("getTzhzbHj", elist);
+			l3=queryList("getTzhzb", elist);
+		}else {
+			l2=queryList("getTzhzbHjzrc", elist);
+			l3=queryList("getTzhzbzrc", elist);
+		}
+		
 		for (int i = 0; i < l2.size(); i++) {
 			l1.add(l2.get(i));
 			int k=1;
@@ -496,8 +520,15 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 	public List<Excel_list> getZjsymxb(Excel_list elist) {
 		List<Excel_list> l=new ArrayList<Excel_list>();
 		List<Excel_list> l1=new ArrayList<Excel_list>();
-		l=queryList("getZjsymxbzj",elist);
-		l1=queryList("getZjsymxb",elist);
+		if("N".equals(elist.getSfxszrc())) {
+			l=queryList("getZjsymxbzj",elist);
+			l1=queryList("getZjsymxb",elist);
+		}else {
+			l=queryList("getZjsymxbzjzrc",elist);
+			l1=queryList("getZjsymxbzrc",elist);
+		}
+		
+	
 		l.addAll(l1);
 		return l;
 	}
@@ -508,15 +539,28 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		
 		List<Excel_list> l1=null;
 		List<Excel_list> l2=null;
-		if("按地市".equals(elist.getHjlx())){
-			l=queryList("getZjsydwhzbhjds",elist);
-			l1=queryList("getZjsydwhzbhzds",elist);
-//			l2=queryList("getZjsydwhzbds",elist);
-		}else{
-			l=queryList("getZjsydwhzbhj",elist);
-			l1=queryList("getZjsydwhzbhz",elist);
-//			l2=queryList("getZjsydwhzb",elist);
+		if("N".equals(elist.getSfxszrc())) {
+			if("按地市".equals(elist.getHjlx())){
+				l=queryList("getZjsydwhzbhjds",elist);
+				l1=queryList("getZjsydwhzbhzds",elist);
+//				l2=queryList("getZjsydwhzbds",elist);
+			}else{
+				l=queryList("getZjsydwhzbhj",elist);
+				l1=queryList("getZjsydwhzbhz",elist);
+//				l2=queryList("getZjsydwhzb",elist);
+			}
+		}else {
+			if("按地市".equals(elist.getHjlx())){
+				l=queryList("getZjsydwhzbhjdszrc",elist);
+				l1=queryList("getZjsydwhzbhzdszrc",elist);
+//				l2=queryList("getZjsydwhzbds",elist);
+			}else{
+				l=queryList("getZjsydwhzbhjzrc",elist);
+				l1=queryList("getZjsydwhzbhzzrc",elist);
+//				l2=queryList("getZjsydwhzb",elist);
+			}
 		}
+		
 		int l2no=0;
 		for (int i = 0; i < l1.size(); i++) {
 			l.add(l1.get(i));
@@ -535,8 +579,16 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 	@Override
 	public List<Excel_list> getZjsyxmhzb(Excel_list elist) {
 		List<Excel_list> l=new ArrayList<Excel_list>();
-		l=queryList("getZjsyxmhzbhj",elist);
-		List<Excel_list> l1=queryList("getZjsyxmhzbhz",elist);
+		List<Excel_list> l1=new ArrayList<Excel_list>();
+		if("N".equals(elist.getSfxszrc())) {
+			l=queryList("getZjsyxmhzbhj",elist);
+			l1=queryList("getZjsyxmhzbhz",elist);
+		}else {
+			l=queryList("getZjsyxmhzbhjzrc",elist);
+			l1=queryList("getZjsyxmhzbhzzrc",elist);
+		}
+		
+		
 //		List<Excel_list> l2=queryList("getZjsyxmhzb",elist);
 		int l2no=0;
 		for (int i = 0; i < l1.size(); i++) {

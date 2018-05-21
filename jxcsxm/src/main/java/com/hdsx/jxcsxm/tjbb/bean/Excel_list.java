@@ -53,7 +53,14 @@ public class Excel_list implements Serializable {
 	private String hjlx;
 	private String sfhj;
 	public String bbsj;
+	public String sfxszrc;
 	
+	public String getSfxszrc() {
+		return sfxszrc;
+	}
+	public void setSfxszrc(String sfxszrc) {
+		this.sfxszrc = sfxszrc;
+	}
 	public String getBbsj() {
 		return bbsj;
 	}

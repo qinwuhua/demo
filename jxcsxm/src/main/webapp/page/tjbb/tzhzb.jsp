@@ -35,6 +35,13 @@
 		loadBmbm('jhnf','项目年份',new Date().getFullYear());
 		loadBmbm3('xmlx','报表项目类型');
 		loadjhxdwh("jhxdwh",'gs_all');
+		if($.cookie('unit')=='36'){
+			 $("#sfxszrc2").attr("checked","checked");  
+			  $("#sfxszrc1").removeAttr("checked");  
+		}else{
+			 $("#sfxszrc1").attr("checked","checked");  
+			 $("#sfxszrc2").removeAttr("checked");  
+		}
 	});
 		
 	function queryBb(){
@@ -77,7 +84,7 @@
 		
 		$.ajax({
 			url:"/jxcsxm/tjbb/getTzhzb.do",
-			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+'&xmnf='+$("#xmnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&gydw="+gydw,
+			data:'flag=0&jhnf='+$("#jhnf").combobox('getValue')+'&xmnf='+$("#xmnf").combobox('getValue')+"&jhxdwh="+jhxdwh+"&xmlx="+xmlx+"&xzqhdm="+xzqhstr+"&xmmc="+$("#xmmc").val()+"&sbthcd="+$.cookie("unit2").length+"&gydw="+gydw+"&sfxszrc="+$("input[name='sfxszrc']:checked").val(),
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -170,11 +177,20 @@ text-decoration:none;
 									<td align="right">行政区划：</td>
 	        						<td><select id="xzqh" style="width:165px;"></select></td>
 	        						<td align="right">项目年份：</td>
-        							<td><select id="xmnf" style="width: 80px;"></select></td>
+        							<td><select id="xmnf" style="width: 130px;"></select></td>
 									<td align="right">截至年份：</td>
-        							<td><select id="jhnf" style="width: 80px;"></select></td>
+        							<td><select id="jhnf" style="width: 130px;"></select></td>
+        							<td align="right">是否显示自然村明细：</td>
+        							<td>
+	        							<span class="radioSpan">
+	        								<input type="radio" name="sfxszrc" value="Y"  id='sfxszrc1'>是</input>
+							                <input type="radio" name="sfxszrc" value="N" id='sfxszrc2'>否</input>
+							            </span>
+        							</td>
+       							</tr>
+        						<tr height="28">	
 									<td align="right">计划文号：</td>
-        							<td><select id="jhxdwh" style="width: 130px;"></select></td>
+        							<td><select id="jhxdwh" style="width: 165px;"></select></td>
 									<td align="right">项目名称：</td>
         							<td><input type="text" id="xmmc" style="width: 130px;"></td>
 									<td align="right">项目类型：</td>
@@ -197,7 +213,7 @@ text-decoration:none;
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:100%;height: 450px;" >
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-140)+'px;');
+                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-160)+'px;');
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">

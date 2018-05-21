@@ -187,6 +187,57 @@
 		
 	</select>
 	
+	<select id="getTzhzbzrc" parameterType="elist" resultType="elist">
+		select rownum v_0,bb.* from
+		(select xm.xmmc v_1,xd.jhxdwh v_2,xm.ztz v_3,nvl(xd.ztz,0) v_4,nvl(xd.cgs,0) v_5,nvl(xd.rys,0) v_6,nvl(xd.ztz,0)-nvl(xd.cgs,0)-nvl(xd.rys,0)-nvl(xd.dfzc,0) v_7,nvl(xd.dfzc,0) v_8,
+		dw.sn v_9,dw.bn v_10,dw.ztz v_11,bf.sn v_12,bf.bn v_13,bf.ztz v_14,nvl(xd.ztz,0)-nvl(dw.ztz,0) v_15,nvl(dw.ztz,0)-nvl(bf.ztz,0) v_16,' ' v_17,substr(xm.xzqhdm,0,4)||'00' xzqhdm
+		
+		 from xmjbxx_bb_zrc xm,jhzxqkb_xd_zrc xd,
+		(select xmbm,jhxdwh,sum(decode(substr(dwyf,0,4),to_char(${jhnf}-1),bb+sb+df,0)) sn,sum(decode(substr(dwyf,0,4),to_char(${jhnf}),bb+sb+df,0)) bn,sum(bb+sb+df) ztz  from tjbb_dw_zrc group by xmbm,jhxdwh) dw,
+		(select xmbm,jhxdwh,sum(decode(substr(bfyf,0,4),to_char(${jhnf}-1),bb+sb+df,0)) sn,sum(decode(substr(bfyf,0,4),to_char(${jhnf}),bb+sb+df,0)) bn,sum(bb+sb+df) ztz  from tjbb_bf_zrc group by xmbm,jhxdwh) bf
+		where xm.xmbm=xd.xmid and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+)
+			<if test="xzqhdm != null">${xzqhdm}</if>
+			<if test="jhxdwh != null">${jhxdwh}</if>
+			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
+			<if test="xmmc != null">and xm.xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmlx != null">${xmlx}</if>
+			<if test="xmnf != null">${xmnf}</if>
+		order by xzqhdm,xd.xdnf,xd.jhxdwh)bb 
+	</select>
+	
+	<select id="getTzhzbHjzrc" parameterType="elist" resultType="elist">
+		select 
+		xzqhdm,(select name from xtgl_xzqh where id=xzqhdm)||'合计' v_1,
+		nvl(sum(v_3),0) v_3,nvl(sum(v_4),0) v_4,nvl(sum(v_5),0) v_5,
+		nvl(sum(v_6),0) v_6,nvl(sum(v_7),0) v_7,nvl(sum(v_8),0) v_8,
+		nvl(sum(v_9),0) v_9,nvl(sum(v_10),0) v_10,nvl(sum(v_11),0) v_11,
+		nvl(sum(v_12),0) v_12,nvl(sum(v_13),0) v_13,nvl(sum(v_14),0) v_14,
+		nvl(sum(v_15),0) v_15,nvl(sum(v_16),0) v_16
+		
+		from 
+		(
+		select rownum v_0,bb.* from
+		(select xm.xmmc v_1,xd.jhxdwh v_2,xm.ztz v_3,nvl(xd.ztz,0) v_4,nvl(xd.cgs,0) v_5,nvl(xd.rys,0) v_6,nvl(xd.ztz,0)-nvl(xd.cgs,0)-nvl(xd.rys,0)-nvl(xd.dfzc,0) v_7,nvl(xd.dfzc,0) v_8,
+		dw.sn v_9,dw.bn v_10,dw.ztz v_11,bf.sn v_12,bf.bn v_13,bf.ztz v_14,nvl(xd.ztz,0)-nvl(dw.ztz,0) v_15,nvl(dw.ztz,0)-nvl(bf.ztz,0) v_16,' ' v_17,substr(xm.xzqhdm,0,4)||'00' xzqhdm
+		 from xmjbxx_bb_zrc xm,jhzxqkb_xd_zrc xd,
+		(select xmbm,jhxdwh,sum(decode(substr(dwyf,0,4),to_char(${jhnf}-1),bb+sb+df,0)) sn,sum(decode(substr(dwyf,0,4),to_char(${jhnf}),bb+sb+df,0)) bn,sum(bb+sb+df) ztz  from tjbb_dw_zrc group by xmbm,jhxdwh) dw,
+		(select xmbm,jhxdwh,sum(decode(substr(bfyf,0,4),to_char(${jhnf}-1),bb+sb+df,0)) sn,sum(decode(substr(bfyf,0,4),to_char(${jhnf}),bb+sb+df,0)) bn,sum(bb+sb+df) ztz  from tjbb_bf_zrc group by xmbm,jhxdwh) bf
+		where xm.xmbm=xd.xmid and xd.xmid=dw.xmbm(+) and xd.xmid=bf.xmbm(+) and xd.jhxdwh=dw.jhxdwh(+) and xd.jhxdwh=bf.jhxdwh(+)
+			<if test="xzqhdm != null">${xzqhdm}</if>
+			<if test="gydw != null">and xm.gydwdm like #{gydw}||'%'</if>
+			<if test="jhxdwh != null">${jhxdwh}</if>
+			<if test="xmmc != null">and xm.xmmc like '%'||#{xmmc}||'%'</if>
+			<if test="xmlx != null">${xmlx}</if>
+			<if test="xmnf != null">${xmnf}</if>
+		order by xd.xdnf,xd.jhxdwh)bb
+		) group by xzqhdm order by xzqhdm
+		
+	</select>
+	
+	
+	
+	
+	
 	
 	<select id="queryXmlist" parameterType="xmjbxx" resultType="xmjbxx">
 		select * from(select rownum num ,t1.* from(select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
@@ -576,6 +627,93 @@
 		
 	</select>
 	
+	<select id="getZjsymxbzrc" parameterType="elist" resultType="elist">
+		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
+		nvl(yqjh.yqbb,0) v_4,nvl(yqjh.yqsb,0) v_5,nvl(yqjh.yqdf,0) v_6,nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_7,nvl(dnjh.dnbb,0) v_8,nvl(dnjh.dnsb,0) v_9,nvl(dnjh.dndf,0) v_10,
+		nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_11,
+		nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_12,
+		jy.snbjz v_13,jy.snsjz v_14,jy.sndjz v_15,
+		jy.snzjz v_16,jy.ssnjz v_17,jy.snjz v_18,
+		nvl(dndw.bb,0) v_19,nvl(dndw.sb,0) v_20,nvl(dndw.df,0) v_21,nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_22,
+		nvl(dnbf.bb,0) v_23,nvl(dnbf.sb,0) v_24,nvl(dnbf.df,0) v_25,nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_26,
+		jy.dnbjz v_27,jy.dnsjz v_28,(jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)))-jy.dnbjz-jy.dnsjz v_29,(jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)))  v_30,
+		jy.dssnjz v_31,jy.dsnjz v_32,
+		nvl(tj.bb,0) v_33,nvl(tj.sb,0) v_34,nvl(tj.df,0) v_35,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_36,'' v_37
+		from xmjbxx_bb_zrc x,(
+		select * from TJBB_YQJH_zrc where nf=#{nf}
+		) yqjh,(
+		select * from TJBB_DNJH_zrc where nf=#{nf}
+		) dnjh ,(
+		select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+		) dndw,(
+		select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+		) dnbf,(
+		select * from XMJY_LSB_zrc where nf=#{nf}
+		) jy,(
+		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+		group by xmbm,substr(bfyf, 1, 4)
+		)tj 
+		
+		where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		 and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+) and x.xmbm=jy.xmbm(+)
+		<if test="gydw != null">
+		${gydw}
+		</if> 
+		<if test="xmnf != null">
+	    ${xmnf}
+	    </if> 
+	    <if test="xmlx != null">
+	    ${xmlx}
+	    </if>
+		
+	</select>
+	
+	<select id="getZjsymxbzjzrc" parameterType="elist" resultType="elist">
+		select  '是' sfhj,''  v_0,'总计' v_1,'' v_2,'' v_3,
+		sum(nvl(yqjh.yqbb,0)) v_4,sum(nvl(yqjh.yqsb,0)) v_5,sum(nvl(yqjh.yqdf,0)) v_6,sum(nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)) v_7,sum(nvl(dnjh.dnbb,0)) v_8,sum(nvl(dnjh.dnsb,0)) v_9,sum(nvl(dnjh.dndf,0)) v_10,
+		sum(nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0)) v_11,
+		sum(nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0)) v_12,
+		sum(nvl(jy.snbjz,0)) v_13,sum(nvl(jy.snsjz,0)) v_14,sum(nvl(jy.sndjz,0)) v_15,
+		sum(nvl(jy.snzjz,0)) v_16,sum(nvl(jy.ssnjz,0)) v_17,sum(nvl(jy.snjz,0)) v_18,
+		sum(nvl(dndw.bb,0)) v_19,sum(nvl(dndw.sb,0)) v_20,sum(nvl(dndw.df,0)) v_21,sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)) v_22,
+		sum(nvl(dnbf.bb,0)) v_23,sum(nvl(dnbf.sb,0)) v_24,sum(nvl(dnbf.df,0)) v_25,sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_26,
+		sum(jy.dnbjz) v_27,sum(jy.dnsjz) v_28,(sum(nvl(jy.snzjz,0))+sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))))-sum(jy.dnbjz)-sum(jy.dnsjz)  v_29,
+		
+		(sum(nvl(jy.snzjz,0))+sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))))
+		 v_30,
+		sum(nvl(jy.dssnjz,0)) v_31,sum(nvl(jy.dsnjz,0)) v_32,
+		sum(nvl(tj.bb,0)) v_33,sum(nvl(tj.sb,0)) v_34,sum(nvl(tj.df,0)) v_35,sum(nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0)) v_36,'' v_37
+		from xmjbxx_bb_zrc x,(
+		select * from TJBB_YQJH_zrc where nf=#{nf}
+		) yqjh,(
+		select * from TJBB_DNJH_zrc where nf=#{nf}
+		) dnjh ,(
+		select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+		) dndw,(
+		select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+		) dnbf,(
+		select * from XMJY_LSB_zrc where nf=#{nf}
+		) jy,(
+		select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+		group by xmbm,substr(bfyf, 1, 4)
+		)tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		 and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+) and x.xmbm=jy.xmbm(+)
+		<if test="gydw != null">
+		${gydw}
+		</if> 
+		<if test="xmnf != null">
+	    ${xmnf}
+	    </if> 
+	    <if test="xmlx != null">
+	    ${xmlx}
+	    </if>
+		
+	</select>
+	
+	
+	
+	
+	
 	
 	
 	<select id="getZjsydwhzbhj" parameterType="elist" resultType="elist">
@@ -962,9 +1100,397 @@
     order by xmlx
     
 	</select>
-	<cache 
+	
+	
+	
+	
+	<select id="getZjsydwhzbhjzrc" parameterType="elist" resultType="elist">
+		select 
+		'是' sfhj,'合计' v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		from (
+		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
+		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
+			jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
+		    jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))  v_12, jy.dssnjz v_13, jy.dsnjz v_14,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		    from xmjbxx_bb_zrc x,(
+		    select * from TJBB_YQJH_zrc where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH_zrc where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB_zrc where nf=#{nf}
+			) jy,(
+		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+		    group by xmbm,substr(bfyf, 1, 4)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    <if test="gydw != null">
+		    ${gydw}
+		    </if> 
+		    <if test="xmnf != null">
+		    ${xmnf}
+		    </if> 
+		    <if test="xmlx != null">
+		    ${xmlx}
+		    </if>
+		    )
+		   
+		
+	</select>
+	<select id="getZjsydwhzbhzzrc" parameterType="elist" resultType="elist">
+		select 
+		'是' sfhj,gydwdm,min((select name from xtgl_department where id=gydwdm)) v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		from (
+		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
+		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
+		    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		    from xmjbxx_bb_zrc x,(
+		    select * from TJBB_YQJH_zrc where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH_zrc where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB_zrc where nf=#{nf}
+			) jy,(
+		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+		    group by xmbm,substr(bfyf, 1, 4)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    <if test="gydw != null">
+		    ${gydw}
+		    </if> 
+		    <if test="xmnf != null">
+		    ${xmnf}
+		    </if> 
+		    <if test="xmlx != null">
+		    ${xmlx}
+		    </if>
+		    )
+		    group by gydwdm
+		    
+		    order by gydwdm
+		
+	</select>
+	<select id="getZjsydwhzbzrc" parameterType="elist" resultType="elist">
+	select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
+    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
+    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
+    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
+    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
+    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
+     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+    from xmjbxx_bb_zrc x,(
+    select * from TJBB_YQJH_zrc where nf=#{nf}
+	) yqjh,(
+	select * from TJBB_DNJH_zrc where nf=#{nf}
+	) dnjh ,(
+	select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+	) dndw,(
+	select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+	) dnbf,(
+	select * from XMJY_LSB_zrc where nf=#{nf}
+	) jy,(
+    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+    group by xmbm,substr(bfyf, 1, 4)
+    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+    <if test="gydw != null">
+    ${gydw}
+    </if> 
+    <if test="xmnf != null">
+    ${xmnf}
+    </if> 
+    <if test="xmlx != null">
+    ${xmlx}
+    </if>
+    order by gydwdm
+    
+	</select>
+	
+	
+	
+	
+	
+	
+	<select id="getZjsydwhzbhjdszrc" parameterType="elist" resultType="elist">
+		select 
+		'是' sfhj,'合计' v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		from (
+		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
+		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
+		    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		    from xmjbxx_bb_zrc x,(
+		    select * from TJBB_YQJH_zrc where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH_zrc where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB_zrc where nf=#{nf}
+			) jy,(
+		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+		    group by xmbm,substr(bfyf, 1, 4)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    <if test="gydw != null">
+		    ${gydw}
+		    </if> 
+		    <if test="xmnf != null">
+		    ${xmnf}
+		    </if> 
+		    <if test="xmlx != null">
+		    ${xmlx}
+		    </if>
+		    )
+		    
+	</select>
+	
+	<select id="getZjsydwhzbhzdszrc" parameterType="elist" resultType="elist">
+		select 
+		'是' sfhj,gydwdm,min((select name from xtgl_department where id=gydwdm)) v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		from (
+		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
+		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
+		    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		    from xmjbxx_bb_zrc x,(
+		    select * from TJBB_YQJH_zrc where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH_zrc where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB_zrc where nf=#{nf}
+			) jy,(
+		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+		    group by xmbm,substr(bfyf, 1, 4)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    <if test="gydw != null">
+		    ${gydw}
+		    </if> 
+		    <if test="xmnf != null">
+		    ${xmnf}
+		    </if> 
+		    <if test="xmlx != null">
+		    ${xmlx}
+		    </if>
+		    )
+		    group by gydwdm
+		    
+		    order by gydwdm
+		
+	</select>
+	<select id="getZjsydwhzbdszrc" parameterType="elist" resultType="elist">
+	select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
+    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
+    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
+    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
+    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
+    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
+     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+    from xmjbxx_bb_zrc x,(
+    select * from TJBB_YQJH_zrc where nf=#{nf}
+	) yqjh,(
+	select * from TJBB_DNJH_zrc where nf=#{nf}
+	) dnjh ,(
+	select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+	) dndw,(
+	select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+	) dnbf,(
+	select * from XMJY_LSB_zrc where nf=#{nf}
+	) jy,(
+    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+    group by xmbm,substr(bfyf, 1, 4)
+    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+    <if test="gydw != null">
+    ${gydw}
+    </if> 
+    <if test="xmnf != null">
+    ${xmnf}
+    </if> 
+    <if test="xmlx != null">
+    ${xmlx}
+    </if>
+    order by gydwdm
+    
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="getZjsyxmhzbhjzrc" parameterType="elist" resultType="elist">
+		select 
+		'是' sfhj,'合计' v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		from (
+		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
+		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
+		     jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+		    from xmjbxx_bb_zrc x,(
+		    select * from TJBB_YQJH_zrc where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH_zrc where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB_zrc where nf=#{nf}
+			) jy,(
+		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+		    group by xmbm,substr(bfyf, 1, 4)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    <if test="gydw != null">
+		    ${gydw}
+		    </if> 
+		    <if test="xmnf != null">
+		    ${xmnf}
+		    </if> 
+		   	<if test="xmlx != null">
+		    ${xmlx}
+		    </if>
+		    )
+		    
+		
+	</select>
+	<select id="getZjsyxmhzbhzzrc" parameterType="elist" resultType="elist">
+		select 
+		'是' sfhj,xmlx,min(xmlx) v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		from (
+		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
+		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
+		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
+		     jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
+		    jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+		    from xmjbxx_bb_zrc x,(
+		    select * from TJBB_YQJH_zrc where nf=#{nf}
+			) yqjh,(
+			select * from TJBB_DNJH_zrc where nf=#{nf}
+			) dnjh ,(
+			select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+			) dndw,(
+			select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+			) dnbf,(
+			select * from XMJY_LSB_zrc where nf=#{nf}
+			) jy,(
+		    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+		    group by xmbm,substr(bfyf, 1, 4)
+		    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+		     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+		    <if test="gydw != null">
+		    ${gydw}
+		    </if> 
+		    <if test="xmnf != null">
+		    ${xmnf}
+		    </if> 
+		   	<if test="xmlx != null">
+		    ${xmlx}
+		    </if>
+		    )
+		    group by xmlx
+		    
+		    order by xmlx
+		
+	</select>
+	
+	<select id="getZjsyxmhzbzrc" parameterType="elist" resultType="elist">
+	select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
+    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
+    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
+    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
+     jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
+    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
+    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
+     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+    from xmjbxx_bb_zrc x,(
+    select * from TJBB_YQJH_zrc where nf=#{nf}
+	) yqjh,(
+	select * from TJBB_DNJH_zrc where nf=#{nf}
+	) dnjh ,(
+	select * from TJBB_DNDW_zrc where ny=#{nf}||'-'||#{yf}
+	) dndw,(
+	select * from TJBB_DNBF_zrc where ny=#{nf}||'-'||#{yf}
+	) dnbf,(
+	select * from XMJY_LSB_zrc where nf=#{nf}
+	) jy,(
+    select xmbm,sum(cgs) bb,sum(nvl(gz,0)+nvl(sz,0)+nvl(zq,0)+nvl(tdk,0)+nvl(jl,0)+nvl(qt,0)+nvl(rys,0)+nvl(stz,0)+nvl(ttc,0)+nvl(zddzjl,0)) sb,sum(dfzc+yhdk) df from xm_zjtj where to_date(bfyf,'yyyy-mm')&lt;=to_date(#{nf}||'-'||#{yf},'yyyy-mm')
+    group by xmbm,substr(bfyf, 1, 4)
+    )tj where x.xmbm=yqjh.xmid(+) and x.xmbm=dnjh.xmid(+) and x.xmbm=dndw.xmbm(+) 
+     and x.xmbm=jy.xmbm(+) and x.xmbm=dnbf.xmbm(+) and x.xmbm=tj.xmbm(+)
+    <if test="gydw != null">
+    ${gydw}
+    </if> 
+    <if test="xmnf != null">
+    ${xmnf}
+    </if> 
+    <if test="xmlx != null">
+    ${xmlx}
+    </if>
+    order by xmlx
+    
+	</select>
+	<!-- <cache 
 	 eviction="FIFO"  
 	 flushInterval="10800000"  size="51200" 
 	 readOnly="true"  
-		/>
+		/> -->
 </mapper>
