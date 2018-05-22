@@ -36,24 +36,32 @@
 					dwzj=msg.dwzj;
 					bfzj=msg.bfzj;
 					$("#xmmc").html(msg.xmmc);
-					$("#jhxdzj").html(msg.jhxdzj);
-					$("#dwzj").html(msg.dwzj);
-					$("#bfzj").html(msg.bfzj);
-					$("#tjzj").html(msg.tjzj);
-					$("#syktjzj").html(msg.syktjzj);
+					$("#xdzbz").html(msg.xdzbz);$("#xdbb").html(msg.xdbb);$("#xdsb").html(msg.xdsb);$("#xddf").html(msg.xddf);
+					$("#dwzbz").html(msg.dwzbz);$("#dwbb").html(msg.dwbb);$("#dwsb").html(msg.dwsb);$("#dwdf").html(msg.dwdf);
+					$("#bfzbz").html(msg.bfzbz);$("#bfbb").html(msg.bfbb);$("#bfsb").html(msg.bfsb);$("#bfdf").html(msg.bfdf);
+					$("#tjzbz").html(msg.tjzbz);$("#tjbb").html(msg.tjbb);$("#tjsb").html(msg.tjsb);$("#tjdf").html(msg.tjdf);
+					$("#syzbz").html(msg.syzbz);$("#sydf").html(msg.sydf);
 				}
 			});
 		}
 		var dwzj=0;var bfzj=0;
 		function zjtjtj(){
-			if($("#syktjzj").html()==0){
-				alert("该项目剩余可调剂资金位0，不可调剂");
+			if($("#syzbz").html()==0&&$("#sydf").html()==0){
+				alert("该项目剩余可调剂资金为0，不可调剂");
 				return;
 			}
 			//parent.YMLib.UI.createWindow('mywin1',"添加","/jxcsxm/page/zjtj/xmzjtj/zjtj_tj.jsp",'mywin1',800,355);
 			openWindow("添加","/jxcsxm/page/zjtj/xmzjtj/zjtj_tj.jsp",800,365);	
 			
 		}
+		function zjtjtjxz(){
+			if($("#syzbz").html()==0&&$("#sydf").html()==0){
+				alert("该项目剩余可调剂资金为0，不可调剂");
+				return;
+			}
+			openWindow("添加","/jxcsxm/page/zjtj/xmzjtj/zjtj_tj2.jsp",800,365);	
+		}
+		
 		function openTjInfo(xmbm){
 			YMLib.Var.xmbm=xmbm;
 			openWindow("详情","/jxcsxm/page/zjtj/xmzjtj/zjtj_info.jsp",800,365);
@@ -110,8 +118,8 @@
 			{field:'xmmc',title:'项目名称',width:200,align:'center'},
 			{field:'gydw',title:'管养单位',width:170,align:'center'},
 			{field:'xzqh',title:'行政区划',width:130,align:'center'},
-			{field:'ztz',title:'总补助(万元)',width:80,align:'center'},
-			{field:'jhxdwh',title:'计划下达文号',width:120,align:'center'}
+			{field:'allzbz',title:'项目总补助(万元)',width:100,align:'center'},
+			{field:'bczbz',title:'本次总补助(万元)',width:100,align:'center'}
 		]]
 			$('#grid').datagrid({    
 			    url:'/jxcsxm/zjtj/queryzjtjlist.do',
@@ -119,9 +127,9 @@
 			    pagination:true,
 			    rownumbers:true,
 			    pageNumber:1,
-			    pageSize:10,
+			    pageSize:50,
 			    checkOnSelect:true,
-			    height:$(window).height()-62,
+			    height:$(window).height()-102,
 			    queryParams: params,
 			    columns:col
 			}); 	
@@ -138,18 +146,34 @@
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 5px;" cellspacing="0" cellpadding="0">
             <tr>
                 <td height="30" align="left" style="font-size: 12px;">
-	                    项目【<span id="xmmc" style="color: Red; font-weight: bold;">xxx</span>】<br/>
-	                    计划下达补助资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
-	                    到位补助资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
-	                    拨付补助资金共【<span id="bfzj" style="color: Red; font-weight: bold;">0</span>】万元，
-	                    调剂补助资金共【<span id="tjzj" style="color: Red; font-weight: bold;">0</span>】万元，
-	                    剩余可调剂补助资金共【<span id="syktjzj" style="color: Red; font-weight: bold;">0</span>】万元。
+                	<table border="0" >
+                		<tr>
+                		<td colspan="2"> 项目【<span id="xmmc" style="color: Red; font-weight: bold;">xxx</span>】</td>
+                		</tr>
+                		<tr>
+                		<td>下达补助【<span id="xdzbz" style="color: Red; font-weight: bold;">0</span>】万元（部补【<span id="xdbb" style="color: Red; font-weight: bold;">0</span>】万元，省补【<span id="xdsb" style="color: Red; font-weight: bold;">0</span>】万元），地方自筹【<span id="xddf" style="color: Red; font-weight: bold;">0</span>】万元。</td>
+                		<td style="padding-left: 10px;">到位补助【<span id="dwzbz" style="color: Red; font-weight: bold;">0</span>】万元（部补【<span id="dwbb" style="color: Red; font-weight: bold;">0</span>】万元，省补【<span id="dwsb" style="color: Red; font-weight: bold;">0</span>】万元），地方自筹【<span id="dwdf" style="color: Red; font-weight: bold;">0</span>】万元。</td>
+                		</tr>
+                		<tr>
+                		<td>拨付补助【<span id="bfzbz" style="color: Red; font-weight: bold;">0</span>】万元（部补【<span id="bfbb" style="color: Red; font-weight: bold;">0</span>】万元，省补【<span id="bfsb" style="color: Red; font-weight: bold;">0</span>】万元），地方自筹【<span id="bfdf" style="color: Red; font-weight: bold;">0</span>】万元。</td>
+                		<td style="padding-left: 10px;">调剂补助【<span id="tjzbz" style="color: Red; font-weight: bold;">0</span>】万元（部补【<span id="tjbb" style="color: Red; font-weight: bold;">0</span>】万元，省补【<span id="tjbb" style="color: Red; font-weight: bold;">0</span>】万元），地方自筹【<span id="tjdf" style="color: Red; font-weight: bold;">0</span>】万元。</td>
+                		</tr>
+                		<tr>
+                		<td colspan="2">剩余补助【<span id="syzbz" style="color: Red; font-weight: bold;">0</span>】万元，地方自筹【<span id="sydf" style="color: Red; font-weight: bold;">0</span>】万元。</td>
+                		</tr>
+                	</table>
+	                    
+	                    
+	                    
+	                    
+	                    
             	
             </td>
             </tr>
             <tr>
             <td>
-            <a name='tianjia' id='mybuttion1' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:zjtjtj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">添加</a>
+            <a name='tianjia' id='mybuttion1' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:zjtjtj()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">添加调剂（新项目）</a>
+			<a name='tianjia' id='mybuttion2' style="margin-left: 5px;margin-bottom: 1px;" href="javascript:zjtjtjxz()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion2')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion2')"  class="button button-tiny button-rounded button-raised button-primary">添加调剂（已有项目）</a>
 			
             </td>
             </tr>

@@ -13,17 +13,7 @@ $(function() {
 			createMenunew('01010801');
 			j++;
 		}
-    	if(qx[i]=='01010802'){
-			$('#aa').accordion('add', {
-				id:"left_menu2",
-				title: '资金拨付（调剂类）',
-				selected: j==1?true:false,
-				iconCls:'icon-none'
-			});
-			$("#left_menu2").append('<ul id="tree01010802"></ul>');
-			createMenunew('01010802');
-			j++;
-		}
+    	
     	if(qx[i]=='01010803'){
 			$('#aa').accordion('add', {
 				id:"left_menu3",

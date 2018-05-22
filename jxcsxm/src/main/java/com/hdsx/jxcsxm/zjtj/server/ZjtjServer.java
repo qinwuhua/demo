@@ -74,4 +74,8 @@ public interface ZjtjServer {
 
 	boolean glxm(Xmjbxx xmjbxx);
 
+	List<XmZjtj> getXm(String xmname);
+
+	boolean insertZjtjxz(XmZjtj xmZjtj);
+
 }

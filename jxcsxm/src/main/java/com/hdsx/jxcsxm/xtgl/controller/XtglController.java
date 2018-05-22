@@ -1186,7 +1186,7 @@ public class XtglController extends BaseActionSupport{
 	public void userlogin(){
 		try {
 			if(name==null||"".equals(name))
-				JsonUtils.write(null, getresponse().getWriter());
+			return;
 			else {
 				List<Master> l = xtglServer.userlogin(name);
 				JsonUtils.write(l, getresponse().getWriter());

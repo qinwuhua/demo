@@ -97,8 +97,170 @@ public class XmZjdw{
     private String zddzjl;
     private String jyzj;
     private String dk;
+    private String xdzbz;
+    private String xdbb;
+    private String xdsb;
+    private String xddf;
+    private String dwzbz;
+    private String dwbb;
+    private String dwsb;
+    private String dwdf;
+    private String bfzbz;
+    private String bfbb;
+    private String bfsb;
+    private String bfdf;
+    private String syzbz;
+    private String sydf;
+    private String tjzbz;
+    private String tjbb;
+    private String tjsb;
+    private String tjdf;
     
-    public String getDk() {
+    public String getTjzbz() {
+		return tjzbz;
+	}
+
+	public void setTjzbz(String tjzbz) {
+		this.tjzbz = tjzbz;
+	}
+
+	public String getTjbb() {
+		return tjbb;
+	}
+
+	public void setTjbb(String tjbb) {
+		this.tjbb = tjbb;
+	}
+
+	public String getTjsb() {
+		return tjsb;
+	}
+
+	public void setTjsb(String tjsb) {
+		this.tjsb = tjsb;
+	}
+
+	public String getTjdf() {
+		return tjdf;
+	}
+
+	public void setTjdf(String tjdf) {
+		this.tjdf = tjdf;
+	}
+
+	public String getXdzbz() {
+		return xdzbz;
+	}
+
+	public void setXdzbz(String xdzbz) {
+		this.xdzbz = xdzbz;
+	}
+
+	public String getXdbb() {
+		return xdbb;
+	}
+
+	public void setXdbb(String xdbb) {
+		this.xdbb = xdbb;
+	}
+
+	public String getXdsb() {
+		return xdsb;
+	}
+
+	public void setXdsb(String xdsb) {
+		this.xdsb = xdsb;
+	}
+
+	public String getXddf() {
+		return xddf;
+	}
+
+	public void setXddf(String xddf) {
+		this.xddf = xddf;
+	}
+
+	public String getDwzbz() {
+		return dwzbz;
+	}
+
+	public void setDwzbz(String dwzbz) {
+		this.dwzbz = dwzbz;
+	}
+
+	public String getDwbb() {
+		return dwbb;
+	}
+
+	public void setDwbb(String dwbb) {
+		this.dwbb = dwbb;
+	}
+
+	public String getDwsb() {
+		return dwsb;
+	}
+
+	public void setDwsb(String dwsb) {
+		this.dwsb = dwsb;
+	}
+
+	public String getDwdf() {
+		return dwdf;
+	}
+
+	public void setDwdf(String dwdf) {
+		this.dwdf = dwdf;
+	}
+
+	public String getBfzbz() {
+		return bfzbz;
+	}
+
+	public void setBfzbz(String bfzbz) {
+		this.bfzbz = bfzbz;
+	}
+
+	public String getBfbb() {
+		return bfbb;
+	}
+
+	public void setBfbb(String bfbb) {
+		this.bfbb = bfbb;
+	}
+
+	public String getBfsb() {
+		return bfsb;
+	}
+
+	public void setBfsb(String bfsb) {
+		this.bfsb = bfsb;
+	}
+
+	public String getBfdf() {
+		return bfdf;
+	}
+
+	public void setBfdf(String bfdf) {
+		this.bfdf = bfdf;
+	}
+
+	public String getSyzbz() {
+		return syzbz;
+	}
+
+	public void setSyzbz(String syzbz) {
+		this.syzbz = syzbz;
+	}
+
+	public String getSydf() {
+		return sydf;
+	}
+
+	public void setSydf(String sydf) {
+		this.sydf = sydf;
+	}
+
+	public String getDk() {
 		return dk;
 	}
 

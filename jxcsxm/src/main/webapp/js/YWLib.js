@@ -155,7 +155,7 @@ function openZjtj(xmbm,gydwdm,xmlx){
 	YMLib.Var.xmbm=xmbm;
 	YMLib.Var.xmlx=xmlx;
 	YMLib.Var.gydwdm=gydwdm;
-	openWindow("资金调剂详情","/jxcsxm/page/zjtj/xmzjtj/zjtjxq.jsp",1050,450);
+	openWindow("资金调剂详情","/jxcsxm/page/zjtj/xmzjtj/zjtjxq.jsp",1050,500);
 }
 
 //打开查看项目详情页面

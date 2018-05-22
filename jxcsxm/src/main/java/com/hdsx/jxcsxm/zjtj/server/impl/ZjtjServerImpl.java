@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxcsxm.utile.DBTools;
 import com.hdsx.jxcsxm.xtgl.bean.Xmjbxx;
 import com.hdsx.jxcsxm.zjtj.server.ZjtjServer;
 import com.hdsx.jxcsxm.zjtj.bean.XmZjtj;
@@ -37,13 +39,56 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 		String xmbm = UUID.randomUUID().toString();
 		xmZjtj.setXmbm(xmbm);xmZjtj.setSbthcd("7");xmZjtj.setXsbzt("已上报");xmZjtj.setSsbzt("已上报");xmZjtj.setShzt("已审核");
 		//添加项目
-		int i=insert("insertZjtjXm", xmZjtj);
-		//添加资金到位数据
-		int j=insert("insertZjtjDw", xmZjtj);
+		try {
+			SqlSession ss = DBTools.getSession();
+			int i=ss.insert("insertZjtjXm",xmZjtj);
+			int k=ss.insert("insertZjtjXmtj", xmZjtj);
+			//添加资金到位数据
+			int j=ss.insert("insertZjtjDw", xmZjtj);
+			int l=ss.insert("insertZjtjTj", xmZjtj);
+			if( i==1&&j==1&&k==1&&l==1) {
+				ss.commit();
+				ss.close();
+				return true;
+			}else {
+				ss.rollback();
+				ss.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		//返回
-		return i==1&&j==1;
+		return false;
 	}
 
+	@Override
+	public boolean insertZjtjxz(XmZjtj xmZjtj) {
+		xmZjtj.setSbthcd("7");xmZjtj.setXsbzt("已上报");xmZjtj.setSsbzt("已上报");xmZjtj.setShzt("已审核");
+		//添加项目
+		try {
+			SqlSession ss = DBTools.getSession();
+			int k=ss.insert("insertZjtjXmtj", xmZjtj);
+			//添加资金到位数据
+			int j=ss.insert("insertZjtjDw", xmZjtj);
+			int l=ss.insert("insertZjtjTj", xmZjtj);
+			if( j==1&&k==1&&l==1) {
+				ss.commit();
+				ss.close();
+				return true;
+			}else {
+				ss.rollback();
+				ss.close();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		//返回
+		return false;
+	}
+	
+	
+	
 	@Override
 	public List<XmZjtj> queryzjtjlist(XmZjtj xmZjtj) {
 		return queryList("queryzjtjlist",xmZjtj);
@@ -66,17 +111,37 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 
 	@Override
 	public boolean updateZjtj(XmZjtj xmZjtj) {
-		delete("deleteZjtjXm", xmZjtj);
-		delete("deleteZjtjDw", xmZjtj);
-		//生成guid
-		String xmbm = UUID.randomUUID().toString();
-		xmZjtj.setXmbm(xmbm);xmZjtj.setSbthcd("7");xmZjtj.setXsbzt("已上报");xmZjtj.setSsbzt("已上报");xmZjtj.setShzt("已审核");
-		//添加项目
-		int i=insert("insertZjtjXm", xmZjtj);
-		//添加资金到位数据
-		int j=insert("insertZjtjDw", xmZjtj);
-		//返回
-		return i==1&&j==1;
+		System.out.println(xmZjtj.getXmbm());
+		System.out.println(xmZjtj.getTrxmbm());
+		try {
+			SqlSession ss = DBTools.getSession();
+			/**1.删除资金调剂
+			 * 2.删除资金到位
+			 * 2.修改项目信息
+			 * 3.添加项目到位
+			 * 4.添加项目调剂
+			 * */
+			int i=ss.delete("deleteZjtjDw",xmZjtj);
+			int j=ss.delete("deleteZjtjTj",xmZjtj);
+			xmZjtj.setSbthcd("7");xmZjtj.setXsbzt("已上报");xmZjtj.setSsbzt("已上报");xmZjtj.setShzt("已审核");
+			int k=ss.insert("insertZjtjDw", xmZjtj);
+			int l=ss.insert("insertZjtjTj", xmZjtj);
+			int m=ss.update("updateTjxm",xmZjtj);
+			
+			if(i>=1&&j>=1&&k==1&&l==1&&m==1) {
+				ss.commit();
+				ss.close();
+				return true;
+			}else {
+				ss.rollback();
+				ss.close();
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+		
 	}
 	
 	@Override
@@ -88,9 +153,38 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 
 	@Override
 	public boolean deltj(XmZjtj xmZjtj) {
-		int i=delete("deleteZjtjXm", xmZjtj);
-		int j=delete("deleteZjtjDw", xmZjtj);
-		return i==1&&j==1; 
+		try {
+			SqlSession ss = DBTools.getSession();
+			/**1.删除资金调剂
+			 * 2.删除资金到位
+			 * 3.删除关系
+			 * 4.判断是否还有别的项目
+			 * 5.有则不用管，无则删除项目
+			 * */
+			int i=ss.delete("deleteZjtjDw",xmZjtj);
+			int j=ss.delete("deleteZjtjTj",xmZjtj);
+			int k=ss.delete("deleteZjtjGx",xmZjtj);
+			int l=queryOne("selectGx", xmZjtj);
+			int m=0;
+			if(l>0) {
+				m=1;
+			}else {
+				m=ss.delete("deleteZjtjXm",xmZjtj);
+			}
+			
+			if(i>=1&&j>=1&&k==1&&m==1) {
+				ss.commit();
+				ss.close();
+				return true;
+			}else {
+				ss.rollback();
+				ss.close();
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 
 	@Override
@@ -216,5 +310,10 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 		if(x>0&&y>0)
 			return true;
 		return false;
+	}
+
+	@Override
+	public List<XmZjtj> getXm(String xmname) {
+		return queryList("getXm",xmname);
 	}
 }

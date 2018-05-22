@@ -48,12 +48,22 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 	private ZjtjServer zjtjServer;
 	private Xmjbxx xmjbxx=new Xmjbxx();
 	private XmZjtj xmZjtj=new XmZjtj();
+	private String xmname;
 	private File fileupload;
 	private String fileuploadFileName;
 	@Override
 	public XmZjtj getModel() {
 		return xmZjtj;
 	}
+	
+	public String getXmname() {
+		return xmname;
+	}
+
+	public void setXmname(String xmname) {
+		this.xmname = xmname;
+	}
+
 	//方法
 	public void queryXmlist(){
 		
@@ -123,6 +133,10 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 		
 		ResponseUtils.write(getresponse(), ""+zjtjServer.insertZjtj(xmZjtj));
 	}
+	public void insertZjtjxz(){
+		ResponseUtils.write(getresponse(), ""+zjtjServer.insertZjtjxz(xmZjtj));
+	}
+	
 	
 	public void queryzjtjlist(){
 		//System.out.println(page+"    "+xmZjtj.getPage());
@@ -610,6 +624,17 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 				e.printStackTrace();
 			}
 		}
-		
+		//获取项目
+		public void getXm() {
+			try {
+				if ("".equals(xmname.trim()) || xmname.trim().length() < 2) {
+					return;
+				}
+				List<XmZjtj> l = zjtjServer.getXm(xmname);
+				JsonUtils.write(l, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 }

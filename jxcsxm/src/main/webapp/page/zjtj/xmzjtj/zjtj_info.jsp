@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>资金到位</title>
+<title>资金调剂详情</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/buttons.css" />
@@ -55,9 +55,9 @@ $(function(){
 					
 					</td>
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
-				<font color='red' size='1'>*</font>计划下达文号：</td>
+				调剂月份：</td>
 				<td style="background-color: #ffffff; height: 20px;width:35%" align="left">
-					<input type="text"  id="jhxdwh"  name='jhxdwh' style="width: 120px" />
+					<input type="text"  id="tjyf"  name='tjyf' style="width: 120px" />
 					</td>
 				
 			</tr>

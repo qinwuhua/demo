@@ -5,6 +5,8 @@
 <package name="zjtj" extends="struts-default" namespace="/zjtj">
 	<action name="queryXmlist" class="zjtjController" method="queryXmlist"></action>
 	<action name="insertZjtj" class="zjtjController" method="insertZjtj"></action>
+	<action name="insertZjtjxz" class="zjtjController" method="insertZjtjxz"></action>
+	
 	<action name="queryzjtjlist" class="zjtjController" method="queryzjtjlist"></action>
 	<action name="queryTjByid" class="zjtjController" method="queryTjByid"></action>
 	<action name="gettjTj" class="zjtjController" method="gettjTj"></action>
@@ -29,6 +31,7 @@
 	<action name="queryTjXmlist" class="zjtjController" method="queryTjXmlist"></action>
 	<action name="getTjTjAll" class="zjtjController" method="getTjTjAll"></action>
 	<action name="glxm" class="zjtjController" method="glxm"></action>
+	<action name="getXm" class="zjtjController" method="getXm"></action>
 	
 	
 	
