@@ -47,12 +47,8 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			
-			var jsxz=$("#jsxz").combobox("getValues").join(",");
-			if(jsxz.substr(0,1)==',')
-				jsxz=jsxz.substr(1,jsxz.length);
-			if(jsxz=="")
-			jsxz="改建,路面改造,新建"
-				
+			
+			var jsxz=parent.YMLib.Var.xmlx;
 			var xmnf=$("#xmnf").combobox("getValue");
 			if(xmnf==''){
 				alert("请选择一个项目");
@@ -67,7 +63,7 @@
 			};
 	
 			$('#grid').datagrid({    
-			    url:'/jxcsxm/zjtj/queryXmlist.do',
+			    url:'/jxcsxm/zjtj/queryXmlist_tj.do',
 			    striped:true,
 			    pagination:true,
 			    rownumbers:true,
@@ -77,7 +73,7 @@
 			    height:$(window).height()-90,
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
-			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
+			    columns:[[	
 							{field:'cz',title:'操作',width:110,align:'center',
 								formatter: function(value,row,index){
 									var result='<a style="color:#3399CC;" href="javascript:glxm('+"'"+row.xmbm+"'"+')" >关联</a>';	
@@ -93,9 +89,38 @@
 			    ]]
 			}); 
 		}
-		
+		var _xmbm="";
 		function glxm(xmbm){
-			var  data="xmjbxx.xmbm="+parent.YMLib.Var.xmbm+"&xmjbxx.trxmbm="+parent.YMLib.Var.trxmbm+"&xmjbxx.jhxmbm="+xmbm;
+			_xmbm=xmbm;
+			$('#xzxdwh').dialog("open");
+			$("#whtd").empty();
+			$.ajax({
+				type:'post',
+				url:'/jxcsxm/zjtj/getxmwh.do',
+				data:"xmjbxx.xmbm="+xmbm,
+				dataType:'json',
+				success:function(msg){
+					if(msg){
+						var radio="";
+						for (var i = 0; i < msg.length; i++) {
+							radio+="<input name='jhxdwh' type='radio' value='"+msg[i].jhxdwh+"'>"+msg[i].jhxdwh+"</input><br/>";
+						}
+						$("#whtd").append(radio);
+					}
+				}
+			});
+			//
+			
+			
+		}
+	
+		function gljh(){
+			if($("input[name='jhxdwh']:checked").val()==null){
+				alert("请选择一个计划下达文号");
+				return;
+			}
+			
+			var  data="xmjbxx.xmbm="+parent.YMLib.Var.xmbm+"&xmjbxx.jhxmbm="+_xmbm+"&xmjbxx.jhxdwh="+$("input[name='jhxdwh']:checked").val();
 			if(confirm("确认关联该计划吗？"))
 			$.ajax({
 				type:'post',
@@ -115,7 +140,7 @@
 			});
 			
 		}
-	
+		
 	</script>
 	<style type="text/css">
 TD {
@@ -145,17 +170,15 @@ text-decoration:none;
         						<td><select id="xmnf" style="width: 144px;"></select></td>
         						<td align="right">项目名称：</td>
         						<td><input name="xmmc" type="text" id="xmmc" style="width:140px;" /></td>
-        						<td colspan="8"  rowspan=" 2"  style="padding-left: 50px;">
-                            		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryXmlist()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
-								</td>
+        						<td align="right">计划下达文号：</td>
+        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
 								</tr>
         					<tr height="28">
-								<td align="right">计划下达文号：</td>
-        						<td><input name="jhxdwh" type="text" id="jhxdwh" style="width:165px;" /></td>
-        						<!-- 县市上报状态 省审核状态-->
-        						<td align="right">建设性质：</td>
-								<td><select name="jsxz" id="jsxz" style="width:144px;" ></select></td>
 								
+        						<!-- 县市上报状态 省审核状态-->
+        						<td colspan="8"  >
+                            		<a id='mybuttion1' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:queryXmlist()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion1')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion1')"  class="button button-tiny button-rounded button-raised button-primary">查询</a>
+								</td>
         					</tr>
         					</table>
         				</div>
@@ -171,6 +194,15 @@ text-decoration:none;
         	</tr>
 		</table>
 		
-
+		<div id="xzxdwh" class="easyui-dialog" title="选择计划下达文号" style="width:200px;height:270px;" data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+			<table>
+				<tr>
+					<td id="whtd" style="padding-left: 10px;"> </td>
+				</tr>
+				<tr>
+					<td style="padding-top: 95%;padding-left: 40%;"><a id='mybuttion12' style="margin-top: 1px;margin-bottom: 1px;" href="javascript:gljh()" onmouseover="szgq('button button-tiny button-glow button-rounded button-raised button-primary','mybuttion12')" onmouseout="szgq('button button-tiny button-rounded button-raised button-primary','mybuttion12')"  class="button button-tiny button-rounded button-raised button-primary">确定</a></td>
+				</tr>
+			</table>
+		</div>
 </body>
 </html>

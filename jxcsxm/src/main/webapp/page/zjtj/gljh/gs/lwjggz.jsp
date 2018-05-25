@@ -79,23 +79,26 @@
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
-							{field:'cz',title:'操作',width:140,align:'center',
-								formatter: function(value,row,index){
-									var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','zjtj'"+')" >项目详情</a>&nbsp;';
-										result+='<a style="color:#3399CC;" href="javascript:openGljh('+"'"+row.xmbm+"','"+row.trxmbm+"','gs_gsdgz'"+')" >关联计划</a>';	
+							    	{field:'cz',title:'操作',width:180,align:'center',
+									formatter: function(value,row,index){
+										var result='<a style="color:#3399CC;" href="javascript:openXmInfo('+"'"+row.xmbm+"','gs_gsdgz','zjtj'"+')" >项目详情</a>&nbsp;';
+										if(row.sfppjh=='否'){
+											result+='<a style="color:#3399CC;" href="javascript:openGljh('+"'"+row.xmbm+"','"+row.trxmbm+"','"+row.gcfl+"'"+')" >关联计划</a>&nbsp;取消关联';	
+										}else{
+											result+='关联计划&nbsp;<a style="color:#3399CC;" href="javascript:qxgljh('+"'"+row.xmbm+"'"+')" >取消关联</a>';
+										}
+										
 										return result;
-								
-								}
-							},
-							{field:'sfppjh',title:'是否已关联计划',width:90,align:'center'},
-							{field:'xmlx',title:'项目类型',width:70,align:'center'},
-							{field:'xmnf',title:'项目年份',width:70,align:'center'},
-							{field:'xmmc',title:'项目名称',width:280,align:'center'},
-							{field:'gydw',title:'管养单位',width:250,align:'center'},
-							{field:'xzqh',title:'行政区划',width:150,align:'center'},
-							{field:'ztz',title:'总补助(万元)',width:80,align:'center'},
-							{field:'jhxdwh',title:'计划下达文号',width:180,align:'center'}
-			    ]]
+									}
+								},
+								{field:'sfppjh',title:'是否已关联计划',width:90,align:'center'},
+								{field:'xmlx',title:'项目类型',width:70,align:'center'},
+								{field:'xmnf',title:'项目年份',width:70,align:'center'},
+								{field:'xmmc',title:'项目名称',width:280,align:'center'},
+								{field:'gydw',title:'管养单位',width:250,align:'center'},
+								{field:'xzqh',title:'行政区划',width:150,align:'center'},
+								{field:'tjzbz',title:'总补助(万元)',width:80,align:'center'}
+				    ]]
 			}); 
 		}
 		
@@ -142,8 +145,10 @@
 				dataType:'json',
 				success:function(msg){
 					$("#xmsl").html(msg.xmsl);
-					$("#jhxdzj").html(msg.zbz);
-					
+					$("#tjzbz").html(msg.tjzbz);
+					$("#tjbb").html(msg.tjbb);
+					$("#tjsb").html(msg.tjsb);
+					$("#tjdf").html(msg.tjdf);
 				}
 			});
 		}
@@ -204,7 +209,10 @@ text-decoration:none;
         	<tr>
             	<td style="padding-left: 10px; font-size:12px;">
             		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
-           		        补助资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元。
+           		        补助共【<span id="tjzbz" style="color: Red; font-weight: bold;">0</span>】万元,
+           		        部补共【<span id="tjbb" style="color: Red; font-weight: bold;">0</span>】万元,
+           		        省补共【<span id="tjsb" style="color: Red; font-weight: bold;">0</span>】万元,
+           		        地方自筹共【<span id="tjdf" style="color: Red; font-weight: bold;">0</span>】万元。
             		</div>
             		<div><table id="grid"></table></div>
             	</td>

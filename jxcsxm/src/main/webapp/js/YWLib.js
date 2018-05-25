@@ -201,6 +201,25 @@ function openGljh(xmbm,trxmbm,xmlx){
 	YMLib.UI.createWindow('mywin','关联计划','/jxcsxm/page/zjtj/gljh/gljh.jsp','mywin',1000,450);	
 }
 
+function qxgljh(xmbm){
+	if(confirm("确认关联该计划吗？"))
+		$.ajax({
+			type:'post',
+			url:'/jxcsxm/zjtj/qxgljh.do',
+			data:"xmjbxx.xmbm="+xmbm,
+			dataType:'json',
+			success:function(msg){
+				if(msg){
+					alert("取消成功");
+					$("#grid").datagrid('reload');
+					loadTj();
+				}else{
+					alert("取消失败");
+				}
+			}
+		});
+}
+
 
 //创建表头tree
 function createBtTree(id,treeno,ssbb){

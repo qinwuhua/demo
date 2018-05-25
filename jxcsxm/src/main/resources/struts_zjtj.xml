@@ -32,7 +32,9 @@
 	<action name="getTjTjAll" class="zjtjController" method="getTjTjAll"></action>
 	<action name="glxm" class="zjtjController" method="glxm"></action>
 	<action name="getXm" class="zjtjController" method="getXm"></action>
-	
+	<action name="getxmwh" class="zjtjController" method="getxmwh"></action>
+	<action name="qxgljh" class="zjtjController" method="qxgljh"></action>
+	<action name="queryXmlist_tj" class="zjtjController" method="queryXmlist_tj"></action>
 	
 	
  </package>

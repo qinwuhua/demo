@@ -2,6 +2,7 @@ package com.hdsx.jxcsxm.zjtj.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +66,42 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 	}
 
 	//方法
+		public void queryXmlist_tj(){
+			
+			xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
+			xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
+			
+			xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
+			xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+			xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "jsxz||gcfl"));
+			xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
+			xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
+			xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
+			xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
+			xmjbxx.setSfkytj(MyUtil.getQueryTJ(xmjbxx.getSfkytj(), "fun_sfkytj(t.xmbm)"));
+			xmjbxx.setSfygtj(MyUtil.getQueryTJ(xmjbxx.getSfygtj(), "fun_sfygtj(t.xmbm)"));
+			if(xmZjtj.getPage()>0){
+				xmjbxx.setPage(xmZjtj.getPage());
+				xmjbxx.setRows(xmZjtj.getRows());
+			}else{
+				xmjbxx.setPage(page);
+				xmjbxx.setRows(rows);
+			}
+			
+			List<Xmjbxx> list=zjtjServer.queryXmlist_tj(xmjbxx);
+			int count=zjtjServer.queryXmlist_tjCount(xmjbxx);
+			EasyUIPage<Xmjbxx> e=new EasyUIPage<Xmjbxx>();
+			e.setRows(list);
+			e.setTotal(count);
+			try {
+				JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			
+		}
+	
+	//方法
 	public void queryXmlist(){
 		
 		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
@@ -72,7 +109,7 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 		
 		xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
 		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
-		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "jsxz||gcfl"));
 		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
@@ -107,7 +144,7 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 		
 		xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
 		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
-		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
+		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "jsxz||gcfl"));
 		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 		xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
@@ -624,6 +661,15 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 				e.printStackTrace();
 			}
 		}
+		//取消关联
+		public void qxgljh() {
+			try {
+				ResponseUtils.write(getresponse(), ""+zjtjServer.qxgljh(xmjbxx));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		//获取项目
 		public void getXm() {
 			try {
@@ -632,6 +678,14 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 				}
 				List<XmZjtj> l = zjtjServer.getXm(xmname);
 				JsonUtils.write(l, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		public void getxmwh() {
+			try {
+				JsonUtils.write(zjtjServer.getxmwh(xmjbxx), getresponse().getWriter());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

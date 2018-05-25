@@ -34,6 +34,16 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 	}
 
 	@Override
+	public List<Xmjbxx> queryXmlist_tj(Xmjbxx xmjbxx) {
+		return queryList("queryXmlist_tj",xmjbxx);
+	}
+
+	@Override
+	public int queryXmlist_tjCount(Xmjbxx xmjbxx) {
+		return queryOne("queryXmlist_tjCount", xmjbxx);
+	}
+	
+	@Override
 	public boolean insertZjtj(XmZjtj xmZjtj) {
 		//生成guid
 		String xmbm = UUID.randomUUID().toString();
@@ -301,14 +311,26 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 
 	@Override
 	public boolean glxm(Xmjbxx xmjbxx) {
-		//修改xmjbxx_tj
-		int x=update("glxmjh", xmjbxx);
-		//修改 xm_zjdw
-		int y=update("glxmdw", xmjbxx);
-		//修改xm_zjbf
-		update("glxmbf", xmjbxx);
-		if(x>0&&y>0)
-			return true;
+		SqlSession ss=null;
+		try {
+			ss=DBTools.getSession();
+			//修改项目
+			int i=ss.update("glxmjh", xmjbxx);
+			//修改到位
+			int j=ss.update("glxmdw",xmjbxx);
+			//修改拨付
+			int k=ss.update("glxmbf",xmjbxx);
+			if(i==1&&j>0&&k>=0) {
+				ss.commit();
+				return true;
+			}else {
+				ss.rollback();
+			}
+		} catch (Exception e) {
+			ss.rollback();
+		}finally {
+			ss.close();
+		}
 		return false;
 	}
 
@@ -316,4 +338,37 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 	public List<XmZjtj> getXm(String xmname) {
 		return queryList("getXm",xmname);
 	}
+
+	@Override
+	public List<XmZjtj> getxmwh(Xmjbxx xmjbxx) {
+		return queryList("getxmwh",xmjbxx);
+	}
+	
+	@Override
+	public boolean qxgljh(Xmjbxx xmjbxx) {
+		SqlSession ss=null;
+		try {
+			ss=DBTools.getSession();
+			String glqxmbm=queryOne("getglqxmbm", xmjbxx);
+			xmjbxx.setGlqxmbm(glqxmbm);
+			//修改项目
+			int i=ss.update("qxglxmjh", xmjbxx);
+			//修改到位
+			int j=ss.update("qxglxmdw",xmjbxx);
+			//修改拨付
+			int k=ss.update("qxglxmbf",xmjbxx);
+			if(i==1&&j>0&&k>=0) {
+				ss.commit();
+				return true;
+			}else {
+				ss.rollback();
+			}
+		} catch (Exception e) {
+			ss.rollback();
+		}finally {
+			ss.close();
+		}
+		return false;
+	}
+	
 }

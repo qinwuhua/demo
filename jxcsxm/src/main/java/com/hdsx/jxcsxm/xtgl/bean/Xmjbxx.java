@@ -119,7 +119,14 @@ public class Xmjbxx implements Serializable {
     private String tjbb;
     private String tjsb;
     private String tjdf;
+    private String glqxmbm;
     
+	public String getGlqxmbm() {
+		return glqxmbm;
+	}
+	public void setGlqxmbm(String glqxmbm) {
+		this.glqxmbm = glqxmbm;
+	}
 	public String getTjzbz() {
 		return tjzbz;
 	}

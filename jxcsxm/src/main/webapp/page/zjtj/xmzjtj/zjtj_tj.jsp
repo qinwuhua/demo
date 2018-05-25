@@ -155,6 +155,7 @@ function zjdwtj(){
 					<input type="hidden" name='zbz' id="zbz" style="width: 120px" />
 					<input type="hidden" name='dwyf' id="dwyf" style="width: 120px" />
 					<input type="hidden" name='tjyf' id="tjyf" style="width: 120px" />
+					<input type="hidden" name='jhxdwh' id="jhxdwh" style="width: 120px" />
 					
 					</td>
 				<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;" align="right">
