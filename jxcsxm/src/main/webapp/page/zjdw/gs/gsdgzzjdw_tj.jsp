@@ -89,6 +89,23 @@ function zjdwtj(){
 	if(result) ztz=accAdd(ztz,$("#ttc").val()==""?0:$("#ttc").val());
 	$('#ztz').val(ztz);
 	
+	//验证是否比下达多，以文号去验证
+	//验证改约是否添加过，添加过则提示是否重复
+	//验证是否金额是负数，是则提示
+	//验证时间是否超前
+	if(parseFloat(new Date().getFullYear())<parseFloat($('#nf').combo("getValue"))){
+		if(!confirm("所填时间大于现实时间，是否继续")){
+			return;
+		}
+	}
+	if(parseFloat(new Date().getFullYear())==parseFloat($('#nf').combo("getValue"))){
+		if(parseFloat((new Date().getMonth()+1))<parseFloat($('#yf').combo("getValue"))){
+			if(!confirm("所填时间大于现实时间，是否继续")){
+				return;
+			}
+		}
+	}
+	
 	if(parent.jhxdzj<accAdd(ztz,parent.dwzj)){
 		if(!confirm("到位资金大于计划下达资金，是否保存")){
 			return;
