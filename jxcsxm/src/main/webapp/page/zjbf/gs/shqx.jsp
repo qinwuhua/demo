@@ -57,8 +57,13 @@
 			if(jhxdwh.substr(0,1)==',')
 				jhxdwh=jhxdwh.substr(1,jhxdwh.length);
  */
-			var params={'gydw':gydwstr,'bfyf':$("#nf").combo('getValue')+"-"+$("#yf").combo('getValue')
-			};
+			 var nf=$("#nf").combo('getValues').join(',');
+				if(nf.substring(0,1)==',')
+					nf=nf.substring(1,nf.length);
+					
+					
+				var params={'gydw':gydwstr,'nf':nf,'bfyf':$("#yf").combo('getValue')
+				};
 	
  			//loadLj(params);
 			

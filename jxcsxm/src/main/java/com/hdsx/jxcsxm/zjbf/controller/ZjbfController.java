@@ -33,7 +33,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 /**
  * 系统管理Controller层
- * @author xunq
+ * @author qinwh
  *
  */
 @SuppressWarnings("serial")
@@ -167,7 +167,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 	public void queryXmlistshqx(){
 		
 		xmZjbf.setGydw(MyUtil.getQueryTJ(xmZjbf.getGydw(), "gydwdm"));
-		
+		xmZjbf.setNf(MyUtil.getQueryTJ(xmZjbf.getNf(), "substr(bfyf,1,4)"));
 		List<XmZjbf> list=zjbfServer.queryXmlistshqx(xmZjbf);
 		int count=zjbfServer.queryXmlistshqxCount(xmZjbf);
 		EasyUIPage<XmZjbf> e=new EasyUIPage<XmZjbf>();
@@ -216,6 +216,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 					xm.setBd(bd[i]);
 					xm.setJhxdwh(jhxdwh[i]);
 					xm.setXmbm(nf[i]+gydwdm[i]+jhxdwh[i]);
+					if(bz.length!=0)
 					xm.setBz(bz[i]);
 					xm.setNf(nf[i]);
 					xm.setTbr(tbr[i]);

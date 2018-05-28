@@ -36,7 +36,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 /**
  * 系统管理Controller层
- * @author xunq
+ * @author qinwh
  *
  */
 @SuppressWarnings("serial")
@@ -127,7 +127,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 	public void queryXmlistshqx(){
 		
 		xmZjdw.setGydw(MyUtil.getQueryTJ(xmZjdw.getGydw(), "gydwdm"));
-		
+		xmZjdw.setNf(MyUtil.getQueryTJ(xmZjdw.getNf(), "substr(dwyf,1,4)"));
 		List<XmZjdw> list=zjdwServer.queryXmlistshqx(xmZjdw);
 		int count=zjdwServer.queryXmlistshqxCount(xmZjdw);
 		EasyUIPage<XmZjdw> e=new EasyUIPage<XmZjdw>();

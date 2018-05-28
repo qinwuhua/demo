@@ -32,7 +32,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 /**
  * 系统管理Controller层
- * @author xunq
+ * @author qinwh
  *
  */
 @SuppressWarnings("serial")

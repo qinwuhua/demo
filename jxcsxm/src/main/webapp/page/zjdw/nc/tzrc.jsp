@@ -140,7 +140,7 @@
 			    pageNumber:1,
 			    pageSize:10,
 			    checkOnSelect:true,
-			    height:$(window).height()-160,
+			    height:$(window).height()-190,
 			    width:$('#searchField').width()+2,
 			    queryParams: params,
 			    columns:[[	{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
@@ -227,9 +227,10 @@
 				dataType:'json',
 				success:function(msg){
 					$("#xmsl").html(msg.xmsl);
-					$("#jhxdzj").html(msg.jhxdzj);
-					$("#dwzj").html(msg.dwzj);
-					$("#yshdwzj").html(msg.yshdwzj);
+					$("#xdzbz").html(msg.xdzbz);$("#xdbb").html(msg.xdbb);$("#xdsb").html(msg.xdsb);$("#xddf").html(msg.xddf);
+					$("#dwzbz").html(msg.dwzbz);$("#dwbb").html(msg.dwbb);$("#dwsb").html(msg.dwsb);$("#dwdf").html(msg.dwdf);
+					$("#bfzbz").html(msg.bfzbz);$("#bfbb").html(msg.bfbb);$("#bfsb").html(msg.bfsb);$("#bfdf").html(msg.bfdf);
+					$("#tjzbz").html(msg.tjzbz);$("#tjbb").html(msg.tjbb);$("#tjsb").html(msg.tjsb);$("#tjdf").html(msg.tjdf);
 				}
 			});
 		}

@@ -229,9 +229,9 @@
 					zj.ztz1+=","+ztz1;
 					zj.bd+=","+"没有";
 					zj.jhxdwh+=","+$("#jhxdwh").combo('getValue');
-					zj.nf+=$("#nf1").combo('getValue');
-					zj.tbr+=$("#tbr").val();
-					zj.tbsj+=$("#tbsj").combo('getValue');
+					zj.nf+=","+$("#nf1").combo('getValue');
+					zj.tbr+=","+$("#tbr").val();
+					zj.tbsj+=","+$("#tbsj").combo('getValue');
 				}
 			}); 
 			return zj;
