@@ -375,6 +375,7 @@
 	<delete id="deleteZjtjXm" parameterType="xmzjtj">delete from xmjbxx_tj where xmbm=#{xmbm}</delete>
 	<delete id="deleteZjtjGx" parameterType="xmzjtj">delete from xm_tj where xmbm=#{xmbm} and trxmbm=#{trxmbm}</delete>
 	<delete id="deleteZjtjDw" parameterType="xmzjtj">delete from xm_zjdw where xmbm=#{xmbm} and trxmbm=#{trxmbm}</delete>
+	<delete id="deleteZjtjBf" parameterType="xmzjtj">delete from xm_zjbf where xmbm=#{xmbm}</delete>
 	<delete id="deleteZjtjTj" parameterType="xmzjtj">delete from xm_zjtj where xmbm=#{trxmbm} and thxmbm=#{xmbm}</delete>
 	<select id="selectGx" parameterType="xmzjtj" resultType="int">
 		select count(*) from xm_tj where xmbm=#{xmbm} and trxmbm!=#{trxmbm}

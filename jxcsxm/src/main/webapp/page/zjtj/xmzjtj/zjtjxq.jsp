@@ -100,7 +100,7 @@
 			col=[[{field:'allSel',title:'全选',width:60,align:'center',rowspan:1,checkbox:'true'},
 				{field:'cz',title:'操作',width:120,align:'center',
 				formatter: function(value,row,index){
-					if(row.sfppjh=='是'||row.sfbfzj=='是'){
+					if(row.sfppjh=='是'){
 						var result='<a style="color:#3399CC;" href="javascript:openTjInfo('+"'"+row.xmbm+"'"+')" >详情</a>&nbsp;&nbsp;';
 						result+='编辑&nbsp;&nbsp;';
 						result+='删除&nbsp;&nbsp;';
