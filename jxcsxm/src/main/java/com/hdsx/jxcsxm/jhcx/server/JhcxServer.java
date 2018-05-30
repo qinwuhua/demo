@@ -19,6 +19,20 @@ public interface JhcxServer {
 
 	Xmjbxx gettjxmInfo(Xmjbxx xmjbxx);
 
+	Xmjbxx getJhxdByWh(Xmjbxx xmjbxx);
+
+	Xmjbxx getdwByWh(Xmjbxx xmjbxx);
+
+	Xmjbxx getdwcfByWh(Xmjbxx xmjbxx);
+
+	Xmjbxx getdwByWhbj(Xmjbxx xmjbxx);
+
+	Xmjbxx getbfByWhbj(Xmjbxx xmjbxx);
+
+	Xmjbxx getbfcfByWh(Xmjbxx xmjbxx);
+
+	Xmjbxx getbfByWh(Xmjbxx xmjbxx);
+
 	
 
 }

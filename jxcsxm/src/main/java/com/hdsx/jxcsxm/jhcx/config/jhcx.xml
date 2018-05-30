@@ -84,4 +84,32 @@
 		select * from xm_gsd_jhxd z where xdnf=#{xdnf} <if test="jhxdwh !=null">and jhxdwh=#{jhxdwh}</if> and (z.parent=#{gydwdm} or gydwdm like rtrim(#{gydwdm}, '0')||'%') order by gydwdm
 	</select>
 	
+	<select id="getJhxdByWh" parameterType="xmjbxx" resultType="xmjbxx">
+		select sum(nvl(ztz,0)) ztz,sum(nvl(btzzj,0))+sum(nvl(gz,0))+sum(nvl(sz,0))+sum(nvl(zq,0))+sum(nvl(dk,0))+sum(nvl(jl,0))+sum(nvl(qt,0))+sum(nvl(rys,0))+sum(nvl(stz,0)+ nvl(ttc, 0) + nvl(zddzjl, 0)) xdzbz from xm_gsd_jhxd  where xmid=#{xmbm} and jhxdwh=#{jhxdwh}
+	</select>
+	<select id="getdwByWh" parameterType="xmjbxx" resultType="xmjbxx">
+		select sum(ztz) dwzj,sum(nvl(cgs, 0)) dwbb,sum(nvl(gz, 0) +nvl(sz, 0) + nvl(zq, 0) + nvl(tdk, 0) + nvl(jl, 0) + nvl(qt, 0) + nvl(rys, 0) + nvl(stz, 0) + nvl(ttc, 0) +nvl(zddzjl, 0)) dwsb,sum(nvl(cgs, 0) + nvl(gz, 0) +nvl(sz, 0) + nvl(zq, 0) + nvl(tdk, 0) + nvl(jl, 0) +nvl(qt, 0) + nvl(rys, 0) + nvl(stz, 0) + nvl(ttc, 0) +nvl(zddzjl, 0)) dwzbz,sum(nvl(dfzc,0)+nvl(yhdk,0)) dwdf from xm_zjdw where xmbm=#{xmbm} and jhxdwh=#{jhxdwh}
+	</select>
+	
+	<select id="getdwcfByWh" parameterType="xmjbxx" resultType="xmjbxx">
+		select count(*) xmsl from xm_zjdw where xmbm=#{xmbm} and jhxdwh=#{jhxdwh} and ztz=#{dwzj}
+	</select>
+	
+	<select id="getdwByWhbj" parameterType="xmjbxx" resultType="xmjbxx">
+		select sum(ztz) dwzj,sum(nvl(cgs, 0)) dwbb,sum(nvl(gz, 0) +nvl(sz, 0) + nvl(zq, 0) + nvl(tdk, 0) + nvl(jl, 0) + nvl(qt, 0) + nvl(rys, 0) + nvl(stz, 0) + nvl(ttc, 0) +nvl(zddzjl, 0)) dwsb,sum(nvl(cgs, 0) + nvl(gz, 0) +nvl(sz, 0) + nvl(zq, 0) + nvl(tdk, 0) + nvl(jl, 0) +nvl(qt, 0) + nvl(rys, 0) + nvl(stz, 0) + nvl(ttc, 0) +nvl(zddzjl, 0)) dwzbz,sum(nvl(dfzc,0)+nvl(yhdk,0)) dwdf from xm_zjdw where xmbm=#{xmbm} and jhxdwh=#{jhxdwh} and id !=#{id}
+	</select>
+	
+	<select id="getbfByWh" parameterType="xmjbxx" resultType="xmjbxx">
+		select sum(ztz) dwzj,sum(nvl(cgs, 0)) dwbb,sum(nvl(gz, 0) +nvl(sz, 0) + nvl(zq, 0) + nvl(tdk, 0) + nvl(jl, 0) + nvl(qt, 0) + nvl(rys, 0) + nvl(stz, 0) + nvl(ttc, 0) +nvl(zddzjl, 0)) dwsb,sum(nvl(cgs, 0) + nvl(gz, 0) +nvl(sz, 0) + nvl(zq, 0) + nvl(tdk, 0) + nvl(jl, 0) +nvl(qt, 0) + nvl(rys, 0) + nvl(stz, 0) + nvl(ttc, 0) +nvl(zddzjl, 0)) dwzbz,sum(nvl(dfzc,0)+nvl(yhdk,0)) dwdf from xm_zjbf where xmbm=#{xmbm} and jhxdwh=#{jhxdwh}
+	</select>
+	
+	<select id="getbfcfByWh" parameterType="xmjbxx" resultType="xmjbxx">
+		select count(*) xmsl from xm_zjbf where xmbm=#{xmbm} and jhxdwh=#{jhxdwh} and ztz=#{dwzj}
+	</select>
+	
+	<select id="getbfByWhbj" parameterType="xmjbxx" resultType="xmjbxx">
+		select sum(ztz) dwzj,sum(nvl(cgs, 0)) dwbb,sum(nvl(gz, 0) +nvl(sz, 0) + nvl(zq, 0) + nvl(tdk, 0) + nvl(jl, 0) + nvl(qt, 0) + nvl(rys, 0) + nvl(stz, 0) + nvl(ttc, 0) +nvl(zddzjl, 0)) dwsb,sum(nvl(cgs, 0) + nvl(gz, 0) +nvl(sz, 0) + nvl(zq, 0) + nvl(tdk, 0) + nvl(jl, 0) +nvl(qt, 0) + nvl(rys, 0) + nvl(stz, 0) + nvl(ttc, 0) +nvl(zddzjl, 0)) dwzbz,sum(nvl(dfzc,0)+nvl(yhdk,0)) dwdf from xm_zjbf where xmbm=#{xmbm} and jhxdwh=#{jhxdwh} and id !=#{id}
+	</select>
+	
+	
 </mapper>

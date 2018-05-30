@@ -106,17 +106,70 @@ public class JhcxController extends BaseActionSupport{
 		}
 	}
 	
+	public void getJhxdByWh(){
+		try {
+			Xmjbxx list =jhcxServer.getJhxdByWh(xmjbxx);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getdwByWh(){
+		try {
+			Xmjbxx list =jhcxServer.getdwByWh(xmjbxx);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getdwcfByWh(){
+		try {
+			Xmjbxx list =jhcxServer.getdwcfByWh(xmjbxx);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getdwByWhbj(){
+		try {
+			Xmjbxx list =jhcxServer.getdwByWhbj(xmjbxx);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
+	public void getbfByWh(){
+		try {
+			Xmjbxx list =jhcxServer.getbfByWh(xmjbxx);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public void getbfcfByWh(){
+		try {
+			Xmjbxx list =jhcxServer.getbfcfByWh(xmjbxx);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
+	public void getbfByWhbj(){
+		try {
+			Xmjbxx list =jhcxServer.getbfByWhbj(xmjbxx);
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	//get/set
 	public int getPage() {

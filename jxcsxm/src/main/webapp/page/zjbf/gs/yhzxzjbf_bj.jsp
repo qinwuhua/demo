@@ -64,14 +64,75 @@ function zjbftj(){
 	if(result) ztz=accAdd(ztz,$("#stz").val()==""?0:$("#stz").val());
 	result=validateInput("zddzjl","number",result);
 	if(result) ztz=accAdd(ztz,$("#zddzjl").val()==""?0:$("#zddzjl").val());
-	result=validateInput("dfzc","number",result);
-	if(result) ztz=accAdd(ztz,$("#dfzc").val()==""?0:$("#dfzc").val());
 	result=validateInput("ttc","number",result);
 	if(result) ztz=accAdd(ztz,$("#ttc").val()==""?0:$("#ttc").val());
+	var zbz=ztz;
+	result=validateInput("dfzc","number",result);
+	if(result) ztz=accAdd(ztz,$("#dfzc").val()==""?0:$("#dfzc").val());
+	result=validateInput("yhdk","number",result);
+	if(result) ztz=accAdd(ztz,$("#yhdk").val()==""?0:$("#yhdk").val());
 	$('#ztz').val(ztz);
-	if(parent.dwzj<accSub(accAdd(ztz,parent.bfzj),yztz)){
-		if(!confirm("到位资金大于计划下达资金，是否保存")){
+	var dyjhz = false;var dyjhb = false;  var xmbm=parent.parent.YMLib.Var.xmbm;var jhxdwh=$('#jhxdwh1').combo("getValue");
+	var dwzj=0;var dwzbz=0;
+	
+	
+	$.ajax({
+		type:'post',
+		url:'/jxcsxm/jhcx/getbfByWhbj.do',
+		data:"xmjbxx.jhxdwh="+jhxdwh+"&xmjbxx.xmbm="+xmbm+"&xmjbxx.id="+parent.YMLib.Var.id,
+		dataType:'json',
+		async:false,
+		success:function(msg){
+			if(msg!=null){
+				dwzj=msg.dwzj;dwzbz=msg.dwzbz;
+			}
+		}
+	});
+	$.ajax({
+		type:'post',
+		url:'/jxcsxm/jhcx/getdwByWh.do',
+		data:"xmjbxx.jhxdwh="+jhxdwh+"&xmjbxx.xmbm="+xmbm,
+		dataType:'json',
+		async:false,
+		success:function(msg){
+			if(parseFloat(msg.dwzj)<parseFloat(accAdd(ztz,dwzj))){
+				dyjhz=true;
+			}
+			if(parseFloat(msg.dwzbz)<parseFloat(accAdd(zbz,dwzbz))){
+				dyjhb=true;
+			}
+			
+		}
+	});
+	if(dyjhz){
+		if(!confirm("所填总投资大于到位总投资，是否继续")){
 			return;
+		}
+	}
+	if(dyjhb){
+		if(!confirm("所填总补助大于到位总补助，是否继续")){
+			return;
+		}
+	}
+	
+	
+	//验证是否金额是负数，是则提示
+	if(parseFloat(ztz)<0||parseFloat(zbz)<0){
+		if(!confirm("所填资金为负数，是否继续")){
+			return;
+		}
+	}
+	//验证时间是否超前
+	if(parseFloat(new Date().getFullYear())<parseFloat($('#nf').combo("getValue"))){
+		if(!confirm("所填时间大于现实时间，是否继续")){
+			return;
+		}
+	}
+	if(parseFloat(new Date().getFullYear())==parseFloat($('#nf').combo("getValue"))){
+		if(parseFloat((new Date().getMonth()+1))<parseFloat($('#yf').combo("getValue"))){
+			if(!confirm("所填时间大于现实时间，是否继续")){
+				return;
+			}
 		}
 	}
 	if(result){

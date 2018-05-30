@@ -50,7 +50,41 @@ public class JhcxServerImpl extends BaseOperate  implements JhcxServer{
 	public Xmjbxx gettjxmInfo(Xmjbxx xmjbxx) {
 		return queryOne("gettjxmInfo", xmjbxx);
 	}
+
+	@Override
+	public Xmjbxx getJhxdByWh(Xmjbxx xmjbxx) {
+		return queryOne("getJhxdByWh", xmjbxx);
+	}
 	
+	@Override
+	public Xmjbxx getdwByWh(Xmjbxx xmjbxx) {
+		return queryOne("getdwByWh", xmjbxx);
+	}
+
+	@Override
+	public Xmjbxx getdwcfByWh(Xmjbxx xmjbxx) {
+		return queryOne("getdwcfByWh", xmjbxx);
+	}
+	
+	@Override
+	public Xmjbxx getdwByWhbj(Xmjbxx xmjbxx) {
+		return queryOne("getdwByWhbj", xmjbxx);
+	}
+
+	@Override
+	public Xmjbxx getbfByWhbj(Xmjbxx xmjbxx) {
+		return queryOne("getbfByWhbj", xmjbxx);
+	}
+
+	@Override
+	public Xmjbxx getbfcfByWh(Xmjbxx xmjbxx) {
+		return queryOne("getbfcfByWh", xmjbxx);
+	}
+
+	@Override
+	public Xmjbxx getbfByWh(Xmjbxx xmjbxx) {
+		return queryOne("getbfByWh", xmjbxx);
+	}
 	
 	
 }

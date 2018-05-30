@@ -7,6 +7,14 @@
 	<action name="getTjAll" class="jhcxController" method="getTjAll"></action>
 	<action name="getxmInfo" class="jhcxController" method="getxmInfo"></action>
 	<action name="gettjxmInfo" class="jhcxController" method="gettjxmInfo"></action>
+	<action name="getJhxdByWh" class="jhcxController" method="getJhxdByWh"></action>
+	<action name="getdwByWh" class="jhcxController" method="getdwByWh"></action>
+	<action name="getdwcfByWh" class="jhcxController" method="getdwcfByWh"></action>
+	<action name="getdwByWhbj" class="jhcxController" method="getdwByWhbj"></action>
+	
+	<action name="getbfByWh" class="jhcxController" method="getbfByWh"></action>
+	<action name="getbfcfByWh" class="jhcxController" method="getbfcfByWh"></action>
+	<action name="getbfByWhbj" class="jhcxController" method="getbfByWhbj"></action>
 	
 	<action name="queryZjByGydwdm" class="jhcxController" method="queryZjByGydwdm"></action>
 	
