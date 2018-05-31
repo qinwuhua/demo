@@ -170,7 +170,7 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 			 * 3.删除关系
 			 * 4.判断是否还有别的项目
 			 * 5.有则不用管，无则删除项目
-			 *6.删除拨付
+			 *6.删除拨付1
 			 * */
 			int i=ss.delete("deleteZjtjDw",xmZjtj);
 			int j=ss.delete("deleteZjtjTj",xmZjtj);
