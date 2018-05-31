@@ -155,22 +155,27 @@ $(function(){
 	});
 });
 function filterXzqhdm(xzqhdm){
-	xzqhdm= xzqhdm.substr(xzqhdm.length-6);
-	var yi1 = new RegExp("^36[0-9][1-9]00$");
-	var yi2= new RegExp("^36[1-9][0-9]00$");
-	var result=null;
-	if(xzqhdm=="360000"){
-		result='36%';
-	}else if(yi1.test(xzqhdm) || yi2.test(xzqhdm)){
-		result=xzqhdm.substring(0, xzqhdm.length-2)+"__";
-	}else{
-		result=xzqhdm.substring(0, xzqhdm.length-2)+"__";
-	}
-	if(result=="__"){
-		result="";
-	}
-	//result = xzqhdm.substring(0, xzqhdm.length-2)+"__";
-	return result;
+    if(xzqhdm.length>4){
+        xzqhdm= xzqhdm.substr(xzqhdm.length-6);
+        var yi1 = new RegExp("^36[0-9][1-9]00$");
+        var yi2= new RegExp("^36[1-9][0-9]00$");
+        var result=null;
+        if(xzqhdm=="360000"){
+            result='36%';
+        }else if(yi1.test(xzqhdm) || yi2.test(xzqhdm)){
+            result=xzqhdm.substring(0, xzqhdm.length-2)+"__";
+        }else{
+            result=xzqhdm.substring(0, xzqhdm.length-2)+"__";
+        }
+        if(result=="__"){
+            result="";
+        }
+        //result = xzqhdm.substring(0, xzqhdm.length-2)+"__";
+        return result;
+    }else{
+        return "";
+    }
+
 }
 function onclickXx(xmlx,xmid){
 	if(xmlx=='改建'||xmlx=='路面改造'||xmlx=='新建'){

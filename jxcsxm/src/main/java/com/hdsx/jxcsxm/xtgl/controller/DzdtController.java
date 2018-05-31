@@ -9,13 +9,11 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxcsxm.utile.DealShape2;
 import com.hdsx.jxcsxm.utile.EasyUIPage;
 import com.hdsx.jxcsxm.utile.JsonUtils;
 import com.hdsx.jxcsxm.xtgl.bean.Dzdt;
 import com.hdsx.jxcsxm.xtgl.bean.Param;
 import com.hdsx.jxcsxm.xtgl.bean.ProgBean;
-import com.hdsx.jxcsxm.xtgl.bean.Unit;
 import com.hdsx.jxcsxm.xtgl.server.DzdtServer;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -31,27 +29,8 @@ public class DzdtController extends BaseActionSupport{
 	private Dzdt dzdt;
 	private Param param;
 	private ProgBean pb;
-	/*
-	 * 旧版地图定位 
-	 */
-	public void selLines(){
-		HashMap<String, Object> hm=new HashMap<String, Object>();
-		List<Dzdt> rl=dzdtServer.selLines(dzdt);
-		List<HashMap<String,String>> xyHashMapList = new ArrayList<HashMap<String,String>>();
-		for(int i=0;i<rl.size();i++){
-			Dzdt tempmb = rl.get(i);
-			DealShape2<Dzdt> dealShape = new DealShape2<Dzdt>();
-			xyHashMapList =dealShape.getXyHashMapList("G6001",tempmb.getShape(),0.007,40.996);
-			//System.out.println("++++++++++++"+xyHashMapList);
-			tempmb.setXyHashMapList(xyHashMapList);
-		}
-		try {
-			JsonUtils.write(rl, getresponse().getWriter());
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-	}
-	
+
+
 	/*
 	 * 右侧项目类型统计表
 	 */
