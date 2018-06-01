@@ -186,7 +186,7 @@ text-decoration:none;
 									<td align="right">管养单位：</td>
 	        						<td><select id="gydw" style="width:165px;"></select></td>
 	        						
-        							<td align="right">项目年份：</td>
+        							<td align="right">计划年份：</td>
         							<td><select id="xmnf" style="width: 80px;"></select></td>
         							<td align="right">是否显示自然村明细：</td>
         							<td>
