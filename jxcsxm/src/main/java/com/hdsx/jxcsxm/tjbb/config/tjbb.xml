@@ -240,7 +240,7 @@
 	
 	
 	<select id="queryXmlist" parameterType="xmjbxx" resultType="xmjbxx">
-		select * from(select rownum num ,t1.* from(select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+		select * from(select rownum num ,t1.* from(select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx_zb t
 		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
 		on t.xmbm=xd.xmid	
 		left join(
@@ -269,7 +269,7 @@
 		
 	</select>
 	<select id="queryXmlistCount" parameterType="xmjbxx" resultType="int">
-		select count(*) from(select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx t
+		select count(*) from(select t.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx_zb t
 		left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd group by xmid) xd
 		on t.xmbm=xd.xmid	
 		left join(
