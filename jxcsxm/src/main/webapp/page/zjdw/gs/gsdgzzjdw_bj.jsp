@@ -106,12 +106,14 @@ function zjdwtj(){
 		dataType:'json',
 		async:false,
 		success:function(msg){
-			if(parseFloat(msg.ztz)<parseFloat(accAdd(ztz,dwzj))){
-				dyjhz=true;
-			}
-			if(parseFloat(msg.xdzbz)<parseFloat(accAdd(zbz,dwzbz))){
-				dyjhb=true;
-			}
+            if(msg!=null){
+                if(parseFloat(msg.ztz)<parseFloat(accAdd(ztz,dwzj))){
+                    dyjhz=true;
+                }
+                if(parseFloat(msg.xdzbz)<parseFloat(accAdd(zbz,dwzbz))){
+                    dyjhb=true;
+                }
+            }
 			
 		}
 	});
