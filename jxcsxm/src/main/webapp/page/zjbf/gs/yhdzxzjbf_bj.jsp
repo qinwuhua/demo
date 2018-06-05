@@ -70,8 +70,7 @@ function zjbftj(){
 	var zbz=ztz;
 	result=validateInput("dfzc","number",result);
 	if(result) ztz=accAdd(ztz,$("#dfzc").val()==""?0:$("#dfzc").val());
-	result=validateInput("yhdk","number",result);
-	if(result) ztz=accAdd(ztz,$("#yhdk").val()==""?0:$("#yhdk").val());
+
 	$('#ztz').val(ztz);
 	var dyjhz = false;var dyjhb = false;  var xmbm=parent.parent.YMLib.Var.xmbm;var jhxdwh=$('#jhxdwh1').combo("getValue");
 	var dwzj=0;var dwzbz=0;
