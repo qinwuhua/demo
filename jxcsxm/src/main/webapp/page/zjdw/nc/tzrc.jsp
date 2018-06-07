@@ -653,11 +653,19 @@ text-decoration:none;
         	
         	<tr>
             	<td style="padding-left: 10px; font-size:12px;">
-            		<div>共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个,
-           		        计划下达补助资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                        到位补助资金共【<span id="dwzj" style="color: Red; font-weight: bold;">0</span>】万元，
-		                        其中，已审核到位补助资金共【<span id="yshdwzj" style="color: Red; font-weight: bold;">0</span>】万元。
-            		</div>
+					<table>
+						<tr>
+							<td colspan="2">共有项目【<span id="xmsl" style="color: red;font-weight: bold;">0</span>】个。</td>
+						</tr>
+						<tr>
+							<td>下达补助【<span id="xdzbz" style="color: Red; font-weight: bold;">0</span>】万元（部补【<span id="xdbb" style="color: Red; font-weight: bold;">0</span>】万元，省补【<span id="xdsb" style="color: Red; font-weight: bold;">0</span>】万元），地方自筹【<span id="xddf" style="color: Red; font-weight: bold;">0</span>】万元。</td>
+							<td style="padding-left: 10px;">到位补助【<span id="dwzbz" style="color: Red; font-weight: bold;">0</span>】万元（部补【<span id="dwbb" style="color: Red; font-weight: bold;">0</span>】万元，省补【<span id="dwsb" style="color: Red; font-weight: bold;">0</span>】万元），地方自筹【<span id="dwdf" style="color: Red; font-weight: bold;">0</span>】万元。</td>
+						</tr>
+						<tr>
+							<td>拨付补助【<span id="bfzbz" style="color: Red; font-weight: bold;">0</span>】万元（部补【<span id="bfbb" style="color: Red; font-weight: bold;">0</span>】万元，省补【<span id="bfsb" style="color: Red; font-weight: bold;">0</span>】万元），地方自筹【<span id="bfdf" style="color: Red; font-weight: bold;">0</span>】万元。</td>
+							<td style="padding-left: 10px;">调剂补助【<span id="tjzbz" style="color: Red; font-weight: bold;">0</span>】万元（部补【<span id="tjbb" style="color: Red; font-weight: bold;">0</span>】万元，省补【<span id="tjbb" style="color: Red; font-weight: bold;">0</span>】万元），地方自筹【<span id="tjdf" style="color: Red; font-weight: bold;">0</span>】万元。</td>
+						</tr>
+					</table>
             		<div><table id="grid"></table></div>
             	</td>
         	</tr>

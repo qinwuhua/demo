@@ -275,7 +275,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 				//System.out.println("进入方法");
 				//设置表头
 				ExcelTitleCell[] title = null;
-				title = new ExcelTitleCell[20];
+				title = new ExcelTitleCell[24];
 				title[0] = new ExcelTitleCell("项目编码", false,
 						new ExcelCoordinate(0, (short) 0), null, 20,false);
 				title[1] = new ExcelTitleCell("项目年份", false,
@@ -316,6 +316,15 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 						new ExcelCoordinate(0, (short) 18), null, 20,false);
 				title[19] = new ExcelTitleCell("备注", false,
 						new ExcelCoordinate(0, (short) 19), null, 50,false);
+
+				title[20] = new ExcelTitleCell("已拨付总投资", false,
+						new ExcelCoordinate(0, (short) 20), null, 15,false);
+				title[21] = new ExcelTitleCell("已拨付部补", false,
+						new ExcelCoordinate(0, (short) 21), null, 15,false);
+				title[22] = new ExcelTitleCell("已拨付省补", false,
+						new ExcelCoordinate(0, (short) 22), null, 15,false);
+				title[23] = new ExcelTitleCell("已拨付地方", false,
+						new ExcelCoordinate(0, (short) 23), null, 15,false);
 				//设置列与字段对应
 				Map<String, String> attribute = new HashMap<String, String>();
 				attribute.put("0", "xmbm");//项目编码
@@ -338,6 +347,11 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 				attribute.put("17", "tbr");//填报人
 				attribute.put("18", "tbsj");//填报时间
 				attribute.put("19", "bz");//备注
+
+				attribute.put("20", "bfzj");
+				attribute.put("21", "bfbb");
+				attribute.put("22", "bfsb");
+				attribute.put("23", "bfdf");
 				List<Object> excelData = new ArrayList<Object>();
 				String titleName = "通自然村资金拨付模版";
 				String fileName = "通自然村资金拨付模版";

@@ -367,7 +367,7 @@
 	</select>
 	<select id="queryzjbfmb" parameterType="xmjbxx" resultType="xmzjbf">
 		select xmbm,xmnf,xmmc,gydw,xzqh,ztz jhztz,dwcgs dwcgs,dwrys dwrys,dwdfzc dwdfzc,dwttc dwttc,jhxdwh,'没有标段' bd,
-    	'0' cgs,'0' rys,'0' dfzc,'0' ttc,to_char(sysdate,'yyyy-mm') bfyf,gydw tbr,to_char(sysdate,'yyyy-mm-dd') tbsj,'' bz 
+    	'0' cgs,'0' rys,'0' dfzc,'0' ttc,to_char(sysdate,'yyyy-mm') bfyf,gydw tbr,to_char(sysdate,'yyyy-mm-dd') tbsj,'' bz,bfzj,bfbb,bfsb,bfdf
     	 from(select t.*,zj.*,xd.jhxdwh,xsbzt,ssbzt,shzt,nvl(xsbztstr,'未填写') xsbztstr,nvl(ssbztstr,'未填写') ssbztstr,nvl(shztstr,'未填写') shztstr  from xmjbxx_zb t
 	    left join(select xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> group by xmid) xd
 	    on t.xmbm=xd.xmid 
@@ -378,9 +378,9 @@
 	    (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
 	    from xm_zjbf  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmids
 	    left join
-	      (select distinct xm.xmbm xmbms1,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(yshbfzj,0) yshbfzj,nvl(jhxdzj,0) jhxdzj,nvl(dwcgs,0) dwcgs,nvl(dwrys,0) dwrys,nvl(dwttc,0) dwttc,nvl(dwdfzc,0) dwdfzc from xmjbxx_zb xm left join 
+	      (select distinct xm.xmbm xmbms1,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(bf.bfbb,0)bfbb,nvl(bf.bfsb,0) bfsb,nvl(bf.bfdf,0) bfdf,nvl(jhxdzj,0) jhxdzj,nvl(dwcgs,0) dwcgs,nvl(dwrys,0) dwrys,nvl(dwttc,0) dwttc,nvl(dwdfzc,0) dwdfzc from xmjbxx_zb xm left join
 	      (select xmbm,sum(nvl(ztz,0)) dwzj,sum(nvl(cgs,0)) dwcgs,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) dwttc,sum(nvl(rys,0)) dwrys,sum(nvl(dfzc,0)) dwdfzc from xm_zjdw  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on xm.xmbm=dw.xmbm left join
-			  (select xmbm,sum(ztz) bfzj,sum(decode(shzt,'已审核',ztz,0)) yshbfzj from xm_zjbf  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) bf on xm.xmbm=bf.xmbm left join
+			  (select xmbm,sum(ztz) bfzj,sum(decode(shzt,'已审核',ztz,0)) yshbfzj,sum(cgs) bfbb,sum(yhdk+dfzc) bfdf,sum(ztz-cgs-dfzc-yhdk) bfsb from xm_zjbf  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) bf on xm.xmbm=bf.xmbm left join
 			  (select xmid xmbm,sum(nvl(ztz,0)) jhxdzj from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> and f_str_or_num(ztz)!=1 group by xmid) xd on xm.xmbm=xd.xmbm 
 	    ) zj on t.xmbm=zj.xmbms1
 	    where 1=1 

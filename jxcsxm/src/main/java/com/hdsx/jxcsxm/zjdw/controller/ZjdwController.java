@@ -345,7 +345,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 			//System.out.println("进入方法");
 			//设置表头
 			ExcelTitleCell[] title = null;
-			title = new ExcelTitleCell[18];
+			title = new ExcelTitleCell[22];
 			title[0] = new ExcelTitleCell("项目编码", false,
 					new ExcelCoordinate(0, (short) 0), null, 10,false);
 			title[1] = new ExcelTitleCell("项目年份", false,
@@ -382,6 +382,15 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 					new ExcelCoordinate(0, (short) 16), null, 20,false);
 			title[17] = new ExcelTitleCell("填报时间", false,
 					new ExcelCoordinate(0, (short) 17), null, 20,false);
+
+			title[18] = new ExcelTitleCell("已到位总投资", false,
+					new ExcelCoordinate(0, (short) 18), null, 20,false);
+			title[19] = new ExcelTitleCell("已到位部补", false,
+					new ExcelCoordinate(0, (short) 19), null, 20,false);
+			title[20] = new ExcelTitleCell("已到位省补", false,
+					new ExcelCoordinate(0, (short) 20), null, 20,false);
+			title[21] = new ExcelTitleCell("已到位地方", false,
+					new ExcelCoordinate(0, (short) 21), null, 20,false);
 			//设置列与字段对应
 			Map<String, String> attribute = new HashMap<String, String>();
 			attribute.put("0", "xmbm");//项目编码
@@ -402,6 +411,12 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 			attribute.put("15", "dwyf");//到位月份
 			attribute.put("16", "tbr");//填报人
 			attribute.put("17", "tbsj");//填报时间
+
+			attribute.put("18", "dwzj");
+			attribute.put("19", "dwbb");
+			attribute.put("20", "dwsb");
+			attribute.put("21", "dwdf");
+
 			List<Object> excelData = new ArrayList<Object>();
 			String titleName = "通自然村资金到位模版";
 			String fileName = "通自然村资金到位模版";
