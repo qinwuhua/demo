@@ -134,6 +134,8 @@
 		select 'a' id,'请选择' name,'' parent,'' bmid from dual
 		union all
 		select distinct jhxdwh id,jhxdwh name,'' parent,jhxdwh bmid from xm_gsd_jhxd where 1=1 and jhxdwh is not null and xmid like rtrim(#{name}, '0')||'%'
+		union all
+		select '无文号' id,'无文号' name,'' parent,'无文号' bmid from dual where #{name} not in (select distinct xmid from xm_gsd_jhxd)
 		order by id
 	</select>
 	<select id="getWhTreeByNameSh" parameterType="hashmap" resultType="treenode">

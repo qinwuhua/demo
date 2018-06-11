@@ -58,7 +58,7 @@
 	
 	
 	<select id="cxjhzxqkbhjxm" resultType="elist">
-		select '' v_0,'合计' v_1,sum(v_2) v_2,'' v_3,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_6,0))/sum(nvl(v_8,0)))*100,2))||'%')  v_7,
+		select '' v_0,'合计' v_1,sum(v_2) v_2,'' v_3,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(round(v_6,5),0)) v_6,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_6,0))/sum(nvl(v_8,0)))*100,2))||'%')  v_7,
 		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,
 		sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,
 		sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,
@@ -68,7 +68,7 @@
 	</select>
 	
 	<select id="cxjhzxqkbshjxm" resultType="elist">
-		select '' v_0,min(sgydw)||'合计' v_1,sum(v_2) v_2,'' v_3,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_6,0))/sum(nvl(v_8,0)))*100,2))||'%')  v_7,
+		select '' v_0,min(sgydw)||'合计' v_1,sum(v_2) v_2,'' v_3,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(round(v_6,5),0)) v_6,decode(sum(nvl(v_8,0)),0,'0%',to_char(round((sum(nvl(v_6,0))/sum(nvl(v_8,0)))*100,2))||'%')  v_7,
 		sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,
 		sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,
 		sum(nvl(v_18,0)) v_18,sum(nvl(v_19,0)) v_19,sum(nvl(v_20,0)) v_20,sum(nvl(v_21,0)) v_21,sum(nvl(v_22,0)) v_22,

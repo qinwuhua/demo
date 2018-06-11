@@ -892,10 +892,10 @@
 		update xmjbxx_tj set xmbm=#{glqxmbm},sfppjh='否',glqxmbm='' where xmbm=#{xmbm} 
 	</update>
 	<update id="qxglxmdw" parameterType="xmjbxx">
-		update xm_zjdw set xmbm=#{glqxmbm},glqxmbm='',jhxdwh='无文号' where xmbm=#{xmbm} 
+		update xm_zjdw set xmbm=#{glqxmbm},glqxmbm='',jhxdwh='无文号' where xmbm=#{xmbm} and glqxmbm=#{glqxmbm}
 	</update>
 	<update id="qxglxmbf" parameterType="xmjbxx">
-		update xm_zjbf set xmbm=#{glqxmbm},glqxmbm='',jhxdwh='无文号' where xmbm=#{xmbm}
+		update xm_zjbf set xmbm=#{glqxmbm},glqxmbm='',jhxdwh='无文号' where xmbm=#{xmbm} and glqxmbm=#{glqxmbm}
 	</update>
 	
 	

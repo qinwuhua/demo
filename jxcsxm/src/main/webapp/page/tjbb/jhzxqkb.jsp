@@ -119,6 +119,7 @@
 				datalist=msg;
 				disLoadjzt();
 				if (msg != null) {
+
 					for ( var i = 0; i < msg.length; i++) {
 						var tr="<tr height='28'>";
 						for ( var j = 0; j < ss.length; j++) {
