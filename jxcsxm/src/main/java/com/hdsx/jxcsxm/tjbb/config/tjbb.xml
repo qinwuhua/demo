@@ -550,12 +550,12 @@
 		nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_11,
 		nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_12,
 		jy.snbjz v_13,jy.snsjz v_14,jy.sndjz v_15,
-		jy.snzjz v_16,jy.ssnjz v_17,jy.snjz v_18,
-		nvl(dndw.bb,0) v_19,nvl(dndw.sb,0) v_20,nvl(dndw.df,0) v_21,nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_22,
-		nvl(dnbf.bb,0) v_23,nvl(dnbf.sb,0) v_24,nvl(dnbf.df,0) v_25,nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_26,
-		jy.dnbjz v_27,jy.dnsjz v_28,(jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)))-jy.dnbjz-jy.dnsjz v_29,(jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)))  v_30,
-		jy.dssnjz v_31,jy.dsnjz v_32,
-		nvl(tj.bb,0) v_33,nvl(tj.sb,0) v_34,nvl(tj.df,0) v_35,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_36,'' v_37
+		jy.snzjz v_16, jy.yqnjz1 v_17,jy.ssnjz v_18,jy.snjz v_19,
+		nvl(dndw.bb,0) v_20,nvl(dndw.sb,0) v_21,nvl(dndw.df,0) v_22,nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_23,
+		nvl(dnbf.bb,0) v_24,nvl(dnbf.sb,0) v_25,nvl(dnbf.df,0) v_26,nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_27,
+		jy.dnbjz v_28,jy.dnsjz v_29,(jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)))-jy.dnbjz-jy.dnsjz v_30,(jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)))  v_31,
+		jy.yqnjz v_32,jy.dssnjz v_33,jy.dsnjz v_34,jy.njz v_35,
+		nvl(tj.bb,0) v_36,nvl(tj.sb,0) v_37,nvl(tj.df,0) v_38,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_39,'' v_40
 		from xmjbxx_bb x,(
 		select * from TJBB_YQJH where nf=#{nf}
 		) yqjh,(
@@ -591,15 +591,16 @@
 		sum(nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0)) v_11,
 		sum(nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0)) v_12,
 		sum(nvl(jy.snbjz,0)) v_13,sum(nvl(jy.snsjz,0)) v_14,sum(nvl(jy.sndjz,0)) v_15,
-		sum(nvl(jy.snzjz,0)) v_16,sum(nvl(jy.ssnjz,0)) v_17,sum(nvl(jy.snjz,0)) v_18,
-		sum(nvl(dndw.bb,0)) v_19,sum(nvl(dndw.sb,0)) v_20,sum(nvl(dndw.df,0)) v_21,sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)) v_22,
-		sum(nvl(dnbf.bb,0)) v_23,sum(nvl(dnbf.sb,0)) v_24,sum(nvl(dnbf.df,0)) v_25,sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_26,
-		sum(jy.dnbjz) v_27,sum(jy.dnsjz) v_28,(sum(nvl(jy.snzjz,0))+sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))))-sum(jy.dnbjz)-sum(jy.dnsjz)  v_29,
+		sum(nvl(jy.snzjz,0)) v_16,sum(nvl(jy.yqnjz1,0)) v_17,sum(nvl(jy.ssnjz,0)) v_18,sum(nvl(jy.snjz,0)) v_19,
+		sum(nvl(dndw.bb,0)) v_20,sum(nvl(dndw.sb,0)) v_21,sum(nvl(dndw.df,0)) v_22,sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)) v_23,
+		sum(nvl(dnbf.bb,0)) v_24,sum(nvl(dnbf.sb,0)) v_25,sum(nvl(dnbf.df,0)) v_26,sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_27,
+		sum(jy.dnbjz) v_28,sum(jy.dnsjz) v_29,(sum(nvl(jy.snzjz,0))+sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))))-sum(jy.dnbjz)-sum(jy.dnsjz)  v_30,
 		
 		(sum(nvl(jy.snzjz,0))+sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))))
-		 v_30,
-		sum(nvl(jy.dssnjz,0)) v_31,sum(nvl(jy.dsnjz,0)) v_32,
-		sum(nvl(tj.bb,0)) v_33,sum(nvl(tj.sb,0)) v_34,sum(nvl(tj.df,0)) v_35,sum(nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0)) v_36,'' v_37
+		 v_31,
+		 sum(nvl(jy.yqnjz,0)) v_32,
+		sum(nvl(jy.dssnjz,0)) v_33,sum(nvl(jy.dsnjz,0)) v_34, sum(nvl(jy.njz,0)) v_35,
+		sum(nvl(tj.bb,0)) v_36,sum(nvl(tj.sb,0)) v_37,sum(nvl(tj.df,0)) v_38,sum(nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0)) v_39,'' v_40
 		from xmjbxx_bb x,(
 		select * from TJBB_YQJH where nf=#{nf}
 		) yqjh,(
@@ -633,12 +634,12 @@
 		nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_11,
 		nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_12,
 		jy.snbjz v_13,jy.snsjz v_14,jy.sndjz v_15,
-		jy.snzjz v_16,jy.ssnjz v_17,jy.snjz v_18,
-		nvl(dndw.bb,0) v_19,nvl(dndw.sb,0) v_20,nvl(dndw.df,0) v_21,nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_22,
-		nvl(dnbf.bb,0) v_23,nvl(dnbf.sb,0) v_24,nvl(dnbf.df,0) v_25,nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_26,
-		jy.dnbjz v_27,jy.dnsjz v_28,(jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)))-jy.dnbjz-jy.dnsjz v_29,(jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)))  v_30,
-		jy.dssnjz v_31,jy.dsnjz v_32,
-		nvl(tj.bb,0) v_33,nvl(tj.sb,0) v_34,nvl(tj.df,0) v_35,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_36,'' v_37
+		jy.snzjz v_16, jy.yqnjz1 v_17,jy.ssnjz v_18,jy.snjz v_19,
+		nvl(dndw.bb,0) v_20,nvl(dndw.sb,0) v_21,nvl(dndw.df,0) v_22,nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_23,
+		nvl(dnbf.bb,0) v_24,nvl(dnbf.sb,0) v_25,nvl(dnbf.df,0) v_26,nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_27,
+		jy.dnbjz v_28,jy.dnsjz v_29,(jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)))-jy.dnbjz-jy.dnsjz v_30,(jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)))  v_31,
+		jy.yqnjz v_32,jy.dssnjz v_33,jy.dsnjz v_34,jy.njz v_35,
+		nvl(tj.bb,0) v_36,nvl(tj.sb,0) v_37,nvl(tj.df,0) v_38,nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_39,'' v_40
 		from xmjbxx_bb_zrc x,(
 		select * from TJBB_YQJH_zrc where nf=#{nf}
 		) yqjh,(
@@ -674,15 +675,16 @@
 		sum(nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0)) v_11,
 		sum(nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0)) v_12,
 		sum(nvl(jy.snbjz,0)) v_13,sum(nvl(jy.snsjz,0)) v_14,sum(nvl(jy.sndjz,0)) v_15,
-		sum(nvl(jy.snzjz,0)) v_16,sum(nvl(jy.ssnjz,0)) v_17,sum(nvl(jy.snjz,0)) v_18,
-		sum(nvl(dndw.bb,0)) v_19,sum(nvl(dndw.sb,0)) v_20,sum(nvl(dndw.df,0)) v_21,sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)) v_22,
-		sum(nvl(dnbf.bb,0)) v_23,sum(nvl(dnbf.sb,0)) v_24,sum(nvl(dnbf.df,0)) v_25,sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_26,
-		sum(jy.dnbjz) v_27,sum(jy.dnsjz) v_28,(sum(nvl(jy.snzjz,0))+sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))))-sum(jy.dnbjz)-sum(jy.dnsjz)  v_29,
+		sum(nvl(jy.snzjz,0)) v_16,sum(nvl(jy.yqnjz1,0)) v_17,sum(nvl(jy.ssnjz,0)) v_18,sum(nvl(jy.snjz,0)) v_19,
+		sum(nvl(dndw.bb,0)) v_20,sum(nvl(dndw.sb,0)) v_21,sum(nvl(dndw.df,0)) v_22,sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)) v_23,
+		sum(nvl(dnbf.bb,0)) v_24,sum(nvl(dnbf.sb,0)) v_25,sum(nvl(dnbf.df,0)) v_26,sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_27,
+		sum(jy.dnbjz) v_28,sum(jy.dnsjz) v_29,(sum(nvl(jy.snzjz,0))+sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))))-sum(jy.dnbjz)-sum(jy.dnsjz)  v_30,
 		
 		(sum(nvl(jy.snzjz,0))+sum(nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0))-(sum(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))))
-		 v_30,
-		sum(nvl(jy.dssnjz,0)) v_31,sum(nvl(jy.dsnjz,0)) v_32,
-		sum(nvl(tj.bb,0)) v_33,sum(nvl(tj.sb,0)) v_34,sum(nvl(tj.df,0)) v_35,sum(nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0)) v_36,'' v_37
+		 v_31,
+		 sum(nvl(jy.yqnjz,0)) v_32,
+		sum(nvl(jy.dssnjz,0)) v_33,sum(nvl(jy.dsnjz,0)) v_34, sum(nvl(jy.njz,0)) v_35,
+		sum(nvl(tj.bb,0)) v_36,sum(nvl(tj.sb,0)) v_37,sum(nvl(tj.df,0)) v_38,sum(nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0)) v_39,'' v_40
 		from xmjbxx_bb_zrc x,(
 		select * from TJBB_YQJH_zrc where nf=#{nf}
 		) yqjh,(
@@ -719,17 +721,17 @@
 	<select id="getZjsydwhzbhj" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,'合计' v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-			jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		    jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))  v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+			jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx_bb x,(
 		    select * from TJBB_YQJH where nf=#{nf}
 			) yqjh,(
@@ -761,17 +763,17 @@
 	<select id="getZjsydwhzbhz" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,gydwdm,min((select name from xtgl_department where id=gydwdm)) v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx_bb x,(
 		    select * from TJBB_YQJH where nf=#{nf}
 			) yqjh,(
@@ -807,11 +809,11 @@
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
     nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
     from xmjbxx_bb x,(
     select * from TJBB_YQJH where nf=#{nf}
 	) yqjh,(
@@ -848,17 +850,17 @@
 	<select id="getZjsydwhzbhjds" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,'合计' v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx_bb x,(
 		    select * from TJBB_YQJH where nf=#{nf}
 			) yqjh,(
@@ -890,17 +892,17 @@
 	<select id="getZjsydwhzbhzds" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,gydwdm,min((select name from xtgl_department where id=gydwdm)) v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx_bb x,(
 		    select * from TJBB_YQJH where nf=#{nf}
 			) yqjh,(
@@ -936,11 +938,11 @@
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
     nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
     from xmjbxx_bb x,(
     select * from TJBB_YQJH where nf=#{nf}
 	) yqjh,(
@@ -979,17 +981,17 @@
 	<select id="getZjsyxmhzbhj" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,'合计' v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		     jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+		    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
 		    from xmjbxx_bb x,(
 		    select * from TJBB_YQJH where nf=#{nf}
 			) yqjh,(
@@ -1021,17 +1023,17 @@
 	<select id="getZjsyxmhzbhz" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,xmlx,min(xmlx) v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		     jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		    jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+		    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
 		    from xmjbxx_bb x,(
 		    select * from TJBB_YQJH where nf=#{nf}
 			) yqjh,(
@@ -1068,11 +1070,11 @@
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
     nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-     jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
     from xmjbxx_bb x,(
     select * from TJBB_YQJH where nf=#{nf}
 	) yqjh,(
@@ -1107,17 +1109,17 @@
 	<select id="getZjsydwhzbhjzrc" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,'合计' v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-			jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		    jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0))  v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+			jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx_bb_zrc x,(
 		    select * from TJBB_YQJH_zrc where nf=#{nf}
 			) yqjh,(
@@ -1149,17 +1151,17 @@
 	<select id="getZjsydwhzbhzzrc" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,gydwdm,min((select name from xtgl_department where id=gydwdm)) v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx_bb_zrc x,(
 		    select * from TJBB_YQJH_zrc where nf=#{nf}
 			) yqjh,(
@@ -1195,11 +1197,11 @@
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
     nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',x.gydwdm,substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
     from xmjbxx_bb_zrc x,(
     select * from TJBB_YQJH_zrc where nf=#{nf}
 	) yqjh,(
@@ -1236,17 +1238,17 @@
 	<select id="getZjsydwhzbhjdszrc" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,'合计' v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx_bb_zrc x,(
 		    select * from TJBB_YQJH_zrc where nf=#{nf}
 			) yqjh,(
@@ -1278,17 +1280,17 @@
 	<select id="getZjsydwhzbhzdszrc" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,gydwdm,min((select name from xtgl_department where id=gydwdm)) v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+		    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
 		    from xmjbxx_bb_zrc x,(
 		    select * from TJBB_YQJH_zrc where nf=#{nf}
 			) yqjh,(
@@ -1324,11 +1326,11 @@
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
     nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-    jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
+    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(substr(x.gydwdm,0,1),'1',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00',substr(x.gydwdm,1,4)||'1'||substr(x.gydwdm,6,4)||'00') gydwdm
     from xmjbxx_bb_zrc x,(
     select * from TJBB_YQJH_zrc where nf=#{nf}
 	) yqjh,(
@@ -1367,17 +1369,17 @@
 	<select id="getZjsyxmhzbhjzrc" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,'合计' v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		     jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+		    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
 		    from xmjbxx_bb_zrc x,(
 		    select * from TJBB_YQJH_zrc where nf=#{nf}
 			) yqjh,(
@@ -1409,17 +1411,17 @@
 	<select id="getZjsyxmhzbhzzrc" parameterType="elist" resultType="elist">
 		select 
 		'是' sfhj,xmlx,min(xmlx) v_1,sum(nvl(v_4,0)) v_4,sum(nvl(v_5,0)) v_5,sum(nvl(v_6,0)) v_6,sum(nvl(v_7,0)) v_7,sum(nvl(v_8,0)) v_8,sum(nvl(v_9,0)) v_9,
-		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,count(*) xmsl
+		sum(nvl(v_10,0)) v_10,sum(nvl(v_11,0)) v_11,sum(nvl(v_12,0)) v_12,sum(nvl(v_13,0)) v_13,sum(nvl(v_14,0)) v_14,sum(nvl(v_15,0)) v_15,sum(nvl(v_16,0)) v_16,sum(nvl(v_17,0)) v_17,sum(nvl(v_18,0)) v_18,count(*) xmsl
 		from (
 		select rownum v_0,x.gydw v_1,x.xmmc v_2,decode(yqjh.yqwh,null,dnjh.dnwh,decode(dnjh.dnwh,null,yqjh.yqwh,yqjh.yqwh||','||dnjh.dnwh)) v_3,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
 		    nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
 		    nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-		     jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-		    jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+		    jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+		    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+		    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+		     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+		    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
 		    from xmjbxx_bb_zrc x,(
 		    select * from TJBB_YQJH_zrc where nf=#{nf}
 			) yqjh,(
@@ -1456,11 +1458,11 @@
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0) v_4,
     nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_5,
     nvl(yqjh.yqbb,0)+nvl(yqjh.yqsb,0)+nvl(yqjh.yqdf,0)+nvl(dnjh.dnbb,0)+nvl(dnjh.dnsb,0)+nvl(dnjh.dndf,0) v_6,
-     jy.snzjz v_7,jy.ssnjz v_8,jy.snjz v_9,
-    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_10,
-    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_11,
-     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_12, jy.dssnjz v_13, jy.dsnjz v_14,
-    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_15,'' v_16,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
+     jy.snzjz v_7,nvl(jy.yqnjz1,0) v_8,jy.ssnjz v_9,jy.snjz v_10,
+    nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0) v_11,
+    nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0) v_12,
+     jy.snzjz+nvl(dndw.bb,0)+nvl(dndw.sb,0)+nvl(dndw.df,0)-(nvl(dnbf.bb,0)+nvl(dnbf.sb,0)+nvl(dnbf.df,0)) v_13,jy.yqnjz v_14, jy.dssnjz v_15, jy.dsnjz v_16,jy.njz v_17,
+    nvl(tj.bb,0)+nvl(tj.sb,0)+nvl(tj.df,0) v_18,'' v_19,decode(x.jsxz,'养护大中修',x.jsxz,x.gcfl) xmlx
     from xmjbxx_bb_zrc x,(
     select * from TJBB_YQJH_zrc where nf=#{nf}
 	) yqjh,(

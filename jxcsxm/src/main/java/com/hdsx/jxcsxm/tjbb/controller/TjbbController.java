@@ -938,11 +938,11 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("数据统计截止时间：",1,1,19,19));
 				
 				et.add(new Excel_tilte(elist.getBbsj(),1,1,20,20));
-				et.add(new Excel_tilte("",1,1,21,36));
-				et.add(new Excel_tilte("单位：万元",1,1,37,37));
+				et.add(new Excel_tilte("",1,1,21,39));
+				et.add(new Excel_tilte("单位：万元",1,1,40,40));
 				
 				et.add(new Excel_tilte("投资计划",2,2,0,12));
-				et.add(new Excel_tilte("资金",2,2,13,37));
+				et.add(new Excel_tilte("资金",2,2,13,40));
 				
 				
 				et.add(new Excel_tilte("序号",3,5,0,0));
@@ -952,12 +952,12 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("以前年度计划",3,3,4,7));
 				et.add(new Excel_tilte("本年计划",3,3,8,11));
 				et.add(new Excel_tilte("合计",3,5,12,12));
-				et.add(new Excel_tilte("结转",3,3,13,18));
-				et.add(new Excel_tilte("本年拨入",3,3,19,22));
-				et.add(new Excel_tilte("本年拨出",3,3,23,26));
-				et.add(new Excel_tilte("当年结存",3,3,27,32));
-				et.add(new Excel_tilte("调剂",3,3,33,36));
-				et.add(new Excel_tilte("备注",3,5,37,37));
+				et.add(new Excel_tilte("结转",3,3,13,19));
+				et.add(new Excel_tilte("本年拨入",3,3,20,23));
+				et.add(new Excel_tilte("本年拨出",3,3,24,27));
+				et.add(new Excel_tilte("当年结存",3,3,28,35));
+				et.add(new Excel_tilte("调剂",3,3,36,39));
+				et.add(new Excel_tilte("备注",3,5,40,40));
 				
 				et.add(new Excel_tilte("部补",4,5,4,4));
 				et.add(new Excel_tilte("省补",4,5,5,5));
@@ -973,32 +973,36 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("省补",4,5,14,14));
 				et.add(new Excel_tilte("地方",4,5,15,15));
 				et.add(new Excel_tilte("合计",4,5,16,16));
-				et.add(new Excel_tilte("其中",4,4,17,18));
+				et.add(new Excel_tilte("其中",4,4,17,19));
 				
 				
-				et.add(new Excel_tilte("部补",4,5,19,19));
-				et.add(new Excel_tilte("省补",4,5,20,20));
-				et.add(new Excel_tilte("地方",4,5,21,21));
-				et.add(new Excel_tilte("合计",4,5,22,22));
-				et.add(new Excel_tilte("部补",4,5,23,23));
-				et.add(new Excel_tilte("省补",4,5,24,24));
-				et.add(new Excel_tilte("地方",4,5,25,25));
-				et.add(new Excel_tilte("合计",4,5,26,26));
-				et.add(new Excel_tilte("部补",4,5,27,27));
-				et.add(new Excel_tilte("省补",4,5,28,28));
-				et.add(new Excel_tilte("地方",4,5,29,29));
-				et.add(new Excel_tilte("合计",4,5,30,30));
-				et.add(new Excel_tilte("其中",4,4,31,32));
-				et.add(new Excel_tilte("部补",4,5,33,33));
-				et.add(new Excel_tilte("省补",4,5,34,34));
-				et.add(new Excel_tilte("地方",4,5,35,35));
-				et.add(new Excel_tilte("合计",4,5,36,36));
+				et.add(new Excel_tilte("部补",4,5,20,20));
+				et.add(new Excel_tilte("省补",4,5,21,21));
+				et.add(new Excel_tilte("地方",4,5,22,22));
+				et.add(new Excel_tilte("合计",4,5,23,23));
+				et.add(new Excel_tilte("部补",4,5,24,24));
+				et.add(new Excel_tilte("省补",4,5,25,25));
+				et.add(new Excel_tilte("地方",4,5,26,26));
+				et.add(new Excel_tilte("合计",4,5,27,27));
+				et.add(new Excel_tilte("部补",4,5,28,28));
+				et.add(new Excel_tilte("省补",4,5,29,29));
+				et.add(new Excel_tilte("地方",4,5,30,30));
+				et.add(new Excel_tilte("合计",4,5,31,31));
+				et.add(new Excel_tilte("其中",4,4,32,35));
+				et.add(new Excel_tilte("部补",4,5,36,36));
+				et.add(new Excel_tilte("省补",4,5,37,37));
+				et.add(new Excel_tilte("地方",4,5,38,38));
+				et.add(new Excel_tilte("合计",4,5,39,39));
 				
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,17,17));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,18,18));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,31,31));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,32,32));
-
+				
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,17,17));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,18,18));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,19,19));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,32,32));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,33,33));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,34,34));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf()))+"",5,5,35,35));
+				
 				
 				eldata.setEl(l);//将实体list放入类中
 				eldata.setEt(et);//将表头内容设置到类里面
@@ -1051,12 +1055,12 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("数据统计截止时间：",1,1,7,7));
 				
 				et.add(new Excel_tilte(elist.getBbsj(),1,1,8,8));
-				et.add(new Excel_tilte("",1,1,9,15));
-				et.add(new Excel_tilte("单位：万元",1,1,16,16));
+				et.add(new Excel_tilte("",1,1,9,18));
+				et.add(new Excel_tilte("单位：万元",1,1,19,19));
 				
 				
 				et.add(new Excel_tilte("投资计划",2,2,0,6));
-				et.add(new Excel_tilte("资金",2,2,7,16));
+				et.add(new Excel_tilte("资金",2,2,7,19));
 				
 				
 				et.add(new Excel_tilte("序号",3,5,0,0));
@@ -1066,24 +1070,25 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("以前年度计划",3,5,4,4));
 				et.add(new Excel_tilte("本年计划",3,5,5,5));
 				et.add(new Excel_tilte("合计",3,5,6,6));
-				et.add(new Excel_tilte("结转",3,3,7,9));
-				et.add(new Excel_tilte("本年拨入",3,5,10,10));
-				et.add(new Excel_tilte("本年拨出",3,5,11,11));
-				et.add(new Excel_tilte("当年结存",3,3,12,14));
-				et.add(new Excel_tilte("调剂",3,5,15,15));
-				et.add(new Excel_tilte("备注",3,5,16,16));
+				et.add(new Excel_tilte("结转",3,3,7,10));
+				et.add(new Excel_tilte("本年拨入",3,5,11,11));
+				et.add(new Excel_tilte("本年拨出",3,5,12,12));
+				et.add(new Excel_tilte("当年结存",3,3,13,17));
+				et.add(new Excel_tilte("调剂",3,5,18,18));
+				et.add(new Excel_tilte("备注",3,5,19,19));
 				
 				
 				et.add(new Excel_tilte("总数",4,5,7,7));
-				et.add(new Excel_tilte("其中",4,4,8,9));
-				et.add(new Excel_tilte("总数",4,5,12,12));
-				et.add(new Excel_tilte("其中",4,4,13,14));
-				
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,8,8));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,9,9));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,13,13));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,14,14));
-
+				et.add(new Excel_tilte("其中",4,4,8,10));
+				et.add(new Excel_tilte("总数",4,5,13,13));
+				et.add(new Excel_tilte("其中",4,4,14,17));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,8,8));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,9,9));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,10,10));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,14,14));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,15,15));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,16,16));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf()))+"",5,5,17,17));
 				
 				eldata.setEl(l);//将实体list放入类中
 				eldata.setEt(et);//将表头内容设置到类里面
@@ -1133,12 +1138,12 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("数据统计截止时间：",1,1,7,7));
 				
 				et.add(new Excel_tilte(elist.getBbsj(),1,1,8,8));
-				et.add(new Excel_tilte("",1,1,9,15));
-				et.add(new Excel_tilte("单位：万元",1,1,16,16));
+				et.add(new Excel_tilte("",1,1,9,18));
+				et.add(new Excel_tilte("单位：万元",1,1,19,19));
 				
 				
 				et.add(new Excel_tilte("投资计划",2,2,0,6));
-				et.add(new Excel_tilte("资金",2,2,7,16));
+				et.add(new Excel_tilte("资金",2,2,7,19));
 				
 				
 				et.add(new Excel_tilte("序号",3,5,0,0));
@@ -1148,23 +1153,25 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				et.add(new Excel_tilte("以前年度计划",3,5,4,4));
 				et.add(new Excel_tilte("本年计划",3,5,5,5));
 				et.add(new Excel_tilte("合计",3,5,6,6));
-				et.add(new Excel_tilte("结转",3,3,7,9));
-				et.add(new Excel_tilte("本年拨入",3,5,10,10));
-				et.add(new Excel_tilte("本年拨出",3,5,11,11));
-				et.add(new Excel_tilte("当年结存",3,3,12,14));
-				et.add(new Excel_tilte("调剂",3,5,15,15));
-				et.add(new Excel_tilte("备注",3,5,16,16));
+				et.add(new Excel_tilte("结转",3,3,7,10));
+				et.add(new Excel_tilte("本年拨入",3,5,11,11));
+				et.add(new Excel_tilte("本年拨出",3,5,12,12));
+				et.add(new Excel_tilte("当年结存",3,3,13,17));
+				et.add(new Excel_tilte("调剂",3,5,18,18));
+				et.add(new Excel_tilte("备注",3,5,19,19));
 				
 				
 				et.add(new Excel_tilte("总数",4,5,7,7));
-				et.add(new Excel_tilte("其中",4,4,8,9));
-				et.add(new Excel_tilte("总数",4,5,12,12));
-				et.add(new Excel_tilte("其中",4,4,13,14));
-				
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,8,8));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,9,9));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,13,13));
-				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,14,14));
+				et.add(new Excel_tilte("其中",4,4,8,10));
+				et.add(new Excel_tilte("总数",4,5,13,13));
+				et.add(new Excel_tilte("其中",4,4,14,17));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,8,8));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,9,9));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,10,10));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,14,14));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,15,15));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,16,16));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf()))+"",5,5,17,17));
 
 				
 				eldata.setEl(l);//将实体list放入类中

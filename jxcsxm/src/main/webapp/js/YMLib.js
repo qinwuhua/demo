@@ -1394,6 +1394,7 @@ function loadWhBmbmSh(id, name,str) {
 		valueField : 'bmid',
 		textField : 'name',
 		panelHeight:'auto',
+		editable:false,
 		multiple:false
 	});
 	$('#' + id).combobox('setValue',str);

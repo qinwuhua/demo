@@ -38,8 +38,11 @@
 		loadBmbm3('xmnf','项目年份',new Date().getFullYear());
  		loadBmbm3('xmlx','报表项目类型');
  		loadBmbm('hjlx','资金报表合计类型','按地市');
+ 		$(".n").html($("#nf").combo('getValue'));
 		$(".sn").html($("#nf").combo('getValue')-1);
 		$(".ssn").html($("#nf").combo('getValue')-2);
+		$(".sssn").html($("#nf").combo('getValue')-3);
+	
 		if($.cookie('unit')=='36'){
 			 $("#sfxszrc2").attr("checked","checked");  
 			  $("#sfxszrc1").removeAttr("checked");  
@@ -69,6 +72,11 @@
 		}
 		
 		var nf=$("#nf").combobox('getValue');
+		$(".n").html($("#nf").combo('getValue'));
+		$(".sn").html($("#nf").combo('getValue')-1);
+		$(".ssn").html($("#nf").combo('getValue')-2);
+		$(".sssn").html($("#nf").combo('getValue')-3);
+		
 		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
 		$.ajax({
 			url:"/jxcsxm/tjbb/getZjsydwhzb.do",
@@ -96,12 +104,14 @@
 						+"<td>"+msg[i].v_8+"</td>"+"<td>"+msg[i].v_9+"</td>"
 						+"<td>"+msg[i].v_10+"</td>"+"<td>"+msg[i].v_11+"</td>"
 						+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"
-						+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"+"<td>"+msg[i].v_16+"</td>";
+						+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"+"<td>"+msg[i].v_16+"</td>"
+						+"<td>"+msg[i].v_17+"</td>"+"<td>"+msg[i].v_18+"</td>"
+						+"<td>"+msg[i].v_19+"</td>";
 						tr+="</tr>";
 						tbody.append(tr);
 					}
 					if(msg.length==1000){
-						var tr="<tr height='28'><td colspan='15'>数据太多，请导出表格查看...</td></tr>";
+						var tr="<tr height='28'><td colspan='19'>数据太多，请导出表格查看...</td></tr>";
 						tbody.append(tr);
 					}
 				}
@@ -216,7 +226,7 @@ text-decoration:none;
 								<tbody id='biaotou'>
 									<tr>
 									<td colspan="7">投资计划</td>
-									<td colspan="10">资金</td>
+									<td colspan="13">资金</td>
 									</tr>
 									<tr>
 									<td rowspan="3">序号</td>
@@ -226,10 +236,10 @@ text-decoration:none;
 									<td rowspan="3">以前年度计划</td>
 									<td rowspan="3">本年计划</td>
 									<td rowspan="3">合计</td>
-									<td colspan="3">结转</td>
+									<td colspan="4">结转</td>
 									<td rowspan="3">本年拨入</td>
 									<td rowspan="3">本年拨出</td>
-									<td colspan="3">当年结存</td>
+									<td colspan="5">当年结存</td>
 									<td rowspan="3">调剂</td>
 									<td rowspan="3">备注</td>
 									</tr>
@@ -237,16 +247,19 @@ text-decoration:none;
 									
 									<td rowspan="2">总数</td>
 									
-									<td colspan="2">其中</td>
+									<td colspan="3">其中</td>
 									<td rowspan="2">总数</td>
 									
-									<td colspan="2">其中</td>
+									<td colspan="4">其中</td>
 									</tr>
 									<tr>
+									<td><span class='sssn'></span>及以前</td>
 									<td><span class='ssn'></span></td>
 									<td><span class='sn'></span></td>
+									<td><span class='sssn'></span>及以前</td>
 									<td><span class='ssn'></span></td>
 									<td><span class='sn'></span></td>
+									<td><span class='n'></span></td>
 									</tr>
 									
 								</tbody>
