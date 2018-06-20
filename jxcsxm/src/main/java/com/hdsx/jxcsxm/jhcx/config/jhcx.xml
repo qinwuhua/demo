@@ -72,9 +72,8 @@
 	</select>
 	
 	<select id="gettjxmInfo" parameterType="xmjbxx" resultType="xmjbxx">
-		select t.*,xd.jhxdwh,decode(jsxz,'路网结构改造',gcfl,jsxz) xmlx  from xmjbxx_tj t
-		left join(select xmbm xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_zjdw group by xmbm) xd
-		on t.xmbm=xd.xmid	 where xmbm=#{xmbm}
+		select t.*,xd.jhxdwh,decode(t.jsxz,'路网结构改造',t.gcfl,t.jsxz) xmlx,x.xmnf xmnf1,x.xmmc xmmc1,x.gydw gydw1,x.xzqh xzqh1,x.gcfl xmlx1  from xmjbxx_tj t left join xmjbxx x on t.xmbm=x.xmbm left join(select xmbm xmid,replace(WMSYS.WM_CONCAT(distinct jhxdwh),',',',') jhxdwh from xm_zjdw group by xmbm) xd
+		on t.xmbm=xd.xmid where t.xmbm=#{xmbm}
 	</select>
 	
 	<select id="queryZjByGydwdm" parameterType="xmjbxx" resultType="xmjbxx">

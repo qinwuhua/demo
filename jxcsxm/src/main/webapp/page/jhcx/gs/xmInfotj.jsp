@@ -616,7 +616,10 @@
 			}
 		});
 	}
-		
+
+
+
+
 	</script>
 	<style type="text/css">
 
@@ -670,7 +673,50 @@
 				</td>
 				
             </tr>
-            
+				<tr style="height: 25px;">
+					<td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #FFEFD5; width: 15%; padding-left: 10px;">
+						关联项目信息
+					</td>
+				</tr>
+				<tr style="height: 30px;">
+					<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
+						项目年份</td>
+					<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
+						<input id="xmnf1" name="xmnf1" type="text" style="width: 230px;"/>
+					</td>
+					<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:20%" align="right">
+						项目名称</td>
+					<td style="background-color: #ffffff; height: 20px;width:30%" align="left">
+						<input id="xmmc1" name="xmmc1" type="text" style="width: 230px;"/>
+					</td>
+
+				</tr>
+				<tr style="height: 30px;">
+					<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
+						管养单位</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input id="gydw1" name="gydw1" type="text" style="width: 230px;"/>
+					</td>
+					<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
+						行政区划</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input id="xzqh1" name="xzqh1" type="text" style="width: 230px;"/>
+					</td>
+
+				</tr>
+				<tr style="height: 30px;">
+					<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
+						项目类型</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input id="xmlx1" name="xmlx1" type="text" style="width: 230px;"/>
+					</td>
+					<td style="background-color:#FFEFD5;color: #007DB3; font-weight: bold;width:15%" align="right">
+					</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					</td>
+
+				</tr>
+
              <div id='zjdw'>
 	            <tr>
 	              <td colspan="4" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight:bold;  font-size: small; text-align: left; background-color: #FFEFD5; width: 15%; padding-left: 10px;height: 30px;">

@@ -177,7 +177,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
 //			elist.setXmnf(MyUtil.getQueryTJ(elist.getJhnf(), "xdnf"));
 			elist.setXmnf("");
-			elist.setJhnf(MyUtil.getQueryTJ(elist.getJhnf(), "xm.xmnf"));
+			elist.setJhnf(MyUtil.getQueryTJ(elist.getJhnf(), "xm.xdnf"));
 			elist.setGydwdm(MyUtil.getQueryTJDW(elist.getGydw(), "xm.gydwdm"));
 			if ("1".equals(elist.getFlag())) {
 				ExcelData eldata=new ExcelData();//创建一个类
@@ -1013,7 +1013,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 			}else{
 				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
 				
-				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xmnf"));
+				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
 				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
 				List<Excel_list> l = tjbbServer.getZjsymxb(elist);
 				getRequest().getSession().setAttribute("zjsymxb", l);
@@ -1096,7 +1096,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				Excel_export.excel_export(eldata,response);	
 			}else{
 				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
-				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xmnf"));
+				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
 				elist.setJhnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
 				
 				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
@@ -1180,7 +1180,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				Excel_export.excel_export(eldata,response);	
 			}else{
 				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
-				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xmnf"));
+				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
 				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
 				List<Excel_list> l = tjbbServer.getZjsyxmhzb(elist);
 				getRequest().getSession().setAttribute("zjsyxmhzb", l);

@@ -120,7 +120,53 @@ public class Xmjbxx implements Serializable {
     private String tjsb;
     private String tjdf;
     private String glqxmbm;
-    
+
+    private String xmnf1;
+	private String xmmc1;
+	private String gydw1;
+	private String xzqh1;
+	private String xmlx1;
+
+	public String getXmnf1() {
+		return xmnf1;
+	}
+
+	public void setXmnf1(String xmnf1) {
+		this.xmnf1 = xmnf1;
+	}
+
+	public String getXmmc1() {
+		return xmmc1;
+	}
+
+	public void setXmmc1(String xmmc1) {
+		this.xmmc1 = xmmc1;
+	}
+
+	public String getGydw1() {
+		return gydw1;
+	}
+
+	public void setGydw1(String gydw1) {
+		this.gydw1 = gydw1;
+	}
+
+	public String getXzqh1() {
+		return xzqh1;
+	}
+
+	public void setXzqh1(String xzqh1) {
+		this.xzqh1 = xzqh1;
+	}
+
+	public String getXmlx1() {
+		return xmlx1;
+	}
+
+	public void setXmlx1(String xmlx1) {
+		this.xmlx1 = xmlx1;
+	}
+
 	public String getGlqxmbm() {
 		return glqxmbm;
 	}
