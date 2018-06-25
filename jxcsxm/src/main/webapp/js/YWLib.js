@@ -22,7 +22,7 @@ function loadjhxdwh(id,xmlx){
 			    valueField:'value',
 			    textField:'text',
 			    multiple:true,
-			    editable:false,
+//			    editable:false,
 			    formatter:function(row){
 					var opts = $(this).combobox('options');
 					return '<input id="id'+row.value+'" type="checkbox" class="combobox-checkbox">' + row[opts.textField];
@@ -61,7 +61,13 @@ function loadjhxdwh(id,xmlx){
 							$('#id'+item.value).attr('checked', false);
 						});
 					}
+				},
+				filter: function(q, row){
+					var opts = $(this).combobox('options');
+					return row[opts.textField].indexOf(q) != -1;
 				}
+				
+				
 			});
 			
 			
