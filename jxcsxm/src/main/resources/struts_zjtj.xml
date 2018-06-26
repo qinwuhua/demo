@@ -35,7 +35,8 @@
 	<action name="getxmwh" class="zjtjController" method="getxmwh"></action>
 	<action name="qxgljh" class="zjtjController" method="qxgljh"></action>
 	<action name="queryXmlist_tj" class="zjtjController" method="queryXmlist_tj"></action>
-	
-	
+	<action name="yzglxmzj" class="zjtjController" method="yzglxmzj"></action>
+
+
  </package>
 </struts>

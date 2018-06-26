@@ -49,14 +49,18 @@ public class MyUtil implements Serializable{
 	 */
 	public static String getQueryTJ(String bh,String name){
 		String result="";
-		if(bh!=null&&!"".equals(bh)){
+		if(bh!=null&&!"".equals(bh)&&!" ".equals(bh)){
 			
 			String[] s = bh.split(",");
 			for (int i = 0; i < s.length; i++) {
-				if(i==0)
-					result+=" and ("+name+" like '%"+s[i]+"%'";
-				else
-					result+=" or "+name+" like '%"+s[i]+"%'";
+
+				if(!" ".equals(s[i])&&!"".equals(s[i])){
+					if(i==0)
+						result+=" and ("+name+" like '%"+s[i]+"%'";
+					else
+						result+=" or "+name+" like '%"+s[i]+"%'";
+				}
+
 			}
 			result+=")";
 			//System.out.println(result);

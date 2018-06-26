@@ -121,7 +121,35 @@
 			}
 			
 			var  data="xmjbxx.xmbm="+parent.YMLib.Var.xmbm+"&xmjbxx.jhxmbm="+_xmbm+"&xmjbxx.jhxdwh="+$("input[name='jhxdwh']:checked").val();
-			if(confirm("确认关联该计划吗？"))
+
+			var flagzj=true;
+            $.ajax({
+                type:'post',
+                url:'/jxcsxm/zjtj/yzglxmzj.do',
+                data:data,
+                dataType:'json',
+                async:false,
+                success:function(msg){
+
+                    if(msg){
+                        flagzj=false;
+                    }
+                }
+            });
+			if(flagzj){
+			    if(confirm("该调剂项目资金大于该笔计划资金，关联计划后将会将该调剂项目所有资金归还原项目，是否继续关联？")){
+
+				}else{
+			        return;
+				}
+			}else{
+                if(confirm("确认关联该计划吗？")){
+
+				}else{
+                    return;
+                }
+			}
+
 			$.ajax({
 				type:'post',
 				url:'/jxcsxm/zjtj/glxm.do',

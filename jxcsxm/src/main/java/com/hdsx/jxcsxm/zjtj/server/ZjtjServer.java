@@ -86,4 +86,5 @@ public interface ZjtjServer {
 
 	int queryXmlist_tjCount(Xmjbxx xmjbxx);
 
+	boolean yzglxmzj(Xmjbxx xmjbxx);
 }

@@ -897,7 +897,35 @@
 	<update id="qxglxmbf" parameterType="xmjbxx">
 		update xm_zjbf set xmbm=#{glqxmbm},glqxmbm='',jhxdwh='无文号' where xmbm=#{xmbm} and glqxmbm=#{glqxmbm}
 	</update>
-	
+
+	<insert id="adddwgl" parameterType="xmjbxx">
+		insert into xm_zjdw_gl select * from xm_zjdw where glqxmbm=#{xmbm}
+	</insert>
+	<delete id="deletedwjh" parameterType="xmjbxx">
+		delete from xm_zjdw where glqxmbm=#{xmbm}
+	</delete>
+
+	<insert id="addtjgl" parameterType="xmjbxx">
+		insert into xm_zjtj_gl select * from xm_zjtj where thxmbm=#{xmbm}
+	</insert>
+	<delete id="deletetjjh" parameterType="xmjbxx">
+		delete from xm_zjtj where thxmbm=#{xmbm}
+	</delete>
+
+	<insert id="adddwjh" parameterType="xmjbxx">
+		insert into xm_zjdw select * from xm_zjdw_gl where glqxmbm=#{glqxmbm}
+	</insert>
+	<delete id="deletedwgl" parameterType="xmjbxx">
+		delete from xm_zjdw_gl where glqxmbm=#{glqxmbm}
+	</delete>
+
+	<insert id="addtjjh" parameterType="xmjbxx">
+		insert into xm_zjtj select * from xm_zjtj_gl where thxmbm=#{glqxmbm}
+	</insert>
+	<delete id="deletetjgl" parameterType="xmjbxx">
+		delete from xm_zjtj_gl where thxmbm=#{glqxmbm}
+	</delete>
+
 	
 	<select id="getXm" parameterType="string" resultType="xmzjtj">
 		select  xm.*,yxm.yxmmc  from xmjbxx_tj xm left join (select t.xmbm,wm_concat(distinct to_char(x.xmmc)) yxmmc  from xm_tj  t left join xmjbxx x on t.trxmbm=x.xmbm group by t.xmbm) yxm on xm.xmbm=yxm.xmbm
@@ -910,4 +938,12 @@
 	<select id="getglqxmbm" parameterType="xmjbxx" resultType="string">
 		select distinct glqxmbm from xmjbxx_tj where xmbm=#{xmbm}
 	</select>
+
+	<select id="yzglxmzjjh" parameterType="xmjbxx" resultType="int">
+		select sum(nvl(ztz,0)-nvl(dfzc,0)-nvl(yhdk,0)) ztz from xm_gsd_jhxd where xmid=#{jhxmbm} and jhxdwh=#{jhxdwh}
+	</select>
+	<select id="yzglxmzjtj" parameterType="xmjbxx" resultType="int">
+		select sum(nvl(ztz,0)-nvl(dfzc,0)-nvl(yhdk,0)) ztz from xm_zjtj where thxmbm=#{xmbm}
+	</select>
+
 </mapper>

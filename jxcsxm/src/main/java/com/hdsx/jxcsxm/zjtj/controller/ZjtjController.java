@@ -690,5 +690,13 @@ public class ZjtjController extends BaseActionSupport implements ModelDriven<XmZ
 				e.printStackTrace();
 			}
 		}
-		
+
+		public void yzglxmzj(){
+			try {
+				ResponseUtils.write(getresponse(),zjtjServer.yzglxmzj(xmjbxx)+"");
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+
 }

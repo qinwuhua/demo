@@ -320,6 +320,17 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 			int i=ss.update("glxmjh", xmjbxx);
 			//修改到位
 			int j=ss.update("glxmdw",xmjbxx);
+			/**
+			 * 将调剂信息移除
+			 * 将到位信息移除
+			 */
+
+			ss.insert("adddwgl",xmjbxx);
+			ss.delete("deletedwjh",xmjbxx);
+
+			ss.insert("addtjgl",xmjbxx);
+			ss.delete("deletetjjh",xmjbxx);
+
 			//修改拨付
 			int k=ss.update("glxmbf",xmjbxx);
 			if(i==1&&j>0&&k>=0) {
@@ -355,6 +366,13 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 			xmjbxx.setGlqxmbm(glqxmbm);
 			//修改项目
 			int i=ss.update("qxglxmjh", xmjbxx);
+
+			ss.insert("adddwjh",xmjbxx);
+			ss.delete("deletedwgl",xmjbxx);
+
+			ss.insert("addtjjh",xmjbxx);
+			ss.delete("deletetjgl",xmjbxx);
+
 			//修改到位
 			int j=ss.update("qxglxmdw",xmjbxx);
 			//修改拨付
@@ -371,6 +389,14 @@ public class ZjtjServerImpl extends BaseOperate  implements ZjtjServer{
 			ss.close();
 		}
 		return false;
+	}
+
+	@Override
+	public boolean yzglxmzj(Xmjbxx xmjbxx){
+		int jh = queryOne("yzglxmzjjh",xmjbxx);
+		int tj = queryOne("yzglxmzjtj",xmjbxx);
+
+		return jh>=tj;
 	}
 	
 }
