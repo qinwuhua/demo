@@ -68,6 +68,30 @@ public class MyUtil implements Serializable{
 		}
 		return result;
 	}
+	
+	public static String getQueryTJIN(String bh,String name){
+		String result="";
+		if(bh!=null&&!"".equals(bh)&&!" ".equals(bh)){
+			result+="and "+name+" in (";
+			String[] s = bh.split(",");
+			for (int i = 0; i < s.length; i++) {
+				
+				if(!" ".equals(s[i])&&!"".equals(s[i])){
+					if(i==0)
+						result+="'"+s[i]+"'";
+					else
+						result+=" ,'"+s[i]+"'";
+				}
+
+			}
+			result+=")";
+			//System.out.println(result);
+			//result= bh.indexOf(",")==-1 ? " x."+name+" like '%"+bh+"%'": "x."+name+" in ("+bh+")";
+		}
+		return result;
+	}
+	
+	
 	/**
 	 * 查询条件都不是
 	 * @param bh 要处理的参数

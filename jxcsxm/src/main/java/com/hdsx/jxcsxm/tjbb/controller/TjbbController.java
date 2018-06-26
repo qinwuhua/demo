@@ -173,7 +173,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 		try {
 			
 			elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "xm.jsxz","xm.gcfl"));
-			elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "jhxdwh"));
+			elist.setJhxdwh(MyUtil.getQueryTJIN(elist.getJhxdwh(), "jhxdwh"));
 			elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
 //			elist.setXmnf(MyUtil.getQueryTJ(elist.getJhnf(), "xdnf"));
 			elist.setXmnf("");
@@ -279,7 +279,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				    
 				    elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "xm.jsxz","xm.gcfl"));
 				    
-					elist.setJhxdwh(MyUtil.getQueryTJ((String)session.getAttribute("sql"), "xd.jhxdwh"));
+					elist.setJhxdwh(MyUtil.getQueryTJIN((String)session.getAttribute("sql"), "xd.jhxdwh"));
 					elist.setXzqhdm(MyUtil.getQueryTJ((String)session.getAttribute("xzqhbb"), "xm.xzqhdm"));
 					
 				    
@@ -365,7 +365,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 				
 			} else {
 				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "xm.jsxz","xm.gcfl"));
-				elist.setJhxdwh(MyUtil.getQueryTJ(elist.getJhxdwh(), "xd.jhxdwh"));
+				elist.setJhxdwh(MyUtil.getQueryTJIN(elist.getJhxdwh(), "xd.jhxdwh"));
 				elist.setXzqhdm(MyUtil.getQueryTJ(elist.getXzqhdm(), "xm.xzqhdm"));
 				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xm.xmnf"));
 				List<Excel_list> l = tjbbServer.getTzhzb(elist);
@@ -385,7 +385,7 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 		xmjbxx.setXzqh(MyUtil.getQueryTJ(xmjbxx.getXzqh(), "xzqhdm"));
 		xmjbxx.setXmnf(MyUtil.getQueryTJ(xmjbxx.getXmnf(), "xmnf"));
 		xmjbxx.setJsxz(MyUtil.getQueryTJ(xmjbxx.getJsxz(), "jsxz||gcfl"));
-		xmjbxx.setJhxdwh(MyUtil.getQueryTJ(xmjbxx.getJhxdwh(), "jhxdwh"));
+		xmjbxx.setJhxdwh(MyUtil.getQueryTJIN(xmjbxx.getJhxdwh(), "jhxdwh"));
 		xmjbxx.setGcfl(MyUtil.getQueryTJ(xmjbxx.getGcfl(), "gcfl"));
 		xmjbxx.setShzt(MyUtil.getQueryTJ(xmjbxx.getShzt(), "shztstr"));
 		xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
