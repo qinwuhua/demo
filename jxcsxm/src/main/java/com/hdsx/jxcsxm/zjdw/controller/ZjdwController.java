@@ -430,6 +430,7 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 			xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
 			xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
 			xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
+			xmjbxx.setSfqbdw(MyUtil.getQueryTJ(xmjbxx.getSfqbdw(), "decode(zj.dwbb+zj.dwsb,null,'否',(zj.jhxdcgs+zj.jhxdttc),'是','否')"));
 			List<XmZjdw> ql = zjdwServer.queryzjdwmb(xmjbxx);
 			excelData.addAll(ql);
 			ExcelEntity excel = new ExcelEntity(titleName, title, attribute,excelData);

@@ -365,6 +365,7 @@ public class ZjbfController extends BaseActionSupport implements ModelDriven<XmZ
 				xmjbxx.setSsbzt(MyUtil.getQueryTJ(xmjbxx.getSsbzt(), "ssbztstr"));
 				xmjbxx.setXsbzt(MyUtil.getQueryTJ(xmjbxx.getXsbzt(), "xsbztstr"));
 				xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
+				xmjbxx.setSfqbbf(MyUtil.getQueryTJ(xmjbxx.getSfqbbf(), "decode(zj.bfbb+zj.bfsb,null,'否',(zj.dwcgs+zj.dwsb),'是','否')"));
 				List<XmZjbf> ql = zjbfServer.queryzjbfmb(xmjbxx);
 				excelData.addAll(ql);
 				ExcelEntity excel = new ExcelEntity(titleName, title, attribute,excelData);

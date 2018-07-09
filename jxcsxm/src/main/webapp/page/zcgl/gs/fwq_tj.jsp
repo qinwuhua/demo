@@ -38,9 +38,9 @@ $(function(){
 	_xmid=parent.YMLib.Var.xmbm;
 	loadBmbm('nf1','资产年份',new Date().getFullYear());
 	if($.cookie("unit")=='36')
-		loadUnits('gydw1','21101360000','21101360000');
+		loadUnit('gydw1','21101360000','21101360000');
 	else
-		loadUnits('gydw1',$.cookie('unit'),$.cookie('unit'));
+		loadUnit('gydw1',$.cookie('unit'),$.cookie('unit'));
 	//文件上传
 	loadFileUpload();
 			

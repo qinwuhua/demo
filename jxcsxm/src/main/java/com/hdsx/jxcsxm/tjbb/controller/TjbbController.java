@@ -1199,10 +1199,302 @@ public class TjbbController extends BaseActionSupport implements ModelDriven<Exc
 	}
 	
 	
+	//资金使用单位部补汇总表	
+	public void getZjsydwbbhzb(){
+		try {
+			
+			if("1".equals(elist.getFlag())){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+//					System.out.println(elist.getNf());
+				List<Excel_list> l = (List<Excel_list>) session.getAttribute("zjsydwbbhzb");
+				
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("公路建设车购税资金使用情况汇总表（按单位统计）");//设置第一行
+				eldata.setSheetName("sheet1");//设置sheeet名
+				eldata.setFileName("公路建设车购税资金使用情况汇总表（按单位统计）");//设置文件名
+				
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("填报单位：",1,1,0,0));
+				et.add(new Excel_tilte(elist.getGydw(),1,1,1,1));
+				et.add(new Excel_tilte("",1,1,2,6));
+				et.add(new Excel_tilte("数据统计截止时间：",1,1,7,7));
+				et.add(new Excel_tilte(elist.getBbsj(),1,1,8,8));
+				et.add(new Excel_tilte("",1,1,9,18));
+				et.add(new Excel_tilte("单位：万元",1,1,19,19));
+				
+				et.add(new Excel_tilte("投资计划",2,2,0,6));
+				et.add(new Excel_tilte("资金",2,2,7,19));
+				
+				et.add(new Excel_tilte("序号",3,5,0,0));
+				et.add(new Excel_tilte("项目单位",3,5,1,1));
+				et.add(new Excel_tilte("项目名称",3,5,2,2));
+				et.add(new Excel_tilte("计划文号",3,5,3,3));
+				et.add(new Excel_tilte("以前年度计划",3,5,4,4));
+				et.add(new Excel_tilte("本年计划",3,5,5,5));
+				et.add(new Excel_tilte("合计",3,5,6,6));
+				et.add(new Excel_tilte("结转",3,3,7,10));
+				et.add(new Excel_tilte("本年拨入",3,5,11,11));
+				et.add(new Excel_tilte("本年拨出",3,5,12,12));
+				et.add(new Excel_tilte("当年结存",3,3,13,17));
+				et.add(new Excel_tilte("调剂",3,5,18,18));
+				et.add(new Excel_tilte("备注",3,5,19,19));
+				
+				
+				et.add(new Excel_tilte("总数",4,5,7,7));
+				et.add(new Excel_tilte("其中",4,4,8,10));
+				et.add(new Excel_tilte("总数",4,5,13,13));
+				et.add(new Excel_tilte("其中",4,4,14,17));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,8,8));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,9,9));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,10,10));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,14,14));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,15,15));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,16,16));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf()))+"",5,5,17,17));
+				
+				eldata.setEl(l);//将实体list放入类中
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);	
+			}else{
+				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
+				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
+				elist.setJhnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
+				
+				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
+				List<Excel_list> l = tjbbServer.getZjsydwbbhzb(elist);
+				getRequest().getSession().setAttribute("zjsydwbbhzb", l);
+				if(l.size()>1000)
+					JsonUtils.write(l.subList(0, 1000), getresponse().getWriter());
+					else
+					JsonUtils.write(l, getresponse().getWriter());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
+	//资金使用单位省补汇总表	
+	public void getZjsydwsbhzb(){
+		try {
+			
+			if("1".equals(elist.getFlag())){
+				HttpServletRequest request = ServletActionContext.getRequest();
+				HttpSession session = request.getSession();
+//					System.out.println(elist.getNf());
+				List<Excel_list> l = (List<Excel_list>) session.getAttribute("zjsydwsbhzb");
+				
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("公路建设省补资金使用情况汇总表（按单位统计）");//设置第一行
+				eldata.setSheetName("sheet1");//设置sheeet名
+				eldata.setFileName("公路建设省补资金使用情况汇总表（按单位统计）");//设置文件名
+				
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("填报单位：",1,1,0,0));
+				et.add(new Excel_tilte(elist.getGydw(),1,1,1,1));
+				et.add(new Excel_tilte("",1,1,2,6));
+				et.add(new Excel_tilte("数据统计截止时间：",1,1,7,7));
+				et.add(new Excel_tilte(elist.getBbsj(),1,1,8,8));
+				et.add(new Excel_tilte("",1,1,9,18));
+				et.add(new Excel_tilte("单位：万元",1,1,19,19));
+				
+				et.add(new Excel_tilte("投资计划",2,2,0,6));
+				et.add(new Excel_tilte("资金",2,2,7,19));
+				
+				et.add(new Excel_tilte("序号",3,5,0,0));
+				et.add(new Excel_tilte("项目单位",3,5,1,1));
+				et.add(new Excel_tilte("项目名称",3,5,2,2));
+				et.add(new Excel_tilte("计划文号",3,5,3,3));
+				et.add(new Excel_tilte("以前年度计划",3,5,4,4));
+				et.add(new Excel_tilte("本年计划",3,5,5,5));
+				et.add(new Excel_tilte("合计",3,5,6,6));
+				et.add(new Excel_tilte("结转",3,3,7,10));
+				et.add(new Excel_tilte("本年拨入",3,5,11,11));
+				et.add(new Excel_tilte("本年拨出",3,5,12,12));
+				et.add(new Excel_tilte("当年结存",3,3,13,17));
+				et.add(new Excel_tilte("调剂",3,5,18,18));
+				et.add(new Excel_tilte("备注",3,5,19,19));
+				
+				
+				et.add(new Excel_tilte("总数",4,5,7,7));
+				et.add(new Excel_tilte("其中",4,4,8,10));
+				et.add(new Excel_tilte("总数",4,5,13,13));
+				et.add(new Excel_tilte("其中",4,4,14,17));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,8,8));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,9,9));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,10,10));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,14,14));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,15,15));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,16,16));
+				et.add(new Excel_tilte((Integer.parseInt(elist.getNf()))+"",5,5,17,17));
+				
+				eldata.setEl(l);//将实体list放入类中
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);	
+			}else{
+				elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
+				elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
+				elist.setJhnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
+				
+				elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
+				List<Excel_list> l = tjbbServer.getZjsydwsbhzb(elist);
+				getRequest().getSession().setAttribute("zjsydwsbhzb", l);
+				if(l.size()>1000)
+					JsonUtils.write(l.subList(0, 1000), getresponse().getWriter());
+					else
+					JsonUtils.write(l, getresponse().getWriter());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	//------------------------------------------
+	//资金使用项目车购税汇总表	
+		public void getZjsyxmbbhzb(){
+			try {
+				
+				if("1".equals(elist.getFlag())){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+//						System.out.println(elist.getNf());
+					List<Excel_list> l = (List<Excel_list>) session.getAttribute("zjsyxmbbhzb");
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("公路建设车购税资金使用情况汇总表（按项目统计）");//设置第一行
+					eldata.setSheetName("sheet1");//设置sheeet名
+					eldata.setFileName("公路建设车购税资金使用情况汇总表（按项目统计）");//设置文件名
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("填报单位：",1,1,0,0));
+					et.add(new Excel_tilte(elist.getGydw(),1,1,1,1));
+					et.add(new Excel_tilte("",1,1,2,6));
+					et.add(new Excel_tilte("数据统计截止时间：",1,1,7,7));
+					et.add(new Excel_tilte(elist.getBbsj(),1,1,8,8));
+					et.add(new Excel_tilte("",1,1,9,18));
+					et.add(new Excel_tilte("单位：万元",1,1,19,19));
+					et.add(new Excel_tilte("投资计划",2,2,0,6));
+					et.add(new Excel_tilte("资金",2,2,7,19));
+					et.add(new Excel_tilte("序号",3,5,0,0));
+					et.add(new Excel_tilte("项目单位",3,5,1,1));
+					et.add(new Excel_tilte("项目名称",3,5,2,2));
+					et.add(new Excel_tilte("计划文号",3,5,3,3));
+					et.add(new Excel_tilte("以前年度计划",3,5,4,4));
+					et.add(new Excel_tilte("本年计划",3,5,5,5));
+					et.add(new Excel_tilte("合计",3,5,6,6));
+					et.add(new Excel_tilte("结转",3,3,7,10));
+					et.add(new Excel_tilte("本年拨入",3,5,11,11));
+					et.add(new Excel_tilte("本年拨出",3,5,12,12));
+					et.add(new Excel_tilte("当年结存",3,3,13,17));
+					et.add(new Excel_tilte("调剂",3,5,18,18));
+					et.add(new Excel_tilte("备注",3,5,19,19));
+					et.add(new Excel_tilte("总数",4,5,7,7));
+					et.add(new Excel_tilte("其中",4,4,8,10));
+					et.add(new Excel_tilte("总数",4,5,13,13));
+					et.add(new Excel_tilte("其中",4,4,14,17));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,8,8));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,9,9));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,10,10));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,14,14));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,15,15));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,16,16));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf()))+"",5,5,17,17));
+					
+					eldata.setEl(l);//将实体list放入类中
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_export(eldata,response);	
+				}else{
+					elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
+					elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
+					elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
+					List<Excel_list> l = tjbbServer.getZjsyxmbbhzb(elist);
+					getRequest().getSession().setAttribute("zjsyxmbbhzb", l);
+					if(l.size()>1000)
+						JsonUtils.write(l.subList(0, 1000), getresponse().getWriter());
+						else
+						JsonUtils.write(l, getresponse().getWriter());
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
 	
-	
-	
+		//资金使用项目省补汇总表	
+		public void getZjsyxmsbhzb(){
+			try {
+				
+				if("1".equals(elist.getFlag())){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+//								System.out.println(elist.getNf());
+					List<Excel_list> l = (List<Excel_list>) session.getAttribute("zjsyxmsbhzb");
+					ExcelData eldata=new ExcelData();//创建一个类
+					eldata.setTitleName("公路建设省补资金使用情况汇总表（按项目统计）");//设置第一行
+					eldata.setSheetName("sheet1");//设置sheeet名
+					eldata.setFileName("公路建设省补资金使用情况汇总表（按项目统计）");//设置文件名
+					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+					et.add(new Excel_tilte("填报单位：",1,1,0,0));
+					et.add(new Excel_tilte(elist.getGydw(),1,1,1,1));
+					et.add(new Excel_tilte("",1,1,2,6));
+					et.add(new Excel_tilte("数据统计截止时间：",1,1,7,7));
+					et.add(new Excel_tilte(elist.getBbsj(),1,1,8,8));
+					et.add(new Excel_tilte("",1,1,9,18));
+					et.add(new Excel_tilte("单位：万元",1,1,19,19));
+					et.add(new Excel_tilte("投资计划",2,2,0,6));
+					et.add(new Excel_tilte("资金",2,2,7,19));
+					et.add(new Excel_tilte("序号",3,5,0,0));
+					et.add(new Excel_tilte("项目单位",3,5,1,1));
+					et.add(new Excel_tilte("项目名称",3,5,2,2));
+					et.add(new Excel_tilte("计划文号",3,5,3,3));
+					et.add(new Excel_tilte("以前年度计划",3,5,4,4));
+					et.add(new Excel_tilte("本年计划",3,5,5,5));
+					et.add(new Excel_tilte("合计",3,5,6,6));
+					et.add(new Excel_tilte("结转",3,3,7,10));
+					et.add(new Excel_tilte("本年拨入",3,5,11,11));
+					et.add(new Excel_tilte("本年拨出",3,5,12,12));
+					et.add(new Excel_tilte("当年结存",3,3,13,17));
+					et.add(new Excel_tilte("调剂",3,5,18,18));
+					et.add(new Excel_tilte("备注",3,5,19,19));
+					et.add(new Excel_tilte("总数",4,5,7,7));
+					et.add(new Excel_tilte("其中",4,4,8,10));
+					et.add(new Excel_tilte("总数",4,5,13,13));
+					et.add(new Excel_tilte("其中",4,4,14,17));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,8,8));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,9,9));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,10,10));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-3)+"及以前",5,5,14,14));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-2)+"",5,5,15,15));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf())-1)+"",5,5,16,16));
+					et.add(new Excel_tilte((Integer.parseInt(elist.getNf()))+"",5,5,17,17));
+					
+					eldata.setEl(l);//将实体list放入类中
+					eldata.setEt(et);//将表头内容设置到类里面
+					HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+					Excel_export.excel_export(eldata,response);	
+				}else{
+					elist.setGydw(MyUtil.getQueryTJ(elist.getGydw(), "gydwdm"));
+					elist.setXmnf(MyUtil.getQueryTJ(elist.getXmnf(), "xdnf"));
+					elist.setXmlx(MyUtil.getQueryxmlxTJ(elist.getXmlx(), "jsxz","gcfl"));
+					List<Excel_list> l = tjbbServer.getZjsyxmsbhzb(elist);
+					getRequest().getSession().setAttribute("zjsyxmsbhzb", l);
+					if(l.size()>1000)
+						JsonUtils.write(l.subList(0, 1000), getresponse().getWriter());
+						else
+						JsonUtils.write(l, getresponse().getWriter());
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 	
 }

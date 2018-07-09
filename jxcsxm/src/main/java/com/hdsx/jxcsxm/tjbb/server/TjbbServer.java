@@ -37,6 +37,12 @@ public interface TjbbServer {
 
 	List<Excel_list> getZjsyxmhzb(Excel_list elist);
 
-	
+	List<Excel_list> getZjsydwbbhzb(Excel_list elist);
+
+	List<Excel_list> getZjsydwsbhzb(Excel_list elist);
+
+	List<Excel_list> getZjsyxmbbhzb(Excel_list elist);
+
+	List<Excel_list> getZjsyxmsbhzb(Excel_list elist);
 
 }

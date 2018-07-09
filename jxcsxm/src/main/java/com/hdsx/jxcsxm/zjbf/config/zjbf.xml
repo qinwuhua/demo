@@ -378,12 +378,13 @@
 	    (case when replace(WMSYS.WM_CONCAT(shzt),',',',') like '%未审核%' then '未审核' else '已审核' end) shztstr
 	    from xm_zjbf  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on t.xmbm=dw.xmids
 	    left join
-	      (select distinct xm.xmbm xmbms1,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(bf.bfbb,0)bfbb,nvl(bf.bfsb,0) bfsb,nvl(bf.bfdf,0) bfdf,nvl(jhxdzj,0) jhxdzj,nvl(dwcgs,0) dwcgs,nvl(dwrys,0) dwrys,nvl(dwttc,0) dwttc,nvl(dwdfzc,0) dwdfzc from xmjbxx_zb xm left join
-	      (select xmbm,sum(nvl(ztz,0)) dwzj,sum(nvl(cgs,0)) dwcgs,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) dwttc,sum(nvl(rys,0)) dwrys,sum(nvl(dfzc,0)) dwdfzc from xm_zjdw  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on xm.xmbm=dw.xmbm left join
+	      (select distinct xm.xmbm xmbms1,nvl(dwzj,0) dwzj,nvl(bfzj,0) bfzj,nvl(bf.bfbb,0)bfbb,nvl(bf.bfsb,0) bfsb,nvl(dw.dwsb,0) dwsb,nvl(bf.bfdf,0) bfdf,nvl(jhxdzj,0) jhxdzj,nvl(dwcgs,0) dwcgs,nvl(dwrys,0) dwrys,nvl(dwttc,0) dwttc,nvl(dwdfzc,0) dwdfzc from xmjbxx_zb xm left join
+	      (select xmbm,sum(nvl(ztz,0)) dwzj,sum(nvl(cgs,0)) dwcgs,sum(nvl(ztz,0))-sum(nvl(cgs,0))-sum(nvl(rys,0))-sum(nvl(dfzc,0)) dwttc,sum(nvl(rys,0)) dwrys,sum(nvl(dfzc,0)) dwdfzc,sum(ztz-cgs-dfzc-yhdk) dwsb from xm_zjdw  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) dw on xm.xmbm=dw.xmbm left join
 			  (select xmbm,sum(ztz) bfzj,sum(decode(shzt,'已审核',ztz,0)) yshbfzj,sum(cgs) bfbb,sum(yhdk+dfzc) bfdf,sum(ztz-cgs-dfzc-yhdk) bfsb from xm_zjbf  where to_number(sbthcd)&lt;=${sbthcd} group by xmbm) bf on xm.xmbm=bf.xmbm left join
 			  (select xmid xmbm,sum(nvl(ztz,0)) jhxdzj from xm_gsd_jhxd where 1=1 <if test="jhxdwh !='' and jhxdwh != null">${jhxdwh}</if> and f_str_or_num(ztz)!=1 group by xmid) xd on xm.xmbm=xd.xmbm 
 	    ) zj on t.xmbm=zj.xmbms1
 	    where 1=1 
+	    <if test="sfqbbf !='' and sfqbbf != null">${sfqbbf}</if>
 		<if test="xzqh !='' and xzqh != null">${xzqh}</if>
 		<if test="gydwdm !='' and gydwdm != null">${gydwdm}</if>
 		<if test="xmnf !='' and xmnf != null">${xmnf}</if>

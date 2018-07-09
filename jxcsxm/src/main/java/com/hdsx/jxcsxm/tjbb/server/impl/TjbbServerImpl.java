@@ -605,4 +605,67 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		return l;
 	}
 
+	@Override
+	public List<Excel_list> getZjsydwbbhzb(Excel_list elist) {
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		List<Excel_list> l1=null;
+			if("按地市".equals(elist.getHjlx())){
+				l=queryList("getZjsydwbbhzbhjds",elist);
+				l1=queryList("getZjsydwbbhzbhzds",elist);
+			}else{
+				l=queryList("getZjsydwbbhzbhj",elist);
+				l1=queryList("getZjsydwbbhzbhz",elist);
+			}
+		for (int i = 0; i < l1.size(); i++) {
+			l.add(l1.get(i));
+			
+		}
+		return l;
+	}
+	
+	@Override
+	public List<Excel_list> getZjsydwsbhzb(Excel_list elist) {
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		List<Excel_list> l1=null;
+			if("按地市".equals(elist.getHjlx())){
+				l=queryList("getZjsydwsbhzbhjds",elist);
+				l1=queryList("getZjsydwsbhzbhzds",elist);
+			}else{
+				l=queryList("getZjsydwsbhzbhj",elist);
+				l1=queryList("getZjsydwsbhzbhz",elist);
+			}
+		for (int i = 0; i < l1.size(); i++) {
+			l.add(l1.get(i));
+			
+		}
+		return l;
+	}
+	
+	@Override
+	public List<Excel_list> getZjsyxmbbhzb(Excel_list elist) {
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		List<Excel_list> l1=new ArrayList<Excel_list>();
+			l=queryList("getZjsyxmbbhzbhj",elist);
+			l1=queryList("getZjsyxmbbhzbhz",elist);
+		for (int i = 0; i < l1.size(); i++) {
+			l.add(l1.get(i));
+		}
+		
+		return l;
+	}
+	
+	@Override
+	public List<Excel_list> getZjsyxmsbhzb(Excel_list elist) {
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		List<Excel_list> l1=new ArrayList<Excel_list>();
+			l=queryList("getZjsyxmsbhzbhj",elist);
+			l1=queryList("getZjsyxmsbhzbhz",elist);
+		for (int i = 0; i < l1.size(); i++) {
+			l.add(l1.get(i));
+		}
+		
+		return l;
+	}
+	
+	
 }

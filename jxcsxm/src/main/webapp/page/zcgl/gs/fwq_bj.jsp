@@ -41,9 +41,9 @@ $(function(){
 	_xmid=obj.fid;
 	loadBmbm('nf1','资产年份',obj.nf);
 	if($.cookie("unit")=='36')
-		loadUnits('gydw1','21101360000',obj.gydwdm);
+		loadUnit('gydw1','21101360000',obj.gydwdm);
 	else
-		loadUnits('gydw1',$.cookie('unit'),obj.gydwdm);
+		loadUnit('gydw1',$.cookie('unit'),obj.gydwdm);
 	//文件上传
 	loadFileUpload();
 	fileShowdsc(_xmid,"fjTable");		
