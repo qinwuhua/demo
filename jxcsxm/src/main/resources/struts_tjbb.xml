@@ -19,6 +19,8 @@
 	<action name="getZjsydwsbhzb" class="tjbbController" method="getZjsydwsbhzb"></action>
 	<action name="getZjsyxmbbhzb" class="tjbbController" method="getZjsyxmbbhzb"></action>
 	<action name="getZjsyxmsbhzb" class="tjbbController" method="getZjsyxmsbhzb"></action>
+	<action name="getZjsydwbbsbhzb" class="tjbbController" method="getZjsydwbbsbhzb"></action>
+	<action name="getZjsyxmbbsbhzb" class="tjbbController" method="getZjsyxmbbsbhzb"></action>
 	
  </package>
 </struts>

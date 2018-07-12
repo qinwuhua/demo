@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>公路建设资金使用情况明细表</title>
+	<title>公路建设车购税、省补合计资金使用情况汇总表（按项目类别统计）</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -41,13 +41,7 @@
 		$(".sn").html($("#nf").combo('getValue')-1);
 		$(".ssn").html($("#nf").combo('getValue')-2);
 		$(".sssn").html($("#nf").combo('getValue')-3);
-		if($.cookie('unit')=='36'){
-			 $("#sfxszrc2").attr("checked","checked");  
-			  $("#sfxszrc1").removeAttr("checked");  
-		}else{
-			 $("#sfxszrc1").attr("checked","checked");  
-			 $("#sfxszrc2").removeAttr("checked");  
-		}
+		
 		//showBb();
 	});
 		
@@ -75,13 +69,10 @@
 		$(".ssn").html($("#nf").combo('getValue')-2);
 		$(".sssn").html($("#nf").combo('getValue')-3);
 		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
-		$("#sn").html($("#nf").combo('getValue')-1);
-		$("#ssn").html($("#nf").combo('getValue')-2);
 		$.ajax({
-			url:"/jxcsxm/tjbb/getZjsymxb.do",
-			data:'flag=0&nf='+nf+"&gydw="+xzqhstr+"&yf="+$("#yf").combobox('getValue')
-			+"&xmlx="+getValuesById("xmlx")
-			+"&xmnf="+getValuesById("xmnf")+"&sfxszrc="+$("input[name='sfxszrc']:checked").val(),
+			url:"/jxcsxm/tjbb/getZjsyxmbbsbhzb.do",
+			data:'flag=0&nf='+nf+"&gydw="+xzqhstr+"&gydw="+gydw+"&xmlx="+getValuesById("xmlx")+"&yf="+$("#yf").combobox('getValue')
+			+"&xmnf="+getValuesById("xmnf"),
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -104,27 +95,15 @@
 						+"<td>"+msg[i].v_8+"</td>"+"<td>"+msg[i].v_9+"</td>"
 						+"<td>"+msg[i].v_10+"</td>"+"<td>"+msg[i].v_11+"</td>"
 						+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"
-						+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"
-						+"<td>"+msg[i].v_16+"</td>"+"<td>"+msg[i].v_17+"</td>"
-						+"<td>"+msg[i].v_18+"</td>"+"<td>"+msg[i].v_19+"</td>"
-						+"<td>"+msg[i].v_20+"</td>"+"<td>"+msg[i].v_21+"</td>"
-						+"<td>"+msg[i].v_22+"</td>"+"<td>"+msg[i].v_23+"</td>"
-						+"<td>"+msg[i].v_24+"</td>"+"<td>"+msg[i].v_25+"</td>"
-						+"<td>"+msg[i].v_26+"</td>"+"<td>"+msg[i].v_27+"</td>"
-						+"<td>"+msg[i].v_28+"</td>"+"<td>"+msg[i].v_29+"</td>"
-						+"<td>"+msg[i].v_30+"</td>"+"<td>"+msg[i].v_31+"</td>"
-						+"<td>"+msg[i].v_32+"</td>"+"<td>"+msg[i].v_33+"</td>"
-						+"<td>"+msg[i].v_34+"</td>"+"<td>"+msg[i].v_35+"</td>"
-						+"<td>"+msg[i].v_36+"</td>"+"<td>"+msg[i].v_37+"</td>"+"<td>"+msg[i].v_38+"</td>"
-						+"<td>"+msg[i].v_39+"</td>"+"<td>"+msg[i].v_40+"</td>";
+						+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"+"<td>"+msg[i].v_16+"</td>"
+						+"<td>"+msg[i].v_17+"</td>"+"<td>"+msg[i].v_18+"</td>"+"<td>"+msg[i].v_19+"</td>";
 						tr+="</tr>";
 						tbody.append(tr);
 					}
 					if(msg.length==1000){
-						var tr="<tr height='28'><td colspan='36'>数据太多，请导出表格查看...</td></tr>";
+						var tr="<tr height='28'><td colspan='15'>数据太多，请导出表格查看...</td></tr>";
 						tbody.append(tr);
 					}
-					
 				}
 			}
 		});
@@ -149,14 +128,13 @@
 		
 		var nf=$("#nf").combobox('getValue');
 		var gydw="";if($.cookie('unit').substr(0,1)=='1') gydw='1';if($.cookie('unit').substr(0,1)=='2') gydw='2';
-		var data="flag=1&nf="+nf+"&bbsj="+$("#nf").combobox('getValue')+"-"+$("#yf").combobox('getValue')+"&gydw="+$.cookie("truename")
-		//+"&xmlx="+getValuesById("xmlx")
-		;
+		var data="flag=1&nf="+nf+"&gydw="+$.cookie("truename")+"&bbsj="+$("#nf").combobox('getValue')+"-"+$("#yf").combobox('getValue');
 		loadjzt();
 		 $.post('/jxcsxm/xtgl/exportBb_set.do',{gydw:xzqhstr},function(){
-			window.location.href='/jxcsxm/tjbb/getZjsymxb.do?'+data;
+			window.location.href='/jxcsxm/tjbb/getZjsyxmbbsbhzb.do?'+data;
 		 }); 
-		 setTimeout('disLoadjzt()',30000);
+		 setTimeout('disLoadjzt()',4000);
+		
 		
 	}
 	
@@ -176,8 +154,8 @@ text-decoration:none;
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-					<div id="righttop" style="width:4020px;">
-						<div id="p_top">当前位置>&nbsp;统计报表>&nbsp;公路建设资金使用情况明细表</div>
+					<div id="righttop" style="width:2020px;">
+						<div id="p_top">当前位置>&nbsp;统计报表>&nbsp;公路建设车购税、省补合计资金使用情况汇总表（按项目类别统计）</div>
 					</div>
         	</tr>
         	<tr>
@@ -189,26 +167,19 @@ text-decoration:none;
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					
-								<tr height="28" >
+								<tr height="28">
 									<td align="right">管养单位：</td>
 	        						<td><select id="gydw" style="width:165px;"></select></td>
 	        						
         							<td align="right">计划年份：</td>
         							<td><select id="xmnf" style="width: 80px;"></select></td>
-        							<td align="right">是否显示自然村明细：</td>
-        							<td>
-	        							<span class="radioSpan">
-	        								<input type="radio" name="sfxszrc" value="Y"  id='sfxszrc1'>是</input>
-							                <input type="radio" name="sfxszrc" value="N" id='sfxszrc2'>否</input>
-							            </span>
-        							</td>
        							</tr>
-        					<tr height="28">
-        							<td align="right">项目类型：</td>
+        					    <tr height="28">
+        					    <td align="right">项目类型：</td>
         							<td><select id="xmlx" style="width: 165px;"></select></td>
 									<td align="right">报表年份：</td>
         							<td><select id="nf" style="width: 80px;"></select></td>
-        							<td align="right">报表月份：</td>
+									<td align="right">报表月份：</td>
         							<td><select id="yf" style="width: 80px;"></select></td>
         							
 								</tr>
@@ -228,65 +199,40 @@ text-decoration:none;
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:100%;height: 450px;" >
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:4000px;height:'+($(window).height()-160)+'px;');
+                			$("#gddiv").attr('style','width:2000px;height:'+($(window).height()-160)+'px;');
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table id='bbtable' width="100%">
-								<caption align="top" style="font-size:large;font-weight: bolder;"> 公路建设资金使用情况明细表</caption>
+								<caption align="top" style="font-size:large;font-weight: bolder;"> 公路建设车购税、省补合计资金使用情况汇总表（按项目类别统计）</caption>
 								<tbody id='biaotou'>
 									<tr>
-									<td colspan="13">投资计划</td>
-									<td colspan="28">资金</td>
+									<td colspan="7">投资计划</td>
+									<td colspan="13">资金</td>
 									</tr>
 									<tr>
 									<td rowspan="3">序号</td>
 									<td rowspan="3">项目单位</td>
 									<td rowspan="3">项目名称</td>
 									<td rowspan="3">计划文号</td>
-									<td colspan="4">以前年度计划</td>
-									<td colspan="4">本年计划</td>
+									<td rowspan="3">以前年度计划</td>
+									<td rowspan="3">本年计划</td>
 									<td rowspan="3">合计</td>
-									<td colspan="7">结转</td>
-									<td colspan="4">本年拨入</td>
-									<td colspan="4">本年拨出</td>
-									<td colspan="8">当年结存</td>
-									<td colspan="4">调剂</td>
+									<td colspan="4">结转</td>
+									<td rowspan="3">本年拨入</td>
+									<td rowspan="3">本年拨出</td>
+									<td colspan="5">当年结存</td>
+									<td rowspan="3">调剂</td>
 									<td rowspan="3">备注</td>
 									</tr>
 									<tr>
-									<td rowspan="2">部补</td>
-									<td rowspan="2">省补</td>
-									<td rowspan="2">地方</td>
-									<td rowspan="2">小计</td>
-									<td rowspan="2">部补</td>
-									<td rowspan="2">省补</td>
-									<td rowspan="2">地方</td>
-									<td rowspan="2">小计</td>
 									
-									<td rowspan="2">部补</td>
-									<td rowspan="2">省补</td>
-									<td rowspan="2">地方</td>
-									<td rowspan="2">合计</td>
+									<td rowspan="2">总数</td>
 									
 									<td colspan="3">其中</td>
-									<td rowspan="2">部补</td>
-									<td rowspan="2">省补</td>
-									<td rowspan="2">地方</td>
-									<td rowspan="2">合计</td>
-									<td rowspan="2">部补</td>
-									<td rowspan="2">省补</td>
-									<td rowspan="2">地方</td>
-									<td rowspan="2">合计</td>
-									<td rowspan="2">部补</td>
-									<td rowspan="2">省补</td>
-									<td rowspan="2">地方</td>
-									<td rowspan="2">合计</td>
+									<td rowspan="2">总数</td>
+									
 									<td colspan="4">其中</td>
-									<td rowspan="2">部补</td>
-									<td rowspan="2">省补</td>
-									<td rowspan="2">地方</td>
-									<td rowspan="2">合计</td>
 									</tr>
 									<tr>
 									<td><span class='sssn'></span>及以前</td>

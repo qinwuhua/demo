@@ -539,39 +539,37 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		
 		List<Excel_list> l1=null;
 		List<Excel_list> l2=null;
-		if("N".equals(elist.getSfxszrc())) {
+
 			if("按地市".equals(elist.getHjlx())){
 				l=queryList("getZjsydwhzbhjds",elist);
 				l1=queryList("getZjsydwhzbhzds",elist);
-//				l2=queryList("getZjsydwhzbds",elist);
+				for (int i = 0; i < l1.size(); i++) {
+					l.add(l1.get(i));
+				}
+				
 			}else{
 				l=queryList("getZjsydwhzbhj",elist);
-				l1=queryList("getZjsydwhzbhz",elist);
-//				l2=queryList("getZjsydwhzb",elist);
+				l1=queryList("getZjsydwhzbhzds",elist);
+				l2=queryList("getZjsydwhzbhz",elist);
+				int k=0;
+				for (int i = 0; i < l1.size(); i++) {
+					if(l1.get(i).getGydwdm().substring(0, 1).equals("1")) {
+						l1.get(i).setV_1(l1.get(i).getV_1()+"合计");
+					}
+					l.add(l1.get(i));
+					if(l1.get(i).getGydwdm().substring(0, 1).equals("1")) {
+						for (int j = k; j < l2.size(); j++) {
+							if(l1.get(i).getGydwdm().equals(l2.get(j).getGydwdm().substring(0, 1).equals("1") ? "11101"+l2.get(j).getGydwdm().substring(5,9)+"00" : l2.get(j).getGydwdm().substring(0,9)+"00" )) {
+								l.add(l2.get(j)); k++;
+							}else {
+								break;
+							}
+						}
+					}
+				}
+				
 			}
-		}else {
-			if("按地市".equals(elist.getHjlx())){
-				l=queryList("getZjsydwhzbhjdszrc",elist);
-				l1=queryList("getZjsydwhzbhzdszrc",elist);
-//				l2=queryList("getZjsydwhzbds",elist);
-			}else{
-				l=queryList("getZjsydwhzbhjzrc",elist);
-				l1=queryList("getZjsydwhzbhzzrc",elist);
-//				l2=queryList("getZjsydwhzb",elist);
-			}
-		}
-		
-		int l2no=0;
-		for (int i = 0; i < l1.size(); i++) {
-			l.add(l1.get(i));
-			/*int t=1;
-			for (int j = l2no; j < l2no+l1.get(i).getXmsl(); j++) {
-				l2.get(j).setV_0(t+"");t++;
-			}
-			System.out.println(l2no+"   "+(l2no+l1.get(i).getXmsl()));
-			l.addAll(l2.subList(l2no, l2no+l1.get(i).getXmsl()));
-			l2no+=l1.get(i).getXmsl();*/
-		}
+	
 		
 		return l;
 	}
@@ -580,26 +578,17 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 	public List<Excel_list> getZjsyxmhzb(Excel_list elist) {
 		List<Excel_list> l=new ArrayList<Excel_list>();
 		List<Excel_list> l1=new ArrayList<Excel_list>();
-		if("N".equals(elist.getSfxszrc())) {
+//		if("N".equals(elist.getSfxszrc())) {
 			l=queryList("getZjsyxmhzbhj",elist);
 			l1=queryList("getZjsyxmhzbhz",elist);
-		}else {
+		/*}else {
 			l=queryList("getZjsyxmhzbhjzrc",elist);
 			l1=queryList("getZjsyxmhzbhzzrc",elist);
-		}
+		}*/
 		
 		
-//		List<Excel_list> l2=queryList("getZjsyxmhzb",elist);
-		int l2no=0;
 		for (int i = 0; i < l1.size(); i++) {
 			l.add(l1.get(i));
-			int t=1;
-			/*for (int j = l2no; j < l2no+l1.get(i).getXmsl(); j++) {
-				l2.get(j).setV_0(t+"");t++;
-			}
-			System.out.println(l2no+"   "+(l2no+l1.get(i).getXmsl()));
-			l.addAll(l2.subList(l2no, l2no+l1.get(i).getXmsl()));
-			l2no+=l1.get(i).getXmsl();*/
 		}
 		
 		return l;
@@ -608,36 +597,72 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 	@Override
 	public List<Excel_list> getZjsydwbbhzb(Excel_list elist) {
 		List<Excel_list> l=new ArrayList<Excel_list>();
-		List<Excel_list> l1=null;
+		List<Excel_list> l1=null;List<Excel_list> l2=null;
 			if("按地市".equals(elist.getHjlx())){
 				l=queryList("getZjsydwbbhzbhjds",elist);
 				l1=queryList("getZjsydwbbhzbhzds",elist);
+				for (int i = 0; i < l1.size(); i++) {
+					l.add(l1.get(i));
+				}
 			}else{
 				l=queryList("getZjsydwbbhzbhj",elist);
-				l1=queryList("getZjsydwbbhzbhz",elist);
+				l1=queryList("getZjsydwbbhzbhzds",elist);
+				l2=queryList("getZjsydwbbhzbhz",elist);
+				int k=0;
+				for (int i = 0; i < l1.size(); i++) {
+					if(l1.get(i).getGydwdm().substring(0, 1).equals("1")) {
+						l1.get(i).setV_1(l1.get(i).getV_1()+"合计");
+					}
+					l.add(l1.get(i));
+					if(l1.get(i).getGydwdm().substring(0, 1).equals("1")) {
+						for (int j = k; j < l2.size(); j++) {
+							if(l1.get(i).getGydwdm().equals(l2.get(j).getGydwdm().substring(0, 1).equals("1") ? "11101"+l2.get(j).getGydwdm().substring(5,9)+"00" : l2.get(j).getGydwdm().substring(0,9)+"00" )) {
+								l.add(l2.get(j)); k++;
+							}else {
+								break;
+							}
+						}
+					}
+				}
+				
 			}
-		for (int i = 0; i < l1.size(); i++) {
-			l.add(l1.get(i));
-			
-		}
+		
 		return l;
 	}
 	
 	@Override
 	public List<Excel_list> getZjsydwsbhzb(Excel_list elist) {
 		List<Excel_list> l=new ArrayList<Excel_list>();
-		List<Excel_list> l1=null;
+		List<Excel_list> l1=null;List<Excel_list> l2=null;
 			if("按地市".equals(elist.getHjlx())){
 				l=queryList("getZjsydwsbhzbhjds",elist);
 				l1=queryList("getZjsydwsbhzbhzds",elist);
+				for (int i = 0; i < l1.size(); i++) {
+					l.add(l1.get(i));
+				}
 			}else{
 				l=queryList("getZjsydwsbhzbhj",elist);
-				l1=queryList("getZjsydwsbhzbhz",elist);
+				l1=queryList("getZjsydwsbhzbhzds",elist);
+				l2=queryList("getZjsydwsbhzbhz",elist);
+				int k=0;
+				for (int i = 0; i < l1.size(); i++) {
+					if(l1.get(i).getGydwdm().substring(0, 1).equals("1")) {
+						l1.get(i).setV_1(l1.get(i).getV_1()+"合计");
+					}
+					l.add(l1.get(i));
+					if(l1.get(i).getGydwdm().substring(0, 1).equals("1")) {
+						for (int j = k; j < l2.size(); j++) {
+							if(l1.get(i).getGydwdm().equals(l2.get(j).getGydwdm().substring(0, 1).equals("1") ? "11101"+l2.get(j).getGydwdm().substring(5,9)+"00" : l2.get(j).getGydwdm().substring(0,9)+"00" )) {
+								l.add(l2.get(j)); k++;
+							}else {
+								break;
+							}
+						}
+					}
+				}
+				
 			}
-		for (int i = 0; i < l1.size(); i++) {
-			l.add(l1.get(i));
-			
-		}
+		
 		return l;
 	}
 	
@@ -667,5 +692,55 @@ public class TjbbServerImpl extends BaseOperate  implements TjbbServer{
 		return l;
 	}
 	
+	@Override
+	public List<Excel_list> getZjsydwbbsbhzb(Excel_list elist) {
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		List<Excel_list> l1=null;List<Excel_list> l2=null;
+			if("按地市".equals(elist.getHjlx())){
+				l=queryList("getZjsydwbbsbhzbhjds",elist);
+				l1=queryList("getZjsydwbbsbhzbhzds",elist);
+				for (int i = 0; i < l1.size(); i++) {
+					l.add(l1.get(i));
+					
+				}
+			}else{
+				l=queryList("getZjsydwbbsbhzbhj",elist);
+				l1=queryList("getZjsydwbbsbhzbhzds",elist);
+				l2=queryList("getZjsydwbbsbhzbhz",elist);
+				int k=0;
+				for (int i = 0; i < l1.size(); i++) {
+					if(l1.get(i).getGydwdm().substring(0, 1).equals("1")) {
+						l1.get(i).setV_1(l1.get(i).getV_1()+"合计");
+					}
+					l.add(l1.get(i));
+					if(l1.get(i).getGydwdm().substring(0, 1).equals("1")) {
+						for (int j = k; j < l2.size(); j++) {
+							if(l1.get(i).getGydwdm().equals(l2.get(j).getGydwdm().substring(0, 1).equals("1") ? "11101"+l2.get(j).getGydwdm().substring(5,9)+"00" : l2.get(j).getGydwdm().substring(0,9)+"00" )) {
+								l.add(l2.get(j)); k++;
+							}else {
+								break;
+							}
+						}
+					}
+					
+				}
+			}
+	
+		return l;
+	}
+	
+	
+	@Override
+	public List<Excel_list> getZjsyxmbbsbhzb(Excel_list elist) {
+		List<Excel_list> l=new ArrayList<Excel_list>();
+		List<Excel_list> l1=new ArrayList<Excel_list>();
+			l=queryList("getZjsyxmbbsbhzbhj",elist);
+			l1=queryList("getZjsyxmbbsbhzbhz",elist);
+		for (int i = 0; i < l1.size(); i++) {
+			l.add(l1.get(i));
+		}
+		
+		return l;
+	}
 	
 }

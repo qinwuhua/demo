@@ -43,13 +43,6 @@
 		$(".ssn").html($("#nf").combo('getValue')-2);
 		$(".sssn").html($("#nf").combo('getValue')-3);
 	
-		if($.cookie('unit')=='36'){
-			 $("#sfxszrc2").attr("checked","checked");  
-			  $("#sfxszrc1").removeAttr("checked");  
-		}else{
-			 $("#sfxszrc1").attr("checked","checked");  
-			 $("#sfxszrc2").removeAttr("checked");  
-		}
 		//showBb();
 	});
 		
@@ -81,7 +74,7 @@
 		$.ajax({
 			url:"/jxcsxm/tjbb/getZjsydwhzb.do",
 			data:'flag=0&nf='+nf+"&gydw="+xzqhstr+"&gydw="+gydw+"&xmlx="+getValuesById("xmlx")+"&yf="+$("#yf").combobox('getValue')+"&hjlx="+$("#hjlx").combobox('getValue')
-			+"&xmnf="+getValuesById("xmnf")+"&sfxszrc="+$("input[name='sfxszrc']:checked").val(),
+			+"&xmnf="+getValuesById("xmnf"),
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
@@ -184,13 +177,7 @@ text-decoration:none;
         							<td><select id="xmnf" style="width: 80px;"></select></td>
         							<td align="right">合计类型：</td>
         							<td><select id="hjlx" style="width: 80px;"></select></td>
-        							<td align="right">是否显示自然村明细：</td>
-        							<td>
-	        							<span class="radioSpan">
-	        								<input type="radio" name="sfxszrc" value="Y"  id='sfxszrc1'>是</input>
-							                <input type="radio" name="sfxszrc" value="N" id='sfxszrc2'>否</input>
-							            </span>
-        							</td>
+        							
        							</tr>
         					    <tr height="28">
         					   		 <td align="right">项目类型：</td>

@@ -69,6 +69,37 @@ public class MyUtil implements Serializable{
 		return result;
 	}
 	
+	//单位
+	
+	public static String getQueryDwTJ(String bh,String name){
+		String result="";
+		if(bh!=null&&!"".equals(bh)&&!" ".equals(bh)){
+			
+			String[] s = bh.split(",");
+			if((s.length==1||s.length==2)&&s[0].length()==9) {
+				result+=" and "+ name + " like "+"substr("+s[0]+",1,4)||'_'||substr("+s[0]+",6)||'%' and "+name+" not in (select to_char(l.id) zgx from xtgl_department l where parent='11101360000' and id not like '%00')"; 
+			}else {
+				for (int i = 0; i < s.length; i++) {
+
+					if(!" ".equals(s[i])&&!"".equals(s[i])){
+						if(i==0)
+							result+=" and ("+name+" like '%"+s[i]+"%'";
+						else
+							result+=" or "+name+" like '%"+s[i]+"%'";
+					}
+
+				}
+				result+=")";
+			}
+			
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
 	public static String getQueryTJIN(String bh,String name){
 		String result="";
 		if(bh!=null&&!"".equals(bh)&&!" ".equals(bh)){

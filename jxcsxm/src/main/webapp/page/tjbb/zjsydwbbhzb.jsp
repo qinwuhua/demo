@@ -183,7 +183,7 @@ text-decoration:none;
         							<td><select id="xmlx" style="width: 165px;"></select></td>
 									<td align="right">报表年份：</td>
         							<td><select id="nf" style="width: 80px;"></select></td>
-									<td align="right">报表月份：</td>
+        							<td align="right">报表月份：</td>
         							<td><select id="yf" style="width: 80px;"></select></td>
         							
 								</tr>
