@@ -701,8 +701,9 @@ public class ZjdwController extends BaseActionSupport implements ModelDriven<XmZ
 		xmjbxx.setKnw(MyUtil.getQueryTJ(xmjbxx.getKnw(), "knw"));
 		xmjbxx.setGydwdm(MyUtil.getQueryTJDW(xmjbxx.getGydwdm(), "gydwdm"));
 		xmjbxx.setSfqbdw(MyUtil.getQueryTJ(xmjbxx.getSfqbdw(), "sfqbdw"));
-		xmjbxx.setZgx(MyUtil.getQueryTJ(xmjbxx.getZgx(), "gydwdm"));
+		
 		xmjbxx.setZgx1(MyUtil.getQueryTJNO(xmjbxx.getZgx(), "gydwdm"));
+		xmjbxx.setZgx(MyUtil.getQueryTJ(xmjbxx.getZgx(), "gydwdm"));
 		
 		ResponseUtils.write(getresponse(), ""+zjdwServer.qbthsj(xmjbxx));
 		

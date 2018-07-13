@@ -196,7 +196,6 @@ public class ZjdwServerImpl extends BaseOperate  implements ZjdwServer{
 
 	@Override
 	public boolean qbthsj(Xmjbxx xmjbxx) {
-		
 		return delete("qbthsj",xmjbxx)>0 | delete("qbthsjzgx",xmjbxx)>0;
 	}
 
