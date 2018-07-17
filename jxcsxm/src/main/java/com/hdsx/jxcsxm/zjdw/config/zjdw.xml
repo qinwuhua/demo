@@ -657,7 +657,7 @@
 		<if test="ssbzt !='' and ssbzt != null">${ssbzt}</if>
 		<if test="xsbzt !='' and xsbzt != null">${xsbzt}</if>
 		)
-		nd xsbzt='已上报' and ssbzt='未上报' and shzt='未审核'
+		and xsbzt='已上报' and ssbzt='未上报' and shzt='未审核'
 		
 	</update>
 	
