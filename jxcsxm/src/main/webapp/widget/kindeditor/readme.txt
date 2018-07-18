@@ -1,2 +1,0 @@
-kindeditor3.5.4组件需引入plugins、skins文件夹和kindeditor.js
-其他均为测试页面
