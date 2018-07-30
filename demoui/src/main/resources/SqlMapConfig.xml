@@ -4,23 +4,13 @@
 <configuration>
   <properties resource="dao.properties"/>
   <typeAliases>
-     <!-- BONECP数据库连接池 -->
      <typeAlias type="com.hdsx.dao.util.BoneCPFactory" alias="BONECP"/>
-     <typeAlias type="com.hdsx.demoui.xtgl.bean.TreeNode" alias="treenode"/>
-     <typeAlias type="com.hdsx.demoui.xtgl.bean.Master" alias="master"/>
-     <typeAlias type="com.hdsx.demoui.xtgl.bean.Unit" alias="unit"/>
-     <typeAlias type="com.hdsx.demoui.xtgl.bean.Param" alias="param"/>
-     <typeAlias type="com.hdsx.demoui.xtgl.bean.Dzdt" alias="dzdt"/>
-     <typeAlias type="com.hdsx.demoui.xtgl.bean.ProgBean" alias="pb"/>
-     <typeAlias type="com.hdsx.demoui.xtgl.bean.Lxsh" alias="lxsh"/>
 	 <!-- qwh -->
 	 <typeAlias type="com.hdsx.demoui.xtgl.bean.Xmjbxx" alias="xmjbxx"/>
-	 <typeAlias type="com.hdsx.demoui.zjdw.bean.XmZjdw" alias="xmzjdw"/>
-	 <typeAlias type="com.hdsx.demoui.zjbf.bean.XmZjbf" alias="xmzjbf"/>
-	 <typeAlias type="com.hdsx.demoui.zjtj.bean.XmZjtj" alias="xmzjtj"/>
-     <typeAlias type="com.hdsx.demoui.tjbb.bean.Excel_list" alias="elist"/>
-     <typeAlias type="com.hdsx.demoui.zcgl.bean.Zcgl" alias="zcgl"/>
-     <typeAlias type="com.hdsx.demoui.utile.MyFile" alias="myfile"/>
+	 <typeAlias type="com.hdsx.demoui.xtgl.bean.TreeNode" alias="treenode"/>
+	 <typeAlias type="com.hdsx.demoui.xtgl.bean.Unit" alias="unit"/>
+	 
+<!-- 	 <package name="com.hdsx.demoui.xtgl.bean" /> -->
   </typeAliases>
   <environments default="jdbc">
      <environment id="jdbc">
@@ -46,38 +36,15 @@
 <!--         </dataSource> -->
      </environment>
      
-     <environment id="jdbc_jh">
-       <transactionManager type="JDBC"/>
-       <!-- BONECP连接池，推荐在开发时使用 -->
-       <dataSource type="BONECP">
-			<property name="driverClass" value="${driverClass_jh}" />
-			<property name="jdbcUrl" value="${jdbcUrl_jh}" />
-			<property name="username" value="${username_jh}" />
-			<property name="password" value="${password_jh}" />
-			<property name="idleConnectionTestPeriod" value="60" />
-			<property name="idleMaxAge" value="30" />
-			<property name="maxConnectionsPerPartition" value="30" />
-			<property name="minConnectionsPerPartition" value="10" />
-			<property name="partitionCount" value="3" />
-			<property name="acquireIncrement" value="5" />
-			<property name="statementsCacheSize" value="100" />
-			<property name="releaseHelperThreads" value="3" />
-	    </dataSource>     
+       
 <!-- JNDI连接池，推荐在正式发布时使用 -->
 <!--         <dataSource type="JNDI"> -->
 <!--              <property name = "data_source" value= "${data_source}"/> -->
 <!--         </dataSource> -->
-     </environment>
+
   </environments>
 	<mappers>
      <mapper resource="com/hdsx/demoui/xtgl/config/xtgl.xml"/>
-     <mapper resource="com/hdsx/demoui/xtgl/config/dzdt.xml"/>
-	 <!-- qwh -->
-	 <mapper resource="com/hdsx/demoui/jhcx/config/jhcx.xml"/>
-	 <mapper resource="com/hdsx/demoui/zjdw/config/zjdw.xml"/>
-	 <mapper resource="com/hdsx/demoui/zjbf/config/zjbf.xml"/>
-	 <mapper resource="com/hdsx/demoui/tjbb/config/tjbb.xml"/>
-	 <mapper resource="com/hdsx/demoui/zcgl/config/zcgl.xml"/>
-	 <mapper resource="com/hdsx/demoui/zjtj/config/zjtj.xml"/>
+   
   </mappers>
 </configuration>

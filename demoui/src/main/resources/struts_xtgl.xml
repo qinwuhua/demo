@@ -3,97 +3,11 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="xtgl" extends="struts-default" namespace="/xtgl">
-	<action name="getBmbmByName" class="bmbmController" method="getBmbmByName"></action>
-	<action name="getjhxdwh" class="xtglController" method="getjhxdwh"></action>
-	<action name="selAllXzqh1" class="xtglController" method="selAllXzqh1"></action>
-	<action name="selAllUnit1" class="xtglController" method="selAllUnit1"></action>
-	<action name="exportBb_set" class="xtglController" method="exportBb_set"></action>
+	<action name="selectxmlist" class="xtglController" method="selectxmlist"></action>
+
 	
 	
-	<action name="czPassword" class="xtglController" method="czPassword"/>
-	<action name="selQx" class="xtglController" method="selQx"/>
-	<action name="clearSession" class="xtglController" method="clearSession"/>
-	<action name="seldw" class="xtglController" method="seldw"></action>
-	<action name="seldw2" class="xtglController" method="seldw2"></action>
-	<action name="updatePassword" class="xtglController" method="updatePassword"></action>
-	<action name="updateName" class="xtglController" method="updateName"></action>
-	
-	<action name="login" class="xtglController" method="login"></action>
-	<action name="loginCheck" class="xtglController" method="loginCheck"></action>
-	<action name="selAllXzqh" class="xtglController" method="selAllXzqh"></action>
-	<action name="selAllXzqh2" class="xtglController" method="selAllXzqh2"></action>
-	<action name="selectYhList" class="xtglController" method="selectYhList"></action>
-	<action name="selQxList" class="xtglController" method="selQxList"></action>
-	<action name="insertYh" class="xtglController" method="insertYh"></action>
-	<action name="updatezt" class="xtglController" method="updatezt"></action>
-	<action name="mimareset" class="xtglController" method="mimareset"></action>
-	<action name="deleteYh" class="xtglController" method="deleteYh"></action>
-	<action name="updateYh" class="xtglController" method="updateYh"></action>
-	<action name="selectJsList" class="xtglController" method="selectJsList"></action>
-	<action name="insertJs" class="xtglController" method="insertJs"></action>
-	<action name="updateJs" class="xtglController" method="updateJs"></action>
-	<action name="checkJsCfByName" class="xtglController" method="checkJsCfByName"></action>
-	
-	
-	<action name="deleteJsById" class="xtglController" method="deleteJsById"></action>
-	<action name="selectDwList" class="xtglController" method="selectDwList"></action>
-	<action name="getBmbmTreeByName" class="xtglController" method="getBmbmTreeByName"></action>
-	<action name="getWhTreeByName" class="xtglController" method="getWhTreeByName"></action>
-	<action name="getWhTreeByNameSh" class="xtglController" method="getWhTreeByNameSh"></action>
-	<action name="insertDw" class="xtglController" method="insertDw"></action>
-	<action name="deleteDwById" class="xtglController" method="deleteDwById"></action>
-	<action name="selectDwById" class="xtglController" method="selectDwById"></action>
-	<action name="updateDw" class="xtglController" method="updateDw"></action>
-	<action name="selectBmbmList" class="xtglController" method="selectBmbmList"></action>
-	<action name="insertBmbm" class="xtglController" method="insertBmbm"></action>
-	<action name="updateBmbm" class="xtglController" method="updateBmbm"></action>
-	<action name="deleteBmbmById" class="xtglController" method="deleteBmbmById"></action>
-	<action name="checkname" class="xtglController" method="checkname"></action>
-	<action name="selectTsdqList" class="xtglController" method="selectTsdqList"></action>
-	<action name="selectXzqhList" class="xtglController" method="selectXzqhList"></action>
-	<action name="checkXzqhCfById" class="xtglController" method="checkXzqhCfById"></action>
-	<action name="insertXzqh" class="xtglController" method="insertXzqh"></action>
-	<action name="updateXzqh" class="xtglController" method="updateXzqh"></action>
-	<action name="deleteXzqhById" class="xtglController" method="deleteXzqhById"></action>
-	<action name="updateTsdqZt" class="xtglController" method="updateTsdqZt"></action>
-	<action name="selAllTsdq" class="xtglController" method="selAllTsdq"></action>
-	<action name="selAllTsdq2" class="xtglController" method="selAllTsdq2"></action>
-	<action name="insertTsdq" class="xtglController" method="insertTsdq"></action>
-	<action name="deleteTsdqById" class="xtglController" method="deleteTsdqById"></action>
-	<action name="selectTsdqById" class="xtglController" method="selectTsdqById"></action>
-	<action name="updateTsdq" class="xtglController" method="updateTsdq"></action>
-	<action name="selectYhById" class="xtglController" method="selectYhById"></action>
-	<action name="selAllQx" class="xtglController" method="selAllQx"></action>
-	<action name="selAllQx2" class="xtglController" method="selAllQx2"></action>
-	<action name="selectJsById" class="xtglController" method="selectJsById"></action>
-	<action name="selQxByUser" class="xtglController" method="selQxByUser"></action>
-	<action name="selQxByUser2" class="xtglController" method="selQxByUser2"></action>
-	<action name="selJsUsedById" class="xtglController" method="selJsUsedById"></action>
-	
-	
-	<action name="selAllBm" class="xtglController" method="selAllBm"></action>
-	<action name="selAllBm2" class="xtglController" method="selAllBm2"></action>
-	
-	<action name="selQxByRoleid" class="xtglController" method="selQxByRoleid"></action>
 	<action name="getBmbmTreeByName2" class="loadBmbmController" method="getBmbmTreeByName2"></action>
-	
-	<action name="selectExistLxProgramList" class="dzdtController" method="selectExistLxProgramList"></action>
-	<action name="selectExistQlProgramList" class="dzdtController" method="selectExistQlProgramList"></action>
-	
-	
-	<!-- rh -->
-	<action name="userlogin" class="xtglController" method="userlogin"></action>
-	
-	<action name="createMenu" class="xtglController" method="createMenu"></action>
-	<action name="getQxfromSession" class="xtglController" method="getQxfromSession"></action>
-	<action name="urllogin" class="xtglController" method="urllogin"></action>
-	<action name="insertxmsx" class="xtglController" method="insertxmsx"></action>
-	<action name="selectXmsx" class="xtglController" method="selectXmsx"></action>
-	<action name="getbmbmbyid" class="xtglController" method="getbmbmbyid"></action>
-	<action name="getxqxbyid" class="xtglController" method="getxqxbyid"></action>
-	<action name="selectlxbyxmid" class="xtglController" method="selectlxbyxmid"></action>
-	
-	
 	
  </package>
 </struts>
